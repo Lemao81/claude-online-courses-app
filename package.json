@@ -21,7 +21,7 @@
     "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
-    "@clerk/clerk-react": "5.61.3",
+    "@clerk/tanstack-react-start": "1.4.10",
     "@tailwindcss/vite": "4.3.2",
     "@tanstack/query-db-collection": "1.0.44",
     "@tanstack/react-db": "0.1.90",
