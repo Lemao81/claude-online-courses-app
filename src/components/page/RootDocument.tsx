@@ -4,7 +4,7 @@ import { TanStackDevtools } from '@tanstack/react-devtools'
 import Footer from '../Footer'
 import Header from '../Header'
 
-import ClerkProvider from '../../integrations/clerk/provider'
+import ClerkProvider from '../../providers/AppClerkProvider'
 
 import TanStackQueryDevtools from '../../integrations/tanstack-query/devtools'
 
