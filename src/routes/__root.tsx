@@ -1,9 +1,7 @@
+import type { QueryClient } from '@tanstack/react-query'
 import { createRootRouteWithContext } from '@tanstack/react-router'
 import RootDocument from '../components/page/RootDocument'
-
 import appCss from '../styles.css?url'
-
-import type { QueryClient } from '@tanstack/react-query'
 
 interface MyRouterContext {
   queryClient: QueryClient
