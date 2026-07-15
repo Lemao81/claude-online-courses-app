@@ -77,10 +77,7 @@ function DemoDrizzle() {
           )}
         </ul>
 
-        <form
-          onSubmit={handleSubmit}
-          className="flex flex-col gap-2 sm:flex-row"
-        >
+        <form onSubmit={handleSubmit} className="flex flex-col gap-2 sm:flex-row">
           <input
             type="text"
             name="title"

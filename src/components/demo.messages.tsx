@@ -7,28 +7,15 @@ export const getAvatarColor = (username: string) => {
     'bg-[var(--sea-ink-soft)]',
     'bg-[var(--lagoon)]',
   ]
-  const index = username
-    .split('')
-    .reduce((acc, char) => acc + char.charCodeAt(0), 0)
+  const index = username.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0)
   return colors[index % colors.length]
 }
 
-export default function Messages({
-  messages,
-  user,
-}: {
-  messages: Message[]
-  user: string
-}) {
+export default function Messages({ messages, user }: { messages: Message[]; user: string }) {
   return (
     <>
       {messages.map((msg: Message) => (
-        <div
-          key={msg.id}
-          className={`flex ${
-            msg.user === user ? 'justify-end' : 'justify-start'
-          }`}
-        >
+        <div key={msg.id} className={`flex ${msg.user === user ? 'justify-end' : 'justify-start'}`}>
           <div
             className={`flex items-start space-x-3 max-w-xs lg:max-w-md ${
               msg.user === user ? 'flex-row-reverse space-x-reverse' : ''
@@ -50,9 +37,7 @@ export default function Messages({
               }`}
             >
               {msg.user !== user && (
-                <p className="demo-muted mb-1 text-xs font-medium">
-                  {msg.user}
-                </p>
+                <p className="demo-muted mb-1 text-xs font-medium">{msg.user}</p>
               )}
               <p className="text-sm">{msg.text}</p>
             </div>

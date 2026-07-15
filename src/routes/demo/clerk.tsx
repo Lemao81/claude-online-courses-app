@@ -14,8 +14,7 @@ function ClerkDemo() {
             <p className="island-kicker mb-2">Clerk</p>
             <h1 className="demo-title">Sign in to continue</h1>
             <p className="demo-muted text-sm">
-              Clerk renders the sign-in UI, manages sessions, and handles social
-              providers for you.
+              Clerk renders the sign-in UI, manages sessions, and handles social providers for you.
             </p>
           </div>
           <div className="flex justify-center pt-2">
@@ -72,9 +71,7 @@ function SignedInGreeting() {
           <p className="text-sm font-medium truncate">
             {user.firstName} {user.lastName}
           </p>
-          <p className="text-xs text-neutral-500 dark:text-neutral-400 truncate">
-            {email}
-          </p>
+          <p className="text-xs text-neutral-500 dark:text-neutral-400 truncate">{email}</p>
         </div>
       </div>
 

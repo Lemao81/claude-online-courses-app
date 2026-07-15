@@ -15,11 +15,7 @@ export function SubscribeButton({ label }: { label: string }) {
   )
 }
 
-function ErrorMessages({
-  errors,
-}: {
-  errors: Array<string | { message: string }>
-}) {
+function ErrorMessages({ errors }: { errors: Array<string | { message: string }> }) {
   return (
     <>
       {errors.map((error) => (
@@ -34,22 +30,13 @@ function ErrorMessages({
   )
 }
 
-export function TextField({
-  label,
-  placeholder,
-}: {
-  label: string
-  placeholder?: string
-}) {
+export function TextField({ label, placeholder }: { label: string; placeholder?: string }) {
   const field = useFieldContext<string>()
   const errors = useStore(field.store, (state) => state.meta.errors)
 
   return (
     <div>
-      <label
-        htmlFor={label}
-        className="mb-2 block text-sm font-semibold text-[var(--sea-ink)]"
-      >
+      <label htmlFor={label} className="mb-2 block text-sm font-semibold text-[var(--sea-ink)]">
         {label}
         <input
           value={field.state.value}
@@ -64,22 +51,13 @@ export function TextField({
   )
 }
 
-export function TextArea({
-  label,
-  rows = 3,
-}: {
-  label: string
-  rows?: number
-}) {
+export function TextArea({ label, rows = 3 }: { label: string; rows?: number }) {
   const field = useFieldContext<string>()
   const errors = useStore(field.store, (state) => state.meta.errors)
 
   return (
     <div>
-      <label
-        htmlFor={label}
-        className="mb-2 block text-sm font-semibold text-[var(--sea-ink)]"
-      >
+      <label htmlFor={label} className="mb-2 block text-sm font-semibold text-[var(--sea-ink)]">
         {label}
         <textarea
           value={field.state.value}
@@ -107,10 +85,7 @@ export function Select({
 
   return (
     <div>
-      <label
-        htmlFor={label}
-        className="mb-2 block text-sm font-semibold text-[var(--sea-ink)]"
-      >
+      <label htmlFor={label} className="mb-2 block text-sm font-semibold text-[var(--sea-ink)]">
         {label}
       </label>
       <select

@@ -46,9 +46,7 @@ function SimpleForm() {
           }}
           className="space-y-6"
         >
-          <form.AppField name="title">
-            {(field) => <field.TextField label="Title" />}
-          </form.AppField>
+          <form.AppField name="title">{(field) => <field.TextField label="Title" />}</form.AppField>
 
           <form.AppField name="description">
             {(field) => <field.TextArea label="Description" />}
