@@ -3,11 +3,11 @@ import { createRootRouteWithContext } from '@tanstack/react-router'
 import RootDocument from '../components/page/RootDocument'
 import appCss from '../styles.css?url'
 
-interface MyRouterContext {
+type AppRouterContext = {
   queryClient: QueryClient
 }
 
-export const Route = createRootRouteWithContext<MyRouterContext>()({
+export const Route = createRootRouteWithContext<AppRouterContext>()({
   head: () => ({
     meta: [
       {
@@ -18,7 +18,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: 'TanStack Start Starter',
+        title: 'Online Courses',
       },
     ],
     links: [
