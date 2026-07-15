@@ -16,10 +16,11 @@ export default function RootDocument({ children }: RootDocumentProps) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/** biome-ignore lint/security/noDangerouslySetInnerHtml: trusted scaffold script */}
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
         <HeadContent />
       </head>
-      <body className="font-sans antialiased [overflow-wrap:anywhere] selection:bg-[rgba(79,184,178,0.24)]">
+      <body className="font-sans antialiased wrap-anywhere selection:bg-[rgba(79,184,178,0.24)]">
         <ClerkProvider>
           <Header />
           {children}
