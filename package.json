@@ -23,7 +23,9 @@
     "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
+    "@chakra-ui/react": "3.36.0",
     "@clerk/tanstack-react-start": "1.4.10",
+    "@emotion/react": "11.14.0",
     "@tailwindcss/vite": "4.3.2",
     "@tanstack/query-db-collection": "1.0.44",
     "@tanstack/react-db": "0.1.90",
