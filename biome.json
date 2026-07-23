@@ -9,6 +9,7 @@
     "ignoreUnknown": false,
     "includes": [
       "**/src/**/*",
+      "**/cypress/**/*",
       "**/.vscode/**/*",
       "**/index.html",
       "**/vite.config.ts",
@@ -37,8 +38,7 @@
   "javascript": {
     "formatter": {
       "indentWidth": 2,
-      "quoteStyle": "single",
-      "semicolons": "asNeeded"
+      "quoteStyle": "single"
     }
   }
 }
