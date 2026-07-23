@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import { useChat, useMessages } from '#/hooks/demo.useChat'
 
-import Messages from './demo.messages'
+import Messages from '#/components/demo.messages'
 
 export default function ChatArea() {
   const { sendMessage } = useChat()

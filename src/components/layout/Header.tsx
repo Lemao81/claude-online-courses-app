@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router'
-import ClerkHeader from './ClerkHeader'
-import ThemeToggle from './ThemeToggle'
+import ClerkHeader from '#/components/layout/ClerkHeader'
+import ThemeToggle from '#/components/layout/ThemeToggle'
 
 export default function Header() {
   return (
