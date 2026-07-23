@@ -3,6 +3,7 @@ import { HeadContent, Scripts } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import TanStackQueryDevtools from '../../integrations/tanstack-query/devtools'
 import ClerkProvider from '../../providers/AppClerkProvider'
+import { Provider } from '../ui/provider'
 import Footer from './Footer'
 import Header from './Header'
 
@@ -21,23 +22,25 @@ export default function RootDocument({ children }: RootDocumentProps) {
         <HeadContent />
       </head>
       <body className="font-sans antialiased wrap-anywhere selection:bg-[rgba(79,184,178,0.24)]">
-        <ClerkProvider>
-          <Header />
-          {children}
-          <Footer />
-          <TanStackDevtools
-            config={{
-              position: 'bottom-right',
-            }}
-            plugins={[
-              {
-                name: 'Tanstack Router',
-                render: <TanStackRouterDevtoolsPanel />,
-              },
-              TanStackQueryDevtools,
-            ]}
-          />
-        </ClerkProvider>
+        <Provider>
+          <ClerkProvider>
+            <Header />
+            {children}
+            <Footer />
+            <TanStackDevtools
+              config={{
+                position: 'bottom-right',
+              }}
+              plugins={[
+                {
+                  name: 'Tanstack Router',
+                  render: <TanStackRouterDevtoolsPanel />,
+                },
+                TanStackQueryDevtools,
+              ]}
+            />
+          </ClerkProvider>
+        </Provider>
         <Scripts />
       </body>
     </html>
