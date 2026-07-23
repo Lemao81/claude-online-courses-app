@@ -56,8 +56,7 @@ export default function AppPage() {
           </li>
           <li>
             Update <code>src/components/layout/Header.tsx</code> and{' '}
-            <code>src/components/layout/Footer.tsx</code>{' '}
-            for brand links.
+            <code>src/components/layout/Footer.tsx</code> for brand links.
           </li>
           <li>
             Add routes in <code>src/routes</code> and tweak visual tokens in{' '}

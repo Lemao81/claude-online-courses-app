@@ -38,7 +38,8 @@
   "javascript": {
     "formatter": {
       "indentWidth": 2,
-      "quoteStyle": "single"
+      "quoteStyle": "single",
+      "semicolons": "asNeeded"
     }
   }
 }
