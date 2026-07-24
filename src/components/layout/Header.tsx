@@ -1,7 +1,19 @@
-import { Box, Flex, Heading, Icon, Link, VisuallyHidden } from '@chakra-ui/react'
+import { Box, Flex, Heading, Icon, Link, type SystemStyleObject, VisuallyHidden } from '@chakra-ui/react'
 import { Link as RouterLink } from '@tanstack/react-router'
 import ClerkHeader from '#/components/layout/ClerkHeader'
 import ThemeToggle from '#/components/layout/ThemeToggle'
+
+const demoLinkStyles: SystemStyleObject = {
+  display: 'block',
+  rounded: 'lg',
+  px: '3',
+  py: '2',
+  fontSize: 'sm',
+  color: 'var(--sea-ink-soft)',
+  textDecoration: 'none',
+  transition: 'all 0.15s ease',
+  _hover: { bg: 'var(--link-bg-hover)', color: 'var(--sea-ink)' },
+}
 
 export default function Header() {
   return (
@@ -106,88 +118,22 @@ export default function Header() {
               position={{ sm: 'absolute' }}
               right={{ sm: '0' }}
             >
-              <Link
-                href="/demo/clerk"
-                display="block"
-                rounded="lg"
-                px="3"
-                py="2"
-                fontSize="sm"
-                color="var(--sea-ink-soft)"
-                textDecoration="none"
-                transition="all 0.15s ease"
-                _hover={{ bg: 'var(--link-bg-hover)', color: 'var(--sea-ink)' }}
-              >
+              <Link href="/demo/clerk" css={demoLinkStyles}>
                 Clerk
               </Link>
-              <Link
-                href="/demo/db-chat"
-                display="block"
-                rounded="lg"
-                px="3"
-                py="2"
-                fontSize="sm"
-                color="var(--sea-ink-soft)"
-                textDecoration="none"
-                transition="all 0.15s ease"
-                _hover={{ bg: 'var(--link-bg-hover)', color: 'var(--sea-ink)' }}
-              >
+              <Link href="/demo/db-chat" css={demoLinkStyles}>
                 DB Chat
               </Link>
-              <Link
-                href="/demo/drizzle"
-                display="block"
-                rounded="lg"
-                px="3"
-                py="2"
-                fontSize="sm"
-                color="var(--sea-ink-soft)"
-                textDecoration="none"
-                transition="all 0.15s ease"
-                _hover={{ bg: 'var(--link-bg-hover)', color: 'var(--sea-ink)' }}
-              >
+              <Link href="/demo/drizzle" css={demoLinkStyles}>
                 Drizzle
               </Link>
-              <Link
-                href="/demo/form/simple"
-                display="block"
-                rounded="lg"
-                px="3"
-                py="2"
-                fontSize="sm"
-                color="var(--sea-ink-soft)"
-                textDecoration="none"
-                transition="all 0.15s ease"
-                _hover={{ bg: 'var(--link-bg-hover)', color: 'var(--sea-ink)' }}
-              >
+              <Link href="/demo/form/simple" css={demoLinkStyles}>
                 Simple Form
               </Link>
-              <Link
-                href="/demo/form/address"
-                display="block"
-                rounded="lg"
-                px="3"
-                py="2"
-                fontSize="sm"
-                color="var(--sea-ink-soft)"
-                textDecoration="none"
-                transition="all 0.15s ease"
-                _hover={{ bg: 'var(--link-bg-hover)', color: 'var(--sea-ink)' }}
-              >
+              <Link href="/demo/form/address" css={demoLinkStyles}>
                 Address Form
               </Link>
-              <Link
-                href="/demo/tanstack-query"
-                display="block"
-                rounded="lg"
-                px="3"
-                py="2"
-                fontSize="sm"
-                color="var(--sea-ink-soft)"
-                textDecoration="none"
-                transition="all 0.15s ease"
-                _hover={{ bg: 'var(--link-bg-hover)', color: 'var(--sea-ink)' }}
-              >
+              <Link href="/demo/tanstack-query" css={demoLinkStyles}>
                 TanStack Query
               </Link>
             </Box>
