@@ -1,9 +1,17 @@
-import { Box, Flex, Heading, Link, Text } from '@chakra-ui/react'
+import { Box, Code, Flex, Heading, Link, List, SimpleGrid, Text } from '@chakra-ui/react'
 
 export default function AppPage() {
   return (
-    <main className="page-wrap px-4 pb-8 pt-14">
-      <section className="island-shell rise-in relative overflow-hidden rounded-[2rem] px-6 py-10 sm:px-10 sm:py-14">
+    <Box as="main" className="page-wrap" px="4" pb="8" pt="14">
+      <Box
+        as="section"
+        className="island-shell rise-in"
+        position="relative"
+        overflow="hidden"
+        rounded="2rem"
+        px={{ base: '6', sm: '10' }}
+        py={{ base: '10', sm: '14' }}
+      >
         <Box
           pointerEvents="none"
           position="absolute"
@@ -85,19 +93,22 @@ export default function AppPage() {
             Router Guide
           </Link>
         </Flex>
-      </section>
+      </Box>
 
-      <section className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <SimpleGrid as="section" mt="8" gap="4" columns={{ base: 1, sm: 2, lg: 4 }}>
         {[
           ['Type-Safe Routing', 'Routes and links stay in sync across every page.'],
           ['Server Functions', 'Call server code from your UI without creating API boilerplate.'],
           ['Streaming by Default', 'Ship progressively rendered responses for faster experiences.'],
           ['Tailwind Native', 'Design quickly with utility-first styling and reusable tokens.'],
         ].map(([title, desc], index) => (
-          <article
+          <Box
+            as="article"
             key={title}
-            className="island-shell feature-card rise-in rounded-2xl p-5"
-            style={{ animationDelay: `${index * 90 + 80}ms` }}
+            className="island-shell feature-card rise-in"
+            rounded="2xl"
+            p="5"
+            animationDelay={`${index * 90 + 80}ms`}
           >
             <Heading
               as="h2"
@@ -111,28 +122,35 @@ export default function AppPage() {
             <Text m="0" fontSize="sm" color="var(--sea-ink-soft)">
               {desc}
             </Text>
-          </article>
+          </Box>
         ))}
-      </section>
+      </SimpleGrid>
 
-      <section className="island-shell mt-8 rounded-2xl p-6">
+      <Box as="section" className="island-shell" mt="8" rounded="2xl" p="6">
         <Text className="island-kicker" mb="2">
           Quick Start
         </Text>
-        <ul className="m-0 list-disc space-y-2 pl-5 text-sm text-[var(--sea-ink-soft)]">
-          <li>
-            Edit <code>src/routes/index.tsx</code> to customize the home page.
-          </li>
-          <li>
-            Update <code>src/components/layout/Header.tsx</code> and{' '}
-            <code>src/components/layout/Footer.tsx</code> for brand links.
-          </li>
-          <li>
-            Add routes in <code>src/routes</code> and tweak visual tokens in{' '}
-            <code>src/styles.css</code>.
-          </li>
-        </ul>
-      </section>
-    </main>
+        <List.Root
+          m="0"
+          gap="2"
+          ps="5"
+          listStyleType="disc"
+          fontSize="sm"
+          color="var(--sea-ink-soft)"
+        >
+          <List.Item>
+            Edit <Code>src/routes/index.tsx</Code> to customize the home page.
+          </List.Item>
+          <List.Item>
+            Update <Code>src/components/layout/Header.tsx</Code> and{' '}
+            <Code>src/components/layout/Footer.tsx</Code> for brand links.
+          </List.Item>
+          <List.Item>
+            Add routes in <Code>src/routes</Code> and tweak visual tokens in{' '}
+            <Code>src/styles.css</Code>.
+          </List.Item>
+        </List.Root>
+      </Box>
+    </Box>
   )
 }
