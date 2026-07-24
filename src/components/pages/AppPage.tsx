@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Text } from '@chakra-ui/react'
+import { Box, Flex, Heading, Link, Text } from '@chakra-ui/react'
 
 export default function AppPage() {
   return (
@@ -34,20 +34,20 @@ export default function AppPage() {
           essentials you need to build from scratch.
         </Text>
         <Flex wrap="wrap" gap="3">
-          <a
+          <Link
             href="/about"
             className="rounded-full border border-[rgba(50,143,151,0.3)] bg-[rgba(79,184,178,0.14)] px-5 py-2.5 text-sm font-semibold text-[var(--lagoon-deep)] no-underline transition hover:-translate-y-0.5 hover:bg-[rgba(79,184,178,0.24)]"
           >
             About This Starter
-          </a>
-          <a
+          </Link>
+          <Link
             href="https://tanstack.com/router"
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-full border border-[rgba(23,58,64,0.2)] bg-white/50 px-5 py-2.5 text-sm font-semibold text-[var(--sea-ink)] no-underline transition hover:-translate-y-0.5 hover:border-[rgba(23,58,64,0.35)]"
           >
             Router Guide
-          </a>
+          </Link>
         </Flex>
       </section>
 
