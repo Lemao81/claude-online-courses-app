@@ -22,21 +22,46 @@ export default function AppPage() {
           rounded="full"
           bgImage="radial-gradient(circle, rgba(47,106,74,0.18), transparent 66%)"
         />
-        <Text className="island-kicker mb-3">TanStack Start Base Template</Text>
+        <Text className="island-kicker" mb="3">
+          TanStack Start Base Template
+        </Text>
         <Heading
           as="h1"
-          className="display-title mb-5 max-w-3xl text-4xl leading-[1.02] font-bold tracking-tight text-[var(--sea-ink)] sm:text-6xl"
+          className="display-title"
+          mb="5"
+          maxW="3xl"
+          fontSize={{ base: '4xl', sm: '6xl' }}
+          lineHeight="1.02"
+          fontWeight="bold"
+          letterSpacing="tight"
+          color="var(--sea-ink)"
         >
           Start simple, ship quickly.
         </Heading>
-        <Text className="mb-8 max-w-2xl text-base text-[var(--sea-ink-soft)] sm:text-lg">
+        <Text
+          mb="8"
+          maxW="2xl"
+          fontSize={{ base: 'md', sm: 'lg' }}
+          color="var(--sea-ink-soft)"
+        >
           This base starter intentionally keeps things light: two routes, clean structure, and the
           essentials you need to build from scratch.
         </Text>
         <Flex wrap="wrap" gap="3">
           <Link
             href="/about"
-            className="rounded-full border border-[rgba(50,143,151,0.3)] bg-[rgba(79,184,178,0.14)] px-5 py-2.5 text-sm font-semibold text-[var(--lagoon-deep)] no-underline transition hover:-translate-y-0.5 hover:bg-[rgba(79,184,178,0.24)]"
+            rounded="full"
+            borderWidth="1px"
+            borderColor="rgba(50,143,151,0.3)"
+            bg="rgba(79,184,178,0.14)"
+            px="5"
+            py="2.5"
+            fontSize="sm"
+            fontWeight="semibold"
+            color="var(--lagoon-deep)"
+            textDecoration="none"
+            transition="all 0.15s ease"
+            _hover={{ transform: 'translateY(-0.125rem)', bg: 'rgba(79,184,178,0.24)' }}
           >
             About This Starter
           </Link>
@@ -44,7 +69,18 @@ export default function AppPage() {
             href="https://tanstack.com/router"
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full border border-[rgba(23,58,64,0.2)] bg-white/50 px-5 py-2.5 text-sm font-semibold text-[var(--sea-ink)] no-underline transition hover:-translate-y-0.5 hover:border-[rgba(23,58,64,0.35)]"
+            rounded="full"
+            borderWidth="1px"
+            borderColor="rgba(23,58,64,0.2)"
+            bg="rgba(255,255,255,0.5)"
+            px="5"
+            py="2.5"
+            fontSize="sm"
+            fontWeight="semibold"
+            color="var(--sea-ink)"
+            textDecoration="none"
+            transition="all 0.15s ease"
+            _hover={{ transform: 'translateY(-0.125rem)', borderColor: 'rgba(23,58,64,0.35)' }}
           >
             Router Guide
           </Link>
@@ -63,16 +99,26 @@ export default function AppPage() {
             className="island-shell feature-card rise-in rounded-2xl p-5"
             style={{ animationDelay: `${index * 90 + 80}ms` }}
           >
-            <Heading as="h2" className="mb-2 text-base font-semibold text-[var(--sea-ink)]">
+            <Heading
+              as="h2"
+              mb="2"
+              fontSize="md"
+              fontWeight="semibold"
+              color="var(--sea-ink)"
+            >
               {title}
             </Heading>
-            <Text className="m-0 text-sm text-[var(--sea-ink-soft)]">{desc}</Text>
+            <Text m="0" fontSize="sm" color="var(--sea-ink-soft)">
+              {desc}
+            </Text>
           </article>
         ))}
       </section>
 
       <section className="island-shell mt-8 rounded-2xl p-6">
-        <Text className="island-kicker mb-2">Quick Start</Text>
+        <Text className="island-kicker" mb="2">
+          Quick Start
+        </Text>
         <ul className="m-0 list-disc space-y-2 pl-5 text-sm text-[var(--sea-ink-soft)]">
           <li>
             Edit <code>src/routes/index.tsx</code> to customize the home page.
