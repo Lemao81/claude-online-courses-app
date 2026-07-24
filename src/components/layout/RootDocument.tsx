@@ -1,8 +1,10 @@
+import { Box, Flex } from '@chakra-ui/react'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import { HeadContent, Scripts } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import Footer from '#/components/layout/Footer'
 import Header from '#/components/layout/Header'
+import Sidebar from '#/components/layout/Sidebar'
 import TanStackQueryDevtools from '#/integrations/tanstack-query/devtools'
 import AppChakraProvider from '#/providers/AppChakraProvider.tsx'
 import AppClerkProvider from '#/providers/AppClerkProvider.tsx'
@@ -24,9 +26,16 @@ export default function RootDocument({ children }: RootDocumentProps) {
       <body className="font-sans antialiased wrap-anywhere selection:bg-[rgba(79,184,178,0.24)]">
         <AppChakraProvider>
           <AppClerkProvider>
-            <Header />
-            {children}
-            <Footer />
+            <Flex direction="column" minH="100dvh">
+              <Header />
+              <Flex direction={{ base: 'column', md: 'row' }} align="stretch" flex="1" minH="0">
+                <Sidebar />
+                <Flex as="main" direction="column" flex="1" minW="0">
+                  <Box flex="1">{children}</Box>
+                  <Footer />
+                </Flex>
+              </Flex>
+            </Flex>
             <TanStackDevtools
               config={{
                 position: 'bottom-right',
