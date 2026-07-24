@@ -30,6 +30,13 @@ export default function Sidebar() {
           Home
         </RouterLink>
         <RouterLink
+          to="/courses"
+          className="nav-link"
+          activeProps={{ className: 'nav-link is-active' }}
+        >
+          Courses
+        </RouterLink>
+        <RouterLink
           to="/about"
           className="nav-link"
           activeProps={{ className: 'nav-link is-active' }}
