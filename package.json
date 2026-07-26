@@ -16,6 +16,8 @@
     "bm:lint": "biome lint",
     "bm:check": "biome check",
     "bm:check:write": "biome check --write",
+    "docker:up": "docker compose --env-file .env.local up -d",
+    "docker:down": "docker compose --env-file .env.local down",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
