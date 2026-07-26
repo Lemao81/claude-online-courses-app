@@ -1,9 +1,8 @@
-import type { Collection } from '@tanstack/react-db'
 import { useLiveQuery } from '@tanstack/react-db'
 import { useEffect, useRef } from 'react'
 import { type Message, messagesCollection } from '#/db-collections'
 
-function useStreamConnection(url: string, collection: Collection<any, any, any>) {
+function useStreamConnection(url: string, collection: typeof messagesCollection): void {
   const loadedRef = useRef(false)
 
   useEffect(() => {
@@ -30,7 +29,7 @@ function useStreamConnection(url: string, collection: Collection<any, any, any>)
       }
     }
     fetchData()
-  }, [])
+  }, [url, collection])
 }
 
 export function useChat() {

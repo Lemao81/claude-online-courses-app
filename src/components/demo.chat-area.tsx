@@ -51,7 +51,12 @@ export default function ChatArea() {
             />
           </div>
 
-          <button onClick={postMessage} disabled={message.trim() === ''} className="demo-button">
+          <button
+            type="button"
+            onClick={postMessage}
+            disabled={message.trim() === ''}
+            className="demo-button"
+          >
             Send
           </button>
         </div>
