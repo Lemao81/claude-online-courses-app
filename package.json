@@ -11,6 +11,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest run",
+    "typecheck": "tsc --noEmit",
     "bm:format": "biome format",
     "bm:format:write": "biome format --write",
     "bm:lint": "biome lint",
