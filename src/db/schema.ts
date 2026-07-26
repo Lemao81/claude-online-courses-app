@@ -7,7 +7,7 @@ import {
   index,
   integer,
   numeric,
-  pgEnum,
+  pgSchema,
   pgTable,
   primaryKey,
   text,
@@ -17,11 +17,13 @@ import {
 } from 'drizzle-orm/pg-core'
 import { timestamps } from '#/db/columns.helpers.ts'
 
-export const courseStatus = pgEnum('course_status', ['draft', 'published', 'archived'])
+export const coca = pgSchema('coca')
 
-export const assetKind = pgEnum('asset_kind', ['video', 'image', 'attachment'])
+export const courseStatus = coca.enum('course_status', ['draft', 'published', 'archived'])
 
-export const assetStatus = pgEnum('asset_status', ['pending', 'ready', 'failed'])
+export const assetKind = coca.enum('asset_kind', ['video', 'image', 'attachment'])
+
+export const assetStatus = coca.enum('asset_status', ['pending', 'ready', 'failed'])
 
 export const todos = pgTable('todos', {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
@@ -29,7 +31,7 @@ export const todos = pgTable('todos', {
   ...timestamps,
 })
 
-export const users = pgTable(
+export const users = coca.table(
   'users',
   {
     id: text().primaryKey(),
@@ -42,7 +44,7 @@ export const users = pgTable(
   (table) => [uniqueIndex('users_email_idx').on(table.email)],
 )
 
-export const assets = pgTable(
+export const assets = coca.table(
   'assets',
   {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
@@ -70,7 +72,7 @@ export const assets = pgTable(
   ],
 )
 
-export const courses = pgTable(
+export const courses = coca.table(
   'courses',
   {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
@@ -100,7 +102,7 @@ export const courses = pgTable(
   ],
 )
 
-export const chapters = pgTable(
+export const chapters = coca.table(
   'chapters',
   {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
@@ -119,7 +121,7 @@ export const chapters = pgTable(
   ],
 )
 
-export const lessons = pgTable(
+export const lessons = coca.table(
   'lessons',
   {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
@@ -146,7 +148,7 @@ export const lessons = pgTable(
   ],
 )
 
-export const reviews = pgTable(
+export const reviews = coca.table(
   'reviews',
   {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
@@ -165,7 +167,7 @@ export const reviews = pgTable(
   ],
 )
 
-export const enrollments = pgTable(
+export const enrollments = coca.table(
   'enrollments',
   {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
@@ -184,7 +186,7 @@ export const enrollments = pgTable(
   ],
 )
 
-export const lessonProgress = pgTable(
+export const lessonProgress = coca.table(
   'lesson_progress',
   {
     userId: text()
@@ -207,14 +209,14 @@ export const lessonProgress = pgTable(
   ],
 )
 
-export const tags = pgTable('tags', {
+export const tags = coca.table('tags', {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   display: text().notNull(),
   normalized: text().notNull().unique(),
   ...timestamps,
 })
 
-export const courseTags = pgTable(
+export const courseTags = coca.table(
   'course_tags',
   {
     courseId: integer()
