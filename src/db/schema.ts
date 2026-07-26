@@ -3,6 +3,7 @@ import {
   bigint,
   boolean,
   check,
+  foreignKey,
   index,
   integer,
   numeric,
@@ -11,6 +12,7 @@ import {
   primaryKey,
   text,
   timestamp,
+  unique,
   uniqueIndex,
 } from 'drizzle-orm/pg-core'
 import { timestamps } from '#/db/columns.helpers.ts'
@@ -113,7 +115,10 @@ export const chapters = pgTable(
     durationSec: integer().notNull().default(0),
     ...timestamps,
   },
-  (table) => [index('chapters_course_id_position_idx').on(table.courseId, table.position)],
+  (table) => [
+    index('chapters_course_id_position_idx').on(table.courseId, table.position),
+    unique('chapters_id_course_id_unique').on(table.id, table.courseId),
+  ],
 )
 
 export const lessons = pgTable(
@@ -123,7 +128,7 @@ export const lessons = pgTable(
     courseId: integer()
       .notNull()
       .references(() => courses.id, { onDelete: 'cascade' }),
-    chapterId: integer().references(() => chapters.id, { onDelete: 'set null' }),
+    chapterId: integer(),
     position: integer().notNull().default(0),
     title: text().notNull(),
     videoAssetId: integer().references(() => assets.id, { onDelete: 'restrict' }),
@@ -135,6 +140,11 @@ export const lessons = pgTable(
     index('lessons_course_id_position_idx').on(table.courseId, table.position),
     index('lessons_chapter_id_position_idx').on(table.chapterId, table.position),
     index('lessons_video_asset_id_idx').on(table.videoAssetId),
+    foreignKey({
+      name: 'lessons_chapter_id_course_id_fk',
+      columns: [table.chapterId, table.courseId],
+      foreignColumns: [chapters.id, chapters.courseId],
+    }),
   ],
 )
 
