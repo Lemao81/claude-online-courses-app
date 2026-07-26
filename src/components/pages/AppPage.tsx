@@ -46,12 +46,7 @@ export default function AppPage() {
         >
           Start simple, ship quickly.
         </Heading>
-        <Text
-          mb="8"
-          maxW="2xl"
-          fontSize={{ base: 'md', sm: 'lg' }}
-          color="var(--sea-ink-soft)"
-        >
+        <Text mb="8" maxW="2xl" fontSize={{ base: 'md', sm: 'lg' }} color="var(--sea-ink-soft)">
           This base starter intentionally keeps things light: two routes, clean structure, and the
           essentials you need to build from scratch.
         </Text>
@@ -110,13 +105,7 @@ export default function AppPage() {
             p="5"
             animationDelay={`${index * 90 + 80}ms`}
           >
-            <Heading
-              as="h2"
-              mb="2"
-              fontSize="md"
-              fontWeight="semibold"
-              color="var(--sea-ink)"
-            >
+            <Heading as="h2" mb="2" fontSize="md" fontWeight="semibold" color="var(--sea-ink)">
               {title}
             </Heading>
             <Text m="0" fontSize="sm" color="var(--sea-ink-soft)">

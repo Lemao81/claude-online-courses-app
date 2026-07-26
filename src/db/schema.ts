@@ -66,9 +66,7 @@ export const assets = pgTable(
     uniqueIndex('assets_bucket_object_name_idx').on(table.bucket, table.objectName),
     index('assets_owner_id_idx').on(table.ownerId),
     index('assets_status_idx').on(table.status),
-    index('assets_deleted_at_idx')
-      .on(table.deletedAt)
-      .where(sql`${table.deletedAt} IS NOT NULL`),
+    index('assets_deleted_at_idx').on(table.deletedAt).where(sql`${table.deletedAt} IS NOT NULL`),
   ],
 )
 

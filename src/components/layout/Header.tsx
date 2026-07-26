@@ -1,4 +1,12 @@
-import { Box, Flex, Heading, Icon, Link, type SystemStyleObject, VisuallyHidden } from '@chakra-ui/react'
+import {
+  Box,
+  Flex,
+  Heading,
+  Icon,
+  Link,
+  type SystemStyleObject,
+  VisuallyHidden,
+} from '@chakra-ui/react'
 import { Link as RouterLink } from '@tanstack/react-router'
 import ClerkHeader from '#/components/layout/ClerkHeader'
 import ThemeToggle from '#/components/layout/ThemeToggle'
