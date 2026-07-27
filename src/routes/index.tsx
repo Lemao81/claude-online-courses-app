@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
-import AppPage from '#/components/pages/AppPage'
+import IndexPage from '#/components/pages/IndexPage'
 
 export const Route = createFileRoute('/')({
-  component: AppPage,
+  component: IndexPage,
 })
