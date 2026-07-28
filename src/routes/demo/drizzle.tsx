@@ -1,5 +1,5 @@
 import { createFileRoute, useRouter } from '@tanstack/react-router'
-import { createTodo, getTodos } from '#/server/todos'
+import { createTodo, getTodos } from '#/server/todos.functions'
 
 export const Route = createFileRoute('/demo/drizzle')({
   component: DemoDrizzle,
