@@ -7,7 +7,7 @@ export default function ClerkHeader() {
         <UserButton />
       </Show>
       <Show when="signed-out">
-        <SignInButton />
+        <SignInButton mode="modal" />
       </Show>
     </>
   )
