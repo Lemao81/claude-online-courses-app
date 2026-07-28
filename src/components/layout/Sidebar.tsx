@@ -26,8 +26,12 @@ export default function Sidebar() {
         Menu
       </Heading>
       <Flex as="nav" direction="column" gap="1">
-        <RouterLink to="/" className="nav-link" activeProps={{ className: 'nav-link is-active' }}>
-          Home
+        <RouterLink
+          to="/overview"
+          className="nav-link"
+          activeProps={{ className: 'nav-link is-active' }}
+        >
+          Overview
         </RouterLink>
         <RouterLink
           to="/courses"

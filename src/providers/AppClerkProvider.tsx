@@ -7,7 +7,12 @@ if (!PUBLISHABLE_KEY) {
 
 export default function AppClerkProvider({ children }: { children: React.ReactNode }) {
   return (
-    <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">
+    <ClerkProvider
+      publishableKey={PUBLISHABLE_KEY}
+      afterSignOutUrl="/"
+      signInForceRedirectUrl="/overview"
+      signUpForceRedirectUrl="/overview"
+    >
       {children}
     </ClerkProvider>
   )
