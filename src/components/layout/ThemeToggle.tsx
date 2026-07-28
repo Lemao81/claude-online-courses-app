@@ -1,7 +1,16 @@
-import { Button } from '@chakra-ui/react'
+import { Box, Button } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
+import { chipButtonStyles } from '#/utils/styles/buttonStyles'
 
 type ThemeMode = 'light' | 'dark' | 'auto'
+
+const themeModes: ThemeMode[] = ['light', 'dark', 'auto']
+
+const modeLabels: Record<ThemeMode, string> = {
+  light: 'Light',
+  dark: 'Dark',
+  auto: 'Auto',
+}
 
 function getInitialMode(): ThemeMode {
   if (typeof window === 'undefined') {
@@ -74,22 +83,19 @@ export default function ThemeToggle() {
       aria-label={label}
       title={label}
       variant="plain"
-      h="auto"
-      minH="0"
-      rounded="full"
-      borderWidth="1px"
-      borderColor="var(--chip-line)"
-      bg="var(--chip-bg)"
-      px="3"
-      py="1.5"
-      fontSize="sm"
-      fontWeight="semibold"
-      color="var(--sea-ink)"
-      boxShadow="0 8px 22px rgba(30,90,72,0.08)"
-      transition="all 0.15s ease"
-      _hover={{ transform: 'translateY(-2px)' }}
+      css={chipButtonStyles}
     >
-      {mode === 'auto' ? 'Auto' : mode === 'dark' ? 'Dark' : 'Light'}
+      <Box display="grid" justifyItems="center">
+        {themeModes.map((themeMode) => (
+          <Box
+            key={themeMode}
+            gridArea="1 / 1"
+            visibility={themeMode === mode ? 'visible' : 'hidden'}
+          >
+            {modeLabels[themeMode]}
+          </Box>
+        ))}
+      </Box>
     </Button>
   )
 }

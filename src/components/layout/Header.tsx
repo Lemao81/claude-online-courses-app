@@ -148,7 +148,7 @@ export default function Header() {
           </Box>
         </Flex>
 
-        <Flex ml="auto" align="center" gap={{ base: '1.5', sm: '2' }}>
+        <Flex ml="auto" align="center" gap={{ base: '3', sm: '4' }}>
           <Link
             href="https://x.com/tan_stack"
             target="_blank"
