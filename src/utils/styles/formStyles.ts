@@ -57,6 +57,12 @@ export const fieldControlStyles: SystemStyleObject = {
   },
 }
 
+export const formErrorStyles: SystemStyleObject = {
+  m: '0',
+  fontSize: 'sm',
+  color: 'var(--danger)',
+}
+
 export const textareaControlStyles: SystemStyleObject = {
   ...fieldControlStyles,
   minH: '7rem',

@@ -6,11 +6,14 @@ import {
   Input,
   Portal,
   Stack,
+  Text,
   Textarea,
 } from '@chakra-ui/react'
 import { useForm } from '@tanstack/react-form'
+import { useRouter } from '@tanstack/react-router'
 import { useState } from 'react'
 import { LuPlus } from 'react-icons/lu'
+import { createCourse } from '#/server/functions/courses.functions'
 import {
   chipButtonStyles,
   primaryButtonStyles,
@@ -24,6 +27,7 @@ import {
   fieldControlStyles,
   fieldLabelStyles,
   fieldRequiredIndicatorStyles,
+  formErrorStyles,
   textareaControlStyles,
 } from '#/utils/styles/formStyles'
 
@@ -36,17 +40,29 @@ const defaultValues = {
 }
 
 export default function CreateCourseDialog() {
+  const router = useRouter()
   const [open, setOpen] = useState(false)
+  const [submitError, setSubmitError] = useState('')
   const form = useForm({
     defaultValues,
-    onSubmit: () => {
+    onSubmit: async ({ value }) => {
+      setSubmitError('')
+      try {
+        await createCourse({ data: value })
+      } catch (error) {
+        setSubmitError(error instanceof Error ? error.message : 'Failed to create the course')
+
+        return
+      }
       handleOpenChange(false)
+      await router.invalidate()
     },
   })
 
   function handleOpenChange(isOpen: boolean): void {
     setOpen(isOpen)
     if (!isOpen) {
+      setSubmitError('')
       form.reset()
     }
   }
@@ -126,6 +142,11 @@ export default function CreateCourseDialog() {
                       </Field.Root>
                     )}
                   </form.Field>
+                  {submitError !== '' && (
+                    <Text css={formErrorStyles} role="alert">
+                      {submitError}
+                    </Text>
+                  )}
                 </Stack>
               </form>
             </Dialog.Body>
@@ -135,16 +156,21 @@ export default function CreateCourseDialog() {
                   Cancel
                 </Button>
               </Dialog.ActionTrigger>
-              <form.Subscribe selector={(state) => state.values.title.trim().length === 0}>
-                {(isTitleEmpty) => (
+              <form.Subscribe
+                selector={(state) => ({
+                  isTitleEmpty: state.values.title.trim().length === 0,
+                  isSubmitting: state.isSubmitting,
+                })}
+              >
+                {({ isTitleEmpty, isSubmitting }) => (
                   <Button
                     type="submit"
                     form={formId}
                     variant="plain"
-                    disabled={isTitleEmpty}
+                    disabled={isTitleEmpty || isSubmitting}
                     css={primaryButtonStyles}
                   >
-                    OK
+                    {isSubmitting ? 'Creating…' : 'OK'}
                   </Button>
                 )}
               </form.Subscribe>
