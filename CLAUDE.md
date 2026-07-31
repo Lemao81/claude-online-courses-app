@@ -27,8 +27,8 @@ pnpm db:studio        # open Drizzle Studio
 **Routing**: All routes are files under `src/routes/`. The root layout (`src/routes/__root.tsx`) wraps every page with `<ClerkProvider>`, `<Header>`, `<Footer>`, and devtools. Route context carries a `QueryClient` instance, enabling SSR-integrated data fetching via `@tanstack/react-router-ssr-query`.
 
 **Data layer**:
-- **Server/DB**: Drizzle ORM with PostgreSQL (`src/db/schema.ts` → `src/db/index.ts`). Requires `DATABASE_URL` in `.env.local`.
-- **Client state**: TanStack Query for server-fetched data; `@tanstack/react-db` for local-only reactive collections (see `src/db-collections/index.ts`).
+- **Server/DB**: Drizzle ORM with PostgreSQL (`src/server/db/schema.ts` → `src/server/db/index.ts`). Requires `DATABASE_URL` in `.env.local`.
+- **Client state**: TanStack Query for server-fetched data; `@tanstack/react-db` for local-only reactive collections (see `src/server/db-collections/index.ts`).
 
 **Auth**: Clerk (`@clerk/clerk-react`). Provider is at `src/integrations/clerk/provider.tsx`. Requires `VITE_CLERK_PUBLISHABLE_KEY` in `.env.local`. Use `<SignedIn>` / `<SignedOut>` for client-side route guarding.
 

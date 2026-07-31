@@ -15,7 +15,7 @@ import {
   unique,
   uniqueIndex,
 } from 'drizzle-orm/pg-core'
-import { timestamps } from '#/db/columns.helpers.ts'
+import { timestamps } from '#/server/db/columns.helpers.ts'
 
 export const coca = pgSchema('coca')
 

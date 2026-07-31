@@ -1,7 +1,7 @@
 import { createServerFn } from '@tanstack/react-start'
 import { desc } from 'drizzle-orm'
-import { db } from '#/db/index'
-import { todos } from '#/db/schema'
+import { db } from '#/server/db/index'
+import { todos } from '#/server/db/schema'
 
 export const getTodos = createServerFn({
   method: 'GET',

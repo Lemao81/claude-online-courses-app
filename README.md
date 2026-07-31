@@ -49,7 +49,7 @@ pnpm test
 ## Database
 
 PostgreSQL is accessed through [Drizzle ORM](https://orm.drizzle.team/). The schema lives in
-`src/db/schema.ts` and the connection is created in `src/db/index.ts`.
+`src/server/db/schema.ts` and the connection is created in `src/server/db/index.ts`.
 
 All domain tables live in a dedicated `coca` PostgreSQL schema.
 
