@@ -1,4 +1,5 @@
 import { auth, clerkClient } from '@clerk/tanstack-react-start/server'
+import { redirect } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
 import { eq } from 'drizzle-orm'
 import { db } from '#/server/db/index'
@@ -56,6 +57,32 @@ export const getCourse = createServerFn({
 
     if (!course) {
       throw new Error('Course not found')
+    }
+
+    return course
+  })
+
+export const getAuthoredCourse = createServerFn({
+  method: 'GET',
+})
+  .validator((courseId: number) => courseId)
+  .handler(async ({ data }): Promise<Course> => {
+    const { userId } = await auth()
+
+    if (!userId) {
+      throw new Error('You must be signed in to edit a course')
+    }
+
+    const course = await db.query.courses.findFirst({
+      where: eq(courses.id, data),
+    })
+
+    if (!course) {
+      throw new Error('Course not found')
+    }
+
+    if (course.authorId !== userId) {
+      throw redirect({ to: '/courses' })
     }
 
     return course
