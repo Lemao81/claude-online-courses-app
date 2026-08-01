@@ -1,7 +1,8 @@
-import { Box, Button, CloseButton, Flex, Stack, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Stack, Text } from '@chakra-ui/react'
 import { type ChangeEvent, type DragEvent, useRef, useState } from 'react'
 import { LuCloudUpload, LuFolderOpen } from 'react-icons/lu'
-import { formatFileSize, isVideoFile, toFileKey } from '#/utils/helpers'
+import VideoFileList from '#/components/videos/VideoFileList'
+import { isVideoFile, toFileKey } from '#/utils/helpers'
 import { primaryButtonStyles, secondaryButtonStyles } from '#/utils/styles/buttonStyles'
 import {
   dropZoneActiveStyles,
@@ -9,10 +10,6 @@ import {
   dropZoneIconStyles,
   dropZoneStyles,
   dropZoneTitleStyles,
-  fileNameStyles,
-  fileRemoveButtonStyles,
-  fileRowStyles,
-  fileSizeStyles,
 } from '#/utils/styles/videoUploadStyles'
 
 export default function VideoUpload() {
@@ -113,25 +110,7 @@ export default function VideoUpload() {
       </Box>
       {files.length > 0 && (
         <Stack gap="2">
-          {files.map((file) => {
-            const key = toFileKey(file)
-
-            return (
-              <Flex key={key} align="center" justify="space-between" gap="3" css={fileRowStyles}>
-                <Stack gap="0.5" minW="0">
-                  <Text css={fileNameStyles}>{file.name}</Text>
-                  <Text css={fileSizeStyles}>{formatFileSize(file.size)}</Text>
-                </Stack>
-                <CloseButton
-                  size="sm"
-                  variant="plain"
-                  aria-label={`Remove ${file.name}`}
-                  css={fileRemoveButtonStyles}
-                  onClick={() => handleRemove(key)}
-                />
-              </Flex>
-            )
-          })}
+          <VideoFileList files={files} onRemove={handleRemove} />
           <Flex justify="flex-end">
             <Button type="button" variant="plain" css={primaryButtonStyles} onClick={handleUpload}>
               Upload
