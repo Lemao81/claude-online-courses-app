@@ -30,6 +30,7 @@ import {
   formErrorStyles,
   textareaControlStyles,
 } from '#/utils/styles/formStyles'
+import type { Course } from '#/utils/types'
 
 const formId = 'create-course-form'
 
@@ -47,7 +48,7 @@ export default function CreateCourseDialog() {
     defaultValues,
     onSubmit: async ({ value }) => {
       setSubmitError('')
-      let course: Awaited<ReturnType<typeof createCourse>>
+      let course: Course
       try {
         course = await createCourse({ data: value })
       } catch (error) {
