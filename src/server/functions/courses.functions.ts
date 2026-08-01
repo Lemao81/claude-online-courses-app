@@ -3,6 +3,7 @@ import { createServerFn } from '@tanstack/react-start'
 import { eq } from 'drizzle-orm'
 import { db } from '#/server/db/index'
 import { courses, users } from '#/server/db/schema'
+import type { Course } from '#/utils/types'
 
 type CreateCourseInput = {
   title: string
@@ -48,7 +49,7 @@ export const getCourse = createServerFn({
   method: 'GET',
 })
   .validator((courseId: number) => courseId)
-  .handler(async ({ data }): Promise<typeof courses.$inferSelect> => {
+  .handler(async ({ data }): Promise<Course> => {
     const course = await db.query.courses.findFirst({
       where: eq(courses.id, data),
     })
@@ -64,7 +65,7 @@ export const createCourse = createServerFn({
   method: 'POST',
 })
   .validator(validateCreateCourseInput)
-  .handler(async ({ data }): Promise<typeof courses.$inferSelect> => {
+  .handler(async ({ data }): Promise<Course> => {
     const { userId } = await auth()
 
     if (!userId) {
