@@ -56,13 +56,13 @@ pnpm db:studio        # open Drizzle Studio
 
 ## Code Style
 - General:
-  - Insert new line before return keyword if not first line of block.
-  - Put single line statements in curly braces to separate line.
+  - Insert an empty line before `return`, unless it is the first statement in its block.
+  - Always brace a control-flow body and put its statement on its own line — never `if (x) return`.
   - Never add comments, except tool-control directive comments when explicitly instructed — e.g. suppression/ignore/pragma comments for linters, formatters, type-checkers, or static analyzers.
-  - Leave edited files with CRLF line ending.
+  - Preserve a file's existing line endings; write new files with CRLF.
 - C#:
   - Tests:
-    - Use Arrange, Act, Assert pattern (comment each section in method).
+    - Structure tests with the Arrange-Act-Assert pattern, marking each section with an `// Arrange`, `// Act` or `// Assert` comment.
 - TypeScript:
   - Omit the braces and `return` when an arrow function body is a single expression, except in React components; keep them where the implicit return would change behaviour, such as a `useEffect` callback.
   - Add an explicit return type to every named function, except React components; inline callbacks may rely on inference. Omit it where the annotation would only restate an unspellable inferred type.
