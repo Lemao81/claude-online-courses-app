@@ -1,18 +1,11 @@
-import {
-  Button,
-  CloseButton,
-  Dialog,
-  Field,
-  Input,
-  Portal,
-  Stack,
-  Text,
-  Textarea,
-} from '@chakra-ui/react'
-import { useForm } from '@tanstack/react-form'
+import { Button, CloseButton, Dialog, Portal } from '@chakra-ui/react'
 import { useNavigate } from '@tanstack/react-router'
 import { useState } from 'react'
 import { LuPlus } from 'react-icons/lu'
+import CreateCourseForm, {
+  type CreateCourseFormValues,
+  useCreateCourseForm,
+} from '#/components/courses/CreateCourseForm'
 import { createCourse } from '#/server/functions/courses.functions'
 import {
   chipButtonStyles,
@@ -24,45 +17,31 @@ import {
   dialogCloseButtonStyles,
   dialogContentStyles,
   dialogTitleStyles,
-  fieldControlStyles,
-  fieldLabelStyles,
-  fieldRequiredIndicatorStyles,
-  formErrorStyles,
-  textareaControlStyles,
 } from '#/utils/styles/formStyles'
 import type { Course } from '#/utils/types'
-
-const formId = 'create-course-form'
-
-const defaultValues = {
-  title: '',
-  subtitle: '',
-  description: '',
-}
 
 export default function CreateCourseDialog() {
   const navigate = useNavigate()
   const [open, setOpen] = useState(false)
   const [submitError, setSubmitError] = useState('')
-  const form = useForm({
-    defaultValues,
-    onSubmit: async ({ value }) => {
-      setSubmitError('')
-      let course: Course
-      try {
-        course = await createCourse({ data: value })
-      } catch (error) {
-        setSubmitError(error instanceof Error ? error.message : 'Failed to create the course')
+  const { form, formId } = useCreateCourseForm(handleSubmit)
 
-        return
-      }
-      handleOpenChange(false)
-      await navigate({
-        to: '/editcourse/$courseId',
-        params: { courseId: String(course.id) },
-      })
-    },
-  })
+  async function handleSubmit(value: CreateCourseFormValues): Promise<void> {
+    setSubmitError('')
+    let course: Course
+    try {
+      course = await createCourse({ data: value })
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : 'Failed to create the course')
+
+      return
+    }
+    handleOpenChange(false)
+    await navigate({
+      to: '/editcourse/$courseId',
+      params: { courseId: String(course.id) },
+    })
+  }
 
   function handleOpenChange(isOpen: boolean): void {
     setOpen(isOpen)
@@ -92,71 +71,7 @@ export default function CreateCourseDialog() {
               <Dialog.Title css={dialogTitleStyles}>Create Course</Dialog.Title>
             </Dialog.Header>
             <Dialog.Body>
-              <form
-                id={formId}
-                onSubmit={(event) => {
-                  event.preventDefault()
-                  event.stopPropagation()
-                  form.handleSubmit()
-                }}
-              >
-                <Stack gap="4">
-                  <form.Field name="title">
-                    {(field) => (
-                      <Field.Root required>
-                        <Field.Label css={fieldLabelStyles}>
-                          Title
-                          <Field.RequiredIndicator css={fieldRequiredIndicatorStyles} />
-                        </Field.Label>
-                        <Input
-                          name={field.name}
-                          value={field.state.value}
-                          onBlur={field.handleBlur}
-                          onChange={(event) => field.handleChange(event.target.value)}
-                          css={fieldControlStyles}
-                        />
-                      </Field.Root>
-                    )}
-                  </form.Field>
-                  <form.Field name="subtitle">
-                    {(field) => (
-                      <Field.Root required>
-                        <Field.Label css={fieldLabelStyles}>
-                          Subtitle
-                          <Field.RequiredIndicator css={fieldRequiredIndicatorStyles} />
-                        </Field.Label>
-                        <Input
-                          name={field.name}
-                          value={field.state.value}
-                          onBlur={field.handleBlur}
-                          onChange={(event) => field.handleChange(event.target.value)}
-                          css={fieldControlStyles}
-                        />
-                      </Field.Root>
-                    )}
-                  </form.Field>
-                  <form.Field name="description">
-                    {(field) => (
-                      <Field.Root>
-                        <Field.Label css={fieldLabelStyles}>Description</Field.Label>
-                        <Textarea
-                          name={field.name}
-                          rows={4}
-                          value={field.state.value}
-                          onBlur={field.handleBlur}
-                          onChange={(event) => field.handleChange(event.target.value)}
-                          css={textareaControlStyles}
-                        />
-                      </Field.Root>
-                    )}
-                  </form.Field>
-                  {submitError !== '' && (
-                    <Text css={formErrorStyles} role="alert">
-                      {submitError}
-                    </Text>
-                  )}
-                </Stack>
-              </form>
+              <CreateCourseForm form={form} submitError={submitError} />
             </Dialog.Body>
             <Dialog.Footer>
               <Dialog.ActionTrigger asChild>
