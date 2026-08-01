@@ -7,7 +7,7 @@ export const getAvatarColor = (username: string) => {
     'bg-[var(--sea-ink-soft)]',
     'bg-[var(--lagoon)]',
   ]
-  const index = username.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0)
+  const index = username.split('').reduce((a, c) => a + c.charCodeAt(0), 0)
   return colors[index % colors.length]
 }
 

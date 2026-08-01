@@ -11,7 +11,7 @@ export type Message = z.infer<typeof MessageSchema>
 
 export const messagesCollection = createCollection(
   localOnlyCollectionOptions({
-    getKey: (message) => message.id,
+    getKey: (m) => m.id,
     schema: MessageSchema,
   }),
 )

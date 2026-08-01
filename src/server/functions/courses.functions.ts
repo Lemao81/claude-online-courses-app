@@ -49,7 +49,7 @@ async function ensureAuthor(userId: string): Promise<void> {
 export const getCourse = createServerFn({
   method: 'GET',
 })
-  .validator((courseId: number) => courseId)
+  .validator((i: number) => i)
   .handler(async ({ data }): Promise<Course> => {
     const course = await db.query.courses.findFirst({
       where: eq(courses.id, data),
@@ -65,7 +65,7 @@ export const getCourse = createServerFn({
 export const getAuthoredCourse = createServerFn({
   method: 'GET',
 })
-  .validator((courseId: number) => courseId)
+  .validator((i: number) => i)
   .handler(async ({ data }): Promise<Course> => {
     const { userId } = await auth()
 

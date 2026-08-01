@@ -41,7 +41,7 @@ export const users = coca.table(
     imageUrl: text(),
     ...timestamps,
   },
-  (table) => [uniqueIndex('users_email_idx').on(table.email)],
+  (t) => [uniqueIndex('users_email_idx').on(t.email)],
 )
 
 export const assets = coca.table(

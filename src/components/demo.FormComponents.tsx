@@ -5,7 +5,7 @@ import { useFieldContext, useFormContext } from '#/hooks/demo.form-context'
 export function SubscribeButton({ label }: { label: string }) {
   const form = useFormContext()
   return (
-    <form.Subscribe selector={(state) => state.isSubmitting}>
+    <form.Subscribe selector={(s) => s.isSubmitting}>
       {(isSubmitting) => (
         <button type="submit" disabled={isSubmitting} className="demo-button">
           {label}
@@ -32,7 +32,7 @@ function ErrorMessages({ errors }: { errors: Array<string | { message: string }>
 
 export function TextField({ label, placeholder }: { label: string; placeholder?: string }) {
   const field = useFieldContext<string>()
-  const errors = useStore(field.store, (state) => state.meta.errors)
+  const errors = useStore(field.store, (s) => s.meta.errors)
 
   return (
     <div>
@@ -53,7 +53,7 @@ export function TextField({ label, placeholder }: { label: string; placeholder?:
 
 export function TextArea({ label, rows = 3 }: { label: string; rows?: number }) {
   const field = useFieldContext<string>()
-  const errors = useStore(field.store, (state) => state.meta.errors)
+  const errors = useStore(field.store, (s) => s.meta.errors)
 
   return (
     <div>
@@ -81,7 +81,7 @@ export function Select({
   placeholder?: string
 }) {
   const field = useFieldContext<string>()
-  const errors = useStore(field.store, (state) => state.meta.errors)
+  const errors = useStore(field.store, (s) => s.meta.errors)
 
   return (
     <div>

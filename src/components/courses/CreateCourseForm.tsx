@@ -58,7 +58,7 @@ export default function CreateCourseForm({ form, submitError }: CreateCourseForm
                 name={field.name}
                 value={field.state.value}
                 onBlur={field.handleBlur}
-                onChange={(event) => field.handleChange(event.target.value)}
+                onChange={(e) => field.handleChange(e.target.value)}
                 css={fieldControlStyles}
               />
             </Field.Root>
@@ -75,7 +75,7 @@ export default function CreateCourseForm({ form, submitError }: CreateCourseForm
                 name={field.name}
                 value={field.state.value}
                 onBlur={field.handleBlur}
-                onChange={(event) => field.handleChange(event.target.value)}
+                onChange={(e) => field.handleChange(e.target.value)}
                 css={fieldControlStyles}
               />
             </Field.Root>
@@ -90,7 +90,7 @@ export default function CreateCourseForm({ form, submitError }: CreateCourseForm
                 rows={4}
                 value={field.state.value}
                 onBlur={field.handleBlur}
-                onChange={(event) => field.handleChange(event.target.value)}
+                onChange={(e) => field.handleChange(e.target.value)}
                 css={textareaControlStyles}
               />
             </Field.Root>

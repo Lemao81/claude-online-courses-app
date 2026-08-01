@@ -8,7 +8,7 @@ export function isVideoFile(file: File): boolean {
 
   const name = file.name.toLowerCase()
 
-  return videoExtensions.some((extension) => name.endsWith(extension))
+  return videoExtensions.some((e) => name.endsWith(e))
 }
 
 export function toFileKey(file: File): string {

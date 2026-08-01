@@ -23,7 +23,7 @@ function useStreamConnection(url: string, collection: typeof messagesCollection)
         for (const chunk of decoder
           .decode(value, { stream: true })
           .split('\n')
-          .filter((chunk) => chunk.length > 0)) {
+          .filter((c) => c.length > 0)) {
           collection.insert(JSON.parse(chunk))
         }
       }

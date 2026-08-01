@@ -55,7 +55,7 @@ export default function CreateCourseDialog() {
   return (
     <Dialog.Root
       open={open}
-      onOpenChange={(details) => handleOpenChange(details.open)}
+      onOpenChange={(d) => handleOpenChange(d.open)}
       placement="center"
     >
       <Dialog.Trigger asChild>

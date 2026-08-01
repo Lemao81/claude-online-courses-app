@@ -17,12 +17,12 @@ export default function VideoUpload() {
     setFiles((current) => {
       const keys = new Set(current.map(toFileKey))
 
-      return [...current, ...videos.filter((video) => !keys.has(toFileKey(video)))]
+      return [...current, ...videos.filter((v) => !keys.has(toFileKey(v)))]
     })
   }
 
   function handleRemove(key: string): void {
-    setFiles((current) => current.filter((file) => toFileKey(file) !== key))
+    setFiles((c) => c.filter((f) => toFileKey(f) !== key))
   }
 
   function handleUpload(): void {
