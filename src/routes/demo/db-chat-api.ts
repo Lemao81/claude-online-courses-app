@@ -50,6 +50,7 @@ export const Route = createFileRoute('/demo/db-chat-api')({
             for (const [_id, message] of serverMessagesCollection.state) {
               controller.enqueue(`${JSON.stringify(message)}\n`)
             }
+
             serverMessagesCollection.subscribeChanges((changes) => {
               for (const change of changes) {
                 if (change.type === 'insert') {
@@ -71,6 +72,7 @@ export const Route = createFileRoute('/demo/db-chat-api')({
         if (!message.success) {
           return new Response(message.error.message, { status: 400 })
         }
+
         sendMessage(message.data)
         return json(message.data)
       },

@@ -30,6 +30,7 @@ function AddressForm() {
         if (value.fullName.trim().length === 0) {
           errors.fields.fullName = 'Full name is required'
         }
+
         return errors
       },
     },
@@ -69,9 +70,11 @@ function AddressForm() {
                 if (!value || value.trim().length === 0) {
                   return 'Email is required'
                 }
+
                 if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
                   return 'Invalid email address'
                 }
+
                 return undefined
               },
             }}
@@ -86,6 +89,7 @@ function AddressForm() {
                 if (!value || value.trim().length === 0) {
                   return 'Street address is required'
                 }
+
                 return undefined
               },
             }}
@@ -101,6 +105,7 @@ function AddressForm() {
                   if (!value || value.trim().length === 0) {
                     return 'City is required'
                   }
+
                   return undefined
                 },
               }}
@@ -114,6 +119,7 @@ function AddressForm() {
                   if (!value || value.trim().length === 0) {
                     return 'State is required'
                   }
+
                   return undefined
                 },
               }}
@@ -127,9 +133,11 @@ function AddressForm() {
                   if (!value || value.trim().length === 0) {
                     return 'Zip code is required'
                   }
+
                   if (!/^\d{5}(-\d{4})?$/.test(value)) {
                     return 'Invalid zip code format'
                   }
+
                   return undefined
                 },
               }}
@@ -145,6 +153,7 @@ function AddressForm() {
                 if (!value || value.trim().length === 0) {
                   return 'Country is required'
                 }
+
                 return undefined
               },
             }}
@@ -173,9 +182,11 @@ function AddressForm() {
                 if (!value || value.trim().length === 0) {
                   return 'Phone number is required'
                 }
+
                 if (!/^(\+\d{1,3})?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/.test(value)) {
                   return 'Invalid phone number format'
                 }
+
                 return undefined
               },
             }}

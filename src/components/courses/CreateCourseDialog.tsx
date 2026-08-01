@@ -36,6 +36,7 @@ export default function CreateCourseDialog() {
 
       return
     }
+
     handleOpenChange(false)
     await navigate({
       to: '/editcourse/$courseId',
