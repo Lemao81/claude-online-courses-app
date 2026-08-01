@@ -1,10 +1,15 @@
 import { Flex } from '@chakra-ui/react'
 import { getRouteApi } from '@tanstack/react-router'
+import VideoUpload from '#/components/videos/VideoUpload'
 
 const routeApi = getRouteApi('/editcourse/$courseId')
 
 export default function EditCoursePage() {
   const course = routeApi.useLoaderData()
 
-  return <Flex direction="column" gap="4" px="4" py="6" data-course-id={course.id} />
+  return (
+    <Flex direction="column" gap="4" px="4" py="6" data-course-id={course.id}>
+      <VideoUpload />
+    </Flex>
+  )
 }
