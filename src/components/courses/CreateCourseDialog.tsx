@@ -115,8 +115,11 @@ export default function CreateCourseDialog() {
                   </form.Field>
                   <form.Field name="subtitle">
                     {(field) => (
-                      <Field.Root>
-                        <Field.Label css={fieldLabelStyles}>Subtitle</Field.Label>
+                      <Field.Root required>
+                        <Field.Label css={fieldLabelStyles}>
+                          Subtitle
+                          <Field.RequiredIndicator css={fieldRequiredIndicatorStyles} />
+                        </Field.Label>
                         <Input
                           name={field.name}
                           value={field.state.value}
@@ -159,15 +162,16 @@ export default function CreateCourseDialog() {
               <form.Subscribe
                 selector={(state) => ({
                   isTitleEmpty: state.values.title.trim().length === 0,
+                  isSubtitleEmpty: state.values.subtitle.trim().length === 0,
                   isSubmitting: state.isSubmitting,
                 })}
               >
-                {({ isTitleEmpty, isSubmitting }) => (
+                {({ isTitleEmpty, isSubtitleEmpty, isSubmitting }) => (
                   <Button
                     type="submit"
                     form={formId}
                     variant="plain"
-                    disabled={isTitleEmpty || isSubmitting}
+                    disabled={isTitleEmpty || isSubtitleEmpty || isSubmitting}
                     css={primaryButtonStyles}
                   >
                     {isSubmitting ? 'Creating…' : 'OK'}

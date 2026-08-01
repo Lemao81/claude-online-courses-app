@@ -11,14 +11,19 @@ type CreateCourseInput = {
 
 function validateCreateCourseInput(data: CreateCourseInput): CreateCourseInput {
   const title = data.title.trim()
+  const subtitle = data.subtitle.trim()
 
   if (title.length === 0) {
     throw new Error('Title is required')
   }
 
+  if (subtitle.length === 0) {
+    throw new Error('Subtitle is required')
+  }
+
   return {
     title,
-    subtitle: data.subtitle.trim(),
+    subtitle,
     description: data.description.trim(),
   }
 }
