@@ -1,5 +1,6 @@
 import { auth, clerkClient } from '@clerk/tanstack-react-start/server'
 import { createServerFn } from '@tanstack/react-start'
+import { eq } from 'drizzle-orm'
 import { db } from '#/server/db/index'
 import { courses, users } from '#/server/db/schema'
 
@@ -42,6 +43,22 @@ async function ensureAuthor(userId: string): Promise<void> {
     })
     .onConflictDoNothing()
 }
+
+export const getCourse = createServerFn({
+  method: 'GET',
+})
+  .validator((courseId: number) => courseId)
+  .handler(async ({ data }): Promise<typeof courses.$inferSelect> => {
+    const course = await db.query.courses.findFirst({
+      where: eq(courses.id, data),
+    })
+
+    if (!course) {
+      throw new Error('Course not found')
+    }
+
+    return course
+  })
 
 export const createCourse = createServerFn({
   method: 'POST',

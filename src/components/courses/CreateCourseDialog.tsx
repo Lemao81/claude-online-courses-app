@@ -10,7 +10,7 @@ import {
   Textarea,
 } from '@chakra-ui/react'
 import { useForm } from '@tanstack/react-form'
-import { useRouter } from '@tanstack/react-router'
+import { useNavigate } from '@tanstack/react-router'
 import { useState } from 'react'
 import { LuPlus } from 'react-icons/lu'
 import { createCourse } from '#/server/functions/courses.functions'
@@ -40,22 +40,26 @@ const defaultValues = {
 }
 
 export default function CreateCourseDialog() {
-  const router = useRouter()
+  const navigate = useNavigate()
   const [open, setOpen] = useState(false)
   const [submitError, setSubmitError] = useState('')
   const form = useForm({
     defaultValues,
     onSubmit: async ({ value }) => {
       setSubmitError('')
+      let course: Awaited<ReturnType<typeof createCourse>>
       try {
-        await createCourse({ data: value })
+        course = await createCourse({ data: value })
       } catch (error) {
         setSubmitError(error instanceof Error ? error.message : 'Failed to create the course')
 
         return
       }
       handleOpenChange(false)
-      await router.invalidate()
+      await navigate({
+        to: '/editcourse/$courseId',
+        params: { courseId: String(course.id) },
+      })
     },
   })
 
