@@ -24,10 +24,6 @@ const statusBadgeBaseStyles: SystemStyleObject = {
   flexShrink: '0',
   rounded: 'full',
   borderWidth: '1px',
-  px: '0.6rem',
-  py: '0.15rem',
-  fontSize: 'xs',
-  fontWeight: 'semibold',
   textTransform: 'capitalize',
 }
 

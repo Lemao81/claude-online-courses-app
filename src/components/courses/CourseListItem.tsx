@@ -1,4 +1,4 @@
-import { Button, Flex, Stack, Text } from '@chakra-ui/react'
+import { Badge, Button, Flex, Stack, Text } from '@chakra-ui/react'
 import { Link as RouterLink } from '@tanstack/react-router'
 import { LuPencil } from 'react-icons/lu'
 import { Tooltip } from '#/components/ui/tooltip'
@@ -30,9 +30,9 @@ export default function CourseListItem({ course }: CourseListItemProps) {
       <Stack gap="1" minW="0">
         <Flex align="center" gap="2">
           <Text css={courseTitleStyles}>{course.title}</Text>
-          <Text as="span" css={courseStatusStyles(course.status)}>
+          <Badge variant="plain" css={courseStatusStyles(course.status)}>
             {course.status}
-          </Text>
+          </Badge>
         </Flex>
         <Text css={courseSubtitleStyles}>{course.subtitle}</Text>
         <Text css={courseMetaStyles}>{meta}</Text>
