@@ -3,7 +3,7 @@ import { createTodo, getTodos } from '#/server/functions/todos.functions'
 
 export const Route = createFileRoute('/demo/drizzle')({
   component: DemoDrizzle,
-  loader: async () => await getTodos(),
+  loader: () => getTodos(),
 })
 
 function DemoDrizzle() {
