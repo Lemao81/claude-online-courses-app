@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
-import { type ColorModePreference, useColorMode } from '#/components/ui/ColorMode'
 import ColorModeButton from '#/components/ui/ColorModeButton'
+import { useColorMode } from '#/hooks/useColorMode'
+import type { ColorModePreference } from '#/utils/types'
 import { roundChipButtonStyles } from '#/utils/styles/buttonStyles'
 
 function applyThemeMode(mode: ColorModePreference): void {

@@ -5,7 +5,8 @@ import { ClientOnly, IconButton, Skeleton } from '@chakra-ui/react'
 import type { Ref } from 'react'
 import type { IconType } from 'react-icons'
 import { LuMonitor, LuMoon, LuSun } from 'react-icons/lu'
-import { type ColorModePreference, useColorMode } from '#/components/ui/ColorMode'
+import { useColorMode } from '#/hooks/useColorMode'
+import type { ColorModePreference } from '#/utils/types'
 
 const modeIcons: Record<ColorModePreference, IconType> = {
   light: LuSun,
