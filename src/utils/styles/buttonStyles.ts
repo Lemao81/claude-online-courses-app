@@ -17,6 +17,16 @@ export const chipButtonStyles: SystemStyleObject = {
   _hover: { transform: 'translateY(-2px)' },
 }
 
+export const roundChipButtonStyles: SystemStyleObject = {
+  ...chipButtonStyles,
+  w: '9',
+  h: '9',
+  minW: '9',
+  px: '0',
+  py: '0',
+  _icon: { width: '5', height: '5' },
+}
+
 export const primaryButtonStyles: SystemStyleObject = {
   h: 'auto',
   minH: '0',

@@ -5,7 +5,7 @@ import { ClientOnly, IconButton, Skeleton, Span } from '@chakra-ui/react'
 import type { ThemeProviderProps } from 'next-themes'
 import { ThemeProvider, useTheme } from 'next-themes'
 import type { Ref } from 'react'
-import { LuMoon, LuSun } from 'react-icons/lu'
+import { LuMonitor, LuMoon, LuSun } from 'react-icons/lu'
 
 export type ColorModeProviderProps = ThemeProviderProps
 
@@ -15,19 +15,27 @@ export function ColorModeProvider(props: ColorModeProviderProps) {
 
 export type ColorMode = 'light' | 'dark'
 
+export type ColorModePreference = ColorMode | 'system'
+
 export type UseColorModeReturn = {
   colorMode: ColorMode
-  setColorMode: (colorMode: ColorMode) => void
+  colorModePreference: ColorModePreference
+  setColorMode: (colorMode: ColorModePreference) => void
   toggleColorMode: () => void
 }
 
+function toColorModePreference(theme: string | undefined): ColorModePreference {
+  return theme === 'light' || theme === 'dark' ? theme : 'system'
+}
+
 export function useColorMode(): UseColorModeReturn {
-  const { resolvedTheme, setTheme, forcedTheme } = useTheme()
+  const { theme, resolvedTheme, setTheme, forcedTheme } = useTheme()
   const colorMode = forcedTheme || resolvedTheme
   const toggleColorMode = () => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
 
   return {
     colorMode: colorMode as ColorMode,
+    colorModePreference: toColorModePreference(theme),
     setColorMode: setTheme,
     toggleColorMode,
   }
@@ -40,12 +48,16 @@ export function useColorModeValue<T>(light: T, dark: T): T {
 }
 
 export function ColorModeIcon() {
-  const { colorMode } = useColorMode()
+  const { colorMode, colorModePreference } = useColorMode()
+
+  if (colorModePreference === 'system') {
+    return <LuMonitor />
+  }
 
   return colorMode === 'dark' ? <LuMoon /> : <LuSun />
 }
 
-type ColorModeButtonProps = Omit<IconButtonProps, 'aria-label'> & {
+type ColorModeButtonProps = IconButtonProps & {
   ref?: Ref<HTMLButtonElement>
 }
 
@@ -60,13 +72,13 @@ export function ColorModeButton({ ref, ...props }: ColorModeButtonProps) {
         aria-label="Toggle color mode"
         size="sm"
         ref={ref}
-        {...props}
         css={{
           _icon: {
             width: '5',
             height: '5',
           },
         }}
+        {...props}
       >
         <ColorModeIcon />
       </IconButton>
