@@ -1,5 +1,6 @@
 import { CloseButton, Flex, Stack, Text } from '@chakra-ui/react'
-import { formatFileSize, toFileKey } from '#/utils/helpers'
+import { formatFileSize } from '#/utils/formatters'
+import { toFileKey } from '#/utils/helpers'
 import {
   fileNameStyles,
   fileRemoveButtonStyles,

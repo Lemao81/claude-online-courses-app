@@ -40,6 +40,15 @@ export default function Sidebar() {
         >
           Courses
         </RouterLink>
+        <Flex direction="column" gap="1" pl="4">
+          <RouterLink
+            to="/mycourses"
+            className="nav-link nav-sublink"
+            activeProps={{ className: 'nav-link nav-sublink is-active' }}
+          >
+            My Courses
+          </RouterLink>
+        </Flex>
         <RouterLink
           to="/about"
           className="nav-link"

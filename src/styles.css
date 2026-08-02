@@ -416,6 +416,10 @@ a {
   color: var(--sea-ink-soft);
 }
 
+.nav-sublink {
+  font-size: 0.875rem;
+}
+
 .nav-link::after {
   content: "";
   position: absolute;
