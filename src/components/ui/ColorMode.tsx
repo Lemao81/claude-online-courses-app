@@ -1,11 +1,10 @@
 'use client'
 
-import type { IconButtonProps, SpanProps } from '@chakra-ui/react'
-import { ClientOnly, IconButton, Skeleton, Span } from '@chakra-ui/react'
+import type { SpanProps } from '@chakra-ui/react'
+import { Span } from '@chakra-ui/react'
 import type { ThemeProviderProps } from 'next-themes'
 import { ThemeProvider, useTheme } from 'next-themes'
 import type { Ref } from 'react'
-import { LuMonitor, LuMoon, LuSun } from 'react-icons/lu'
 
 export type ColorModeProviderProps = ThemeProviderProps
 
@@ -45,45 +44,6 @@ export function useColorModeValue<T>(light: T, dark: T): T {
   const { colorMode } = useColorMode()
 
   return colorMode === 'dark' ? dark : light
-}
-
-export function ColorModeIcon() {
-  const { colorMode, colorModePreference } = useColorMode()
-
-  if (colorModePreference === 'system') {
-    return <LuMonitor />
-  }
-
-  return colorMode === 'dark' ? <LuMoon /> : <LuSun />
-}
-
-type ColorModeButtonProps = IconButtonProps & {
-  ref?: Ref<HTMLButtonElement>
-}
-
-export function ColorModeButton({ ref, ...props }: ColorModeButtonProps) {
-  const { toggleColorMode } = useColorMode()
-
-  return (
-    <ClientOnly fallback={<Skeleton boxSize="9" />}>
-      <IconButton
-        onClick={toggleColorMode}
-        variant="ghost"
-        aria-label="Toggle color mode"
-        size="sm"
-        ref={ref}
-        css={{
-          _icon: {
-            width: '5',
-            height: '5',
-          },
-        }}
-        {...props}
-      >
-        <ColorModeIcon />
-      </IconButton>
-    </ClientOnly>
-  )
 }
 
 type ColorModeSpanProps = SpanProps & {
