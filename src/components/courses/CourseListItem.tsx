@@ -1,7 +1,7 @@
 import { Badge, Button, Flex, Stack, Text } from '@chakra-ui/react'
 import { Link as RouterLink } from '@tanstack/react-router'
 import { LuPencil } from 'react-icons/lu'
-import { Tooltip } from '#/components/ui/tooltip'
+import Tooltip from '#/components/ui/Tooltip'
 import { formatDate, formatDuration, formatPrice, formatRating } from '#/utils/formatters'
 import {
   courseEditButtonStyles,
