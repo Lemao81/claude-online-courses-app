@@ -1,11 +1,10 @@
 'use client'
 
-import type { IconButtonProps } from '@chakra-ui/react'
 import { ClientOnly, IconButton, Skeleton } from '@chakra-ui/react'
-import type { Ref } from 'react'
 import type { IconType } from 'react-icons'
 import { LuMonitor, LuMoon, LuSun } from 'react-icons/lu'
 import { useColorMode } from '#/hooks/useColorMode'
+import { roundChipButtonStyles } from '#/utils/styles/buttonStyles'
 import type { ColorModePreference } from '#/utils/types'
 
 const modeIcons: Record<ColorModePreference, IconType> = {
@@ -20,11 +19,7 @@ const nextModes: Record<ColorModePreference, ColorModePreference> = {
   system: 'light',
 }
 
-type ColorModeButtonProps = IconButtonProps & {
-  ref?: Ref<HTMLButtonElement>
-}
-
-export default function ColorModeButton({ ref, ...props }: ColorModeButtonProps) {
+export default function ColorModeButton() {
   const { colorModePreference, setColorMode } = useColorMode()
   const ModeIcon = modeIcons[colorModePreference]
 
@@ -35,18 +30,12 @@ export default function ColorModeButton({ ref, ...props }: ColorModeButtonProps)
   return (
     <ClientOnly fallback={<Skeleton boxSize="9" />}>
       <IconButton
+        type="button"
         onClick={toggleColorMode}
-        variant="ghost"
+        variant="plain"
         aria-label="Toggle color mode"
         size="sm"
-        ref={ref}
-        css={{
-          _icon: {
-            width: '5',
-            height: '5',
-          },
-        }}
-        {...props}
+        css={roundChipButtonStyles}
       >
         <ModeIcon />
       </IconButton>
