@@ -14,13 +14,23 @@ const modeIcons: Record<ColorModePreference, IconType> = {
   system: LuMonitor,
 }
 
+const nextModes: Record<ColorModePreference, ColorModePreference> = {
+  light: 'dark',
+  dark: 'system',
+  system: 'light',
+}
+
 type ColorModeButtonProps = IconButtonProps & {
   ref?: Ref<HTMLButtonElement>
 }
 
 export default function ColorModeButton({ ref, ...props }: ColorModeButtonProps) {
-  const { colorModePreference, toggleColorMode } = useColorMode()
+  const { colorModePreference, setColorMode } = useColorMode()
   const ModeIcon = modeIcons[colorModePreference]
+
+  function toggleColorMode(): void {
+    setColorMode(nextModes[colorModePreference])
+  }
 
   return (
     <ClientOnly fallback={<Skeleton boxSize="9" />}>

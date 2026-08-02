@@ -1,13 +1,11 @@
 'use client'
 
 import { useTheme } from 'next-themes'
-import type { ColorMode, ColorModePreference } from '#/utils/types'
+import type { ColorModePreference } from '#/utils/types'
 
 type UseColorModeReturn = {
-  colorMode: ColorMode
   colorModePreference: ColorModePreference
   setColorMode: (colorMode: ColorModePreference) => void
-  toggleColorMode: () => void
 }
 
 function toColorModePreference(theme: string | undefined): ColorModePreference {
@@ -15,14 +13,10 @@ function toColorModePreference(theme: string | undefined): ColorModePreference {
 }
 
 export function useColorMode(): UseColorModeReturn {
-  const { theme, resolvedTheme, setTheme, forcedTheme } = useTheme()
-  const colorMode = forcedTheme || resolvedTheme
-  const toggleColorMode = () => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
+  const { theme, setTheme } = useTheme()
 
   return {
-    colorMode: colorMode as ColorMode,
     colorModePreference: toColorModePreference(theme),
     setColorMode: setTheme,
-    toggleColorMode,
   }
 }

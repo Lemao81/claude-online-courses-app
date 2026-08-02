@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import ColorModeButton from '#/components/ui/ColorModeButton'
 import { useColorMode } from '#/hooks/useColorMode'
-import type { ColorModePreference } from '#/utils/types'
 import { roundChipButtonStyles } from '#/utils/styles/buttonStyles'
+import type { ColorModePreference } from '#/utils/types'
 
 function applyThemeMode(mode: ColorModePreference): void {
   if (mode === 'system') {
@@ -13,15 +13,11 @@ function applyThemeMode(mode: ColorModePreference): void {
 }
 
 export default function ThemeToggle() {
-  const { colorModePreference: mode, setColorMode } = useColorMode()
+  const { colorModePreference: mode } = useColorMode()
 
   useEffect(() => {
     applyThemeMode(mode)
   }, [mode])
-
-  function toggleMode(): void {
-    setColorMode(mode === 'light' ? 'dark' : mode === 'dark' ? 'system' : 'light')
-  }
 
   const label =
     mode === 'system'
@@ -31,7 +27,6 @@ export default function ThemeToggle() {
   return (
     <ColorModeButton
       type="button"
-      onClick={toggleMode}
       aria-label={label}
       title={label}
       variant="plain"
