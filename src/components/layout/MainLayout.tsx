@@ -12,7 +12,13 @@ export default function MainLayout({ children }: MainLayoutProps) {
   return (
     <Flex direction="column" minH="100dvh">
       <Header />
-      <Flex direction={{ base: 'column', md: 'row' }} align="stretch" flex="1" minH="0">
+      <Flex
+        className="page-wrap"
+        direction={{ base: 'column', md: 'row' }}
+        align="stretch"
+        flex="1"
+        minH="0"
+      >
         <Show when="signed-in">
           <Sidebar />
         </Show>

@@ -2,7 +2,7 @@ import { Box, Heading, Text } from '@chakra-ui/react'
 
 export default function AboutPage() {
   return (
-    <Box as="main" className="page-wrap" px="4" py="12">
+    <Box px="4" py="12">
       <Box as="section" className="island-shell" rounded="2xl" p={{ base: '6', sm: '8' }}>
         <Text className="island-kicker" mb="2">
           About

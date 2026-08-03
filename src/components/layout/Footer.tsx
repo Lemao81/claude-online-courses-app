@@ -15,7 +15,6 @@ export default function Footer() {
       color="var(--sea-ink-soft)"
     >
       <Flex
-        className="page-wrap"
         direction={{ base: 'column', sm: 'row' }}
         align="center"
         justify="space-between"

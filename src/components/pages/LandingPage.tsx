@@ -2,7 +2,7 @@ import { Box, Code, Flex, Heading, Link, List, SimpleGrid, Text } from '@chakra-
 
 export default function LandingPage() {
   return (
-    <Box as="main" className="page-wrap" px="4" pb="8" pt="14">
+    <Box px="4" pb="8" pt="14">
       <Box
         as="section"
         className="island-shell rise-in"
