@@ -53,11 +53,7 @@ export default function CreateCourseDialog() {
   }
 
   return (
-    <Dialog.Root
-      open={open}
-      onOpenChange={(d) => handleOpenChange(d.open)}
-      placement="center"
-    >
+    <Dialog.Root open={open} onOpenChange={(d) => handleOpenChange(d.open)} placement="center">
       <Dialog.Trigger asChild>
         <Button type="button" variant="plain" css={chipButtonStyles}>
           <LuPlus aria-hidden="true" />

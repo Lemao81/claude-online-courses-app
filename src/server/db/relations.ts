@@ -2,8 +2,8 @@ import { relations } from 'drizzle-orm'
 import {
   assets,
   chapters,
-  courseTags,
   courses,
+  courseTags,
   enrollments,
   lessonProgress,
   lessons,

@@ -14,7 +14,9 @@ export default function CourseList({ courses }: CourseListProps) {
 
   return (
     <Stack gap="3">
-      {courses.map((c) => <CourseListItem key={c.id} course={c} />)}
+      {courses.map((c) => (
+        <CourseListItem key={c.id} course={c} />
+      ))}
     </Stack>
   )
 }

@@ -64,10 +64,7 @@ async function seedCourses(): Promise<void> {
 }
 
 async function clearUnpublishedDates(): Promise<void> {
-  await db
-    .update(courses)
-    .set({ publishedAt: null })
-    .where(ne(courses.status, 'published'))
+  await db.update(courses).set({ publishedAt: null }).where(ne(courses.status, 'published'))
 }
 
 async function resyncCourseIds(): Promise<void> {
