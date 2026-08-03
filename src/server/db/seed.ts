@@ -1,8 +1,8 @@
-import { ne, sql } from 'drizzle-orm'
+import { asc, ne, sql } from 'drizzle-orm'
 import { getTableConfig } from 'drizzle-orm/pg-core'
 import { reset, seed } from 'drizzle-seed'
 import { db } from '#/server/db/index'
-import { courses } from '#/server/db/schema'
+import { chapters, courses } from '#/server/db/schema'
 
 const authorId = process.env.SEED_AUTHOR_ID
 
@@ -34,6 +34,34 @@ const courseSubtitles = [
 
 const coursePrices = ['0', '19.00', '29.00', '39.00', '49.00', '79.00']
 
+const chapterSeeds = [
+  {
+    title: 'Course Overview',
+    description: 'What the course covers, who it is for, and how the lessons are structured.',
+    durationSec: 1260,
+  },
+  {
+    title: 'Setting Up Your Environment',
+    description: 'Install the tooling, clone the starter project, and run it for the first time.',
+    durationSec: 2040,
+  },
+  {
+    title: 'Building the First Feature',
+    description: 'Work through a complete slice of the app, from the data layer up to the UI.',
+    durationSec: 3480,
+  },
+  {
+    title: 'Testing and Refactoring',
+    description: 'Cover the feature with tests, then reshape the code without breaking it.',
+    durationSec: 2700,
+  },
+  {
+    title: 'Shipping to Production',
+    description: 'Prepare a production build, configure the environment, and deploy it.',
+    durationSec: 1920,
+  },
+]
+
 async function seedCourses(): Promise<void> {
   await seed(db, { courses }, { seed: 1 }).refine((funcs) => ({
     courses: {
@@ -63,6 +91,30 @@ async function seedCourses(): Promise<void> {
   }))
 }
 
+async function seedChapters(): Promise<number> {
+  const [course] = await db
+    .select({ id: courses.id })
+    .from(courses)
+    .orderBy(asc(courses.id))
+    .limit(1)
+
+  if (!course) {
+    throw new Error('No seeded course to attach chapters to')
+  }
+
+  await db.insert(chapters).values(
+    chapterSeeds.map((chapter, index) => ({
+      courseId: course.id,
+      position: index,
+      title: chapter.title,
+      description: chapter.description,
+      durationSec: chapter.durationSec,
+    })),
+  )
+
+  return course.id
+}
+
 async function clearUnpublishedDates(): Promise<void> {
   await db.update(courses).set({ publishedAt: null }).where(ne(courses.status, 'published'))
 }
@@ -81,8 +133,10 @@ async function seedDatabase(): Promise<void> {
   await seedCourses()
   await clearUnpublishedDates()
   await resyncCourseIds()
+  const courseId = await seedChapters()
 
   console.log(`Seeded ${courseTitles.length} courses for ${authorId}`)
+  console.log(`Seeded ${chapterSeeds.length} chapters for course ${courseId}`)
 }
 
 await seedDatabase()
