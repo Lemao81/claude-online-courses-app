@@ -2,7 +2,7 @@ import { asc, ne, sql } from 'drizzle-orm'
 import { getTableConfig } from 'drizzle-orm/pg-core'
 import { reset, seed } from 'drizzle-seed'
 import { db } from '#/server/db/index'
-import { chapters, courses } from '#/server/db/schema'
+import { chapters, courses, lessons } from '#/server/db/schema'
 
 const authorId = process.env.SEED_AUTHOR_ID
 
@@ -34,31 +34,63 @@ const courseSubtitles = [
 
 const coursePrices = ['0', '19.00', '29.00', '39.00', '49.00', '79.00']
 
-const chapterSeeds = [
+type LessonSeed = {
+  title: string
+  durationSec: number
+  isFreePreview?: boolean
+}
+
+type ChapterSeed = {
+  title: string
+  description: string
+  durationSec: number
+  lessons: LessonSeed[]
+}
+
+const chapterSeeds: ChapterSeed[] = [
   {
     title: 'Course Overview',
     description: 'What the course covers, who it is for, and how the lessons are structured.',
     durationSec: 1260,
+    lessons: [
+      { title: 'Welcome and course goals', durationSec: 300, isFreePreview: true },
+      { title: 'How the project is structured', durationSec: 420 },
+      { title: 'Getting the most out of the exercises', durationSec: 540 },
+    ],
   },
   {
     title: 'Setting Up Your Environment',
     description: 'Install the tooling, clone the starter project, and run it for the first time.',
     durationSec: 2040,
+    lessons: [
+      { title: 'Installing Node and pnpm', durationSec: 480, isFreePreview: true },
+      { title: 'Cloning the starter project', durationSec: 360 },
+      { title: 'Configuring environment variables', durationSec: 660 },
+      { title: 'Running the dev server', durationSec: 540 },
+    ],
   },
   {
     title: 'Building the First Feature',
     description: 'Work through a complete slice of the app, from the data layer up to the UI.',
     durationSec: 3480,
+    lessons: [
+      { title: 'Modelling the data', durationSec: 720 },
+      { title: 'Writing the server function', durationSec: 900 },
+      { title: 'Wiring up the route loader', durationSec: 840 },
+      { title: 'Rendering the UI', durationSec: 1020 },
+    ],
   },
   {
     title: 'Testing and Refactoring',
     description: 'Cover the feature with tests, then reshape the code without breaking it.',
     durationSec: 2700,
+    lessons: [],
   },
   {
     title: 'Shipping to Production',
     description: 'Prepare a production build, configure the environment, and deploy it.',
     durationSec: 1920,
+    lessons: [],
   },
 ]
 
@@ -91,7 +123,7 @@ async function seedCourses(): Promise<void> {
   }))
 }
 
-async function seedChapters(): Promise<number> {
+async function seedChapters(): Promise<{ courseId: number; lessonCount: number }> {
   const [course] = await db
     .select({ id: courses.id })
     .from(courses)
@@ -102,17 +134,35 @@ async function seedChapters(): Promise<number> {
     throw new Error('No seeded course to attach chapters to')
   }
 
-  await db.insert(chapters).values(
-    chapterSeeds.map((chapter, index) => ({
+  const insertedChapters = await db
+    .insert(chapters)
+    .values(
+      chapterSeeds.map((chapter, index) => ({
+        courseId: course.id,
+        position: index,
+        title: chapter.title,
+        description: chapter.description,
+        durationSec: chapter.durationSec,
+      })),
+    )
+    .returning({ id: chapters.id, position: chapters.position })
+
+  const lessonValues = insertedChapters.flatMap((chapter) =>
+    chapterSeeds[chapter.position].lessons.map((lesson, index) => ({
       courseId: course.id,
+      chapterId: chapter.id,
       position: index,
-      title: chapter.title,
-      description: chapter.description,
-      durationSec: chapter.durationSec,
+      title: lesson.title,
+      durationSec: lesson.durationSec,
+      isFreePreview: lesson.isFreePreview ?? false,
     })),
   )
 
-  return course.id
+  if (lessonValues.length > 0) {
+    await db.insert(lessons).values(lessonValues)
+  }
+
+  return { courseId: course.id, lessonCount: lessonValues.length }
 }
 
 async function clearUnpublishedDates(): Promise<void> {
@@ -133,10 +183,11 @@ async function seedDatabase(): Promise<void> {
   await seedCourses()
   await clearUnpublishedDates()
   await resyncCourseIds()
-  const courseId = await seedChapters()
+  const { courseId, lessonCount } = await seedChapters()
 
   console.log(`Seeded ${courseTitles.length} courses for ${authorId}`)
   console.log(`Seeded ${chapterSeeds.length} chapters for course ${courseId}`)
+  console.log(`Seeded ${lessonCount} lessons for course ${courseId}`)
 }
 
 await seedDatabase()
