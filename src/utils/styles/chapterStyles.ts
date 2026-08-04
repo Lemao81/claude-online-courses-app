@@ -45,6 +45,11 @@ export const chapterEditButtonStyles: SystemStyleObject = {
   _hover: { transform: 'translateY(-2px)', color: 'var(--sea-ink)' },
 }
 
+export const chapterCloseButtonStyles: SystemStyleObject = {
+  color: 'var(--sea-ink-soft)',
+  _hover: { bg: 'var(--link-bg-hover)', color: 'var(--sea-ink)' },
+}
+
 export const lessonRowStyles: SystemStyleObject = {
   rounded: '0.85rem',
   borderWidth: '1px',

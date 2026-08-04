@@ -1,17 +1,22 @@
-import { Button, Flex, Stack, Text } from '@chakra-ui/react'
+import { Box, Button, CloseButton, Flex, Stack, Text } from '@chakra-ui/react'
 import ChapterLessonList from '#/components/chapters/ChapterLessonList'
 import EditChapterForm, { useEditChapterForm } from '#/components/chapters/EditChapterForm'
 import VideoUpload from '#/components/videos/VideoUpload'
 import { primaryButtonStyles } from '#/utils/styles/buttonStyles'
-import { chapterPanelStyles, chapterSectionLabelStyles } from '#/utils/styles/chapterStyles'
+import {
+  chapterCloseButtonStyles,
+  chapterPanelStyles,
+  chapterSectionLabelStyles,
+} from '#/utils/styles/chapterStyles'
 import type { Chapter, ChapterLessonVideo } from '#/utils/types'
 
 type EditChapterProps = {
   chapter?: Chapter
   lessons?: ChapterLessonVideo[]
+  onClose: () => void
 }
 
-export default function EditChapter({ chapter, lessons = [] }: EditChapterProps) {
+export default function EditChapter({ chapter, lessons = [], onClose }: EditChapterProps) {
   const { form, formId } = useEditChapterForm(chapter, handleSubmit)
 
   async function handleSubmit(): Promise<void> {
@@ -20,7 +25,18 @@ export default function EditChapter({ chapter, lessons = [] }: EditChapterProps)
 
   return (
     <Stack gap="5" css={chapterPanelStyles}>
-      <EditChapterForm form={form} formId={formId} />
+      <Flex align="flex-start" gap="4">
+        <Box flex="1" minW="0">
+          <EditChapterForm form={form} formId={formId} />
+        </Box>
+        <CloseButton
+          size="sm"
+          variant="plain"
+          aria-label="Close chapter editor"
+          css={chapterCloseButtonStyles}
+          onClick={onClose}
+        />
+      </Flex>
       <Stack gap="2">
         <Text css={chapterSectionLabelStyles}>Lesson Videos</Text>
         <ChapterLessonList lessons={lessons} />

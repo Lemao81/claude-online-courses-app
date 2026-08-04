@@ -16,18 +16,15 @@ import type { Chapter, ChapterLessonVideo } from '#/utils/types'
 type CourseChapterProps = {
   chapter: Chapter
   lessons?: ChapterLessonVideo[]
+  onEdit: () => void
 }
 
-export default function CourseChapter({ chapter, lessons = [] }: CourseChapterProps) {
+export default function CourseChapter({ chapter, lessons = [], onEdit }: CourseChapterProps) {
   const meta = [
     `Chapter ${chapter.position + 1}`,
     `${lessons.length} ${lessons.length === 1 ? 'lesson' : 'lessons'}`,
     formatDuration(chapter.durationSec),
   ].join(' · ')
-
-  function handleEdit(): void {
-    return
-  }
 
   return (
     <Stack gap="5" css={chapterPanelStyles}>
@@ -44,7 +41,7 @@ export default function CourseChapter({ chapter, lessons = [] }: CourseChapterPr
             variant="plain"
             aria-label="Edit chapter"
             css={chapterEditButtonStyles}
-            onClick={handleEdit}
+            onClick={onEdit}
           >
             <LuPencil aria-hidden="true" />
           </Button>
