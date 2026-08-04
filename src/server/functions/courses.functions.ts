@@ -3,7 +3,7 @@ import { redirect } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
 import { asc, desc, eq } from 'drizzle-orm'
 import { db } from '#/server/db/index'
-import { chapters, courses, users } from '#/server/db/schema'
+import { chapters, courses, lessons, users } from '#/server/db/schema'
 import type { Course, CourseWithChapters } from '#/utils/types'
 
 type CreateCourseInput = {
@@ -106,6 +106,12 @@ export const getAuthoredCourseWithChapters = createServerFn({
       with: {
         chapters: {
           orderBy: asc(chapters.position),
+          with: {
+            lessons: {
+              columns: { id: true, title: true, durationSec: true },
+              orderBy: asc(lessons.position),
+            },
+          },
         },
       },
     })
