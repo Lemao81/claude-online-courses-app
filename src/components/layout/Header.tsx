@@ -9,7 +9,7 @@ import {
 } from '@chakra-ui/react'
 import { Link as RouterLink } from '@tanstack/react-router'
 import ClerkHeader from '#/components/layout/ClerkHeader'
-import ThemeToggle from '#/components/layout/ThemeToggle'
+import ColorModeButton from '#/components/ui/ColorModeButton'
 
 const demoLinkStyles: SystemStyleObject = {
   display: 'block',
@@ -189,7 +189,7 @@ export default function Header() {
           </Link>
           <ClerkHeader />
 
-          <ThemeToggle />
+          <ColorModeButton />
         </Flex>
       </Flex>
     </Box>
