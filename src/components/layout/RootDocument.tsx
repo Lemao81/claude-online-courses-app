@@ -6,7 +6,7 @@ import TanStackQueryDevtools from '#/integrations/tanstack-query/devtools'
 import AppChakraProvider from '#/providers/AppChakraProvider.tsx'
 import AppClerkProvider from '#/providers/AppClerkProvider.tsx'
 
-const THEME_INIT_SCRIPT = `(function(){try{var stored=window.localStorage.getItem('theme');if(stored==='light'||stored==='dark'){document.documentElement.setAttribute('data-theme',stored)}}catch(e){}})();`
+const THEME_INIT_SCRIPT = `(function(){try{var stored=window.localStorage.getItem('theme');if(stored==='light'||stored==='dark'){document.documentElement.classList.add(stored)}}catch(e){}})();`
 
 type RootDocumentProps = {
   children: React.ReactNode

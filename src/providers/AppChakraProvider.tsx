@@ -8,7 +8,7 @@ import { system } from '#/theme'
 export default function AppChakraProvider({ children }: { children: ReactNode }) {
   return (
     <ChakraProvider value={system}>
-      <ThemeProvider attribute={['class', 'data-theme']} disableTransitionOnChange>
+      <ThemeProvider attribute="class" disableTransitionOnChange>
         {children}
       </ThemeProvider>
     </ChakraProvider>
