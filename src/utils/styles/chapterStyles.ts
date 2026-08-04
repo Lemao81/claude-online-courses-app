@@ -1,4 +1,5 @@
 import type { SystemStyleObject } from '@chakra-ui/react'
+import { chipButtonStyles } from '#/utils/styles/buttonStyles'
 
 export const chapterPanelStyles: SystemStyleObject = {
   rounded: '1.25rem',
@@ -16,6 +17,32 @@ export const chapterSectionLabelStyles: SystemStyleObject = {
   letterSpacing: 'wider',
   textTransform: 'uppercase',
   color: 'var(--sea-ink-soft)',
+}
+
+export const chapterTitleStyles: SystemStyleObject = {
+  m: '0',
+  fontSize: '1rem',
+  fontWeight: 'bold',
+  color: 'var(--sea-ink)',
+}
+
+export const chapterDescriptionStyles: SystemStyleObject = {
+  m: '0',
+  fontSize: 'sm',
+  color: 'var(--sea-ink-soft)',
+}
+
+export const chapterMetaStyles: SystemStyleObject = {
+  m: '0',
+  fontSize: 'xs',
+  color: 'var(--sea-ink-soft)',
+}
+
+export const chapterEditButtonStyles: SystemStyleObject = {
+  ...chipButtonStyles,
+  px: '2',
+  py: '2',
+  _hover: { transform: 'translateY(-2px)', color: 'var(--sea-ink)' },
 }
 
 export const lessonRowStyles: SystemStyleObject = {
