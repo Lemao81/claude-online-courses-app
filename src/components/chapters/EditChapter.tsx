@@ -2,12 +2,8 @@ import { Box, Button, CloseButton, Flex, Stack, Text } from '@chakra-ui/react'
 import ChapterLessonList from '#/components/chapters/ChapterLessonList'
 import EditChapterForm, { useEditChapterForm } from '#/components/chapters/EditChapterForm'
 import VideoUpload from '#/components/videos/VideoUpload'
-import { primaryButtonStyles } from '#/utils/styles/buttonStyles'
-import {
-  chapterCloseButtonStyles,
-  chapterPanelStyles,
-  chapterSectionLabelStyles,
-} from '#/utils/styles/chapterStyles'
+import { primaryButtonStyles, subtleIconButtonStyles } from '#/utils/styles/buttonStyles'
+import { chapterPanelStyles, chapterSectionLabelStyles } from '#/utils/styles/chapterStyles'
 import type { Chapter, ChapterLessonVideo } from '#/utils/types'
 
 type EditChapterProps = {
@@ -33,7 +29,7 @@ export default function EditChapter({ chapter, lessons = [], onClose }: EditChap
           size="sm"
           variant="plain"
           aria-label="Close chapter editor"
-          css={chapterCloseButtonStyles}
+          css={subtleIconButtonStyles}
           onClick={onClose}
         />
       </Flex>

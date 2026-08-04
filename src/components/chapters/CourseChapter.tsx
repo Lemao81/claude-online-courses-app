@@ -3,14 +3,9 @@ import { LuPencil } from 'react-icons/lu'
 import CourseChapterLessonList from '#/components/chapters/CourseChapterLessonList'
 import Tooltip from '#/components/ui/Tooltip'
 import { formatDuration } from '#/utils/formatters'
-import {
-  chapterDescriptionStyles,
-  chapterEditButtonStyles,
-  chapterMetaStyles,
-  chapterPanelStyles,
-  chapterSectionLabelStyles,
-  chapterTitleStyles,
-} from '#/utils/styles/chapterStyles'
+import { chipIconButtonStyles } from '#/utils/styles/buttonStyles'
+import { chapterPanelStyles, chapterSectionLabelStyles } from '#/utils/styles/chapterStyles'
+import { metaStyles, subtitleStyles, titleStyles } from '#/utils/styles/textStyles'
 import type { Chapter, ChapterLessonVideo } from '#/utils/types'
 
 type CourseChapterProps = {
@@ -30,17 +25,17 @@ export default function CourseChapter({ chapter, lessons = [], onEdit }: CourseC
     <Stack gap="5" css={chapterPanelStyles}>
       <Flex align="flex-start" justify="space-between" gap="4">
         <Stack gap="1" minW="0">
-          <Text css={chapterTitleStyles}>{chapter.title}</Text>
+          <Text css={titleStyles}>{chapter.title}</Text>
           {chapter.description.length > 0 && (
-            <Text css={chapterDescriptionStyles}>{chapter.description}</Text>
+            <Text css={subtitleStyles}>{chapter.description}</Text>
           )}
-          <Text css={chapterMetaStyles}>{meta}</Text>
+          <Text css={metaStyles}>{meta}</Text>
         </Stack>
         <Tooltip content="Edit" showArrow>
           <Button
             variant="plain"
             aria-label="Edit chapter"
-            css={chapterEditButtonStyles}
+            css={chipIconButtonStyles}
             onClick={onEdit}
           >
             <LuPencil aria-hidden="true" />

@@ -11,10 +11,10 @@ import {
   chipButtonStyles,
   primaryButtonStyles,
   secondaryButtonStyles,
+  subtleIconButtonStyles,
 } from '#/utils/styles/buttonStyles'
 import {
   dialogBackdropStyles,
-  dialogCloseButtonStyles,
   dialogContentStyles,
   dialogTitleStyles,
 } from '#/utils/styles/formStyles'
@@ -97,7 +97,7 @@ export default function CreateCourseDialog() {
               </form.Subscribe>
             </Dialog.Footer>
             <Dialog.CloseTrigger asChild>
-              <CloseButton size="sm" variant="plain" css={dialogCloseButtonStyles} />
+              <CloseButton size="sm" variant="plain" css={subtleIconButtonStyles} />
             </Dialog.CloseTrigger>
           </Dialog.Content>
         </Dialog.Positioner>

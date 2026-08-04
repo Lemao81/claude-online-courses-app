@@ -1,5 +1,5 @@
 import type { SystemStyleObject } from '@chakra-ui/react'
-import { chipButtonStyles } from '#/utils/styles/buttonStyles'
+import { emptyStateStyles } from '#/utils/styles/surfaceStyles'
 import type { CourseStatus } from '#/utils/types'
 
 const statusColors: Record<CourseStatus, SystemStyleObject> = {
@@ -45,41 +45,8 @@ export const courseItemStyles: SystemStyleObject = {
   },
 }
 
-export const courseTitleStyles: SystemStyleObject = {
-  m: '0',
-  fontSize: '1rem',
-  fontWeight: 'bold',
-  color: 'var(--sea-ink)',
-}
-
-export const courseSubtitleStyles: SystemStyleObject = {
-  m: '0',
-  fontSize: 'sm',
-  color: 'var(--sea-ink-soft)',
-}
-
-export const courseMetaStyles: SystemStyleObject = {
-  m: '0',
-  fontSize: 'xs',
-  color: 'var(--sea-ink-soft)',
-}
-
-export const courseEditButtonStyles: SystemStyleObject = {
-  ...chipButtonStyles,
-  px: '2',
-  py: '2',
-  _hover: { transform: 'translateY(-2px)', color: 'var(--sea-ink)' },
-}
-
 export const courseEmptyStyles: SystemStyleObject = {
-  m: '0',
+  ...emptyStateStyles,
   rounded: '1rem',
-  borderWidth: '1px',
-  borderStyle: 'dashed',
-  borderColor: 'var(--line)',
-  px: '1rem',
   py: '2rem',
-  textAlign: 'center',
-  fontSize: 'sm',
-  color: 'var(--sea-ink-soft)',
 }

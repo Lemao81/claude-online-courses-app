@@ -27,6 +27,18 @@ export const roundChipButtonStyles: SystemStyleObject = {
   _icon: { width: '5', height: '5' },
 }
 
+export const chipIconButtonStyles: SystemStyleObject = {
+  ...chipButtonStyles,
+  px: '2',
+  py: '2',
+  _hover: { transform: 'translateY(-2px)', color: 'var(--sea-ink)' },
+}
+
+export const subtleIconButtonStyles: SystemStyleObject = {
+  color: 'var(--sea-ink-soft)',
+  _hover: { bg: 'var(--link-bg-hover)', color: 'var(--sea-ink)' },
+}
+
 export const primaryButtonStyles: SystemStyleObject = {
   h: 'auto',
   minH: '0',

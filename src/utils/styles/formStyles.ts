@@ -21,11 +21,6 @@ export const dialogTitleStyles: SystemStyleObject = {
   color: 'var(--sea-ink)',
 }
 
-export const dialogCloseButtonStyles: SystemStyleObject = {
-  color: 'var(--sea-ink-soft)',
-  _hover: { bg: 'var(--link-bg-hover)', color: 'var(--sea-ink)' },
-}
-
 export const fieldLabelStyles: SystemStyleObject = {
   mb: '2',
   fontSize: 'sm',
