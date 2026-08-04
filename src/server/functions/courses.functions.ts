@@ -1,10 +1,10 @@
 import { auth, clerkClient } from '@clerk/tanstack-react-start/server'
 import { redirect } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
-import { desc, eq } from 'drizzle-orm'
+import { asc, desc, eq } from 'drizzle-orm'
 import { db } from '#/server/db/index'
-import { courses, users } from '#/server/db/schema'
-import type { Course } from '#/utils/types'
+import { chapters, courses, users } from '#/server/db/schema'
+import type { Course, CourseWithChapters } from '#/utils/types'
 
 type CreateCourseInput = {
   title: string
@@ -29,6 +29,16 @@ function validateCreateCourseInput(data: CreateCourseInput): CreateCourseInput {
     subtitle,
     description: data.description.trim(),
   }
+}
+
+async function requireUserId(): Promise<string> {
+  const { userId } = await auth()
+
+  if (!userId) {
+    throw redirect({ to: '/' })
+  }
+
+  return userId
 }
 
 async function ensureAuthor(userId: string): Promise<void> {
@@ -67,11 +77,7 @@ export const getAuthoredCourse = createServerFn({
 })
   .validator((i: number) => i)
   .handler(async ({ data }): Promise<Course> => {
-    const { userId } = await auth()
-
-    if (!userId) {
-      throw redirect({ to: '/' })
-    }
+    const userId = await requireUserId()
 
     const course = await db.query.courses.findFirst({
       where: eq(courses.id, data),
@@ -88,14 +94,37 @@ export const getAuthoredCourse = createServerFn({
     return course
   })
 
+export const getAuthoredCourseWithChapters = createServerFn({
+  method: 'GET',
+})
+  .validator((i: number) => i)
+  .handler(async ({ data }): Promise<CourseWithChapters> => {
+    const userId = await requireUserId()
+
+    const course = await db.query.courses.findFirst({
+      where: eq(courses.id, data),
+      with: {
+        chapters: {
+          orderBy: asc(chapters.position),
+        },
+      },
+    })
+
+    if (!course) {
+      throw new Error('Course not found')
+    }
+
+    if (course.authorId !== userId) {
+      throw redirect({ to: '/courses' })
+    }
+
+    return course
+  })
+
 export const getAuthoredCourses = createServerFn({
   method: 'GET',
 }).handler(async (): Promise<Course[]> => {
-  const { userId } = await auth()
-
-  if (!userId) {
-    throw redirect({ to: '/' })
-  }
+  const userId = await requireUserId()
 
   return db.query.courses.findMany({
     where: eq(courses.authorId, userId),
@@ -108,11 +137,7 @@ export const createCourse = createServerFn({
 })
   .validator(validateCreateCourseInput)
   .handler(async ({ data }): Promise<Course> => {
-    const { userId } = await auth()
-
-    if (!userId) {
-      throw new Error('You must be signed in to create a course')
-    }
+    const userId = await requireUserId()
 
     await ensureAuthor(userId)
 
