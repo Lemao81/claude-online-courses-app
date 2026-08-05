@@ -4,24 +4,24 @@ export const titleStyles: SystemStyleObject = {
   m: '0',
   fontSize: '1rem',
   fontWeight: 'bold',
-  color: 'var(--sea-ink)',
+  color: 'fg',
 }
 
 export const itemTitleStyles: SystemStyleObject = {
   m: '0',
   fontSize: 'sm',
   fontWeight: 'semibold',
-  color: 'var(--sea-ink)',
+  color: 'fg',
 }
 
 export const subtitleStyles: SystemStyleObject = {
   m: '0',
   fontSize: 'sm',
-  color: 'var(--sea-ink-soft)',
+  color: 'fg.muted',
 }
 
 export const metaStyles: SystemStyleObject = {
   m: '0',
   fontSize: 'xs',
-  color: 'var(--sea-ink-soft)',
+  color: 'fg.muted',
 }

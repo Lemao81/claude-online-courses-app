@@ -6,13 +6,12 @@ export const dialogBackdropStyles: SystemStyleObject = {
 }
 
 export const dialogContentStyles: SystemStyleObject = {
-  rounded: '1.25rem',
+  rounded: 'panel',
   borderWidth: '1px',
   borderColor: 'var(--line)',
   bg: 'linear-gradient(165deg, var(--surface-strong), var(--surface)), var(--bg-base)',
   color: 'var(--sea-ink)',
-  boxShadow:
-    '0 1px 0 var(--inset-glint) inset, 0 18px 34px rgba(30,90,72,0.1), 0 4px 14px rgba(23,58,64,0.06)',
+  boxShadow: 'card',
 }
 
 export const dialogTitleStyles: SystemStyleObject = {

@@ -12,7 +12,7 @@ export const chipButtonStyles: SystemStyleObject = {
   fontSize: 'sm',
   fontWeight: 'semibold',
   color: 'var(--sea-ink)',
-  boxShadow: '0 8px 22px rgba(30,90,72,0.08)',
+  boxShadow: 'chip',
   transition: 'all 0.15s ease',
   _hover: { transform: 'translateY(-2px)' },
 }
@@ -42,7 +42,7 @@ export const subtleIconButtonStyles: SystemStyleObject = {
 export const primaryButtonStyles: SystemStyleObject = {
   h: 'auto',
   minH: '0',
-  rounded: '0.85rem',
+  rounded: 'control',
   borderWidth: '1px',
   borderColor: 'color-mix(in oklab, var(--lagoon-deep) 34%, var(--line))',
   bg: 'color-mix(in oklab, var(--lagoon) 22%, var(--surface-strong))',

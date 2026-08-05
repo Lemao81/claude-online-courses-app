@@ -1,7 +1,7 @@
 import type { SystemStyleObject } from '@chakra-ui/react'
 
 export const rowStyles: SystemStyleObject = {
-  rounded: '0.85rem',
+  rounded: 'control',
   borderWidth: '1px',
   borderColor: 'var(--line)',
   bg: 'color-mix(in oklab, var(--surface-strong) 74%, transparent)',

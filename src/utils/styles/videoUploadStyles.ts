@@ -3,7 +3,7 @@ import { itemTitleStyles } from '#/utils/styles/textStyles'
 
 export const dropZoneStyles: SystemStyleObject = {
   position: 'relative',
-  rounded: '1.25rem',
+  rounded: 'panel',
   borderWidth: '2px',
   borderStyle: 'dashed',
   borderColor: 'var(--line)',
