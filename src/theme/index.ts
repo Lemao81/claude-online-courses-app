@@ -61,6 +61,7 @@ export const themeConfig = defineConfig({
       },
       shadows: {
         chip: { value: '0 8px 22px rgba(30,90,72,0.08)' },
+        raised: { value: '0 12px 26px rgba(30,90,72,0.1)' },
         card: {
           value:
             '0 1px 0 {colors.glint} inset, 0 18px 34px rgba(30,90,72,0.1), 0 4px 14px rgba(23,58,64,0.06)',

@@ -4,8 +4,8 @@ import { emptyStateStyles } from '#/utils/styles/surfaceStyles'
 export const chapterPanelStyles: SystemStyleObject = {
   rounded: 'panel',
   borderWidth: '1px',
-  borderColor: 'var(--line)',
-  bg: 'linear-gradient(165deg, var(--surface-strong), var(--surface))',
+  borderColor: 'border',
+  bg: 'linear-gradient(165deg, token(colors.bg.panel), token(colors.bg.subtle))',
   px: '1.25rem',
   py: '1.15rem',
 }
@@ -16,7 +16,7 @@ export const chapterSectionLabelStyles: SystemStyleObject = {
   fontWeight: 'semibold',
   letterSpacing: 'wider',
   textTransform: 'uppercase',
-  color: 'var(--sea-ink-soft)',
+  color: 'fg.muted',
 }
 
 export const lessonIconStyles: SystemStyleObject = {
@@ -27,9 +27,9 @@ export const lessonIconStyles: SystemStyleObject = {
   h: '2rem',
   rounded: '0.6rem',
   borderWidth: '1px',
-  borderColor: 'var(--chip-line)',
-  bg: 'var(--chip-bg)',
-  color: 'var(--lagoon-deep)',
+  borderColor: 'border.chip',
+  bg: 'bg.chip',
+  color: 'fg.accent',
 }
 
 export const lessonEmptyStyles: SystemStyleObject = {

@@ -6,17 +6,17 @@ export const dropZoneStyles: SystemStyleObject = {
   rounded: 'panel',
   borderWidth: '2px',
   borderStyle: 'dashed',
-  borderColor: 'var(--line)',
-  bg: 'color-mix(in oklab, var(--surface) 82%, transparent)',
+  borderColor: 'border',
+  bg: 'color-mix(in oklab, token(colors.bg.subtle) 82%, transparent)',
   px: '1.5rem',
   py: '2.25rem',
   transition: 'border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease',
 }
 
 export const dropZoneActiveStyles: SystemStyleObject = {
-  borderColor: 'color-mix(in oklab, var(--lagoon-deep) 62%, var(--line))',
-  bg: 'color-mix(in oklab, var(--lagoon) 14%, var(--surface-strong))',
-  boxShadow: '0 0 0 4px color-mix(in oklab, var(--lagoon) 18%, transparent)',
+  borderColor: 'color-mix(in oklab, token(colors.accent.emphasized) 62%, token(colors.border))',
+  bg: 'color-mix(in oklab, token(colors.accent) 14%, token(colors.bg.panel))',
+  boxShadow: '0 0 0 4px color-mix(in oklab, token(colors.accent) 18%, transparent)',
 }
 
 export const dropZoneIconStyles: SystemStyleObject = {
@@ -26,9 +26,9 @@ export const dropZoneIconStyles: SystemStyleObject = {
   h: '3rem',
   rounded: 'full',
   borderWidth: '1px',
-  borderColor: 'var(--chip-line)',
-  bg: 'var(--chip-bg)',
-  color: 'var(--lagoon-deep)',
+  borderColor: 'border.chip',
+  bg: 'bg.chip',
+  color: 'fg.accent',
 }
 
 export const fileNameStyles: SystemStyleObject = {
