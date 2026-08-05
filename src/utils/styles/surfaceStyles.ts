@@ -4,7 +4,7 @@ export const rowStyles: SystemStyleObject = {
   rounded: 'control',
   borderWidth: '1px',
   borderColor: 'border',
-  bg: 'color-mix(in oklab, token(colors.bg.panel) 74%, transparent)',
+  bg: 'bg.wash',
   px: '0.9rem',
   py: '0.65rem',
 }

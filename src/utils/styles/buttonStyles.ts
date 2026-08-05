@@ -63,10 +63,10 @@ export const primaryButtonStyles: SystemStyleObject = {
 export const secondaryButtonStyles: SystemStyleObject = {
   ...primaryButtonStyles,
   borderColor: 'border',
-  bg: 'color-mix(in oklab, token(colors.bg.panel) 74%, transparent)',
+  bg: 'bg.wash',
   color: 'fg.muted',
   _hover: {
     transform: 'translateY(-1px)',
-    bg: 'color-mix(in oklab, token(colors.bg.panel) 88%, transparent)',
+    bg: 'bg.washHover',
   },
 }

@@ -41,6 +41,8 @@ export const themeConfig = defineConfig({
           header: { value: 'var(--header-bg)' },
           chip: { value: 'var(--chip-bg)' },
           hover: { value: 'var(--link-bg-hover)' },
+          wash: { value: 'color-mix(in oklab, {colors.veilStrong} 74%, transparent)' },
+          washHover: { value: 'color-mix(in oklab, {colors.veilStrong} 88%, transparent)' },
         },
         border: {
           DEFAULT: { value: '{colors.hairline}' },
@@ -55,8 +57,14 @@ export const themeConfig = defineConfig({
           muted: { value: '{colors.palm}' },
         },
       },
+      gradients: {
+        panel: { value: 'linear-gradient(165deg, {colors.bg.panel}, {colors.bg.subtle})' },
+      },
       radii: {
+        icon: { value: '0.6rem' },
+        field: { value: '{radii.xl}' },
         control: { value: '0.85rem' },
+        card: { value: '{radii.2xl}' },
         panel: { value: '1.25rem' },
       },
       shadows: {
@@ -70,6 +78,8 @@ export const themeConfig = defineConfig({
           value:
             '0 1px 0 {colors.glint} inset, 0 22px 44px rgba(30,90,72,0.1), 0 6px 18px rgba(23,58,64,0.08)',
         },
+        focusRing: { value: '0 0 0 3px color-mix(in oklab, {colors.accent} 24%, transparent)' },
+        dropRing: { value: '0 0 0 4px color-mix(in oklab, {colors.accent} 18%, transparent)' },
       },
     },
   },

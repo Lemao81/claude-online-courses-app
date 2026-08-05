@@ -2,7 +2,7 @@ import type { SystemStyleObject } from '@chakra-ui/react'
 
 export const titleStyles: SystemStyleObject = {
   m: '0',
-  fontSize: '1rem',
+  fontSize: 'md',
   fontWeight: 'bold',
   color: 'fg',
 }

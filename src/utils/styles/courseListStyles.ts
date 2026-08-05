@@ -32,10 +32,10 @@ export function courseStatusStyles(status: CourseStatus): SystemStyleObject {
 }
 
 export const courseItemStyles: SystemStyleObject = {
-  rounded: '1rem',
+  rounded: 'card',
   borderWidth: '1px',
   borderColor: 'border',
-  bg: 'linear-gradient(165deg, token(colors.bg.panel), token(colors.bg.subtle))',
+  bgGradient: 'panel',
   px: '1rem',
   py: '0.9rem',
   transition: 'transform 0.15s ease, box-shadow 0.15s ease',
@@ -47,6 +47,6 @@ export const courseItemStyles: SystemStyleObject = {
 
 export const courseEmptyStyles: SystemStyleObject = {
   ...emptyStateStyles,
-  rounded: '1rem',
+  rounded: 'card',
   py: '2rem',
 }

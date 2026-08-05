@@ -9,13 +9,14 @@ export const dialogContentStyles: SystemStyleObject = {
   rounded: 'panel',
   borderWidth: '1px',
   borderColor: 'border',
-  bg: 'linear-gradient(165deg, token(colors.bg.panel), token(colors.bg.subtle)), token(colors.bg)',
+  bgColor: 'bg',
+  bgGradient: 'panel',
   color: 'fg',
   boxShadow: 'card',
 }
 
 export const dialogTitleStyles: SystemStyleObject = {
-  fontSize: '1rem',
+  fontSize: 'md',
   fontWeight: 'bold',
   color: 'fg',
 }
@@ -35,7 +36,7 @@ export const fieldControlStyles: SystemStyleObject = {
   h: 'auto',
   minH: '0',
   w: 'full',
-  rounded: '0.75rem',
+  rounded: 'field',
   borderWidth: '1px',
   borderColor: 'border',
   bg: 'color-mix(in oklab, token(colors.bg.panel) 88%, white 12%)',
@@ -47,7 +48,7 @@ export const fieldControlStyles: SystemStyleObject = {
   _placeholder: { color: 'fg.muted' },
   _focusVisible: {
     borderColor: 'color-mix(in oklab, token(colors.accent.emphasized) 58%, token(colors.border))',
-    boxShadow: '0 0 0 3px color-mix(in oklab, token(colors.accent) 24%, transparent)',
+    boxShadow: 'focusRing',
   },
 }
 
