@@ -59,6 +59,15 @@ export const themeConfig = defineConfig({
       },
       gradients: {
         panel: { value: 'linear-gradient(165deg, {colors.bg.panel}, {colors.bg.subtle})' },
+        brand: { value: 'linear-gradient(90deg, #56c6be, #7ed3bf)' },
+        glow: {
+          value:
+            'radial-gradient(circle, color-mix(in oklab, {colors.accent} 32%, transparent), transparent 66%)',
+        },
+        glowMuted: {
+          value:
+            'radial-gradient(circle, color-mix(in oklab, {colors.accent.muted} 18%, transparent), transparent 66%)',
+        },
       },
       radii: {
         icon: { value: '0.6rem' },
@@ -66,6 +75,7 @@ export const themeConfig = defineConfig({
         control: { value: '0.85rem' },
         card: { value: '{radii.2xl}' },
         panel: { value: '1.25rem' },
+        island: { value: '2rem' },
       },
       shadows: {
         chip: { value: '0 8px 22px rgba(30,90,72,0.08)' },

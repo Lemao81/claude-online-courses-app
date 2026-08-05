@@ -8,11 +8,11 @@ export default function Footer() {
       as="footer"
       mt="20"
       borderTopWidth="1px"
-      borderColor="var(--line)"
+      borderColor="border"
       px="4"
       pb="14"
       pt="10"
-      color="var(--sea-ink-soft)"
+      color="fg.muted"
     >
       <Flex
         direction={{ base: 'column', sm: 'row' }}
@@ -35,9 +35,9 @@ export default function Footer() {
           rel="noreferrer"
           rounded="xl"
           p="2"
-          color="var(--sea-ink-soft)"
+          color="fg.muted"
           transition="all 0.15s ease"
-          _hover={{ bg: 'var(--link-bg-hover)', color: 'var(--sea-ink)' }}
+          _hover={{ bg: 'bg.hover', color: 'fg' }}
         >
           <VisuallyHidden>Follow TanStack on X</VisuallyHidden>
           <Icon viewBox="0 0 16 16" boxSize="8" aria-hidden="true">
@@ -53,9 +53,9 @@ export default function Footer() {
           rel="noreferrer"
           rounded="xl"
           p="2"
-          color="var(--sea-ink-soft)"
+          color="fg.muted"
           transition="all 0.15s ease"
-          _hover={{ bg: 'var(--link-bg-hover)', color: 'var(--sea-ink)' }}
+          _hover={{ bg: 'bg.hover', color: 'fg' }}
         >
           <VisuallyHidden>Go to TanStack GitHub</VisuallyHidden>
           <Icon viewBox="0 0 16 16" boxSize="8" aria-hidden="true">

@@ -17,10 +17,10 @@ const demoLinkStyles: SystemStyleObject = {
   px: '3',
   py: '2',
   fontSize: 'sm',
-  color: 'var(--sea-ink-soft)',
+  color: 'fg.muted',
   textDecoration: 'none',
   transition: 'all 0.15s ease',
-  _hover: { bg: 'var(--link-bg-hover)', color: 'var(--sea-ink)' },
+  _hover: { bg: 'bg.hover', color: 'fg' },
 }
 
 export default function Header() {
@@ -31,8 +31,8 @@ export default function Header() {
       top="0"
       zIndex="50"
       borderBottomWidth="1px"
-      borderColor="var(--line)"
-      bg="var(--header-bg)"
+      borderColor="border"
+      bg="bg.header"
       px="4"
       backdropFilter="blur(16px)"
     >
@@ -60,21 +60,21 @@ export default function Header() {
             gap="2"
             rounded="full"
             borderWidth="1px"
-            borderColor="var(--chip-line)"
-            bg="var(--chip-bg)"
+            borderColor="border.chip"
+            bg="bg.chip"
             px={{ base: '3', sm: '4' }}
             py={{ base: '1.5', sm: '2' }}
             fontSize="sm"
-            color="var(--sea-ink)"
+            color="fg"
             textDecoration="none"
-            boxShadow="0 8px 24px rgba(30,90,72,0.08)"
+            boxShadow="chip"
           >
             <RouterLink to="/">
               <Box
                 as="span"
                 boxSize="2"
                 rounded="full"
-                bgImage="linear-gradient(90deg,#56c6be,#7ed3bf)"
+                bgGradient="brand"
               />
               TanStack Start
             </RouterLink>
@@ -119,8 +119,8 @@ export default function Header() {
               minW="56"
               rounded="xl"
               borderWidth="1px"
-              borderColor="var(--line)"
-              bg="var(--header-bg)"
+              borderColor="border"
+              bg="bg.header"
               p="2"
               boxShadow="lg"
               position={{ sm: 'absolute' }}
@@ -156,9 +156,9 @@ export default function Header() {
             display={{ base: 'none', sm: 'block' }}
             rounded="xl"
             p="2"
-            color="var(--sea-ink-soft)"
+            color="fg.muted"
             transition="all 0.15s ease"
-            _hover={{ bg: 'var(--link-bg-hover)', color: 'var(--sea-ink)' }}
+            _hover={{ bg: 'bg.hover', color: 'fg' }}
           >
             <VisuallyHidden>Follow TanStack on X</VisuallyHidden>
             <Icon viewBox="0 0 16 16" boxSize="6" aria-hidden="true">
@@ -175,9 +175,9 @@ export default function Header() {
             display={{ base: 'none', sm: 'block' }}
             rounded="xl"
             p="2"
-            color="var(--sea-ink-soft)"
+            color="fg.muted"
             transition="all 0.15s ease"
-            _hover={{ bg: 'var(--link-bg-hover)', color: 'var(--sea-ink)' }}
+            _hover={{ bg: 'bg.hover', color: 'fg' }}
           >
             <VisuallyHidden>Go to TanStack GitHub</VisuallyHidden>
             <Icon viewBox="0 0 16 16" boxSize="6" aria-hidden="true">

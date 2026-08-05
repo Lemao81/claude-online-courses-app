@@ -11,7 +11,7 @@ export default function MyCoursesPage() {
   return (
     <Flex direction="column" gap="4" w="full" maxW="4xl" mx="auto" px="4" py="6">
       <Flex align="center" justify="space-between" gap="3">
-        <Heading as="h1" m="0" fontSize="1.25rem" color="var(--sea-ink)">
+        <Heading as="h1" m="0" fontSize="xl" color="fg">
           My Courses
         </Heading>
         <CreateCourseDialog />

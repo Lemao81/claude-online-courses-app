@@ -9,7 +9,7 @@ export default function Sidebar() {
       w={{ base: 'full', md: '60' }}
       borderRightWidth={{ md: '1px' }}
       borderBottomWidth={{ base: '1px', md: '0' }}
-      borderColor="var(--line)"
+      borderColor="border"
       px="4"
       py="6"
     >
@@ -21,7 +21,7 @@ export default function Sidebar() {
         fontWeight="semibold"
         letterSpacing="wider"
         textTransform="uppercase"
-        color="var(--sea-ink-soft)"
+        color="fg.muted"
       >
         Menu
       </Heading>

@@ -8,7 +8,7 @@ export default function LandingPage() {
         className="island-shell rise-in"
         position="relative"
         overflow="hidden"
-        rounded="2rem"
+        rounded="island"
         px={{ base: '6', sm: '10' }}
         py={{ base: '10', sm: '14' }}
       >
@@ -19,7 +19,7 @@ export default function LandingPage() {
           top="-6rem"
           boxSize="14rem"
           rounded="full"
-          bgImage="radial-gradient(circle, rgba(79,184,178,0.32), transparent 66%)"
+          bgGradient="glow"
         />
         <Box
           pointerEvents="none"
@@ -28,7 +28,7 @@ export default function LandingPage() {
           right="-5rem"
           boxSize="14rem"
           rounded="full"
-          bgImage="radial-gradient(circle, rgba(47,106,74,0.18), transparent 66%)"
+          bgGradient="glowMuted"
         />
         <Text className="island-kicker" mb="3">
           TanStack Start Base Template
@@ -42,11 +42,11 @@ export default function LandingPage() {
           lineHeight="1.02"
           fontWeight="bold"
           letterSpacing="tight"
-          color="var(--sea-ink)"
+          color="fg"
         >
           Start simple, ship quickly.
         </Heading>
-        <Text mb="8" maxW="2xl" fontSize={{ base: 'md', sm: 'lg' }} color="var(--sea-ink-soft)">
+        <Text mb="8" maxW="2xl" fontSize={{ base: 'md', sm: 'lg' }} color="fg.muted">
           This base starter intentionally keeps things light: two routes, clean structure, and the
           essentials you need to build from scratch.
         </Text>
@@ -55,16 +55,19 @@ export default function LandingPage() {
             href="/about"
             rounded="full"
             borderWidth="1px"
-            borderColor="rgba(50,143,151,0.3)"
-            bg="rgba(79,184,178,0.14)"
+            borderColor="color-mix(in oklab, token(colors.accent.emphasized) 30%, transparent)"
+            bg="color-mix(in oklab, token(colors.accent) 14%, transparent)"
             px="5"
             py="2.5"
             fontSize="sm"
             fontWeight="semibold"
-            color="var(--lagoon-deep)"
+            color="fg.accent"
             textDecoration="none"
             transition="all 0.15s ease"
-            _hover={{ transform: 'translateY(-0.125rem)', bg: 'rgba(79,184,178,0.24)' }}
+            _hover={{
+              transform: 'translateY(-0.125rem)',
+              bg: 'color-mix(in oklab, token(colors.accent) 24%, transparent)',
+            }}
           >
             About This Starter
           </Link>
@@ -74,16 +77,19 @@ export default function LandingPage() {
             rel="noopener noreferrer"
             rounded="full"
             borderWidth="1px"
-            borderColor="rgba(23,58,64,0.2)"
-            bg="rgba(255,255,255,0.5)"
+            borderColor="color-mix(in oklab, token(colors.fg) 20%, transparent)"
+            bg="color-mix(in oklab, token(colors.bg.panel) 50%, transparent)"
             px="5"
             py="2.5"
             fontSize="sm"
             fontWeight="semibold"
-            color="var(--sea-ink)"
+            color="fg"
             textDecoration="none"
             transition="all 0.15s ease"
-            _hover={{ transform: 'translateY(-0.125rem)', borderColor: 'rgba(23,58,64,0.35)' }}
+            _hover={{
+              transform: 'translateY(-0.125rem)',
+              borderColor: 'color-mix(in oklab, token(colors.fg) 35%, transparent)',
+            }}
           >
             Router Guide
           </Link>
@@ -101,21 +107,21 @@ export default function LandingPage() {
             as="article"
             key={title}
             className="island-shell feature-card rise-in"
-            rounded="2xl"
+            rounded="card"
             p="5"
             animationDelay={`${index * 90 + 80}ms`}
           >
-            <Heading as="h2" mb="2" fontSize="md" fontWeight="semibold" color="var(--sea-ink)">
+            <Heading as="h2" mb="2" fontSize="md" fontWeight="semibold" color="fg">
               {title}
             </Heading>
-            <Text m="0" fontSize="sm" color="var(--sea-ink-soft)">
+            <Text m="0" fontSize="sm" color="fg.muted">
               {desc}
             </Text>
           </Box>
         ))}
       </SimpleGrid>
 
-      <Box as="section" className="island-shell" mt="8" rounded="2xl" p="6">
+      <Box as="section" className="island-shell" mt="8" rounded="card" p="6">
         <Text className="island-kicker" mb="2">
           Quick Start
         </Text>
@@ -125,7 +131,7 @@ export default function LandingPage() {
           ps="5"
           listStyleType="disc"
           fontSize="sm"
-          color="var(--sea-ink-soft)"
+          color="fg.muted"
         >
           <List.Item>
             Edit <Code>src/routes/index.tsx</Code> to customize the home page.
