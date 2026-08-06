@@ -1,9 +1,11 @@
-import { Field, Input, Stack, Textarea } from '@chakra-ui/react'
+import { Field, Input, Stack, Text, Textarea } from '@chakra-ui/react'
 import { useForm } from '@tanstack/react-form'
+import { autoSaveDebounceMs } from '#/config/constants'
 import {
   fieldControlStyles,
   fieldLabelStyles,
   fieldRequiredIndicatorStyles,
+  formErrorStyles,
   textareaControlStyles,
 } from '#/utils/styles/formStyles'
 import type { Chapter } from '#/utils/types'
@@ -17,16 +19,12 @@ function toFormId(chapter?: Chapter): string {
   return `edit-chapter-form-${chapter?.id ?? 'new'}`
 }
 
-export function useEditChapterForm(
-  chapter: Chapter | undefined,
-  onSubmit: (value: EditChapterFormValues) => Promise<void>,
-) {
+export function useEditChapterForm(chapter: Chapter | undefined) {
   const form = useForm({
     defaultValues: {
       title: chapter?.title ?? '',
       description: chapter?.description ?? '',
     },
-    onSubmit: async ({ value }) => await onSubmit(value),
   })
 
   return { form, formId: toFormId(chapter) }
@@ -35,20 +33,27 @@ export function useEditChapterForm(
 type EditChapterFormProps = {
   form: ReturnType<typeof useEditChapterForm>['form']
   formId: string
+  autoSaveError: string
+  onAutoSave: (value: EditChapterFormValues) => void
 }
 
-export default function EditChapterForm({ form, formId }: EditChapterFormProps) {
+export default function EditChapterForm({
+  form,
+  formId,
+  autoSaveError,
+  onAutoSave,
+}: EditChapterFormProps) {
   return (
-    <form
-      id={formId}
-      onSubmit={(event) => {
-        event.preventDefault()
-        event.stopPropagation()
-        form.handleSubmit()
-      }}
-    >
+    <form id={formId} onSubmit={(e) => e.preventDefault()}>
       <Stack gap="4">
-        <form.Field name="title">
+        <form.Field
+          name="title"
+          listeners={{
+            onChangeDebounceMs: autoSaveDebounceMs,
+            onChange: ({ fieldApi }) => onAutoSave(fieldApi.form.state.values),
+            onUnmount: ({ fieldApi }) => onAutoSave(fieldApi.form.state.values),
+          }}
+        >
           {(field) => (
             <Field.Root required>
               <Field.Label css={fieldLabelStyles}>
@@ -65,7 +70,14 @@ export default function EditChapterForm({ form, formId }: EditChapterFormProps) 
             </Field.Root>
           )}
         </form.Field>
-        <form.Field name="description">
+        <form.Field
+          name="description"
+          listeners={{
+            onChangeDebounceMs: autoSaveDebounceMs,
+            onChange: ({ fieldApi }) => onAutoSave(fieldApi.form.state.values),
+            onUnmount: ({ fieldApi }) => onAutoSave(fieldApi.form.state.values),
+          }}
+        >
           {(field) => (
             <Field.Root>
               <Field.Label css={fieldLabelStyles}>Description</Field.Label>
@@ -80,6 +92,11 @@ export default function EditChapterForm({ form, formId }: EditChapterFormProps) 
             </Field.Root>
           )}
         </form.Field>
+        {autoSaveError !== '' && (
+          <Text css={formErrorStyles} role="alert">
+            {autoSaveError}
+          </Text>
+        )}
       </Stack>
     </form>
   )
