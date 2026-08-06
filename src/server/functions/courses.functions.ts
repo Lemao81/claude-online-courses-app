@@ -1,9 +1,10 @@
-import { auth, clerkClient } from '@clerk/tanstack-react-start/server'
+import { clerkClient } from '@clerk/tanstack-react-start/server'
 import { redirect } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
 import { asc, desc, eq } from 'drizzle-orm'
 import { db } from '#/server/db/index'
 import { chapters, courses, lessons, users } from '#/server/db/schema'
+import { requireUserId } from '#/server/functions/auth.helpers'
 import type { Course, CourseWithChapters } from '#/utils/types'
 
 type CreateCourseInput = {
@@ -29,16 +30,6 @@ function validateCreateCourseInput(data: CreateCourseInput): CreateCourseInput {
     subtitle,
     description: data.description.trim(),
   }
-}
-
-async function requireUserId(): Promise<string> {
-  const { userId } = await auth()
-
-  if (!userId) {
-    throw redirect({ to: '/' })
-  }
-
-  return userId
 }
 
 async function ensureAuthor(userId: string): Promise<void> {
