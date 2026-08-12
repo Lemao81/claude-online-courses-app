@@ -1,8 +1,8 @@
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import { HeadContent, Scripts } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
-import MainLayout from '#/layouts/MainLayout'
 import TanStackQueryDevtools from '#/integrations/tanstack-query/devtools'
+import MainLayout from '#/layouts/MainLayout'
 import AppChakraProvider from '#/providers/AppChakraProvider.tsx'
 import AppClerkProvider from '#/providers/AppClerkProvider.tsx'
 

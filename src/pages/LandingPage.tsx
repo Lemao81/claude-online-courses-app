@@ -120,7 +120,6 @@ export default function LandingPage() {
           </Box>
         ))}
       </SimpleGrid>
-
     </Box>
   )
 }

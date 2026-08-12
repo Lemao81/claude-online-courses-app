@@ -1,7 +1,7 @@
 import { Box, Flex } from '@chakra-ui/react'
 import { Show } from '@clerk/tanstack-react-start'
-import Footer from '#/layouts/Footer'
 import Appbar from '#/layouts/Appbar'
+import Footer from '#/layouts/Footer'
 import Sidebar from '#/layouts/Sidebar'
 
 type MainLayoutProps = {
