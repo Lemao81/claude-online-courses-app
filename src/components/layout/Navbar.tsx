@@ -1,19 +1,10 @@
 import { Box, Flex, Heading, Link } from '@chakra-ui/react'
 import { Link as RouterLink } from '@tanstack/react-router'
-import Toolbar from '#/components/layout/Toolbar'
 import { demoLinkStyles } from '#/utils/styles/navbarStyles'
 
 export default function Navbar() {
   return (
-    <Flex
-      as="nav"
-      className="page-wrap"
-      wrap="wrap"
-      align="center"
-      columnGap="3"
-      rowGap="2"
-      py={{ base: '3', sm: '4' }}
-    >
+    <Flex as="nav" flex="1" wrap="wrap" align="center" columnGap="3" rowGap="2">
       <Heading
         as="h2"
         m="0"
@@ -116,8 +107,6 @@ export default function Navbar() {
           </Box>
         </Box>
       </Flex>
-
-      <Toolbar />
     </Flex>
   )
 }

@@ -4,7 +4,7 @@ import ColorModeButton from '#/components/ui/ColorModeButton'
 
 export default function Toolbar() {
   return (
-    <Flex ml="auto" align="center" gap={{ base: '3', sm: '4' }}>
+    <Flex align="center" gap={{ base: '3', sm: '4' }}>
       <AuthButtons />
 
       <ColorModeButton />

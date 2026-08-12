@@ -1,5 +1,6 @@
-import { Box } from '@chakra-ui/react'
+import { Box, Flex } from '@chakra-ui/react'
 import Navbar from '#/components/layout/Navbar'
+import Toolbar from '#/components/layout/Toolbar'
 
 export default function Appbar() {
   return (
@@ -14,7 +15,17 @@ export default function Appbar() {
       px="4"
       backdropFilter="blur(16px)"
     >
-      <Navbar />
+      <Flex
+        className="page-wrap"
+        wrap="wrap"
+        align={{ base: 'flex-start', sm: 'center' }}
+        columnGap="3"
+        rowGap="2"
+        py={{ base: '3', sm: '4' }}
+      >
+        <Navbar />
+        <Toolbar />
+      </Flex>
     </Box>
   )
 }
