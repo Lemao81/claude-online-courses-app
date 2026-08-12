@@ -1,6 +1,6 @@
 import { Box, Flex } from '@chakra-ui/react'
-import Navbar from '#/components/layout/Navbar'
-import Toolbar from '#/components/layout/Toolbar'
+import Navbar from '#/layouts/Navbar'
+import Toolbar from '#/layouts/Toolbar'
 
 export default function Appbar() {
   return (

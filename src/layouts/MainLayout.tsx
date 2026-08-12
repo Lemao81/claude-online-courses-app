@@ -1,8 +1,8 @@
 import { Box, Flex } from '@chakra-ui/react'
 import { Show } from '@clerk/tanstack-react-start'
-import Footer from '#/components/layout/Footer'
-import Appbar from '#/components/layout/Appbar'
-import Sidebar from '#/components/layout/Sidebar'
+import Footer from '#/layouts/Footer'
+import Appbar from '#/layouts/Appbar'
+import Sidebar from '#/layouts/Sidebar'
 
 type MainLayoutProps = {
   children: React.ReactNode

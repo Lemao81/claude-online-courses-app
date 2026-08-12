@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react'
-import AuthButtons from '#/components/layout/AuthButtons'
+import AuthButtons from '#/layouts/AuthButtons'
 import ColorModeButton from '#/components/ui/ColorModeButton'
 
 export default function Toolbar() {
