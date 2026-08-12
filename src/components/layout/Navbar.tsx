@@ -1,7 +1,6 @@
 import { Box, Flex, Heading, Link } from '@chakra-ui/react'
 import { Link as RouterLink } from '@tanstack/react-router'
-import ClerkHeader from '#/components/layout/ClerkHeader'
-import ColorModeButton from '#/components/ui/ColorModeButton'
+import Toolbar from '#/components/layout/Toolbar'
 import { demoLinkStyles } from '#/utils/styles/navbarStyles'
 
 export default function Navbar() {
@@ -118,11 +117,7 @@ export default function Navbar() {
         </Box>
       </Flex>
 
-      <Flex ml="auto" align="center" gap={{ base: '3', sm: '4' }}>
-        <ClerkHeader />
-
-        <ColorModeButton />
-      </Flex>
+      <Toolbar />
     </Flex>
   )
 }
