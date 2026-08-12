@@ -16,7 +16,7 @@ export default function Appbar() {
       backdropFilter="blur(16px)"
     >
       <Flex
-        className="page-wrap"
+        className="layout-container"
         wrap="wrap"
         align={{ base: 'flex-start', sm: 'center' }}
         columnGap="3"

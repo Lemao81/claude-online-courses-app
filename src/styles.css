@@ -120,7 +120,7 @@ pre code {
   color: inherit;
 }
 
-.page-wrap {
+.layout-container {
   width: min(1440px, calc(100% - 2rem));
   margin-inline: auto;
 }

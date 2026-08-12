@@ -13,7 +13,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
     <Flex direction="column" minH="100dvh">
       <Appbar />
       <Flex
-        className="page-wrap"
+        className="layout-container"
         direction={{ base: 'column', md: 'row' }}
         align="stretch"
         flex="1"
