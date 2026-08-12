@@ -1,27 +1,8 @@
-import {
-  Box,
-  Flex,
-  Heading,
-  Icon,
-  Link,
-  type SystemStyleObject,
-  VisuallyHidden,
-} from '@chakra-ui/react'
+import { Box, Flex, Heading, Icon, Link, VisuallyHidden } from '@chakra-ui/react'
 import { Link as RouterLink } from '@tanstack/react-router'
 import ClerkHeader from '#/components/layout/ClerkHeader'
 import ColorModeButton from '#/components/ui/ColorModeButton'
-
-const demoLinkStyles: SystemStyleObject = {
-  display: 'block',
-  rounded: 'lg',
-  px: '3',
-  py: '2',
-  fontSize: 'sm',
-  color: 'fg.muted',
-  textDecoration: 'none',
-  transition: 'all 0.15s ease',
-  _hover: { bg: 'bg.hover', color: 'fg' },
-}
+import { demoLinkStyles } from '#/utils/styles/navbarStyles'
 
 export default function Navbar() {
   return (
