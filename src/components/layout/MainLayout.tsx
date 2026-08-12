@@ -1,7 +1,7 @@
 import { Box, Flex } from '@chakra-ui/react'
 import { Show } from '@clerk/tanstack-react-start'
 import Footer from '#/components/layout/Footer'
-import Header from '#/components/layout/Header'
+import Appbar from '#/components/layout/Appbar'
 import Sidebar from '#/components/layout/Sidebar'
 
 type MainLayoutProps = {
@@ -11,7 +11,7 @@ type MainLayoutProps = {
 export default function MainLayout({ children }: MainLayoutProps) {
   return (
     <Flex direction="column" minH="100dvh">
-      <Header />
+      <Appbar />
       <Flex
         className="page-wrap"
         direction={{ base: 'column', md: 'row' }}

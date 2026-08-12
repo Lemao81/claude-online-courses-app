@@ -23,7 +23,7 @@ const demoLinkStyles: SystemStyleObject = {
   _hover: { bg: 'bg.hover', color: 'fg' },
 }
 
-export default function Header() {
+export default function Appbar() {
   return (
     <Box
       as="header"

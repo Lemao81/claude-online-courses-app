@@ -137,7 +137,7 @@ export default function LandingPage() {
             Edit <Code>src/routes/index.tsx</Code> to customize the home page.
           </List.Item>
           <List.Item>
-            Update <Code>src/components/layout/Header.tsx</Code> and{' '}
+            Update <Code>src/components/layout/Appbar.tsx</Code> and{' '}
             <Code>src/components/layout/Footer.tsx</Code> for brand links.
           </List.Item>
           <List.Item>
