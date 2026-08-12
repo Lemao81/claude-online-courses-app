@@ -1,4 +1,4 @@
-import { Box, Code, Flex, Heading, Link, List, SimpleGrid, Text } from '@chakra-ui/react'
+import { Box, Flex, Heading, Link, SimpleGrid, Text } from '@chakra-ui/react'
 
 export default function LandingPage() {
   return (
@@ -121,31 +121,6 @@ export default function LandingPage() {
         ))}
       </SimpleGrid>
 
-      <Box as="section" className="island-shell" mt="8" rounded="card" p="6">
-        <Text className="island-kicker" mb="2">
-          Quick Start
-        </Text>
-        <List.Root
-          m="0"
-          gap="2"
-          ps="5"
-          listStyleType="disc"
-          fontSize="sm"
-          color="fg.muted"
-        >
-          <List.Item>
-            Edit <Code>src/routes/index.tsx</Code> to customize the home page.
-          </List.Item>
-          <List.Item>
-            Update <Code>src/components/layout/Appbar.tsx</Code> and{' '}
-            <Code>src/components/layout/Footer.tsx</Code> for brand links.
-          </List.Item>
-          <List.Item>
-            Add routes in <Code>src/routes</Code> and tweak visual tokens in{' '}
-            <Code>src/styles.css</Code>.
-          </List.Item>
-        </List.Root>
-      </Box>
     </Box>
   )
 }
