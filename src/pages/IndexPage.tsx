@@ -1,6 +1,6 @@
 import { Show } from '@clerk/tanstack-react-start'
-import LandingPage from '#/components/pages/LandingPage'
-import OverviewPage from '#/components/pages/OverviewPage'
+import LandingPage from '#/pages/LandingPage'
+import OverviewPage from '#/pages/OverviewPage'
 
 export default function IndexPage() {
   return (

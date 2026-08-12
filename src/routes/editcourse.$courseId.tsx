@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import EditCoursePage from '#/components/pages/EditCoursePage'
+import EditCoursePage from '#/pages/EditCoursePage'
 import { requireSignedIn } from '#/server/functions/auth.functions'
 import { getAuthoredCourseWithChapters } from '#/server/functions/courses.functions'
 
