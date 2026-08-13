@@ -1,10 +1,10 @@
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import { HeadContent, Scripts } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
-import TanStackQueryDevtools from '#/integrations/tanstack-query/devtools'
 import MainLayout from '#/layouts/MainLayout'
 import AppChakraProvider from '#/providers/AppChakraProvider.tsx'
 import AppClerkProvider from '#/providers/AppClerkProvider.tsx'
+import {ReactQueryDevtoolsPanel} from "@tanstack/react-query-devtools";
 
 const THEME_INIT_SCRIPT = `(function(){try{var stored=window.localStorage.getItem('theme');if(stored==='light'||stored==='dark'){document.documentElement.classList.add(stored)}}catch(e){}})();`
 
@@ -33,7 +33,10 @@ export default function RootDocument({ children }: RootDocumentProps) {
                   name: 'Tanstack Router',
                   render: <TanStackRouterDevtoolsPanel />,
                 },
-                TanStackQueryDevtools,
+                {
+                  name: 'Tanstack Query',
+                  render: <ReactQueryDevtoolsPanel />,
+                },
               ]}
             />
           </AppClerkProvider>
