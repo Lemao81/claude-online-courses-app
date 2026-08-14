@@ -44,6 +44,7 @@ export default function EditChapter({ chapter, lessons = [], onClose }: EditChap
     try {
       updated = await updateChapter({ data: { id: chapter.id, ...value } })
     } catch (error) {
+      console.error(error)
       setAutoSaveError(error instanceof Error ? error.message : 'Failed to save the chapter')
 
       return

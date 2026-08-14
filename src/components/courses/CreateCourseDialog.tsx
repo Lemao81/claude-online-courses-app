@@ -32,6 +32,7 @@ export default function CreateCourseDialog() {
     try {
       course = await createCourse({ data: value })
     } catch (error) {
+      console.error(error)
       setSubmitError(error instanceof Error ? error.message : 'Failed to create the course')
 
       return

@@ -54,6 +54,7 @@ export default function VideoUpload({ courseId }: VideoUploadProps) {
 
       console.log(targets.map((t) => t.uploadUrl))
     } catch (error) {
+      console.error(error)
       setUploadError(error instanceof Error ? error.message : 'Failed to prepare the video upload')
     } finally {
       setIsPreparing(false)
