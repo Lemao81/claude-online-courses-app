@@ -1,4 +1,4 @@
-import { redirect } from '@tanstack/react-router'
+import { notFound, redirect } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
 import { eq } from 'drizzle-orm'
 import { videoUploadUrlExpirySec } from '#/config/constants'
@@ -50,7 +50,7 @@ export const createVideoUploadUrl = createServerFn({
     })
 
     if (!course) {
-      throw new Error('Course not found')
+      throw notFound()
     }
 
     if (course.authorId !== userId) {

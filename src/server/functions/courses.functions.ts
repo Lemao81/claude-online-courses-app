@@ -1,5 +1,5 @@
 import { clerkClient } from '@clerk/tanstack-react-start/server'
-import { redirect } from '@tanstack/react-router'
+import { notFound, redirect } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
 import { asc, desc, eq } from 'drizzle-orm'
 import { db } from '#/server/db'
@@ -57,7 +57,7 @@ export const getCourse = createServerFn({
     })
 
     if (!course) {
-      throw new Error('Course not found')
+      throw notFound()
     }
 
     return course
@@ -75,7 +75,7 @@ export const getAuthoredCourse = createServerFn({
     })
 
     if (!course) {
-      throw new Error('Course not found')
+      throw notFound()
     }
 
     if (course.authorId !== userId) {
@@ -108,7 +108,7 @@ export const getAuthoredCourseWithChapters = createServerFn({
     })
 
     if (!course) {
-      throw new Error('Course not found')
+      throw notFound()
     }
 
     if (course.authorId !== userId) {

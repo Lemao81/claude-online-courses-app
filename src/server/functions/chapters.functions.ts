@@ -1,4 +1,4 @@
-import { redirect } from '@tanstack/react-router'
+import { notFound, redirect } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
 import { eq } from 'drizzle-orm'
 import { db } from '#/server/db'
@@ -41,7 +41,7 @@ export const updateChapter = createServerFn({
     })
 
     if (!chapter) {
-      throw new Error('Chapter not found')
+      throw notFound()
     }
 
     if (chapter.course.authorId !== userId) {
