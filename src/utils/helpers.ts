@@ -13,3 +13,9 @@ export function isVideoFile(file: File): boolean {
 export function toFileKey(file: File): string {
   return `${file.name}-${file.size}-${file.lastModified}`
 }
+
+export function toFileExtension(fileName: string): string {
+  const index = fileName.lastIndexOf('.')
+
+  return index > 0 ? fileName.slice(index).toLowerCase() : ''
+}

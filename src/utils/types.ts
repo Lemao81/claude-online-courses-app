@@ -14,6 +14,13 @@ export type ChapterWithLessons = Chapter & { lessons: ChapterLessonVideo[] }
 
 export type CourseWithChapters = Course & { chapters: ChapterWithLessons[] }
 
+export type VideoUploadTarget = {
+  bucket: string
+  objectName: string
+  contentType: string
+  uploadUrl: string
+}
+
 export type ColorMode = 'light' | 'dark'
 
 export type ColorModePreference = ColorMode | 'system'
