@@ -4,7 +4,7 @@ import { createServerFn } from '@tanstack/react-start'
 import { asc, desc, eq } from 'drizzle-orm'
 import { db } from '#/server/db/index'
 import { chapters, courses, lessons, users } from '#/server/db/schema'
-import { requireUserId } from '#/server/functions/auth.helpers'
+import { requireUserId } from '#/server/functions/auth.server'
 import type { Course, CourseWithChapters } from '#/utils/types'
 
 type CreateCourseInput = {
