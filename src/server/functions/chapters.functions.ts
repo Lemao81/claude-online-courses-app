@@ -1,7 +1,7 @@
 import { redirect } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
 import { eq } from 'drizzle-orm'
-import { db } from '#/server/db/index'
+import { db } from '#/server/db'
 import { chapters } from '#/server/db/schema'
 import { requireUserId } from '#/server/functions/auth.server'
 import type { Chapter } from '#/utils/types'
