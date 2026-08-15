@@ -14,6 +14,12 @@ export type ChapterWithLessons = Chapter & { lessons: ChapterLessonVideo[] }
 
 export type CourseWithChapters = Course & { chapters: ChapterWithLessons[] }
 
+export type VideoMetadata = {
+  durationSec: number
+  width: number
+  height: number
+}
+
 export type VideoUploadTarget = {
   bucket: string
   objectName: string

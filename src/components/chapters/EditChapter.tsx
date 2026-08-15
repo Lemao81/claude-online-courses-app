@@ -77,7 +77,7 @@ export default function EditChapter({ chapter, lessons = [], onClose }: EditChap
         <Text css={chapterSectionLabelStyles}>Lesson Videos</Text>
         <ChapterLessonList lessons={lessons} />
       </Stack>
-      {chapter && <VideoUpload courseId={chapter.courseId} />}
+      {chapter && <VideoUpload courseId={chapter.courseId} chapterId={chapter.id} />}
     </Stack>
   )
 }
