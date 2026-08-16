@@ -1,11 +1,11 @@
-import { Field, Input, Stack, Text, Textarea } from '@chakra-ui/react'
+import { Field, Input, Stack, Textarea } from '@chakra-ui/react'
 import { useForm } from '@tanstack/react-form'
+import ErrorText from '#/components/ui/ErrorText'
 import { autoSaveDebounceMs } from '#/config/constants'
 import {
   fieldControlStyles,
   fieldLabelStyles,
   fieldRequiredIndicatorStyles,
-  formErrorStyles,
   textareaControlStyles,
 } from '#/utils/styles/formStyles'
 import type { Chapter } from '#/utils/types'
@@ -92,11 +92,7 @@ export default function EditChapterForm({
             </Field.Root>
           )}
         </form.Field>
-        {autoSaveError !== '' && (
-          <Text css={formErrorStyles} role="alert">
-            {autoSaveError}
-          </Text>
-        )}
+        <ErrorText message={autoSaveError} />
       </Stack>
     </form>
   )

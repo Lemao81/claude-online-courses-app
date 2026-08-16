@@ -3,11 +3,11 @@ import { useRouter } from '@tanstack/react-router'
 import { useState } from 'react'
 import { LuVideo } from 'react-icons/lu'
 import EditableText from '#/components/ui/EditableText'
+import ErrorText from '#/components/ui/ErrorText'
 import { updateLessonTitle } from '#/server/functions/lessons.functions'
 import { formatDuration } from '#/utils/formatters'
 import { subtleIconButtonStyles } from '#/utils/styles/buttonStyles'
 import { lessonIconStyles } from '#/utils/styles/chapterStyles'
-import { formErrorStyles } from '#/utils/styles/formStyles'
 import { rowStyles } from '#/utils/styles/surfaceStyles'
 import { metaStyles } from '#/utils/styles/textStyles'
 import type { ChapterLessonVideo } from '#/utils/types'
@@ -49,11 +49,7 @@ export default function ChapterLessonListItem({ lesson }: ChapterLessonListItemP
           <Text css={metaStyles} px="0.6rem">
             {formatDuration(lesson.durationSec)}
           </Text>
-          {titleError !== '' && (
-            <Text css={formErrorStyles} px="0.6rem" role="alert">
-              {titleError}
-            </Text>
-          )}
+          <ErrorText message={titleError} css={{ px: '0.6rem' }} />
         </Stack>
       </Flex>
       <CloseButton

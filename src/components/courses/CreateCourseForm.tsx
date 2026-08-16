@@ -1,10 +1,10 @@
-import { Field, Input, Stack, Text, Textarea } from '@chakra-ui/react'
+import { Field, Input, Stack, Textarea } from '@chakra-ui/react'
 import { useForm } from '@tanstack/react-form'
+import ErrorText from '#/components/ui/ErrorText'
 import {
   fieldControlStyles,
   fieldLabelStyles,
   fieldRequiredIndicatorStyles,
-  formErrorStyles,
   textareaControlStyles,
 } from '#/utils/styles/formStyles'
 
@@ -96,11 +96,7 @@ export default function CreateCourseForm({ form, submitError }: CreateCourseForm
             </Field.Root>
           )}
         </form.Field>
-        {submitError !== '' && (
-          <Text css={formErrorStyles} role="alert">
-            {submitError}
-          </Text>
-        )}
+        <ErrorText message={submitError} />
       </Stack>
     </form>
   )

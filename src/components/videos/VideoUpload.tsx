@@ -1,6 +1,7 @@
-import { Button, Flex, Stack, Text } from '@chakra-ui/react'
+import { Button, Flex, Stack } from '@chakra-ui/react'
 import { useRouter } from '@tanstack/react-router'
 import { useState } from 'react'
+import ErrorText from '#/components/ui/ErrorText'
 import VideoDropZone from '#/components/videos/VideoDropZone'
 import VideoFileList from '#/components/videos/VideoFileList'
 import { completeVideoUpload, createVideoUploadUrl } from '#/server/functions/videos.functions'
@@ -12,7 +13,6 @@ import {
   uploadFile,
 } from '#/utils/helpers'
 import { primaryButtonStyles } from '#/utils/styles/buttonStyles'
-import { formErrorStyles } from '#/utils/styles/formStyles'
 
 type VideoUploadProps = {
   courseId: number
@@ -95,11 +95,7 @@ export default function VideoUpload({ courseId, chapterId }: VideoUploadProps) {
       {files.length > 0 && (
         <Stack gap="2">
           <VideoFileList files={files} onRemove={handleRemove} />
-          {uploadError !== '' && (
-            <Text css={formErrorStyles} role="alert">
-              {uploadError}
-            </Text>
-          )}
+          <ErrorText message={uploadError} />
           <Flex justify="flex-end">
             <Button
               type="button"
