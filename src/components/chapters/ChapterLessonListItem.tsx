@@ -2,9 +2,10 @@ import { Box, CloseButton, Flex, Stack, Text } from '@chakra-ui/react'
 import { useRouter } from '@tanstack/react-router'
 import { useState } from 'react'
 import { LuVideo } from 'react-icons/lu'
+import ConfirmDialog from '#/components/ui/ConfirmDialog'
 import EditableText from '#/components/ui/EditableText'
 import ErrorText from '#/components/ui/ErrorText'
-import { updateLessonTitle } from '#/server/functions/lessons.functions'
+import { deleteLesson, updateLessonTitle } from '#/server/functions/lessons.functions'
 import { formatDuration } from '#/utils/formatters'
 import { subtleIconButtonStyles } from '#/utils/styles/buttonStyles'
 import { lessonIconStyles } from '#/utils/styles/chapterStyles'
@@ -19,9 +20,15 @@ type ChapterLessonListItemProps = {
 export default function ChapterLessonListItem({ lesson }: ChapterLessonListItemProps) {
   const router = useRouter()
   const [titleError, setTitleError] = useState('')
+  const [isRemoveOpen, setIsRemoveOpen] = useState(false)
 
   function handleRemove(): void {
-    return
+    setIsRemoveOpen(true)
+  }
+
+  async function handleRemoveConfirm(): Promise<void> {
+    await deleteLesson({ data: { id: lesson.id } })
+    await router.invalidate()
   }
 
   async function handleTitleSubmit(title: string): Promise<void> {
@@ -58,6 +65,15 @@ export default function ChapterLessonListItem({ lesson }: ChapterLessonListItemP
         aria-label={`Remove ${lesson.title}`}
         css={subtleIconButtonStyles}
         onClick={handleRemove}
+      />
+      <ConfirmDialog
+        open={isRemoveOpen}
+        onOpenChange={setIsRemoveOpen}
+        title="Remove Lesson"
+        question={`Do you really want to remove "${lesson.title}"?`}
+        description="The lesson and its video are deleted permanently."
+        confirmLabel="Remove"
+        onConfirm={handleRemoveConfirm}
       />
     </Flex>
   )
