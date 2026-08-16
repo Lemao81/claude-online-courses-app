@@ -18,6 +18,10 @@ export function formatDuration(seconds: number): string {
     return 'No content yet'
   }
 
+  if (seconds < 60) {
+    return `${seconds} sec`
+  }
+
   const hours = Math.floor(seconds / 3600)
   const minutes = Math.round((seconds % 3600) / 60)
   if (hours === 0) {
