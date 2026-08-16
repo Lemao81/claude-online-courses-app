@@ -21,6 +21,12 @@ export const dialogTitleStyles: SystemStyleObject = {
   color: 'fg',
 }
 
+export const dialogQuestionStyles: SystemStyleObject = {
+  m: '0',
+  fontSize: 'sm',
+  color: 'fg',
+}
+
 export const fieldLabelStyles: SystemStyleObject = {
   mb: '2',
   fontSize: 'sm',
