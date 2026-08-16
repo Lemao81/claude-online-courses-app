@@ -1,37 +1,24 @@
 import { notFound, redirect } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
 import { eq } from 'drizzle-orm'
+import { z } from 'zod'
 import { db } from '#/server/db'
 import { lessons } from '#/server/db/schema'
 import { requireUserId } from '#/server/functions/auth.server'
+import { validateInput } from '#/server/functions/validation.helpers'
 import type { Lesson } from '#/utils/types'
 
-type UpdateLessonTitleInput = {
-  id: number
-  title: string
-}
+const updateLessonTitleSchema = z.object({
+  id: z.number().int('Lesson id is required'),
+  title: z.string().trim().nonempty('Title is required'),
+})
 
-function validateUpdateLessonTitleInput(data: UpdateLessonTitleInput): UpdateLessonTitleInput {
-  if (!Number.isInteger(data.id)) {
-    throw new Error('Lesson id is required')
-  }
-
-  const title = data.title.trim()
-
-  if (title.length === 0) {
-    throw new Error('Title is required')
-  }
-
-  return {
-    id: data.id,
-    title,
-  }
-}
+type UpdateLessonTitleInput = z.input<typeof updateLessonTitleSchema>
 
 export const updateLessonTitle = createServerFn({
   method: 'POST',
 })
-  .validator(validateUpdateLessonTitleInput)
+  .validator((data: UpdateLessonTitleInput) => validateInput(updateLessonTitleSchema, data))
   .handler(async ({ data }): Promise<Lesson> => {
     const userId = await requireUserId()
 

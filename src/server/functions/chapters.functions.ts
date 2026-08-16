@@ -1,35 +1,25 @@
 import { notFound, redirect } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
 import { eq } from 'drizzle-orm'
+import { z } from 'zod'
 import { db } from '#/server/db'
 import { chapters } from '#/server/db/schema'
 import { requireUserId } from '#/server/functions/auth.server'
+import { validateInput } from '#/server/functions/validation.helpers'
 import type { Chapter } from '#/utils/types'
 
-type UpdateChapterInput = {
-  id: number
-  title: string
-  description: string
-}
+const updateChapterSchema = z.object({
+  id: z.number().int('Chapter id is required'),
+  title: z.string().trim().nonempty('Title is required'),
+  description: z.string().trim(),
+})
 
-function validateUpdateChapterInput(data: UpdateChapterInput): UpdateChapterInput {
-  const title = data.title.trim()
-
-  if (title.length === 0) {
-    throw new Error('Title is required')
-  }
-
-  return {
-    id: data.id,
-    title,
-    description: data.description.trim(),
-  }
-}
+type UpdateChapterInput = z.input<typeof updateChapterSchema>
 
 export const updateChapter = createServerFn({
   method: 'POST',
 })
-  .validator(validateUpdateChapterInput)
+  .validator((data: UpdateChapterInput) => validateInput(updateChapterSchema, data))
   .handler(async ({ data }): Promise<Chapter> => {
     const userId = await requireUserId()
 

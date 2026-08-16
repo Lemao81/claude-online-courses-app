@@ -1,6 +1,7 @@
 import { notFound, redirect } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
 import { desc, eq } from 'drizzle-orm'
+import { z } from 'zod'
 import {
   maxVideoDimensionPx,
   maxVideoDurationSec,
@@ -10,42 +11,26 @@ import { db } from '#/server/db'
 import { recomputeCourseDuration } from '#/server/db/aggregates.helpers'
 import { assets, chapters, courses, lessons } from '#/server/db/schema'
 import { requireUserId } from '#/server/functions/auth.server'
+import { validateInput } from '#/server/functions/validation.helpers'
 import { ensureBucket, minioClient, videoBucket } from '#/server/minio'
 import { toFileExtension } from '#/utils/helpers'
 import type { Lesson, VideoUploadTarget } from '#/utils/types'
 
-type CreateVideoUploadUrlInput = {
-  courseId: number
-  fileName: string
-  contentType: string
-}
+const createVideoUploadUrlSchema = z.object({
+  courseId: z.number().int('Course id is required'),
+  fileName: z.string().trim().nonempty('File name is required'),
+  contentType: z
+    .string()
+    .trim()
+    .transform((c) => (c === '' ? 'application/octet-stream' : c)),
+})
 
-function validateCreateVideoUploadUrlInput(
-  data: CreateVideoUploadUrlInput,
-): CreateVideoUploadUrlInput {
-  if (!Number.isInteger(data.courseId)) {
-    throw new Error('Course id is required')
-  }
-
-  const fileName = data.fileName.trim()
-
-  if (fileName.length === 0) {
-    throw new Error('File name is required')
-  }
-
-  const contentType = data.contentType.trim()
-
-  return {
-    courseId: data.courseId,
-    fileName,
-    contentType: contentType === '' ? 'application/octet-stream' : contentType,
-  }
-}
+type CreateVideoUploadUrlInput = z.input<typeof createVideoUploadUrlSchema>
 
 export const createVideoUploadUrl = createServerFn({
   method: 'POST',
 })
-  .validator(validateCreateVideoUploadUrlInput)
+  .validator((data: CreateVideoUploadUrlInput) => validateInput(createVideoUploadUrlSchema, data))
   .handler(async ({ data }): Promise<VideoUploadTarget> => {
     const userId = await requireUserId()
 
@@ -90,54 +75,27 @@ type CompleteVideoUploadInput = {
   height: number
 }
 
-function toDimension(value: number): number {
-  if (!Number.isFinite(value)) {
-    return 0
-  }
-
-  return Math.min(Math.max(Math.round(value), 0), maxVideoDimensionPx)
+function clampedNumberSchema(max: number) {
+  return z
+    .number()
+    .catch(0)
+    .transform((v) => Math.min(Math.max(Math.round(v), 0), max))
 }
 
-function validateCompleteVideoUploadInput(
-  data: CompleteVideoUploadInput,
-): CompleteVideoUploadInput {
-  if (!Number.isInteger(data.courseId)) {
-    throw new Error('Course id is required')
-  }
-
-  if (!Number.isInteger(data.chapterId)) {
-    throw new Error('Chapter id is required')
-  }
-
-  const objectName = data.objectName.trim()
-
-  if (objectName.length === 0) {
-    throw new Error('Object name is required')
-  }
-
-  const title = data.title.trim()
-
-  if (title.length === 0) {
-    throw new Error('Title is required')
-  }
-
-  const durationSec = Number.isFinite(data.durationSec) ? Math.round(data.durationSec) : 0
-
-  return {
-    courseId: data.courseId,
-    chapterId: data.chapterId,
-    objectName,
-    title,
-    durationSec: Math.min(Math.max(durationSec, 0), maxVideoDurationSec),
-    width: toDimension(data.width),
-    height: toDimension(data.height),
-  }
-}
+const completeVideoUploadSchema = z.object({
+  courseId: z.number().int('Course id is required'),
+  chapterId: z.number().int('Chapter id is required'),
+  objectName: z.string().trim().nonempty('Object name is required'),
+  title: z.string().trim().nonempty('Title is required'),
+  durationSec: clampedNumberSchema(maxVideoDurationSec),
+  width: clampedNumberSchema(maxVideoDimensionPx),
+  height: clampedNumberSchema(maxVideoDimensionPx),
+})
 
 export const completeVideoUpload = createServerFn({
   method: 'POST',
 })
-  .validator(validateCompleteVideoUploadInput)
+  .validator((data: CompleteVideoUploadInput) => validateInput(completeVideoUploadSchema, data))
   .handler(async ({ data }): Promise<Lesson> => {
     const userId = await requireUserId()
 

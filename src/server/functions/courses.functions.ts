@@ -2,35 +2,22 @@ import { clerkClient } from '@clerk/tanstack-react-start/server'
 import { notFound, redirect } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
 import { asc, desc, eq } from 'drizzle-orm'
+import { z } from 'zod'
 import { db } from '#/server/db'
 import { chapters, courses, lessons, users } from '#/server/db/schema'
 import { requireUserId } from '#/server/functions/auth.server'
+import { validateInput } from '#/server/functions/validation.helpers'
 import type { Course, CourseWithChapters } from '#/utils/types'
 
-type CreateCourseInput = {
-  title: string
-  subtitle: string
-  description: string
-}
+const courseIdSchema = z.number().int('Course id is required')
 
-function validateCreateCourseInput(data: CreateCourseInput): CreateCourseInput {
-  const title = data.title.trim()
-  const subtitle = data.subtitle.trim()
+const createCourseSchema = z.object({
+  title: z.string().trim().nonempty('Title is required'),
+  subtitle: z.string().trim().nonempty('Subtitle is required'),
+  description: z.string().trim(),
+})
 
-  if (title.length === 0) {
-    throw new Error('Title is required')
-  }
-
-  if (subtitle.length === 0) {
-    throw new Error('Subtitle is required')
-  }
-
-  return {
-    title,
-    subtitle,
-    description: data.description.trim(),
-  }
-}
+type CreateCourseInput = z.input<typeof createCourseSchema>
 
 async function ensureAuthor(userId: string): Promise<void> {
   const user = await clerkClient().users.getUser(userId)
@@ -50,7 +37,7 @@ async function ensureAuthor(userId: string): Promise<void> {
 export const getCourse = createServerFn({
   method: 'GET',
 })
-  .validator((i: number) => i)
+  .validator((data: number) => validateInput(courseIdSchema, data))
   .handler(async ({ data }): Promise<Course> => {
     const course = await db.query.courses.findFirst({
       where: eq(courses.id, data),
@@ -66,7 +53,7 @@ export const getCourse = createServerFn({
 export const getAuthoredCourse = createServerFn({
   method: 'GET',
 })
-  .validator((i: number) => i)
+  .validator((data: number) => validateInput(courseIdSchema, data))
   .handler(async ({ data }): Promise<Course> => {
     const userId = await requireUserId()
 
@@ -88,7 +75,7 @@ export const getAuthoredCourse = createServerFn({
 export const getAuthoredCourseWithChapters = createServerFn({
   method: 'GET',
 })
-  .validator((i: number) => i)
+  .validator((data: number) => validateInput(courseIdSchema, data))
   .handler(async ({ data }): Promise<CourseWithChapters> => {
     const userId = await requireUserId()
 
@@ -132,7 +119,7 @@ export const getAuthoredCourses = createServerFn({
 export const createCourse = createServerFn({
   method: 'POST',
 })
-  .validator(validateCreateCourseInput)
+  .validator((data: CreateCourseInput) => validateInput(createCourseSchema, data))
   .handler(async ({ data }): Promise<Course> => {
     const userId = await requireUserId()
 
