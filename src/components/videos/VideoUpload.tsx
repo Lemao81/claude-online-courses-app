@@ -1,6 +1,7 @@
 import { Button, Flex, Stack } from '@chakra-ui/react'
 import { useRouter } from '@tanstack/react-router'
 import { useState } from 'react'
+import { showErrorToast, showSuccessToast } from '#/components/ui/AppToaster'
 import ErrorText from '#/components/ui/ErrorText'
 import VideoDropZone from '#/components/videos/VideoDropZone'
 import VideoFileList from '#/components/videos/VideoFileList'
@@ -81,12 +82,19 @@ export default function VideoUpload({ courseId, chapterId }: VideoUploadProps) {
       }
     }
 
+    const uploaded = files.length - failed.length
+
     setFiles(failed)
     setUploadError(firstError)
     setIsUploading(false)
-    if (failed.length < files.length) {
-      await router.invalidate()
+    if (uploaded === 0) {
+      showErrorToast('No video was uploaded', firstError)
+
+      return
     }
+
+    showSuccessToast(`${uploaded} ${uploaded === 1 ? 'video' : 'videos'} uploaded`)
+    await router.invalidate()
   }
 
   return (

@@ -1,6 +1,7 @@
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import { HeadContent, Scripts } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
+import AppToaster from '#/components/ui/AppToaster'
 import MainLayout from '#/layouts/MainLayout'
 import AppChakraProvider from '#/providers/AppChakraProvider.tsx'
 import AppClerkProvider from '#/providers/AppClerkProvider.tsx'
@@ -40,6 +41,7 @@ export default function RootDocument({ children }: RootDocumentProps) {
               ]}
             />
           </AppClerkProvider>
+          <AppToaster />
         </AppChakraProvider>
         <Scripts />
       </body>
