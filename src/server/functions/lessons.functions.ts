@@ -7,6 +7,7 @@ import { recomputeCourseDuration } from '#/server/db/aggregates.helpers'
 import { assets, lessons } from '#/server/db/schema'
 import { requireUserId } from '#/server/functions/auth.server'
 import { validateInput } from '#/server/functions/validation.helpers'
+import { enqueueAssetDeletion } from '#/server/jobs/assets.jobs'
 import type { Lesson } from '#/utils/types'
 
 const updateLessonTitleSchema = z.object({
@@ -86,5 +87,9 @@ export const deleteLesson = createServerFn({
       }
 
       await recomputeCourseDuration(tx, lesson.courseId)
+
+      if (video) {
+        await enqueueAssetDeletion(tx, video.id)
+      }
     })
   })

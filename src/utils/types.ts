@@ -27,6 +27,10 @@ export type VideoUploadTarget = {
   uploadUrl: string
 }
 
+export type AssetDeletePayload = {
+  assetId: number
+}
+
 export type ColorMode = 'light' | 'dark'
 
 export type ColorModePreference = ColorMode | 'system'

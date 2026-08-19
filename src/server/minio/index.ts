@@ -61,3 +61,20 @@ export function ensureBucket(bucket: string): Promise<void> {
 
   return pending
 }
+
+function isMissingObject(error: unknown): boolean {
+  return (
+    error instanceof S3Error &&
+    (error.code === 'NoSuchKey' || error.code === 'NoSuchBucket' || error.code === 'NotFound')
+  )
+}
+
+export async function removeObject(bucket: string, objectName: string): Promise<void> {
+  try {
+    await minioClient.removeObject(bucket, objectName)
+  } catch (error) {
+    if (!isMissingObject(error)) {
+      throw error
+    }
+  }
+}
