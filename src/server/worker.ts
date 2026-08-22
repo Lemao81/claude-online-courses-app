@@ -3,6 +3,7 @@ import {
   assetDeleteRetryDelaySec,
   assetDeleteRetryLimit,
   assetSweepCron,
+  workerStopTimeoutMs,
 } from '#/config/constants'
 import { createWorkerBoss } from '#/server/jobs'
 import { handleAssetDeletion, sweepDeletedAssets } from '#/server/jobs/assets.jobs'
@@ -34,7 +35,7 @@ console.log(`[worker] ready, sweeping deleted assets on "${assetSweepCron}"`)
 
 async function shutdown(signal: NodeJS.Signals): Promise<void> {
   console.log(`[worker] received ${signal}, stopping`)
-  await boss.stop({ graceful: true })
+  await boss.stop({ graceful: true, timeout: workerStopTimeoutMs })
   process.exit(0)
 }
 

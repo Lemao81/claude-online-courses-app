@@ -19,3 +19,5 @@ export const assetDeleteBatchSize = 10
 export const assetDeleteRetryLimit = 5
 
 export const assetDeleteRetryDelaySec = 30
+
+export const workerStopTimeoutMs = 30000

@@ -1,0 +1,16 @@
+node_modules
+dist
+dist-ssr
+.output
+.nitro
+.tanstack
+.vinxi
+.wrangler
+.git
+.idea
+.vscode
+.claude
+drizzle
+public
+*.local
+.env
