@@ -1,13 +1,13 @@
 
-@import "@fontsource-variable/manrope";
-@import "@fontsource-variable/fraunces/standard.css";
+@import "@fontsource-variable/figtree";
+@import "@fontsource-variable/literata";
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-sans: "Manrope Variable", "Manrope", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Fraunces Variable", "Fraunces", Georgia, serif;
+  --font-sans: "Figtree Variable", "Figtree", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Literata Variable", "Literata", Georgia, serif;
 }
 
 :root {
