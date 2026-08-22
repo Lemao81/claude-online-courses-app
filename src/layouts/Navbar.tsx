@@ -84,9 +84,6 @@ export default function Navbar() {
             <Link href="/demo/clerk" css={demoLinkStyles}>
               Clerk
             </Link>
-            <Link href="/demo/db-chat" css={demoLinkStyles}>
-              DB Chat
-            </Link>
             <Link href="/demo/drizzle" css={demoLinkStyles}>
               Drizzle
             </Link>

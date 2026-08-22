@@ -28,7 +28,7 @@ pnpm db:studio        # open Drizzle Studio
 
 **Data layer**:
 - **Server/DB**: Drizzle ORM with PostgreSQL (`src/server/db/schema.ts` → `src/server/db/index.ts`). Requires `DATABASE_URL` in `.env.local`.
-- **Client state**: TanStack Query for server-fetched data; `@tanstack/react-db` for local-only reactive collections (see `src/server/db-collections/index.ts`).
+- **Client state**: TanStack Query for server-fetched data.
 
 **Auth**: Clerk (`@clerk/clerk-react`). Provider is at `src/integrations/clerk/provider.tsx`. Requires `VITE_CLERK_PUBLISHABLE_KEY` in `.env.local`. Use `<SignedIn>` / `<SignedOut>` for client-side route guarding.
 

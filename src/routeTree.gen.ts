@@ -17,8 +17,6 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as EditcourseCourseIdRouteImport } from './routes/editcourse.$courseId'
 import { Route as DemoTanstackQueryRouteImport } from './routes/demo/tanstack-query'
 import { Route as DemoDrizzleRouteImport } from './routes/demo/drizzle'
-import { Route as DemoDbChatApiRouteImport } from './routes/demo/db-chat-api'
-import { Route as DemoDbChatRouteImport } from './routes/demo/db-chat'
 import { Route as DemoClerkRouteImport } from './routes/demo/clerk'
 import { Route as DemoFormSimpleRouteImport } from './routes/demo/form.simple'
 import { Route as DemoFormAddressRouteImport } from './routes/demo/form.address'
@@ -63,16 +61,6 @@ const DemoDrizzleRoute = DemoDrizzleRouteImport.update({
   path: '/demo/drizzle',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DemoDbChatApiRoute = DemoDbChatApiRouteImport.update({
-  id: '/demo/db-chat-api',
-  path: '/demo/db-chat-api',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DemoDbChatRoute = DemoDbChatRouteImport.update({
-  id: '/demo/db-chat',
-  path: '/demo/db-chat',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const DemoClerkRoute = DemoClerkRouteImport.update({
   id: '/demo/clerk',
   path: '/demo/clerk',
@@ -96,8 +84,6 @@ export interface FileRoutesByFullPath {
   '/mycourses': typeof MycoursesRoute
   '/overview': typeof OverviewRoute
   '/demo/clerk': typeof DemoClerkRoute
-  '/demo/db-chat': typeof DemoDbChatRoute
-  '/demo/db-chat-api': typeof DemoDbChatApiRoute
   '/demo/drizzle': typeof DemoDrizzleRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
   '/editcourse/$courseId': typeof EditcourseCourseIdRoute
@@ -111,8 +97,6 @@ export interface FileRoutesByTo {
   '/mycourses': typeof MycoursesRoute
   '/overview': typeof OverviewRoute
   '/demo/clerk': typeof DemoClerkRoute
-  '/demo/db-chat': typeof DemoDbChatRoute
-  '/demo/db-chat-api': typeof DemoDbChatApiRoute
   '/demo/drizzle': typeof DemoDrizzleRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
   '/editcourse/$courseId': typeof EditcourseCourseIdRoute
@@ -127,8 +111,6 @@ export interface FileRoutesById {
   '/mycourses': typeof MycoursesRoute
   '/overview': typeof OverviewRoute
   '/demo/clerk': typeof DemoClerkRoute
-  '/demo/db-chat': typeof DemoDbChatRoute
-  '/demo/db-chat-api': typeof DemoDbChatApiRoute
   '/demo/drizzle': typeof DemoDrizzleRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
   '/editcourse/$courseId': typeof EditcourseCourseIdRoute
@@ -144,8 +126,6 @@ export interface FileRouteTypes {
     | '/mycourses'
     | '/overview'
     | '/demo/clerk'
-    | '/demo/db-chat'
-    | '/demo/db-chat-api'
     | '/demo/drizzle'
     | '/demo/tanstack-query'
     | '/editcourse/$courseId'
@@ -159,8 +139,6 @@ export interface FileRouteTypes {
     | '/mycourses'
     | '/overview'
     | '/demo/clerk'
-    | '/demo/db-chat'
-    | '/demo/db-chat-api'
     | '/demo/drizzle'
     | '/demo/tanstack-query'
     | '/editcourse/$courseId'
@@ -174,8 +152,6 @@ export interface FileRouteTypes {
     | '/mycourses'
     | '/overview'
     | '/demo/clerk'
-    | '/demo/db-chat'
-    | '/demo/db-chat-api'
     | '/demo/drizzle'
     | '/demo/tanstack-query'
     | '/editcourse/$courseId'
@@ -190,8 +166,6 @@ export interface RootRouteChildren {
   MycoursesRoute: typeof MycoursesRoute
   OverviewRoute: typeof OverviewRoute
   DemoClerkRoute: typeof DemoClerkRoute
-  DemoDbChatRoute: typeof DemoDbChatRoute
-  DemoDbChatApiRoute: typeof DemoDbChatApiRoute
   DemoDrizzleRoute: typeof DemoDrizzleRoute
   DemoTanstackQueryRoute: typeof DemoTanstackQueryRoute
   EditcourseCourseIdRoute: typeof EditcourseCourseIdRoute
@@ -257,20 +231,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DemoDrizzleRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/demo/db-chat-api': {
-      id: '/demo/db-chat-api'
-      path: '/demo/db-chat-api'
-      fullPath: '/demo/db-chat-api'
-      preLoaderRoute: typeof DemoDbChatApiRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/demo/db-chat': {
-      id: '/demo/db-chat'
-      path: '/demo/db-chat'
-      fullPath: '/demo/db-chat'
-      preLoaderRoute: typeof DemoDbChatRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/demo/clerk': {
       id: '/demo/clerk'
       path: '/demo/clerk'
@@ -302,8 +262,6 @@ const rootRouteChildren: RootRouteChildren = {
   MycoursesRoute: MycoursesRoute,
   OverviewRoute: OverviewRoute,
   DemoClerkRoute: DemoClerkRoute,
-  DemoDbChatRoute: DemoDbChatRoute,
-  DemoDbChatApiRoute: DemoDbChatApiRoute,
   DemoDrizzleRoute: DemoDrizzleRoute,
   DemoTanstackQueryRoute: DemoTanstackQueryRoute,
   EditcourseCourseIdRoute: EditcourseCourseIdRoute,
