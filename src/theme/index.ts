@@ -20,7 +20,7 @@ export const themeConfig = defineConfig({
       },
       fonts: {
         body: { value: 'var(--font-sans)' },
-        heading: { value: '"Fraunces", Georgia, serif' },
+        heading: { value: 'var(--font-serif)' },
       },
     },
     semanticTokens: {
