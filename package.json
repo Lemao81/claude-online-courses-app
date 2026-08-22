@@ -2,6 +2,9 @@
   "name": "claudeonlinecoursesapp",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=24.19.0"
+  },
   "scripts": {
     "dev": "vite dev --port 3000",
     "start": "pnpm docker:up && pnpm dev",
@@ -17,6 +20,7 @@
     "bm:check:write": "biome check --write",
     "docker:up": "docker compose --env-file .env.local up -d",
     "docker:down": "docker compose --env-file .env.local down",
+    "docker:build": "docker compose --env-file .env.local build",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
@@ -65,7 +69,7 @@
     "@tanstack/router-cli": "1.167.17",
     "@testing-library/dom": "10.4.1",
     "@testing-library/react": "16.3.2",
-    "@types/node": "22.20.0",
+    "@types/node": "24.13.3",
     "@types/pg": "8.20.0",
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
