@@ -8,8 +8,8 @@ import {
   videoBucket,
   videoUploadUrlExpirySec,
 } from '#/config/constants'
-import { db } from '#/server/db'
 import { recomputeCourseDuration } from '#/server/db/aggregates.helpers'
+import { db } from '#/server/db/client'
 import { assets, chapters, courses, lessons } from '#/server/db/schema'
 import { requireUserId } from '#/server/functions/auth.server'
 import { validateInput } from '#/server/functions/validation.helpers'

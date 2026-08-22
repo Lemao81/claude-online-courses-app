@@ -1,6 +1,7 @@
 import { eq, sql } from 'drizzle-orm'
-import type { db, Transaction } from '#/server/db'
+import type { db } from '#/server/db/client'
 import { chapters, courses, lessons, reviews } from '#/server/db/schema'
+import type { Transaction } from '#/server/db/types'
 
 type Database = typeof db | Transaction
 
