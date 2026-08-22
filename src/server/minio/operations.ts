@@ -1,8 +1,6 @@
 import { S3Error } from 'minio'
 import { minioClient } from '#/server/minio/client'
 
-export const videoBucket = 'videos'
-
 const ensuredBuckets = new Map<string, Promise<void>>()
 
 function isBucketAlreadyOwned(error: unknown): boolean {

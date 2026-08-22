@@ -5,6 +5,7 @@ import { z } from 'zod'
 import {
   maxVideoDimensionPx,
   maxVideoDurationSec,
+  videoBucket,
   videoUploadUrlExpirySec,
 } from '#/config/constants'
 import { db } from '#/server/db'
@@ -12,8 +13,8 @@ import { recomputeCourseDuration } from '#/server/db/aggregates.helpers'
 import { assets, chapters, courses, lessons } from '#/server/db/schema'
 import { requireUserId } from '#/server/functions/auth.server'
 import { validateInput } from '#/server/functions/validation.helpers'
-import { ensureBucket, videoBucket } from '#/server/minio'
 import { minioClient } from '#/server/minio/client'
+import { ensureBucket } from '#/server/minio/operations'
 import { toFileExtension } from '#/utils/helpers'
 import type { Lesson, VideoUploadTarget } from '#/utils/types'
 

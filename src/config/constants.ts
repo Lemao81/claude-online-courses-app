@@ -1,5 +1,7 @@
 export const autoSaveDebounceMs = 600
 
+export const videoBucket = 'videos'
+
 export const videoUploadUrlExpirySec = 60 * 60
 
 export const videoDurationProbeTimeoutMs = 15000

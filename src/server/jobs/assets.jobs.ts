@@ -7,7 +7,7 @@ import type { Transaction } from '#/server/db'
 import { assets } from '#/server/db/schema'
 import { getSenderBoss } from '#/server/jobs'
 import { assetDeleteQueue } from '#/server/jobs/queues'
-import { removeObject } from '#/server/minio'
+import { removeObject } from '#/server/minio/operations'
 import type { AssetDeletePayload } from '#/utils/types'
 
 export async function enqueueAssetDeletion(tx: Transaction, assetId: number): Promise<void> {
