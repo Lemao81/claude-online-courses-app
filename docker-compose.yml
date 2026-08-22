@@ -60,6 +60,38 @@ services:
       minio:
         condition: service_healthy
 
+  worker-dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile.worker-dashboard
+    image: courses-worker-dashboard
+    container_name: courses-worker-dashboard
+    restart: unless-stopped
+    init: true
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+      HOST: 0.0.0.0
+      PORT: "3001"
+      PGBOSS_DASHBOARD_AUTH_USERNAME: ${PGBOSS_DASHBOARD_AUTH_USERNAME:-}
+      PGBOSS_DASHBOARD_AUTH_PASSWORD: ${PGBOSS_DASHBOARD_AUTH_PASSWORD:-}
+    ports:
+      - "3001:3001"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:3001/').then(r => process.exit(r.status < 500 ? 0 : 1), () => process.exit(1))",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
 volumes:
   courses-postgres-data:
     name: courses-postgres-data
