@@ -5,8 +5,6 @@
   "scripts": {
     "dev": "vite dev --port 3000",
     "start": "pnpm docker:up && pnpm dev",
-    "worker": "tsx --env-file=.env.local src/server/worker.ts",
-    "worker:dashboard": "node --env-file=.env.local node_modules/@pg-boss/dashboard/bin/cli.js",
     "generate-routes": "tsr generate",
     "build": "vite build",
     "preview": "vite preview",
@@ -24,7 +22,9 @@
     "db:push": "drizzle-kit push",
     "db:seed": "tsx --env-file=.env.local src/server/db/seed.ts",
     "db:pull": "drizzle-kit pull",
-    "db:studio": "drizzle-kit studio"
+    "db:studio": "drizzle-kit studio",
+    "worker": "tsx --env-file=.env.local src/server/worker.ts",
+    "worker:dashboard": "cross-env PORT=3001 HOST=localhost node --env-file=.env.local node_modules/@pg-boss/dashboard/bin/cli.js"
   },
   "dependencies": {
     "@chakra-ui/react": "3.36.0",
@@ -70,6 +70,7 @@
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "6.0.3",
+    "cross-env": "10.1.0",
     "dotenv": "17.4.2",
     "jsdom": "28.1.0",
     "tsx": "4.22.4",
