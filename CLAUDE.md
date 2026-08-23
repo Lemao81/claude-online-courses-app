@@ -34,7 +34,7 @@ pnpm db:studio        # open Drizzle Studio
 
 **Styling**: Tailwind CSS v4 via `@tailwindcss/vite` plugin. Global styles in `src/styles.css`. Theme (light/dark/auto) is toggled via `localStorage` and resolved by an inline script injected in `__root.tsx` to prevent flash.
 
-**Forms**: TanStack Form with a shared `useAppForm` hook (`src/hooks/demo.form.ts`) and reusable field components (`src/components/demo.FormComponents.tsx`).
+**Forms**: TanStack Form via `useForm` + `form.Field`, with Chakra UI field primitives styled from `src/utils/styles/formStyles.ts`.
 
 **Linting/Formatting**: Biome (not ESLint/Prettier). Config in `biome.json` — tabs for indentation, double quotes for JS/TS. `src/routeTree.gen.ts` and `src/styles.css` are excluded from Biome.
 

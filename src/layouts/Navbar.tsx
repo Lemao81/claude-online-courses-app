@@ -87,12 +87,6 @@ export default function Navbar() {
             <Link href="/demo/drizzle" css={demoLinkStyles}>
               Drizzle
             </Link>
-            <Link href="/demo/form/simple" css={demoLinkStyles}>
-              Simple Form
-            </Link>
-            <Link href="/demo/form/address" css={demoLinkStyles}>
-              Address Form
-            </Link>
             <Link href="/demo/tanstack-query" css={demoLinkStyles}>
               TanStack Query
             </Link>
