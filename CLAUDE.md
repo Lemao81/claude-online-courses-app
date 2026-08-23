@@ -27,10 +27,10 @@ pnpm db:studio        # open Drizzle Studio
 **Routing**: All routes are files under `src/routes/`. The root layout (`src/routes/__root.tsx`) wraps every page with `<ClerkProvider>`, `<Header>`, `<Footer>`, and devtools. Route context carries a `QueryClient` instance, enabling SSR-integrated data fetching via `@tanstack/react-router-ssr-query`.
 
 **Data layer**:
-- **Server/DB**: Drizzle ORM with PostgreSQL (`src/server/db/schema.ts` → `src/server/db/index.ts`). Requires `DATABASE_URL` in `.env.local`.
+- **Server/DB**: Drizzle ORM with PostgreSQL (`src/server/db/schema.ts` → `src/server/db/client.ts`). Requires `DATABASE_URL` in `.env.local`.
 - **Client state**: TanStack Query for server-fetched data.
 
-**Auth**: Clerk (`@clerk/clerk-react`). Provider is at `src/integrations/clerk/provider.tsx`. Requires `VITE_CLERK_PUBLISHABLE_KEY` in `.env.local`. Use `<SignedIn>` / `<SignedOut>` for client-side route guarding.
+**Auth**: Clerk (`@clerk/tanstack-react-start`). Provider is at `src/providers/AppClerkProvider.tsx`, rendered by `src/layouts/RootDocument.tsx`. Requires `VITE_CLERK_PUBLISHABLE_KEY` in `.env.local`. Use `<Show when="signed-in">` / `<Show when="signed-out">` for client-side guarding, or `requireSignedIn()` from `src/server/functions/auth.functions.ts` in a route's `beforeLoad`.
 
 **Styling**: Tailwind CSS v4 via `@tailwindcss/vite` plugin. Global styles in `src/styles.css`. Theme (light/dark/auto) is toggled via `localStorage` and resolved by an inline script injected in `__root.tsx` to prevent flash.
 

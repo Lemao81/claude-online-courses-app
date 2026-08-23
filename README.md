@@ -49,7 +49,7 @@ pnpm test
 ## Database
 
 PostgreSQL is accessed through [Drizzle ORM](https://orm.drizzle.team/). The schema lives in
-`src/server/db/schema.ts` and the connection is created in `src/server/db/index.ts`.
+`src/server/db/schema.ts` and the connection is created in `src/server/db/client.ts`.
 
 All domain tables live in a dedicated `coca` PostgreSQL schema.
 
@@ -109,13 +109,11 @@ pnpm typecheck
    ```bash
    VITE_CLERK_PUBLISHABLE_KEY=pk_test_...
    ```
-4. Visit the demo route at `/demo/clerk` once `pnpm dev` is running
 
 ### What's wired up
 
-- **`<ClerkProvider>`** wrapped by `src/providers/AppClerkProvider.tsx` and rendered in `src/components/layout/RootDocument.tsx`, handling auth context for the whole tree
-- **`<SignInButton>` / `<UserButton>`** in `src/components/layout/ClerkHeader.tsx` swap based on auth state
-- **`/demo/clerk`** shows Clerk's prebuilt sign-in UI and a signed-in greeting
+- **`<ClerkProvider>`** wrapped by `src/providers/AppClerkProvider.tsx` and rendered in `src/layouts/RootDocument.tsx`, handling auth context for the whole tree
+- **`<SignInButton>` / `<UserButton>`** in `src/layouts/AuthButtons.tsx` swap based on auth state
 
 ### Protecting a route
 
@@ -152,8 +150,9 @@ For server-side checks (route loaders, server functions), see the Clerk docs on 
 
 This project uses [TanStack Router](https://tanstack.com/router) with file-based routing. Routes are managed as files in `src/routes`.
 
-The app routes are `/` (`index.tsx`), `/about` and `/courses`, plus the starter routes under
-`src/routes/demo/`. Their page components live in `src/components/pages/`.
+The app routes are `/` (`index.tsx`), `/about`, `/courses`, `/mycourses`, `/overview` and
+`/editcourse/$courseId`, plus the starter routes under `src/routes/demo/`. Their page components
+live in `src/pages/`.
 
 ### Adding A Route
 
@@ -192,7 +191,7 @@ In the File Based Routing setup the layout is located in `src/routes/__root.tsx`
 
 Here the root route is created with `createRootRouteWithContext<AppRouterContext>()` — the context
 type is exported from `src/router.tsx`, where the `QueryClient` it carries is also created — and its
-`shellComponent` is `src/components/layout/RootDocument.tsx`.
+`shellComponent` is `src/layouts/RootDocument.tsx`.
 
 Here is an example layout that includes a header:
 

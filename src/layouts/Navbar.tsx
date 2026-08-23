@@ -81,9 +81,6 @@ export default function Navbar() {
             position={{ sm: 'absolute' }}
             right={{ sm: '0' }}
           >
-            <Link href="/demo/clerk" css={demoLinkStyles}>
-              Clerk
-            </Link>
             <Link href="/demo/drizzle" css={demoLinkStyles}>
               Drizzle
             </Link>

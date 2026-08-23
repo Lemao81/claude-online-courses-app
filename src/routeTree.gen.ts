@@ -17,7 +17,6 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as EditcourseCourseIdRouteImport } from './routes/editcourse.$courseId'
 import { Route as DemoTanstackQueryRouteImport } from './routes/demo/tanstack-query'
 import { Route as DemoDrizzleRouteImport } from './routes/demo/drizzle'
-import { Route as DemoClerkRouteImport } from './routes/demo/clerk'
 
 const OverviewRoute = OverviewRouteImport.update({
   id: '/overview',
@@ -59,11 +58,6 @@ const DemoDrizzleRoute = DemoDrizzleRouteImport.update({
   path: '/demo/drizzle',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DemoClerkRoute = DemoClerkRouteImport.update({
-  id: '/demo/clerk',
-  path: '/demo/clerk',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -71,7 +65,6 @@ export interface FileRoutesByFullPath {
   '/courses': typeof CoursesRoute
   '/mycourses': typeof MycoursesRoute
   '/overview': typeof OverviewRoute
-  '/demo/clerk': typeof DemoClerkRoute
   '/demo/drizzle': typeof DemoDrizzleRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
   '/editcourse/$courseId': typeof EditcourseCourseIdRoute
@@ -82,7 +75,6 @@ export interface FileRoutesByTo {
   '/courses': typeof CoursesRoute
   '/mycourses': typeof MycoursesRoute
   '/overview': typeof OverviewRoute
-  '/demo/clerk': typeof DemoClerkRoute
   '/demo/drizzle': typeof DemoDrizzleRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
   '/editcourse/$courseId': typeof EditcourseCourseIdRoute
@@ -94,7 +86,6 @@ export interface FileRoutesById {
   '/courses': typeof CoursesRoute
   '/mycourses': typeof MycoursesRoute
   '/overview': typeof OverviewRoute
-  '/demo/clerk': typeof DemoClerkRoute
   '/demo/drizzle': typeof DemoDrizzleRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
   '/editcourse/$courseId': typeof EditcourseCourseIdRoute
@@ -107,7 +98,6 @@ export interface FileRouteTypes {
     | '/courses'
     | '/mycourses'
     | '/overview'
-    | '/demo/clerk'
     | '/demo/drizzle'
     | '/demo/tanstack-query'
     | '/editcourse/$courseId'
@@ -118,7 +108,6 @@ export interface FileRouteTypes {
     | '/courses'
     | '/mycourses'
     | '/overview'
-    | '/demo/clerk'
     | '/demo/drizzle'
     | '/demo/tanstack-query'
     | '/editcourse/$courseId'
@@ -129,7 +118,6 @@ export interface FileRouteTypes {
     | '/courses'
     | '/mycourses'
     | '/overview'
-    | '/demo/clerk'
     | '/demo/drizzle'
     | '/demo/tanstack-query'
     | '/editcourse/$courseId'
@@ -141,7 +129,6 @@ export interface RootRouteChildren {
   CoursesRoute: typeof CoursesRoute
   MycoursesRoute: typeof MycoursesRoute
   OverviewRoute: typeof OverviewRoute
-  DemoClerkRoute: typeof DemoClerkRoute
   DemoDrizzleRoute: typeof DemoDrizzleRoute
   DemoTanstackQueryRoute: typeof DemoTanstackQueryRoute
   EditcourseCourseIdRoute: typeof EditcourseCourseIdRoute
@@ -205,13 +192,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DemoDrizzleRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/demo/clerk': {
-      id: '/demo/clerk'
-      path: '/demo/clerk'
-      fullPath: '/demo/clerk'
-      preLoaderRoute: typeof DemoClerkRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
@@ -221,7 +201,6 @@ const rootRouteChildren: RootRouteChildren = {
   CoursesRoute: CoursesRoute,
   MycoursesRoute: MycoursesRoute,
   OverviewRoute: OverviewRoute,
-  DemoClerkRoute: DemoClerkRoute,
   DemoDrizzleRoute: DemoDrizzleRoute,
   DemoTanstackQueryRoute: DemoTanstackQueryRoute,
   EditcourseCourseIdRoute: EditcourseCourseIdRoute,
