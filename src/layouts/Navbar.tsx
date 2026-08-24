@@ -56,14 +56,6 @@ export default function Navbar() {
         >
           About
         </RouterLink>
-        <Link
-          href="https://tanstack.com/start/latest/docs/framework/react/overview"
-          className="nav-link"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Docs
-        </Link>
       </Flex>
     </Flex>
   )
