@@ -2,7 +2,6 @@
 @import "@fontsource-variable/plus-jakarta-sans";
 @import "@fontsource-variable/literata";
 @import "tailwindcss";
-@plugin "@tailwindcss/typography";
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
@@ -47,8 +46,7 @@
 }
 
 html,
-body,
-#app {
+body {
   min-height: 100%;
 }
 
@@ -103,23 +101,6 @@ a {
 
 a:hover {
   color: #246f76;
-}
-
-code {
-  font-size: 0.9em;
-  border: 1px solid var(--line);
-  background: color-mix(in oklab, var(--surface-strong) 82%, white 18%);
-  border-radius: 7px;
-  padding: 2px 7px;
-}
-
-pre code {
-  border: 0;
-  background: transparent;
-  padding: 0;
-  border-radius: 0;
-  font-size: inherit;
-  color: inherit;
 }
 
 .layout-container {
@@ -208,11 +189,6 @@ a {
   .nav-link::after {
     bottom: -4px;
   }
-}
-
-.site-footer {
-  border-top: 1px solid var(--line);
-  background: color-mix(in oklab, var(--header-bg) 84%, transparent 16%);
 }
 
 .rise-in {

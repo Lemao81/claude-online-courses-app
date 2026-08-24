@@ -67,7 +67,6 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.5",
-    "@tailwindcss/typography": "0.5.20",
     "@tanstack/devtools-vite": "0.8.1",
     "@tanstack/router-cli": "1.167.17",
     "@testing-library/dom": "10.4.1",
