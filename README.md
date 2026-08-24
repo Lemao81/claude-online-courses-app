@@ -151,8 +151,7 @@ For server-side checks (route loaders, server functions), see the Clerk docs on 
 This project uses [TanStack Router](https://tanstack.com/router) with file-based routing. Routes are managed as files in `src/routes`.
 
 The app routes are `/` (`index.tsx`), `/about`, `/courses`, `/mycourses`, `/overview` and
-`/editcourse/$courseId`, plus the starter routes under `src/routes/demo/`. Their page components
-live in `src/pages/`.
+`/editcourse/$courseId`. Their page components live in `src/pages/`.
 
 ### Adding A Route
 
@@ -300,10 +299,6 @@ function PeopleComponent() {
 ```
 
 Loaders simplify your data fetching logic dramatically. Check out more information in the [Loader documentation](https://tanstack.com/router/latest/docs/framework/react/guide/data-loading#loader-parameters).
-
-# Demo files
-
-Files prefixed with `demo` can be safely deleted. They are there to provide a starting point for you to play around with the features you've installed.
 
 # Learn More
 

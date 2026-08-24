@@ -15,7 +15,6 @@ import { Route as CoursesRouteImport } from './routes/courses'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as EditcourseCourseIdRouteImport } from './routes/editcourse.$courseId'
-import { Route as DemoTanstackQueryRouteImport } from './routes/demo/tanstack-query'
 
 const OverviewRoute = OverviewRouteImport.update({
   id: '/overview',
@@ -47,11 +46,6 @@ const EditcourseCourseIdRoute = EditcourseCourseIdRouteImport.update({
   path: '/editcourse/$courseId',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DemoTanstackQueryRoute = DemoTanstackQueryRouteImport.update({
-  id: '/demo/tanstack-query',
-  path: '/demo/tanstack-query',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -59,7 +53,6 @@ export interface FileRoutesByFullPath {
   '/courses': typeof CoursesRoute
   '/mycourses': typeof MycoursesRoute
   '/overview': typeof OverviewRoute
-  '/demo/tanstack-query': typeof DemoTanstackQueryRoute
   '/editcourse/$courseId': typeof EditcourseCourseIdRoute
 }
 export interface FileRoutesByTo {
@@ -68,7 +61,6 @@ export interface FileRoutesByTo {
   '/courses': typeof CoursesRoute
   '/mycourses': typeof MycoursesRoute
   '/overview': typeof OverviewRoute
-  '/demo/tanstack-query': typeof DemoTanstackQueryRoute
   '/editcourse/$courseId': typeof EditcourseCourseIdRoute
 }
 export interface FileRoutesById {
@@ -78,7 +70,6 @@ export interface FileRoutesById {
   '/courses': typeof CoursesRoute
   '/mycourses': typeof MycoursesRoute
   '/overview': typeof OverviewRoute
-  '/demo/tanstack-query': typeof DemoTanstackQueryRoute
   '/editcourse/$courseId': typeof EditcourseCourseIdRoute
 }
 export interface FileRouteTypes {
@@ -89,7 +80,6 @@ export interface FileRouteTypes {
     | '/courses'
     | '/mycourses'
     | '/overview'
-    | '/demo/tanstack-query'
     | '/editcourse/$courseId'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -98,7 +88,6 @@ export interface FileRouteTypes {
     | '/courses'
     | '/mycourses'
     | '/overview'
-    | '/demo/tanstack-query'
     | '/editcourse/$courseId'
   id:
     | '__root__'
@@ -107,7 +96,6 @@ export interface FileRouteTypes {
     | '/courses'
     | '/mycourses'
     | '/overview'
-    | '/demo/tanstack-query'
     | '/editcourse/$courseId'
   fileRoutesById: FileRoutesById
 }
@@ -117,7 +105,6 @@ export interface RootRouteChildren {
   CoursesRoute: typeof CoursesRoute
   MycoursesRoute: typeof MycoursesRoute
   OverviewRoute: typeof OverviewRoute
-  DemoTanstackQueryRoute: typeof DemoTanstackQueryRoute
   EditcourseCourseIdRoute: typeof EditcourseCourseIdRoute
 }
 
@@ -165,13 +152,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EditcourseCourseIdRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/demo/tanstack-query': {
-      id: '/demo/tanstack-query'
-      path: '/demo/tanstack-query'
-      fullPath: '/demo/tanstack-query'
-      preLoaderRoute: typeof DemoTanstackQueryRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
@@ -181,7 +161,6 @@ const rootRouteChildren: RootRouteChildren = {
   CoursesRoute: CoursesRoute,
   MycoursesRoute: MycoursesRoute,
   OverviewRoute: OverviewRoute,
-  DemoTanstackQueryRoute: DemoTanstackQueryRoute,
   EditcourseCourseIdRoute: EditcourseCourseIdRoute,
 }
 export const routeTree = rootRouteImport

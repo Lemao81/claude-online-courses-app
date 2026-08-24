@@ -42,7 +42,6 @@ pnpm db:studio        # open Drizzle Studio
 
 ## Key conventions
 
-- Files prefixed with `demo.` are starter examples and can be deleted.
 - After adding or removing route files, run `pnpm generate-routes` to update `routeTree.gen.ts`.
 - Server functions use `createServerFn` from `@tanstack/react-start`; API routes use the `server.handlers` property on a file route.
 - Drizzle schema changes require `pnpm db:generate` followed by `pnpm db:migrate` (or `pnpm db:push` in dev).

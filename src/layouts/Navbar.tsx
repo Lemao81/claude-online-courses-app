@@ -1,6 +1,5 @@
 import { Box, Flex, Heading, Link } from '@chakra-ui/react'
 import { Link as RouterLink } from '@tanstack/react-router'
-import { demoLinkStyles } from '#/utils/styles/navbarStyles'
 
 export default function Navbar() {
   return (
@@ -65,27 +64,6 @@ export default function Navbar() {
         >
           Docs
         </Link>
-        <Box as="details" position="relative" w={{ base: 'full', sm: 'auto' }}>
-          <Box as="summary" className="nav-link" listStyleType="none" cursor="pointer">
-            Demos
-          </Box>
-          <Box
-            mt="2"
-            minW="56"
-            rounded="xl"
-            borderWidth="1px"
-            borderColor="border"
-            bg="bg.header"
-            p="2"
-            boxShadow="lg"
-            position={{ sm: 'absolute' }}
-            right={{ sm: '0' }}
-          >
-            <Link href="/demo/tanstack-query" css={demoLinkStyles}>
-              TanStack Query
-            </Link>
-          </Box>
-        </Box>
       </Flex>
     </Flex>
   )
