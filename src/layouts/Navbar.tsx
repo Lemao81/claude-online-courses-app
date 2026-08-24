@@ -81,9 +81,6 @@ export default function Navbar() {
             position={{ sm: 'absolute' }}
             right={{ sm: '0' }}
           >
-            <Link href="/demo/drizzle" css={demoLinkStyles}>
-              Drizzle
-            </Link>
             <Link href="/demo/tanstack-query" css={demoLinkStyles}>
               TanStack Query
             </Link>

@@ -8,7 +8,6 @@ import {
   integer,
   numeric,
   pgSchema,
-  pgTable,
   primaryKey,
   text,
   timestamp,
@@ -24,12 +23,6 @@ export const courseStatus = coca.enum('course_status', ['draft', 'published', 'a
 export const assetKind = coca.enum('asset_kind', ['video', 'image', 'attachment'])
 
 export const assetStatus = coca.enum('asset_status', ['pending', 'ready', 'failed'])
-
-export const todos = pgTable('todos', {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  title: text().notNull(),
-  ...timestamps,
-})
 
 export const users = coca.table(
   'users',
