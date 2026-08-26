@@ -14,8 +14,8 @@ const statusColors: Record<CourseStatus, SystemStyleObject> = {
     color: 'fg',
   },
   archived: {
-    borderColor: 'color-mix(in oklab, token(colors.coral) 28%, token(colors.border))',
-    bg: 'color-mix(in oklab, token(colors.coral) 10%, token(colors.bg.panel))',
+    borderColor: 'color-mix(in oklab, token(colors.danger) 28%, token(colors.border))',
+    bg: 'color-mix(in oklab, token(colors.danger) 10%, token(colors.bg.panel))',
     color: 'fg.muted',
   },
 }

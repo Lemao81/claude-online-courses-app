@@ -21,7 +21,7 @@ export default function RootDocument({ children }: RootDocumentProps) {
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
         <HeadContent />
       </head>
-      <body className="antialiased wrap-anywhere selection:bg-[color-mix(in_oklab,var(--lagoon)_24%,transparent)]">
+      <body className="antialiased wrap-anywhere">
         <AppChakraProvider>
           <AppClerkProvider>
             <MainLayout>{children}</MainLayout>

@@ -11,26 +11,52 @@
 
 :root {
   color-scheme: light dark;
-  --sea-ink: light-dark(#173a40, #d7ece8);
-  --sea-ink-soft: light-dark(#416166, #afcdc8);
-  --lagoon: light-dark(#4fb8b2, #60d7cf);
-  --lagoon-deep: light-dark(#328f97, #8de5db);
-  --palm: light-dark(#2f6a4a, #6ec89a);
-  --sand: light-dark(#e7f0e8, #0f1a1e);
-  --foam: light-dark(#f3faf5, #101d22);
+
+  --ink: light-dark(#173a40, #d7ece8);
+  --ink-soft: light-dark(#416166, #afcdc8);
+
+  --brand: light-dark(#4fb8b2, #60d7cf);
+  --brand-strong: light-dark(#328f97, #8de5db);
+  --brand-alt: light-dark(#2f6a4a, #6ec89a);
+  --brand-from: #56c6be;
+  --brand-to: #7ed3bf;
+
+  --base: light-dark(#e7f3ec, #0a1418);
+  --base-muted: light-dark(#e7f0e8, #0f1a1e);
+  --base-subtle: light-dark(#f3faf5, #101d22);
+
   --surface: light-dark(rgba(255, 255, 255, 0.74), rgba(16, 30, 34, 0.8));
   --surface-strong: light-dark(rgba(255, 255, 255, 0.9), rgba(15, 27, 31, 0.92));
   --line: light-dark(rgba(23, 58, 64, 0.14), rgba(141, 229, 219, 0.18));
-  --inset-glint: light-dark(rgba(255, 255, 255, 0.82), rgba(194, 247, 238, 0.14));
+  --glint: light-dark(rgba(255, 255, 255, 0.82), rgba(194, 247, 238, 0.14));
+
   --kicker: light-dark(rgba(47, 106, 74, 0.9), #b8efe5);
-  --bg-base: light-dark(#e7f3ec, #0a1418);
   --header-bg: light-dark(rgba(251, 255, 248, 0.84), rgba(10, 20, 24, 0.8));
   --chip-bg: light-dark(rgba(255, 255, 255, 0.8), rgba(13, 28, 32, 0.9));
   --chip-line: light-dark(rgba(47, 106, 74, 0.18), rgba(141, 229, 219, 0.24));
   --link-bg-hover: light-dark(rgba(255, 255, 255, 0.9), rgba(24, 44, 49, 0.8));
+  --link-underline: rgba(50, 143, 151, 0.4);
+  --link-hover: #246f76;
+  --selection-bg: color-mix(in oklab, var(--brand) 24%, transparent);
+
+  --danger: light-dark(#9f3030, #f2a3a3);
+
+  --shadow-rgb: 30 90 72;
+  --shadow-deep-rgb: 23 58 64;
+
   --hero-a: light-dark(rgba(79, 184, 178, 0.36), rgba(96, 215, 207, 0.18));
   --hero-b: light-dark(rgba(47, 106, 74, 0.2), rgba(110, 200, 154, 0.12));
-  --danger: light-dark(#9f3030, #f2a3a3);
+  --hero-c: rgba(79, 184, 178, 0.1);
+  --body-wash-top: color-mix(in oklab, var(--base-muted) 68%, white);
+  --sheen-a: rgba(255, 255, 255, 0.8);
+  --sheen-b: rgba(79, 184, 178, 0.2);
+  --sheen-c: rgba(47, 106, 74, 0.14);
+  --grid-line: rgba(255, 255, 255, 0.07);
+  --grid-line-soft: rgba(255, 255, 255, 0.06);
+  --grid-size: 28px;
+
+  --card-wash: color-mix(in oklab, var(--surface-strong) 93%, white 7%);
+  --nav-underline: linear-gradient(90deg, var(--brand), var(--brand-to));
 }
 
 :root.light {
@@ -52,14 +78,14 @@ body {
 
 body {
   margin: 0;
-  color: var(--sea-ink);
+  color: var(--ink);
   font-family: var(--font-sans);
-  background-color: var(--bg-base);
+  background-color: var(--base);
   background:
     radial-gradient(1100px 620px at -8% -10%, var(--hero-a), transparent 58%),
     radial-gradient(1050px 620px at 112% -12%, var(--hero-b), transparent 62%),
-    radial-gradient(720px 380px at 50% 115%, rgba(79, 184, 178, 0.1), transparent 68%),
-    linear-gradient(180deg, color-mix(in oklab, var(--sand) 68%, white) 0%, var(--foam) 44%, var(--bg-base) 100%);
+    radial-gradient(720px 380px at 50% 115%, var(--hero-c), transparent 68%),
+    linear-gradient(180deg, var(--body-wash-top) 0%, var(--base-subtle) 44%, var(--base) 100%);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -73,9 +99,9 @@ body::before {
   z-index: -1;
   opacity: 0.28;
   background:
-    radial-gradient(circle at 20% 15%, rgba(255, 255, 255, 0.8), transparent 34%),
-    radial-gradient(circle at 78% 26%, rgba(79, 184, 178, 0.2), transparent 42%),
-    radial-gradient(circle at 42% 82%, rgba(47, 106, 74, 0.14), transparent 36%);
+    radial-gradient(circle at 20% 15%, var(--sheen-a), transparent 34%),
+    radial-gradient(circle at 78% 26%, var(--sheen-b), transparent 42%),
+    radial-gradient(circle at 42% 82%, var(--sheen-c), transparent 36%);
 }
 
 body::after {
@@ -86,21 +112,25 @@ body::after {
   z-index: -1;
   opacity: 0.14;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-  background-size: 28px 28px;
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line-soft) 1px, transparent 1px);
+  background-size: var(--grid-size) var(--grid-size);
   mask-image: radial-gradient(circle at 50% 30%, black, transparent 78%);
 }
 
+::selection {
+  background-color: var(--selection-bg);
+}
+
 a {
-  color: var(--lagoon-deep);
-  text-decoration-color: rgba(50, 143, 151, 0.4);
+  color: var(--brand-strong);
+  text-decoration-color: var(--link-underline);
   text-decoration-thickness: 1px;
   text-underline-offset: 2px;
 }
 
 a:hover {
-  color: #246f76;
+  color: var(--link-hover);
 }
 
 .layout-container {
@@ -116,23 +146,23 @@ a:hover {
   border: 1px solid var(--line);
   background: linear-gradient(165deg, var(--surface-strong), var(--surface));
   box-shadow:
-    0 1px 0 var(--inset-glint) inset,
-    0 22px 44px rgba(30, 90, 72, 0.1),
-    0 6px 18px rgba(23, 58, 64, 0.08);
+    0 1px 0 var(--glint) inset,
+    0 22px 44px rgb(var(--shadow-rgb) / 0.1),
+    0 6px 18px rgb(var(--shadow-deep-rgb) / 0.08);
   backdrop-filter: blur(4px);
 }
 
 .feature-card {
-  background: linear-gradient(165deg, color-mix(in oklab, var(--surface-strong) 93%, white 7%), var(--surface));
+  background: linear-gradient(165deg, var(--card-wash), var(--surface));
   box-shadow:
-    0 1px 0 var(--inset-glint) inset,
-    0 18px 34px rgba(30, 90, 72, 0.1),
-    0 4px 14px rgba(23, 58, 64, 0.06);
+    0 1px 0 var(--glint) inset,
+    0 18px 34px rgb(var(--shadow-rgb) / 0.1),
+    0 4px 14px rgb(var(--shadow-deep-rgb) / 0.06);
 }
 
 .feature-card:hover {
   transform: translateY(-2px);
-  border-color: color-mix(in oklab, var(--lagoon-deep) 35%, var(--line));
+  border-color: color-mix(in oklab, var(--brand-strong) 35%, var(--line));
 }
 
 button,
@@ -155,7 +185,7 @@ a {
   display: inline-flex;
   align-items: center;
   text-decoration: none;
-  color: var(--sea-ink-soft);
+  color: var(--ink-soft);
 }
 
 .nav-sublink {
@@ -171,13 +201,13 @@ a {
   height: 2px;
   transform: scaleX(0);
   transform-origin: left;
-  background: linear-gradient(90deg, var(--lagoon), #7ed3bf);
+  background: var(--nav-underline);
   transition: transform 170ms ease;
 }
 
 .nav-link:hover,
 .nav-link.is-active {
-  color: var(--sea-ink);
+  color: var(--ink);
 }
 
 .nav-link:hover::after,
@@ -205,4 +235,3 @@ a {
     transform: translateY(0);
   }
 }
-
