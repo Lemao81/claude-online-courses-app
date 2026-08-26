@@ -84,10 +84,6 @@ export const themeConfig = defineConfig({
           value:
             '0 1px 0 {colors.glint} inset, 0 18px 34px rgb(var(--shadow-rgb) / 0.1), 0 4px 14px rgb(var(--shadow-deep-rgb) / 0.06)',
         },
-        island: {
-          value:
-            '0 1px 0 {colors.glint} inset, 0 22px 44px rgb(var(--shadow-rgb) / 0.1), 0 6px 18px rgb(var(--shadow-deep-rgb) / 0.08)',
-        },
         focusRing: { value: '0 0 0 3px color-mix(in oklab, {colors.accent} 24%, transparent)' },
         dropRing: { value: '0 0 0 4px color-mix(in oklab, {colors.accent} 18%, transparent)' },
       },

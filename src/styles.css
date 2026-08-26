@@ -27,6 +27,8 @@
 
   --surface: light-dark(rgba(255, 255, 255, 0.74), rgba(16, 30, 34, 0.8));
   --surface-strong: light-dark(rgba(255, 255, 255, 0.9), rgba(15, 27, 31, 0.92));
+  --surface-solid: light-dark(#f9fcfa, #0f1c20);
+  --surface-strong-solid: light-dark(#fdfefd, #0f1a1e);
   --line: light-dark(rgba(23, 58, 64, 0.14), rgba(141, 229, 219, 0.18));
   --glint: light-dark(rgba(255, 255, 255, 0.82), rgba(194, 247, 238, 0.14));
 
@@ -142,14 +144,9 @@ a:hover {
   font-family: var(--font-serif);
 }
 
-.island-shell {
+.surface-panel {
   border: 1px solid var(--line);
-  background: linear-gradient(165deg, var(--surface-strong), var(--surface));
-  box-shadow:
-    0 1px 0 var(--glint) inset,
-    0 22px 44px rgb(var(--shadow-rgb) / 0.1),
-    0 6px 18px rgb(var(--shadow-deep-rgb) / 0.08);
-  backdrop-filter: blur(4px);
+  background: linear-gradient(165deg, var(--surface-strong-solid), var(--surface-solid));
 }
 
 .feature-card {
@@ -166,7 +163,7 @@ a:hover {
 }
 
 button,
-.island-shell,
+.surface-panel,
 a {
   transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease,
     transform 180ms ease;

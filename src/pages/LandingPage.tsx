@@ -5,7 +5,7 @@ export default function LandingPage() {
     <Box px="4" pb="8" pt="14">
       <Box
         as="section"
-        className="island-shell rise-in"
+        className="surface-panel rise-in"
         position="relative"
         overflow="hidden"
         rounded="island"
@@ -106,7 +106,7 @@ export default function LandingPage() {
           <Box
             as="article"
             key={title}
-            className="island-shell feature-card rise-in"
+            className="surface-panel feature-card rise-in"
             rounded="card"
             p="5"
             animationDelay={`${index * 90 + 80}ms`}

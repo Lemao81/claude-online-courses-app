@@ -3,7 +3,7 @@ import { Box, Heading, Text } from '@chakra-ui/react'
 export default function AboutPage() {
   return (
     <Box px="4" py="12">
-      <Box as="section" className="island-shell" rounded="card" p={{ base: '6', sm: '8' }}>
+      <Box as="section" className="surface-panel" rounded="card" p={{ base: '6', sm: '8' }}>
         <Text className="island-kicker" mb="2">
           About
         </Text>
