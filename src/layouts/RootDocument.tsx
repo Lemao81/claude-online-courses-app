@@ -1,11 +1,11 @@
 import { TanStackDevtools } from '@tanstack/react-devtools'
+import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools'
 import { HeadContent, Scripts } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import AppToaster from '#/components/ui/AppToaster'
 import MainLayout from '#/layouts/MainLayout'
 import AppChakraProvider from '#/providers/AppChakraProvider.tsx'
 import AppClerkProvider from '#/providers/AppClerkProvider.tsx'
-import {ReactQueryDevtoolsPanel} from "@tanstack/react-query-devtools";
 
 const THEME_INIT_SCRIPT = `(function(){try{var stored=window.localStorage.getItem('theme');if(stored==='light'||stored==='dark'){document.documentElement.classList.add(stored)}}catch(e){}})();`
 

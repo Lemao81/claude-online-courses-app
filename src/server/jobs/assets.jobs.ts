@@ -1,6 +1,6 @@
 import { and, eq, isNotNull, sql } from 'drizzle-orm'
-import { fromDrizzle } from 'pg-boss'
 import type { Job, PgBoss } from 'pg-boss'
+import { fromDrizzle } from 'pg-boss'
 import { assetSweepBatchSize } from '#/config/constants'
 import { db } from '#/server/db/client'
 import { assets } from '#/server/db/schema'
@@ -15,11 +15,10 @@ export async function enqueueAssetDeletion(tx: Transaction, assetId: number): Pr
     const boss = await getSenderBoss()
 
     await tx.transaction(async (inner) => {
-      await boss.send(
-        assetDeleteQueue,
-        { assetId } satisfies AssetDeletePayload,
-        { singletonKey: String(assetId), db: fromDrizzle(inner, sql) },
-      )
+      await boss.send(assetDeleteQueue, { assetId } satisfies AssetDeletePayload, {
+        singletonKey: String(assetId),
+        db: fromDrizzle(inner, sql),
+      })
     })
   } catch (error) {
     console.error(
