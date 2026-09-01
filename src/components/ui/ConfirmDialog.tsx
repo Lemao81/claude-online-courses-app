@@ -5,14 +5,14 @@ import {
   primaryButtonStyles,
   secondaryButtonStyles,
   subtleIconButtonStyles,
-} from '#/utils/styles/buttonStyles'
+} from '#/styles/buttonStyles'
 import {
   dialogBackdropStyles,
   dialogContentStyles,
   dialogQuestionStyles,
   dialogTitleStyles,
-} from '#/utils/styles/formStyles'
-import { subtitleStyles } from '#/utils/styles/textStyles'
+} from '#/styles/formStyles'
+import { subtitleStyles } from '#/styles/textStyles'
 
 type ConfirmDialogProps = {
   question: string

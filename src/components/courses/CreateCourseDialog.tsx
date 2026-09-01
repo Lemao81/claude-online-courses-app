@@ -12,12 +12,12 @@ import {
   primaryButtonStyles,
   secondaryButtonStyles,
   subtleIconButtonStyles,
-} from '#/utils/styles/buttonStyles'
+} from '#/styles/buttonStyles'
 import {
   dialogBackdropStyles,
   dialogContentStyles,
   dialogTitleStyles,
-} from '#/utils/styles/formStyles'
+} from '#/styles/formStyles'
 import type { Course } from '#/utils/types'
 
 export default function CreateCourseDialog() {

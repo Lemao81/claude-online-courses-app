@@ -3,9 +3,9 @@ import { LuPencil } from 'react-icons/lu'
 import CourseChapterLessonList from '#/components/chapters/CourseChapterLessonList'
 import Tooltip from '#/components/ui/Tooltip'
 import { formatDuration } from '#/utils/formatters'
-import { chipIconButtonStyles } from '#/utils/styles/buttonStyles'
-import { chapterPanelStyles, chapterSectionLabelStyles } from '#/utils/styles/chapterStyles'
-import { metaStyles, subtitleStyles, titleStyles } from '#/utils/styles/textStyles'
+import { chipIconButtonStyles } from '#/styles/buttonStyles'
+import { chapterPanelStyles, chapterSectionLabelStyles } from '#/styles/chapterStyles'
+import { metaStyles, subtitleStyles, titleStyles } from '#/styles/textStyles'
 import type { Chapter, ChapterLessonVideo } from '#/utils/types'
 
 type CourseChapterProps = {

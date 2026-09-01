@@ -1,5 +1,5 @@
 import type { SystemStyleObject } from '@chakra-ui/react'
-import { emptyStateStyles } from '#/utils/styles/surfaceStyles'
+import { emptyStateStyles } from '#/styles/surfaceStyles'
 
 export const chapterPanelStyles: SystemStyleObject = {
   rounded: 'panel',

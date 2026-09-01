@@ -1,5 +1,5 @@
 import type { SystemStyleObject } from '@chakra-ui/react'
-import { itemTitleStyles } from '#/utils/styles/textStyles'
+import { itemTitleStyles } from '#/styles/textStyles'
 
 export const dropZoneStyles: SystemStyleObject = {
   position: 'relative',

@@ -6,7 +6,7 @@ import {
   fieldLabelStyles,
   fieldRequiredIndicatorStyles,
   textareaControlStyles,
-} from '#/utils/styles/formStyles'
+} from '#/styles/formStyles'
 
 const formId = 'create-course-form'
 

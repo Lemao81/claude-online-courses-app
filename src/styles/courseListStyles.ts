@@ -1,5 +1,5 @@
 import type { SystemStyleObject } from '@chakra-ui/react'
-import { emptyStateStyles } from '#/utils/styles/surfaceStyles'
+import { emptyStateStyles } from '#/styles/surfaceStyles'
 import type { CourseStatus } from '#/utils/types'
 
 const statusColors: Record<CourseStatus, SystemStyleObject> = {

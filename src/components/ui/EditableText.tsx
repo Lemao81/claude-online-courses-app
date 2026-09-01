@@ -1,13 +1,13 @@
 import { Editable, IconButton } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { LuCheck, LuX } from 'react-icons/lu'
-import { subtleIconButtonStyles } from '#/utils/styles/buttonStyles'
+import { subtleIconButtonStyles } from '#/styles/buttonStyles'
 import {
   editableControlStyles,
   editableInputStyles,
   editablePreviewStyles,
   editableRootStyles,
-} from '#/utils/styles/editableStyles'
+} from '#/styles/editableStyles'
 
 type EditableTextProps = {
   value: string

@@ -1,6 +1,6 @@
 import { Flex, Text } from '@chakra-ui/react'
 import Greeting from '#/components/overview/Greeting'
-import { subtitleStyles } from '#/utils/styles/textStyles'
+import { subtitleStyles } from '#/styles/textStyles'
 
 export default function OverviewPage() {
   return (

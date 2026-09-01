@@ -1,10 +1,10 @@
 import { CloseButton, Flex, Stack, Text } from '@chakra-ui/react'
 import { formatFileSize } from '#/utils/formatters'
 import { toFileKey } from '#/utils/helpers'
-import { subtleIconButtonStyles } from '#/utils/styles/buttonStyles'
-import { rowStyles } from '#/utils/styles/surfaceStyles'
-import { metaStyles } from '#/utils/styles/textStyles'
-import { fileNameStyles } from '#/utils/styles/videoUploadStyles'
+import { subtleIconButtonStyles } from '#/styles/buttonStyles'
+import { rowStyles } from '#/styles/surfaceStyles'
+import { metaStyles } from '#/styles/textStyles'
+import { fileNameStyles } from '#/styles/videoUploadStyles'
 
 type VideoFileListProps = {
   files: File[]

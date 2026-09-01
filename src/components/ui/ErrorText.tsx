@@ -1,5 +1,5 @@
 import { type SystemStyleObject, Text } from '@chakra-ui/react'
-import { formErrorStyles } from '#/utils/styles/formStyles'
+import { formErrorStyles } from '#/styles/formStyles'
 
 type ErrorTextProps = {
   message: string

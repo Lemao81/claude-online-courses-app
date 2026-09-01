@@ -4,7 +4,7 @@ import { ClientOnly, IconButton, Skeleton } from '@chakra-ui/react'
 import type { IconType } from 'react-icons'
 import { LuMonitor, LuMoon, LuSun } from 'react-icons/lu'
 import { useColorMode } from '#/hooks/useColorMode'
-import { roundChipButtonStyles } from '#/utils/styles/buttonStyles'
+import { roundChipButtonStyles } from '#/styles/buttonStyles'
 import type { ColorModePreference } from '#/utils/types'
 
 const modeIcons: Record<ColorModePreference, IconType> = {

@@ -8,8 +8,8 @@ import EditChapterForm, {
 } from '#/components/chapters/EditChapterForm'
 import VideoUpload from '#/components/videos/VideoUpload'
 import { updateChapter } from '#/server/functions/chapters.functions'
-import { subtleIconButtonStyles } from '#/utils/styles/buttonStyles'
-import { chapterPanelStyles, chapterSectionLabelStyles } from '#/utils/styles/chapterStyles'
+import { subtleIconButtonStyles } from '#/styles/buttonStyles'
+import { chapterPanelStyles, chapterSectionLabelStyles } from '#/styles/chapterStyles'
 import type { Chapter, ChapterLessonVideo } from '#/utils/types'
 
 type EditChapterProps = {

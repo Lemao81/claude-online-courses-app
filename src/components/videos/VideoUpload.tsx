@@ -13,7 +13,7 @@ import {
   toFileKey,
   uploadFile,
 } from '#/utils/helpers'
-import { primaryButtonStyles } from '#/utils/styles/buttonStyles'
+import { primaryButtonStyles } from '#/styles/buttonStyles'
 
 type VideoUploadProps = {
   courseId: number

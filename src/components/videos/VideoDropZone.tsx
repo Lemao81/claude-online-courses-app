@@ -1,13 +1,13 @@
 import { Box, Button, Flex, Text } from '@chakra-ui/react'
 import { type ChangeEvent, type DragEvent, useRef, useState } from 'react'
 import { LuCloudUpload, LuFolderOpen } from 'react-icons/lu'
-import { secondaryButtonStyles } from '#/utils/styles/buttonStyles'
-import { subtitleStyles, titleStyles } from '#/utils/styles/textStyles'
+import { secondaryButtonStyles } from '#/styles/buttonStyles'
+import { subtitleStyles, titleStyles } from '#/styles/textStyles'
 import {
   dropZoneActiveStyles,
   dropZoneIconStyles,
   dropZoneStyles,
-} from '#/utils/styles/videoUploadStyles'
+} from '#/styles/videoUploadStyles'
 
 type VideoDropZoneProps = {
   onFilesSelected: (files: File[]) => void

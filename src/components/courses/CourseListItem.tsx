@@ -3,9 +3,9 @@ import { Link as RouterLink } from '@tanstack/react-router'
 import { LuPencil } from 'react-icons/lu'
 import Tooltip from '#/components/ui/Tooltip'
 import { formatDate, formatDuration, formatPrice, formatRating } from '#/utils/formatters'
-import { chipIconButtonStyles } from '#/utils/styles/buttonStyles'
-import { courseItemStyles, courseStatusStyles } from '#/utils/styles/courseListStyles'
-import { metaStyles, subtitleStyles, titleStyles } from '#/utils/styles/textStyles'
+import { chipIconButtonStyles } from '#/styles/buttonStyles'
+import { courseItemStyles, courseStatusStyles } from '#/styles/courseListStyles'
+import { metaStyles, subtitleStyles, titleStyles } from '#/styles/textStyles'
 import type { Course } from '#/utils/types'
 
 type CourseListItemProps = {

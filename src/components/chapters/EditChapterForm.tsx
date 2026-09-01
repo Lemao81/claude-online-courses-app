@@ -7,7 +7,7 @@ import {
   fieldLabelStyles,
   fieldRequiredIndicatorStyles,
   textareaControlStyles,
-} from '#/utils/styles/formStyles'
+} from '#/styles/formStyles'
 import type { Chapter } from '#/utils/types'
 
 export type EditChapterFormValues = {

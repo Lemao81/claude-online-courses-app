@@ -1,9 +1,9 @@
 import { Box, Flex, Stack, Text } from '@chakra-ui/react'
 import { LuVideo } from 'react-icons/lu'
 import { formatDuration } from '#/utils/formatters'
-import { lessonIconStyles } from '#/utils/styles/chapterStyles'
-import { rowStyles } from '#/utils/styles/surfaceStyles'
-import { itemTitleStyles, metaStyles } from '#/utils/styles/textStyles'
+import { lessonIconStyles } from '#/styles/chapterStyles'
+import { rowStyles } from '#/styles/surfaceStyles'
+import { itemTitleStyles, metaStyles } from '#/styles/textStyles'
 import type { ChapterLessonVideo } from '#/utils/types'
 
 type CourseChapterLessonListItemProps = {
