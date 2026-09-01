@@ -1,7 +1,7 @@
 'use client'
 
 import { useTheme } from 'next-themes'
-import type { ColorModePreference } from '#/utils/types'
+import type { ColorModePreference } from '#/types'
 
 type UseColorModeReturn = {
   colorModePreference: ColorModePreference

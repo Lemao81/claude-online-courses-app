@@ -18,7 +18,7 @@ import {
   dialogContentStyles,
   dialogTitleStyles,
 } from '#/styles/formStyles'
-import type { Course } from '#/utils/types'
+import type { Course } from '#/types'
 
 export default function CreateCourseDialog() {
   const navigate = useNavigate()

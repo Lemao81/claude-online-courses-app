@@ -10,7 +10,7 @@ import VideoUpload from '#/components/videos/VideoUpload'
 import { updateChapter } from '#/server/functions/chapters.functions'
 import { subtleIconButtonStyles } from '#/styles/buttonStyles'
 import { chapterPanelStyles, chapterSectionLabelStyles } from '#/styles/chapterStyles'
-import type { Chapter, ChapterLessonVideo } from '#/utils/types'
+import type { Chapter, ChapterLessonVideo } from '#/types'
 
 type EditChapterProps = {
   chapter?: Chapter

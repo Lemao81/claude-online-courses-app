@@ -1,7 +1,7 @@
 import { Stack, Text } from '@chakra-ui/react'
 import CourseChapterLessonListItem from '#/components/chapters/CourseChapterLessonListItem'
 import { lessonEmptyStyles } from '#/styles/chapterStyles'
-import type { ChapterLessonVideo } from '#/utils/types'
+import type { ChapterLessonVideo } from '#/types'
 
 type CourseChapterLessonListProps = {
   lessons: ChapterLessonVideo[]

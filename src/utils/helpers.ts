@@ -1,5 +1,5 @@
 import { videoDurationProbeSeekSec, videoDurationProbeTimeoutMs } from '#/config/constants'
-import type { VideoMetadata } from '#/utils/types'
+import type { VideoMetadata } from '#/types'
 
 const videoExtensions = ['.mp4', '.m4v', '.mov', '.webm', '.mkv', '.avi', '.mpg', '.mpeg']
 

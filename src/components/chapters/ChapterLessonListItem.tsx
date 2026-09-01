@@ -11,7 +11,7 @@ import { subtleIconButtonStyles } from '#/styles/buttonStyles'
 import { lessonIconStyles } from '#/styles/chapterStyles'
 import { rowStyles } from '#/styles/surfaceStyles'
 import { metaStyles } from '#/styles/textStyles'
-import type { ChapterLessonVideo } from '#/utils/types'
+import type { ChapterLessonVideo } from '#/types'
 
 type ChapterLessonListItemProps = {
   lesson: ChapterLessonVideo

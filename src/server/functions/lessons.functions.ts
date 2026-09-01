@@ -8,7 +8,7 @@ import { assets, lessons } from '#/server/db/schema'
 import { requireUserId } from '#/server/functions/auth.server'
 import { validateInput } from '#/server/functions/validation.helpers'
 import { enqueueAssetDeletion } from '#/server/jobs/assets.jobs'
-import type { Lesson } from '#/utils/types'
+import type { Lesson } from '#/types'
 
 const updateLessonTitleSchema = z.object({
   id: z.number().int('Lesson id is required'),

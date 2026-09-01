@@ -1,6 +1,6 @@
 import type { SystemStyleObject } from '@chakra-ui/react'
 import { emptyStateStyles } from '#/styles/surfaceStyles'
-import type { CourseStatus } from '#/utils/types'
+import type { CourseStatus } from '#/types'
 
 const statusColors: Record<CourseStatus, SystemStyleObject> = {
   draft: {

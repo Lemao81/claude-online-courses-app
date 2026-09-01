@@ -6,7 +6,7 @@ import { db } from '#/server/db/client'
 import { chapters } from '#/server/db/schema'
 import { requireUserId } from '#/server/functions/auth.server'
 import { validateInput } from '#/server/functions/validation.helpers'
-import type { Chapter } from '#/utils/types'
+import type { Chapter } from '#/types'
 
 const updateChapterSchema = z.object({
   id: z.number().int('Chapter id is required'),

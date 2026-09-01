@@ -5,7 +5,7 @@ import type { IconType } from 'react-icons'
 import { LuMonitor, LuMoon, LuSun } from 'react-icons/lu'
 import { useColorMode } from '#/hooks/useColorMode'
 import { roundChipButtonStyles } from '#/styles/buttonStyles'
-import type { ColorModePreference } from '#/utils/types'
+import type { ColorModePreference } from '#/types'
 
 const modeIcons: Record<ColorModePreference, IconType> = {
   light: LuSun,

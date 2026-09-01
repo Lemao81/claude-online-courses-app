@@ -6,7 +6,7 @@ import { formatDuration } from '#/utils/formatters'
 import { chipIconButtonStyles } from '#/styles/buttonStyles'
 import { chapterPanelStyles, chapterSectionLabelStyles } from '#/styles/chapterStyles'
 import { metaStyles, subtitleStyles, titleStyles } from '#/styles/textStyles'
-import type { Chapter, ChapterLessonVideo } from '#/utils/types'
+import type { Chapter, ChapterLessonVideo } from '#/types'
 
 type CourseChapterProps = {
   chapter: Chapter

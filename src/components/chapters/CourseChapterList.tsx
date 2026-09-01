@@ -2,7 +2,7 @@ import { Stack } from '@chakra-ui/react'
 import { useState } from 'react'
 import CourseChapter from '#/components/chapters/CourseChapter'
 import EditChapter from '#/components/chapters/EditChapter'
-import type { ChapterWithLessons } from '#/utils/types'
+import type { ChapterWithLessons } from '#/types'
 
 type CourseChapterListProps = {
   chapters: ChapterWithLessons[]

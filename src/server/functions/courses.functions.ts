@@ -7,7 +7,7 @@ import { db } from '#/server/db/client'
 import { chapters, courses, lessons, users } from '#/server/db/schema'
 import { requireUserId } from '#/server/functions/auth.server'
 import { validateInput } from '#/server/functions/validation.helpers'
-import type { Course, CourseWithChapters } from '#/utils/types'
+import type { Course, CourseWithChapters } from '#/types'
 
 const courseIdSchema = z.number().int('Course id is required')
 

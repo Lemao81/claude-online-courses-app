@@ -6,7 +6,7 @@ import { formatDate, formatDuration, formatPrice, formatRating } from '#/utils/f
 import { chipIconButtonStyles } from '#/styles/buttonStyles'
 import { courseItemStyles, courseStatusStyles } from '#/styles/courseListStyles'
 import { metaStyles, subtitleStyles, titleStyles } from '#/styles/textStyles'
-import type { Course } from '#/utils/types'
+import type { Course } from '#/types'
 
 type CourseListItemProps = {
   course: Course

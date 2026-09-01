@@ -1,7 +1,7 @@
 import { Stack, Text } from '@chakra-ui/react'
 import CourseListItem from '#/components/courses/CourseListItem'
 import { courseEmptyStyles } from '#/styles/courseListStyles'
-import type { Course } from '#/utils/types'
+import type { Course } from '#/types'
 
 type CourseListProps = {
   courses: Course[]
