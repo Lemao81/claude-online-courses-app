@@ -46,10 +46,6 @@
   --shadow-rgb: 30 90 72;
   --shadow-deep-rgb: 23 58 64;
 
-  --hero-a: light-dark(rgba(79, 184, 178, 0.36), rgba(96, 215, 207, 0.18));
-  --hero-b: light-dark(rgba(47, 106, 74, 0.2), rgba(110, 200, 154, 0.12));
-  --hero-c: rgba(79, 184, 178, 0.1);
-  --body-wash-top: color-mix(in oklab, var(--base-muted) 68%, white);
   --sheen-a: rgba(255, 255, 255, 0.8);
   --sheen-b: rgba(79, 184, 178, 0.2);
   --sheen-c: rgba(47, 106, 74, 0.14);
@@ -82,12 +78,7 @@ body {
   margin: 0;
   color: var(--ink);
   font-family: var(--font-sans);
-  background-color: var(--base);
-  background:
-    radial-gradient(1100px 620px at -8% -10%, var(--hero-a), transparent 58%),
-    radial-gradient(1050px 620px at 112% -12%, var(--hero-b), transparent 62%),
-    radial-gradient(720px 380px at 50% 115%, var(--hero-c), transparent 68%),
-    linear-gradient(180deg, var(--body-wash-top) 0%, var(--base-subtle) 44%, var(--base) 100%);
+  background: var(--base);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
