@@ -28,7 +28,7 @@ export const editableInputStyles: SystemStyleObject = {
   rounded: 'field',
   borderWidth: '1px',
   borderColor: 'border',
-  bg: 'color-mix(in oklab, token(colors.bg.panel) 88%, white 12%)',
+  bg: 'bg.panel',
   px: '0.6rem',
   py: '0.35rem',
   fontSize: 'sm',

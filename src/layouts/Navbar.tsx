@@ -29,7 +29,7 @@ export default function Navbar() {
           boxShadow="chip"
         >
           <RouterLink to="/">
-            <Box as="span" boxSize="2" rounded="full" bgGradient="brand" />
+            <Box as="span" boxSize="2" rounded="full" bg="accent" />
             TanStack Start
           </RouterLink>
         </Link>

@@ -18,16 +18,12 @@
   --brand: light-dark(#4fb8b2, #60d7cf);
   --brand-strong: light-dark(#328f97, #8de5db);
   --brand-alt: light-dark(#2f6a4a, #6ec89a);
-  --brand-from: #56c6be;
-  --brand-to: #7ed3bf;
 
   --base: light-dark(#e7f3ec, #0a1418);
   --base-muted: light-dark(#e7f0e8, #0f1a1e);
-  --base-subtle: light-dark(#f3faf5, #101d22);
 
   --surface: light-dark(rgba(255, 255, 255, 0.74), rgba(16, 30, 34, 0.8));
   --surface-strong: light-dark(rgba(255, 255, 255, 0.9), rgba(15, 27, 31, 0.92));
-  --surface-solid: light-dark(#f9fcfa, #0f1c20);
   --surface-strong-solid: light-dark(#fdfefd, #0f1a1e);
   --line: light-dark(rgba(23, 58, 64, 0.14), rgba(141, 229, 219, 0.18));
   --glint: light-dark(rgba(255, 255, 255, 0.82), rgba(194, 247, 238, 0.14));
@@ -39,15 +35,13 @@
   --link-bg-hover: light-dark(rgba(255, 255, 255, 0.9), rgba(24, 44, 49, 0.8));
   --link-underline: rgba(50, 143, 151, 0.4);
   --link-hover: #246f76;
-  --selection-bg: color-mix(in oklab, var(--brand) 24%, transparent);
+  --selection-bg: var(--brand);
 
   --danger: light-dark(#9f3030, #f2a3a3);
 
   --shadow-rgb: 30 90 72;
   --shadow-deep-rgb: 23 58 64;
 
-  --card-wash: color-mix(in oklab, var(--surface-strong) 93%, white 7%);
-  --nav-underline: linear-gradient(90deg, var(--brand), var(--brand-to));
 }
 
 :root.light {
@@ -103,11 +97,11 @@ a:hover {
 
 .surface-panel {
   border: 1px solid var(--line);
-  background: linear-gradient(165deg, var(--surface-strong-solid), var(--surface-solid));
+  background: var(--surface-strong-solid);
 }
 
 .feature-card {
-  background: linear-gradient(165deg, var(--card-wash), var(--surface));
+  background: var(--surface-strong);
   box-shadow:
     0 1px 0 var(--glint) inset,
     0 18px 34px rgb(var(--shadow-rgb) / 0.1),
@@ -155,7 +149,7 @@ a {
   height: 2px;
   transform: scaleX(0);
   transform-origin: left;
-  background: var(--nav-underline);
+  background: var(--brand);
   transition: transform 170ms ease;
 }
 

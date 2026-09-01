@@ -7,7 +7,7 @@ export const dropZoneStyles: SystemStyleObject = {
   borderWidth: '2px',
   borderStyle: 'dashed',
   borderColor: 'border',
-  bg: 'color-mix(in oklab, token(colors.bg.subtle) 82%, transparent)',
+  bg: 'bg.subtle',
   px: '1.5rem',
   py: '2.25rem',
   transition: 'border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease',

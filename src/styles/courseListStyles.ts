@@ -5,7 +5,7 @@ import type { CourseStatus } from '#/types'
 const statusColors: Record<CourseStatus, SystemStyleObject> = {
   draft: {
     borderColor: 'border',
-    bg: 'color-mix(in oklab, token(colors.bg.panel) 80%, transparent)',
+    bg: 'bg.panel',
     color: 'fg.muted',
   },
   published: {
@@ -35,7 +35,7 @@ export const courseItemStyles: SystemStyleObject = {
   rounded: 'card',
   borderWidth: '1px',
   borderColor: 'border',
-  bgGradient: 'panel',
+  bg: 'bg.panel',
   px: '1rem',
   py: '0.9rem',
   transition: 'transform 0.15s ease, box-shadow 0.15s ease',

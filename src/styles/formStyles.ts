@@ -1,7 +1,7 @@
 import type { SystemStyleObject } from '@chakra-ui/react'
 
 export const dialogBackdropStyles: SystemStyleObject = {
-  bg: 'color-mix(in oklab, token(colors.bg) 72%, transparent)',
+  bg: 'bg',
   backdropFilter: 'blur(3px)',
 }
 
@@ -10,7 +10,7 @@ export const dialogContentStyles: SystemStyleObject = {
   borderWidth: '1px',
   borderColor: 'border',
   bgColor: 'bg',
-  bgGradient: 'panel',
+  bg: 'bg.panel',
   color: 'fg',
   boxShadow: 'card',
 }
@@ -45,7 +45,7 @@ export const fieldControlStyles: SystemStyleObject = {
   rounded: 'field',
   borderWidth: '1px',
   borderColor: 'border',
-  bg: 'color-mix(in oklab, token(colors.bg.panel) 88%, white 12%)',
+  bg: 'bg.panel',
   color: 'fg',
   px: '0.9rem',
   py: '0.7rem',

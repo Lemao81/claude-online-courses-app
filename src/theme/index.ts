@@ -11,7 +11,6 @@ export const themeConfig = defineConfig({
         brandAlt: { value: 'var(--brand-alt)' },
         base: { value: 'var(--base)' },
         baseMuted: { value: 'var(--base-muted)' },
-        baseSubtle: { value: 'var(--base-subtle)' },
         danger: { value: 'var(--danger)' },
         surface: { value: 'var(--surface)' },
         surfaceStrong: { value: 'var(--surface-strong)' },
@@ -30,7 +29,6 @@ export const themeConfig = defineConfig({
           muted: { value: '{colors.inkSoft}' },
           subtle: { value: '{colors.inkSoft}' },
           accent: { value: '{colors.brandStrong}' },
-          kicker: { value: 'var(--kicker)' },
           error: { value: '{colors.danger}' },
         },
         bg: {
@@ -46,8 +44,6 @@ export const themeConfig = defineConfig({
         },
         border: {
           DEFAULT: { value: '{colors.line}' },
-          muted: { value: '{colors.line}' },
-          subtle: { value: '{colors.line}' },
           chip: { value: 'var(--chip-line)' },
           error: { value: '{colors.danger}' },
         },
@@ -58,16 +54,8 @@ export const themeConfig = defineConfig({
         },
       },
       gradients: {
-        panel: { value: 'linear-gradient(165deg, {colors.bg.panel}, {colors.bg.subtle})' },
-        brand: { value: 'linear-gradient(90deg, var(--brand-from), var(--brand-to))' },
-        glow: {
-          value:
-            'radial-gradient(circle, color-mix(in oklab, {colors.accent} 32%, transparent), transparent 66%)',
-        },
-        glowMuted: {
-          value:
-            'radial-gradient(circle, color-mix(in oklab, {colors.accent.muted} 18%, transparent), transparent 66%)',
-        },
+        glow: { value: 'radial-gradient(circle, {colors.accent}, transparent 66%)' },
+        glowMuted: { value: 'radial-gradient(circle, {colors.accent.muted}, transparent 66%)' },
       },
       radii: {
         icon: { value: '0.6rem' },
@@ -84,8 +72,8 @@ export const themeConfig = defineConfig({
           value:
             '0 1px 0 {colors.glint} inset, 0 18px 34px rgb(var(--shadow-rgb) / 0.1), 0 4px 14px rgb(var(--shadow-deep-rgb) / 0.06)',
         },
-        focusRing: { value: '0 0 0 3px color-mix(in oklab, {colors.accent} 24%, transparent)' },
-        dropRing: { value: '0 0 0 4px color-mix(in oklab, {colors.accent} 18%, transparent)' },
+        focusRing: { value: '0 0 0 3px {colors.accent}' },
+        dropRing: { value: '0 0 0 4px {colors.accent}' },
       },
     },
   },
