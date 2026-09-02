@@ -35,7 +35,7 @@ export const fieldLabelStyles: SystemStyleObject = {
 }
 
 export const fieldRequiredIndicatorStyles: SystemStyleObject = {
-  color: 'fg.accent',
+  color: 'fg.emphasized',
 }
 
 export const fieldControlStyles: SystemStyleObject = {

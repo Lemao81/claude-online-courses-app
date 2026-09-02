@@ -6,7 +6,7 @@ export const chipButtonStyles: SystemStyleObject = {
   rounded: 'full',
   borderWidth: '1px',
   borderColor: 'border.chip',
-  bg: 'bg.chip',
+  bg: 'bg.subtle',
   px: '3',
   py: '1.5',
   fontSize: 'sm',
@@ -36,7 +36,7 @@ export const chipIconButtonStyles: SystemStyleObject = {
 
 export const subtleIconButtonStyles: SystemStyleObject = {
   color: 'fg.muted',
-  _hover: { bg: 'bg.hover', color: 'fg' },
+  _hover: { bg: 'bg.panel', color: 'fg' },
 }
 
 export const primaryButtonStyles: SystemStyleObject = {
@@ -63,10 +63,7 @@ export const primaryButtonStyles: SystemStyleObject = {
 export const secondaryButtonStyles: SystemStyleObject = {
   ...primaryButtonStyles,
   borderColor: 'border',
-  bg: 'bg.wash',
+  bg: 'bg.panel',
   color: 'fg.muted',
-  _hover: {
-    transform: 'translateY(-1px)',
-    bg: 'bg.washHover',
-  },
+  _hover: { transform: 'translateY(-1px)' },
 }

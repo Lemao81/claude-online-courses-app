@@ -37,7 +37,7 @@ export default function Footer() {
           p="2"
           color="fg.muted"
           transition="all 0.15s ease"
-          _hover={{ bg: 'bg.hover', color: 'fg' }}
+          _hover={{ bg: 'bg.panel', color: 'fg' }}
         >
           <VisuallyHidden>Follow TanStack on X</VisuallyHidden>
           <Icon viewBox="0 0 16 16" boxSize="8" aria-hidden="true">
@@ -55,7 +55,7 @@ export default function Footer() {
           p="2"
           color="fg.muted"
           transition="all 0.15s ease"
-          _hover={{ bg: 'bg.hover', color: 'fg' }}
+          _hover={{ bg: 'bg.panel', color: 'fg' }}
         >
           <VisuallyHidden>Go to TanStack GitHub</VisuallyHidden>
           <Icon viewBox="0 0 16 16" boxSize="8" aria-hidden="true">

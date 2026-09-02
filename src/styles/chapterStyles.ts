@@ -28,8 +28,8 @@ export const lessonIconStyles: SystemStyleObject = {
   rounded: 'icon',
   borderWidth: '1px',
   borderColor: 'border.chip',
-  bg: 'bg.chip',
-  color: 'fg.accent',
+  bg: 'bg.subtle',
+  color: 'fg.emphasized',
 }
 
 export const lessonEmptyStyles: SystemStyleObject = {

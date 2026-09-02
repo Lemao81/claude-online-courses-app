@@ -27,8 +27,8 @@ export const dropZoneIconStyles: SystemStyleObject = {
   rounded: 'full',
   borderWidth: '1px',
   borderColor: 'border.chip',
-  bg: 'bg.chip',
-  color: 'fg.accent',
+  bg: 'bg.subtle',
+  color: 'fg.emphasized',
 }
 
 export const fileNameStyles: SystemStyleObject = {

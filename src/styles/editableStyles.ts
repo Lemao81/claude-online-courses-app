@@ -19,7 +19,7 @@ export const editablePreviewStyles: SystemStyleObject = {
   color: 'fg',
   cursor: 'text',
   transition: 'background-color 180ms ease, border-color 180ms ease',
-  _hover: { bg: 'bg.hover' },
+  _hover: { bg: 'bg.panel' },
 }
 
 export const editableInputStyles: SystemStyleObject = {

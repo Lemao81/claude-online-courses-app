@@ -11,7 +11,7 @@ export default function Appbar() {
       zIndex="50"
       borderBottomWidth="1px"
       borderColor="border"
-      bg="bg.header"
+      bg="bg.subtle"
       px="4"
       backdropFilter="blur(16px)"
     >

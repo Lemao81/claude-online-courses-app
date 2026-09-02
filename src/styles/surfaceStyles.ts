@@ -4,7 +4,7 @@ export const rowStyles: SystemStyleObject = {
   rounded: 'control',
   borderWidth: '1px',
   borderColor: 'border',
-  bg: 'bg.wash',
+  bg: 'bg.panel',
   px: '0.9rem',
   py: '0.65rem',
 }

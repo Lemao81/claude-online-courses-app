@@ -28,7 +28,7 @@ export const themeConfig = defineConfig({
           DEFAULT: { value: '{colors.ink}' },
           muted: { value: '{colors.inkSoft}' },
           subtle: { value: '{colors.inkSoft}' },
-          accent: { value: '{colors.brandStrong}' },
+          emphasized: { value: '{colors.brandStrong}' },
           error: { value: '{colors.danger}' },
         },
         bg: {
@@ -36,11 +36,6 @@ export const themeConfig = defineConfig({
           subtle: { value: '{colors.surface}' },
           muted: { value: '{colors.baseMuted}' },
           panel: { value: '{colors.surfaceStrong}' },
-          header: { value: 'var(--header-bg)' },
-          chip: { value: 'var(--chip-bg)' },
-          hover: { value: 'var(--link-bg-hover)' },
-          wash: { value: 'color-mix(in oklab, {colors.surfaceStrong} 74%, transparent)' },
-          washHover: { value: 'color-mix(in oklab, {colors.surfaceStrong} 88%, transparent)' },
         },
         border: {
           DEFAULT: { value: '{colors.line}' },

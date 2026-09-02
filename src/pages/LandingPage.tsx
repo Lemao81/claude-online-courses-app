@@ -61,7 +61,7 @@ export default function LandingPage() {
             py="2.5"
             fontSize="sm"
             fontWeight="semibold"
-            color="fg.accent"
+            color="fg.emphasized"
             textDecoration="none"
             transition="all 0.15s ease"
             _hover={{
