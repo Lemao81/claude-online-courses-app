@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Link, SimpleGrid, Text } from '@chakra-ui/react'
+import { Box, Flex, Heading, Link, Text } from '@chakra-ui/react'
 
 export default function LandingPage() {
   return (
@@ -95,31 +95,6 @@ export default function LandingPage() {
           </Link>
         </Flex>
       </Box>
-
-      <SimpleGrid as="section" mt="8" gap="4" columns={{ base: 1, sm: 2, lg: 4 }}>
-        {[
-          ['Type-Safe Routing', 'Routes and links stay in sync across every page.'],
-          ['Server Functions', 'Call server code from your UI without creating API boilerplate.'],
-          ['Streaming by Default', 'Ship progressively rendered responses for faster experiences.'],
-          ['Tailwind Native', 'Design quickly with utility-first styling and reusable tokens.'],
-        ].map(([title, desc], index) => (
-          <Box
-            as="article"
-            key={title}
-            className="surface-panel feature-card rise-in"
-            rounded="card"
-            p="5"
-            animationDelay={`${index * 90 + 80}ms`}
-          >
-            <Heading as="h2" mb="2" fontSize="md" fontWeight="semibold" color="fg">
-              {title}
-            </Heading>
-            <Text m="0" fontSize="sm" color="fg.muted">
-              {desc}
-            </Text>
-          </Box>
-        ))}
-      </SimpleGrid>
     </Box>
   )
 }

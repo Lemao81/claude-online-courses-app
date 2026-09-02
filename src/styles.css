@@ -97,19 +97,6 @@ a:hover {
   background: var(--surface-strong-solid);
 }
 
-.feature-card {
-  background: var(--surface-strong);
-  box-shadow:
-    0 1px 0 var(--glint) inset,
-    0 18px 34px rgb(var(--shadow-rgb) / 0.1),
-    0 4px 14px rgb(var(--shadow-deep-rgb) / 0.06);
-}
-
-.feature-card:hover {
-  transform: translateY(-2px);
-  border-color: color-mix(in oklab, var(--brand-strong) 35%, var(--line));
-}
-
 button,
 .surface-panel,
 a {
