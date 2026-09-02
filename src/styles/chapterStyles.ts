@@ -27,7 +27,7 @@ export const lessonIconStyles: SystemStyleObject = {
   h: '2rem',
   rounded: 'icon',
   borderWidth: '1px',
-  borderColor: 'border.chip',
+  borderColor: 'border',
   bg: 'bg.subtle',
   color: 'fg.emphasized',
 }

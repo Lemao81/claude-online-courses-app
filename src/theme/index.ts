@@ -39,7 +39,6 @@ export const themeConfig = defineConfig({
         },
         border: {
           DEFAULT: { value: '{colors.line}' },
-          chip: { value: 'var(--chip-line)' },
           error: { value: '{colors.danger}' },
         },
         accent: {

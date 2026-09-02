@@ -5,7 +5,7 @@ export const chipButtonStyles: SystemStyleObject = {
   minH: '0',
   rounded: 'full',
   borderWidth: '1px',
-  borderColor: 'border.chip',
+  borderColor: 'border',
   bg: 'bg.subtle',
   px: '3',
   py: '1.5',

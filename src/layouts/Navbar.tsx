@@ -19,7 +19,7 @@ export default function Navbar() {
           gap="2"
           rounded="full"
           borderWidth="1px"
-          borderColor="border.chip"
+          borderColor="border"
           bg="bg.subtle"
           px={{ base: '3', sm: '4' }}
           py={{ base: '1.5', sm: '2' }}

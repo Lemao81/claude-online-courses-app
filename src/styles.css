@@ -29,7 +29,6 @@
   --glint: light-dark(rgba(255, 255, 255, 0.82), rgba(194, 247, 238, 0.14));
 
   --kicker: light-dark(rgba(47, 106, 74, 0.9), #b8efe5);
-  --chip-line: light-dark(rgba(47, 106, 74, 0.18), rgba(141, 229, 219, 0.24));
   --link-underline: rgba(50, 143, 151, 0.4);
   --link-hover: #246f76;
   --selection-bg: var(--brand);
