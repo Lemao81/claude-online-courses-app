@@ -14,7 +14,7 @@ export const dropZoneStyles: SystemStyleObject = {
 }
 
 export const dropZoneActiveStyles: SystemStyleObject = {
-  borderColor: 'color-mix(in oklab, token(colors.accent.emphasized) 62%, token(colors.border))',
+  borderColor: 'color-mix(in oklab, token(colors.fg.emphasized) 62%, token(colors.border))',
   bg: 'color-mix(in oklab, token(colors.accent) 14%, token(colors.bg.panel))',
   boxShadow: 'dropRing',
 }

@@ -8,7 +8,6 @@ export const themeConfig = defineConfig({
         inkSoft: { value: 'var(--ink-soft)' },
         brand: { value: 'var(--brand)' },
         brandStrong: { value: 'var(--brand-strong)' },
-        brandAlt: { value: 'var(--brand-alt)' },
         base: { value: 'var(--base)' },
         baseMuted: { value: 'var(--base-muted)' },
         danger: { value: 'var(--danger)' },
@@ -43,13 +42,11 @@ export const themeConfig = defineConfig({
         },
         accent: {
           DEFAULT: { value: '{colors.brand}' },
-          emphasized: { value: '{colors.brandStrong}' },
-          muted: { value: '{colors.brandAlt}' },
         },
       },
       gradients: {
         glow: { value: 'radial-gradient(circle, {colors.accent}, transparent 66%)' },
-        glowMuted: { value: 'radial-gradient(circle, {colors.accent.muted}, transparent 66%)' },
+        glowMuted: { value: 'radial-gradient(circle, {colors.fg.muted}, transparent 66%)' },
       },
       radii: {
         icon: { value: '0.6rem' },

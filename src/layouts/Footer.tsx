@@ -24,7 +24,7 @@ export default function Footer() {
         <Text m="0" fontSize="sm">
           &copy; {year} Your name here. All rights reserved.
         </Text>
-        <Text className="island-kicker" m="0">
+        <Text className="island-kicker" m="0" color="fg.emphasized">
           Built with TanStack Start
         </Text>
       </Flex>

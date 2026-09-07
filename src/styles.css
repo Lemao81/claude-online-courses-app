@@ -17,7 +17,6 @@
 
   --brand: light-dark(#4fb8b2, #60d7cf);
   --brand-strong: light-dark(#328f97, #8de5db);
-  --brand-alt: light-dark(#2f6a4a, #6ec89a);
 
   --base: light-dark(#e7f3ec, #0a1418);
   --base-muted: light-dark(#e7f0e8, #0f1a1e);
@@ -28,7 +27,6 @@
   --line: light-dark(rgba(23, 58, 64, 0.14), rgba(141, 229, 219, 0.18));
   --glint: light-dark(rgba(255, 255, 255, 0.82), rgba(194, 247, 238, 0.14));
 
-  --kicker: light-dark(rgba(47, 106, 74, 0.9), #b8efe5);
   --link-underline: rgba(50, 143, 151, 0.4);
   --link-hover: #246f76;
   --selection-bg: var(--brand);
@@ -108,7 +106,6 @@ a {
   text-transform: uppercase;
   font-weight: 700;
   font-size: 0.69rem;
-  color: var(--kicker);
 }
 
 .nav-link {

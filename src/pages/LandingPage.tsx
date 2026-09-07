@@ -30,7 +30,7 @@ export default function LandingPage() {
           rounded="full"
           bgGradient="glowMuted"
         />
-        <Text className="island-kicker" mb="3">
+        <Text className="island-kicker" mb="3" color="fg.emphasized">
           TanStack Start Base Template
         </Text>
         <Heading
@@ -55,7 +55,7 @@ export default function LandingPage() {
             href="/about"
             rounded="full"
             borderWidth="1px"
-            borderColor="accent.emphasized"
+            borderColor="fg.emphasized"
             bg="color-mix(in oklab, token(colors.accent) 14%, transparent)"
             px="5"
             py="2.5"

@@ -9,7 +9,7 @@ const statusColors: Record<CourseStatus, SystemStyleObject> = {
     color: 'fg.muted',
   },
   published: {
-    borderColor: 'color-mix(in oklab, token(colors.accent.emphasized) 40%, token(colors.border))',
+    borderColor: 'color-mix(in oklab, token(colors.fg.emphasized) 40%, token(colors.border))',
     bg: 'color-mix(in oklab, token(colors.accent) 20%, token(colors.bg.panel))',
     color: 'fg',
   },

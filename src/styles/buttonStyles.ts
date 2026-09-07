@@ -44,7 +44,7 @@ export const primaryButtonStyles: SystemStyleObject = {
   minH: '0',
   rounded: 'control',
   borderWidth: '1px',
-  borderColor: 'color-mix(in oklab, token(colors.accent.emphasized) 34%, token(colors.border))',
+  borderColor: 'color-mix(in oklab, token(colors.fg.emphasized) 34%, token(colors.border))',
   bg: 'color-mix(in oklab, token(colors.accent) 22%, token(colors.bg.panel))',
   px: '1rem',
   py: '0.72rem',
