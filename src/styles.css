@@ -28,7 +28,7 @@
   --glint: light-dark(rgba(255, 255, 255, 0.82), rgba(194, 247, 238, 0.14));
 
   --link-underline: rgba(50, 143, 151, 0.4);
-  --link-hover: #246f76;
+  --link-hover: light-dark(#246f76, #b4f0e8);
   --selection-bg: var(--brand);
 
   --danger: light-dark(#9f3030, #f2a3a3);
