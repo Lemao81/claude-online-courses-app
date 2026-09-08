@@ -12,6 +12,13 @@
       "sourceType": "github",
       "skillPath": "skills/chakra-ui-refactor/SKILL.md",
       "computedHash": "9c6bdd94e0c36455ac4a8623bd3e9e23e357ad8c066fbf3e458fe09ed02668d5"
+    },
+    "commit-messages": {
+      "source": "https://gitlab.com/gitlab-org/ai/skills.git",
+      "sourceUrl": "https://gitlab.com/gitlab-org/ai/skills.git",
+      "sourceType": "gitlab",
+      "skillPath": "skills/commit-messages/SKILL.md",
+      "computedHash": "da296322aafdcbf581a29b50d9bafe8eca2163d495126211f414dcd9085ed73f"
     }
   }
 }
