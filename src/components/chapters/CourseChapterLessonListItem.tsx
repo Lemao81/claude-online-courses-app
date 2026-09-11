@@ -3,7 +3,6 @@ import { LuVideo } from 'react-icons/lu'
 import { formatDuration } from '#/utils/formatters'
 import { lessonIconStyles } from '#/styles/chapterStyles'
 import { rowStyles } from '#/styles/surfaceStyles'
-import { itemTitleStyles, metaStyles } from '#/styles/textStyles'
 import type { ChapterLessonVideo } from '#/types'
 
 type CourseChapterLessonListItemProps = {
@@ -17,8 +16,8 @@ export default function CourseChapterLessonListItem({ lesson }: CourseChapterLes
         <LuVideo size={16} />
       </Box>
       <Stack gap="0.5" minW="0">
-        <Text css={itemTitleStyles}>{lesson.title}</Text>
-        <Text css={metaStyles}>{formatDuration(lesson.durationSec)}</Text>
+        <Text textStyle="itemTitle">{lesson.title}</Text>
+        <Text textStyle="meta">{formatDuration(lesson.durationSec)}</Text>
       </Stack>
     </Flex>
   )

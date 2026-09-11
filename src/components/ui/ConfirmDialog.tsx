@@ -12,7 +12,6 @@ import {
   dialogQuestionStyles,
   dialogTitleStyles,
 } from '#/styles/formStyles'
-import { subtitleStyles } from '#/styles/textStyles'
 
 type ConfirmDialogProps = {
   question: string
@@ -87,7 +86,7 @@ export default function ConfirmDialog({
             <Dialog.Body>
               <Stack gap="2">
                 <Dialog.Description css={dialogQuestionStyles}>{question}</Dialog.Description>
-                {description && <Text css={subtitleStyles}>{description}</Text>}
+                {description && <Text textStyle="subtitle">{description}</Text>}
                 <ErrorText message={confirmError} />
               </Stack>
             </Dialog.Body>

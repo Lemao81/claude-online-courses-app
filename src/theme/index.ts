@@ -67,6 +67,34 @@ export const themeConfig = defineConfig({
         dropRing: { value: '0 0 0 4px {colors.accent}' },
       },
     },
+    textStyles: {
+      title: {
+        value: {
+          fontSize: 'md',
+          fontWeight: 'bold',
+          color: 'fg',
+        },
+      },
+      itemTitle: {
+        value: {
+          fontSize: 'sm',
+          fontWeight: 'semibold',
+          color: 'fg',
+        },
+      },
+      subtitle: {
+        value: {
+          fontSize: 'sm',
+          color: 'fg.muted',
+        },
+      },
+      meta: {
+        value: {
+          fontSize: 'xs',
+          color: 'fg.muted',
+        },
+      },
+    },
   },
 })
 

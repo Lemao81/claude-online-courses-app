@@ -3,7 +3,6 @@ import { formatFileSize } from '#/utils/formatters'
 import { toFileKey } from '#/utils/helpers'
 import { subtleIconButtonStyles } from '#/styles/buttonStyles'
 import { rowStyles } from '#/styles/surfaceStyles'
-import { metaStyles } from '#/styles/textStyles'
 import { fileNameStyles } from '#/styles/videoUploadStyles'
 
 type VideoFileListProps = {
@@ -21,7 +20,7 @@ export default function VideoFileList({ files, onRemove }: VideoFileListProps) {
           <Flex key={key} align="center" justify="space-between" gap="3" css={rowStyles}>
             <Stack gap="0.5" minW="0">
               <Text css={fileNameStyles}>{file.name}</Text>
-              <Text css={metaStyles}>{formatFileSize(file.size)}</Text>
+              <Text textStyle="meta">{formatFileSize(file.size)}</Text>
             </Stack>
             <CloseButton
               size="sm"

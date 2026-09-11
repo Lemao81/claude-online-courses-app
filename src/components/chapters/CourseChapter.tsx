@@ -5,7 +5,6 @@ import Tooltip from '#/components/ui/Tooltip'
 import { formatDuration } from '#/utils/formatters'
 import { chipIconButtonStyles } from '#/styles/buttonStyles'
 import { chapterPanelStyles, chapterSectionLabelStyles } from '#/styles/chapterStyles'
-import { metaStyles, subtitleStyles, titleStyles } from '#/styles/textStyles'
 import type { Chapter, ChapterLessonVideo } from '#/types'
 
 type CourseChapterProps = {
@@ -25,11 +24,11 @@ export default function CourseChapter({ chapter, lessons = [], onEdit }: CourseC
     <Stack gap="5" css={chapterPanelStyles}>
       <Flex align="flex-start" justify="space-between" gap="4">
         <Stack gap="1" minW="0">
-          <Text css={titleStyles}>{chapter.title}</Text>
+          <Text textStyle="title">{chapter.title}</Text>
           {chapter.description.length > 0 && (
-            <Text css={subtitleStyles}>{chapter.description}</Text>
+            <Text textStyle="subtitle">{chapter.description}</Text>
           )}
-          <Text css={metaStyles}>{meta}</Text>
+          <Text textStyle="meta">{meta}</Text>
         </Stack>
         <Tooltip content="Edit" showArrow>
           <Button

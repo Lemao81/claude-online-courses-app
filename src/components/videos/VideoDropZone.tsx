@@ -2,7 +2,6 @@ import { Box, Button, Flex, Text } from '@chakra-ui/react'
 import { type ChangeEvent, type DragEvent, useRef, useState } from 'react'
 import { LuCloudUpload, LuFolderOpen } from 'react-icons/lu'
 import { secondaryButtonStyles } from '#/styles/buttonStyles'
-import { subtitleStyles, titleStyles } from '#/styles/textStyles'
 import {
   dropZoneActiveStyles,
   dropZoneIconStyles,
@@ -65,8 +64,8 @@ export default function VideoDropZone({ onFilesSelected }: VideoDropZoneProps) {
         <Box css={dropZoneIconStyles} aria-hidden="true">
           <LuCloudUpload size={22} />
         </Box>
-        <Text css={titleStyles}>Drop your videos here</Text>
-        <Text css={subtitleStyles}>MP4, MOV or WebM — or pick them from your device</Text>
+        <Text textStyle="title">Drop your videos here</Text>
+        <Text textStyle="subtitle">MP4, MOV or WebM — or pick them from your device</Text>
         <Button
           type="button"
           variant="plain"

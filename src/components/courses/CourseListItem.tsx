@@ -5,7 +5,6 @@ import Tooltip from '#/components/ui/Tooltip'
 import { formatDate, formatDuration, formatPrice, formatRating } from '#/utils/formatters'
 import { chipIconButtonStyles } from '#/styles/buttonStyles'
 import { courseItemStyles, courseStatusStyles } from '#/styles/courseListStyles'
-import { metaStyles, subtitleStyles, titleStyles } from '#/styles/textStyles'
 import type { Course } from '#/types'
 
 type CourseListItemProps = {
@@ -24,13 +23,13 @@ export default function CourseListItem({ course }: CourseListItemProps) {
     <Flex align="center" justify="space-between" gap="4" css={courseItemStyles}>
       <Stack gap="1" minW="0">
         <Flex align="center" gap="2">
-          <Text css={titleStyles}>{course.title}</Text>
+          <Text textStyle="title">{course.title}</Text>
           <Badge variant="plain" css={courseStatusStyles(course.status)}>
             {course.status}
           </Badge>
         </Flex>
-        <Text css={subtitleStyles}>{course.subtitle}</Text>
-        <Text css={metaStyles}>{meta}</Text>
+        <Text textStyle="subtitle">{course.subtitle}</Text>
+        <Text textStyle="meta">{meta}</Text>
       </Stack>
       <Tooltip content="Edit" showArrow>
         <Button asChild variant="plain" css={chipIconButtonStyles}>

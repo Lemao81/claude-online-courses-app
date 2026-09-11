@@ -10,7 +10,6 @@ import { formatDuration } from '#/utils/formatters'
 import { subtleIconButtonStyles } from '#/styles/buttonStyles'
 import { lessonIconStyles } from '#/styles/chapterStyles'
 import { rowStyles } from '#/styles/surfaceStyles'
-import { metaStyles } from '#/styles/textStyles'
 import type { ChapterLessonVideo } from '#/types'
 
 type ChapterLessonListItemProps = {
@@ -53,7 +52,7 @@ export default function ChapterLessonListItem({ lesson }: ChapterLessonListItemP
         </Box>
         <Stack gap="0.5" minW="0" flex="1">
           <EditableText value={lesson.title} onSubmit={handleTitleSubmit} />
-          <Text css={metaStyles} px="0.6rem">
+          <Text textStyle="meta" px="0.6rem">
             {formatDuration(lesson.durationSec)}
           </Text>
           <ErrorText message={titleError} css={{ px: '0.6rem' }} />
