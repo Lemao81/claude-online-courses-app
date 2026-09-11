@@ -9,6 +9,7 @@
     "dev": "vite dev --port 3000",
     "start": "pnpm docker:up && pnpm dev",
     "generate-routes": "tsr generate",
+    "chakra:typegen": "chakra typegen src/theme/index.ts --strict --tsconfig tsconfig.json",
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest run",
@@ -66,6 +67,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.5",
+    "@chakra-ui/cli": "3.36.1",
     "@tanstack/devtools-vite": "0.8.1",
     "@tanstack/router-cli": "1.167.17",
     "@testing-library/dom": "10.4.1",
