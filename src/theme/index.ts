@@ -13,6 +13,7 @@ export const themeConfig = defineConfig({
         danger: { value: 'var(--danger)' },
         surface: { value: 'var(--surface)' },
         surfaceStrong: { value: 'var(--surface-strong)' },
+        surfaceStrongSolid: { value: 'var(--surface-strong-solid)' },
         line: { value: 'var(--line)' },
         glint: { value: 'var(--glint)' },
       },
@@ -110,6 +111,52 @@ export const themeConfig = defineConfig({
           letterSpacing: '0.16em',
           textTransform: 'uppercase',
           color: 'fg.emphasized',
+        },
+      },
+      emptyState: {
+        value: {
+          fontSize: 'sm',
+          textAlign: 'center',
+          color: 'fg.muted',
+        },
+      },
+    },
+    layerStyles: {
+      row: {
+        value: {
+          borderRadius: 'control',
+          borderWidth: '1px',
+          borderColor: 'border',
+          bg: 'bg.panel',
+          paddingInline: '0.9rem',
+          paddingBlock: '0.65rem',
+        },
+      },
+      chapterPanel: {
+        value: {
+          borderRadius: 'panel',
+          borderWidth: '1px',
+          borderColor: 'border',
+          bg: 'bg.panel',
+          paddingInline: '1.25rem',
+          paddingBlock: '1.15rem',
+        },
+      },
+      emptyState: {
+        value: {
+          borderWidth: '1px',
+          borderStyle: 'dashed',
+          borderColor: 'border',
+          paddingInline: '1rem',
+        },
+      },
+      surfacePanel: {
+        value: {
+          borderWidth: '1px',
+          borderColor: 'border',
+          bg: 'surfaceStrongSolid',
+          transition:
+            'background-color 180ms ease, color 180ms ease, border-color 180ms ease, transform 180ms ease',
         },
       },
     },

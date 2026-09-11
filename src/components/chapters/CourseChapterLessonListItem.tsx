@@ -2,7 +2,6 @@ import { Box, Flex, Stack, Text } from '@chakra-ui/react'
 import { LuVideo } from 'react-icons/lu'
 import { formatDuration } from '#/utils/formatters'
 import { lessonIconStyles } from '#/styles/chapterStyles'
-import { rowStyles } from '#/styles/surfaceStyles'
 import type { ChapterLessonVideo } from '#/types'
 
 type CourseChapterLessonListItemProps = {
@@ -11,7 +10,7 @@ type CourseChapterLessonListItemProps = {
 
 export default function CourseChapterLessonListItem({ lesson }: CourseChapterLessonListItemProps) {
   return (
-    <Flex align="center" gap="3" css={rowStyles}>
+    <Flex align="center" gap="3" layerStyle="row">
       <Box css={lessonIconStyles} aria-hidden="true">
         <LuVideo size={16} />
       </Box>

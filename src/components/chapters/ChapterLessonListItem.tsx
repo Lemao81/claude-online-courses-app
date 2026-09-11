@@ -9,7 +9,6 @@ import { deleteLesson, updateLessonTitle } from '#/server/functions/lessons.func
 import { formatDuration } from '#/utils/formatters'
 import { subtleIconButtonStyles } from '#/styles/buttonStyles'
 import { lessonIconStyles } from '#/styles/chapterStyles'
-import { rowStyles } from '#/styles/surfaceStyles'
 import type { ChapterLessonVideo } from '#/types'
 
 type ChapterLessonListItemProps = {
@@ -45,7 +44,7 @@ export default function ChapterLessonListItem({ lesson }: ChapterLessonListItemP
   }
 
   return (
-    <Flex align="center" justify="space-between" gap="3" css={rowStyles}>
+    <Flex align="center" justify="space-between" gap="3" layerStyle="row">
       <Flex align="center" gap="3" minW="0" flex="1">
         <Box css={lessonIconStyles} aria-hidden="true">
           <LuVideo size={16} />

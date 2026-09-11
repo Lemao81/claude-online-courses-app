@@ -4,7 +4,6 @@ import CourseChapterLessonList from '#/components/chapters/CourseChapterLessonLi
 import Tooltip from '#/components/ui/Tooltip'
 import { formatDuration } from '#/utils/formatters'
 import { chipIconButtonStyles } from '#/styles/buttonStyles'
-import { chapterPanelStyles } from '#/styles/chapterStyles'
 import type { Chapter, ChapterLessonVideo } from '#/types'
 
 type CourseChapterProps = {
@@ -21,7 +20,7 @@ export default function CourseChapter({ chapter, lessons = [], onEdit }: CourseC
   ].join(' · ')
 
   return (
-    <Stack gap="5" css={chapterPanelStyles}>
+    <Stack gap="5" layerStyle="chapterPanel">
       <Flex align="flex-start" justify="space-between" gap="4">
         <Stack gap="1" minW="0">
           <Text textStyle="title">{chapter.title}</Text>

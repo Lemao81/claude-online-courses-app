@@ -1,5 +1,4 @@
 import type { SystemStyleObject } from '@chakra-ui/react'
-import { emptyStateStyles } from '#/styles/surfaceStyles'
 import type { CourseStatus } from '#/types'
 
 const statusColors: Record<CourseStatus, SystemStyleObject> = {
@@ -46,7 +45,8 @@ export const courseItemStyles: SystemStyleObject = {
 }
 
 export const courseEmptyStyles: SystemStyleObject = {
-  ...emptyStateStyles,
+  layerStyle: 'emptyState',
+  textStyle: 'emptyState',
   rounded: 'card',
   py: '2rem',
 }

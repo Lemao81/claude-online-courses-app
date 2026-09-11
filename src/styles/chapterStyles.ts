@@ -1,14 +1,4 @@
 import type { SystemStyleObject } from '@chakra-ui/react'
-import { emptyStateStyles } from '#/styles/surfaceStyles'
-
-export const chapterPanelStyles: SystemStyleObject = {
-  rounded: 'panel',
-  borderWidth: '1px',
-  borderColor: 'border',
-  bg: 'bg.panel',
-  px: '1.25rem',
-  py: '1.15rem',
-}
 
 export const lessonIconStyles: SystemStyleObject = {
   display: 'grid',
@@ -24,7 +14,8 @@ export const lessonIconStyles: SystemStyleObject = {
 }
 
 export const lessonEmptyStyles: SystemStyleObject = {
-  ...emptyStateStyles,
+  layerStyle: 'emptyState',
+  textStyle: 'emptyState',
   rounded: 'control',
   py: '1.25rem',
 }

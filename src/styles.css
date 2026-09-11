@@ -89,13 +89,7 @@ a:hover {
   font-family: var(--font-serif);
 }
 
-.surface-panel {
-  border: 1px solid var(--line);
-  background: var(--surface-strong-solid);
-}
-
 button,
-.surface-panel,
 a {
   transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease,
     transform 180ms ease;

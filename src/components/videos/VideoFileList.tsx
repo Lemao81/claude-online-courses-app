@@ -2,7 +2,6 @@ import { CloseButton, Flex, Stack, Text } from '@chakra-ui/react'
 import { formatFileSize } from '#/utils/formatters'
 import { toFileKey } from '#/utils/helpers'
 import { subtleIconButtonStyles } from '#/styles/buttonStyles'
-import { rowStyles } from '#/styles/surfaceStyles'
 import { fileNameStyles } from '#/styles/videoUploadStyles'
 
 type VideoFileListProps = {
@@ -17,7 +16,7 @@ export default function VideoFileList({ files, onRemove }: VideoFileListProps) {
         const key = toFileKey(file)
 
         return (
-          <Flex key={key} align="center" justify="space-between" gap="3" css={rowStyles}>
+          <Flex key={key} align="center" justify="space-between" gap="3" layerStyle="row">
             <Stack gap="0.5" minW="0">
               <Text css={fileNameStyles}>{file.name}</Text>
               <Text textStyle="meta">{formatFileSize(file.size)}</Text>

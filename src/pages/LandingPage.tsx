@@ -5,7 +5,8 @@ export default function LandingPage() {
     <Box px="4" pb="8" pt="14">
       <Box
         as="section"
-        className="surface-panel rise-in"
+        className="rise-in"
+        layerStyle="surfacePanel"
         position="relative"
         overflow="hidden"
         rounded="island"

@@ -9,7 +9,6 @@ import EditChapterForm, {
 import VideoUpload from '#/components/videos/VideoUpload'
 import { updateChapter } from '#/server/functions/chapters.functions'
 import { subtleIconButtonStyles } from '#/styles/buttonStyles'
-import { chapterPanelStyles } from '#/styles/chapterStyles'
 import type { Chapter, ChapterLessonVideo } from '#/types'
 
 type EditChapterProps = {
@@ -55,7 +54,7 @@ export default function EditChapter({ chapter, lessons = [], onClose }: EditChap
   }
 
   return (
-    <Stack gap="5" css={chapterPanelStyles}>
+    <Stack gap="5" layerStyle="chapterPanel">
       <Flex align="flex-start" gap="4">
         <Box flex="1" minW="0">
           <EditChapterForm
