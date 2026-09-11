@@ -30,7 +30,7 @@ export default function LandingPage() {
           rounded="full"
           bgGradient="glowMuted"
         />
-        <Text className="island-kicker" mb="3" color="fg.emphasized">
+        <Text textStyle="kicker" mb="3">
           TanStack Start Base Template
         </Text>
         <Heading

@@ -101,13 +101,6 @@ a {
     transform 180ms ease;
 }
 
-.island-kicker {
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  font-weight: 700;
-  font-size: 0.69rem;
-}
-
 .nav-link {
   position: relative;
   display: inline-flex;

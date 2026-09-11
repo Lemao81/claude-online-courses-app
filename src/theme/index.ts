@@ -94,6 +94,24 @@ export const themeConfig = defineConfig({
           color: 'fg.muted',
         },
       },
+      sectionLabel: {
+        value: {
+          fontSize: 'xs',
+          fontWeight: 'semibold',
+          letterSpacing: 'wider',
+          textTransform: 'uppercase',
+          color: 'fg.muted',
+        },
+      },
+      kicker: {
+        value: {
+          fontSize: '0.69rem',
+          fontWeight: 'bold',
+          letterSpacing: '0.16em',
+          textTransform: 'uppercase',
+          color: 'fg.emphasized',
+        },
+      },
     },
   },
 })

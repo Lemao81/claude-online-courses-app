@@ -10,15 +10,6 @@ export const chapterPanelStyles: SystemStyleObject = {
   py: '1.15rem',
 }
 
-export const chapterSectionLabelStyles: SystemStyleObject = {
-  m: '0',
-  fontSize: 'xs',
-  fontWeight: 'semibold',
-  letterSpacing: 'wider',
-  textTransform: 'uppercase',
-  color: 'fg.muted',
-}
-
 export const lessonIconStyles: SystemStyleObject = {
   display: 'grid',
   placeItems: 'center',
