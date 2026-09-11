@@ -160,6 +160,28 @@ export const themeConfig = defineConfig({
         },
       },
     },
+    keyframes: {
+      riseIn: {
+        from: {
+          opacity: '0',
+          transform: 'translateY(12px)',
+        },
+        to: {
+          opacity: '1',
+          transform: 'translateY(0)',
+        },
+      },
+    },
+    animationStyles: {
+      riseIn: {
+        value: {
+          animationName: 'riseIn',
+          animationDuration: '700ms',
+          animationTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
+          animationFillMode: 'both',
+        },
+      },
+    },
   },
 })
 
