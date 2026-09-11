@@ -12,3 +12,4 @@ dist-ssr
 __unconfig*
 .idea
 .vscode
+src/theme/eject

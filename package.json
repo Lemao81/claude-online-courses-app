@@ -9,7 +9,6 @@
     "dev": "vite dev --port 3000",
     "start": "pnpm docker:up && pnpm dev",
     "generate-routes": "tsr generate",
-    "chakra:typegen": "chakra typegen src/theme/index.ts --strict --tsconfig tsconfig.json",
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest run",
@@ -28,6 +27,8 @@
     "db:seed": "tsx --env-file=.env.local src/server/db/seed.ts",
     "db:pull": "drizzle-kit pull",
     "db:studio": "drizzle-kit studio",
+    "chakra:typegen": "chakra typegen src/theme/index.ts --strict --tsconfig tsconfig.json",
+    "chakra:eject": "chakra eject --outdir src/theme/eject",
     "worker": "tsx --env-file=.env.local src/server/worker.ts",
     "worker:dashboard": "cross-env PORT=3001 HOST=localhost node --env-file=.env.local node_modules/@pg-boss/dashboard/bin/cli.js"
   },
