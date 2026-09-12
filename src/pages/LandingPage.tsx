@@ -1,4 +1,5 @@
 import { Box, Flex, Heading, Link, Text } from '@chakra-ui/react'
+import { Link as RouterLink } from '@tanstack/react-router'
 
 export default function LandingPage() {
   return (
@@ -52,7 +53,7 @@ export default function LandingPage() {
         </Text>
         <Flex wrap="wrap" gap="3">
           <Link
-            href="/about"
+            asChild
             rounded="full"
             borderWidth="1px"
             borderColor="accent.fg"
@@ -69,7 +70,7 @@ export default function LandingPage() {
               bg: 'accent.muted',
             }}
           >
-            About This Starter
+            <RouterLink to="/about">About This Starter</RouterLink>
           </Link>
           <Link
             href="https://tanstack.com/router"
