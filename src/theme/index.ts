@@ -1,4 +1,5 @@
 import { createSystem, defaultConfig, defineConfig } from '@chakra-ui/react'
+import { recipes } from './recipes'
 
 export const themeConfig = defineConfig({
   globalCss: {
@@ -61,6 +62,7 @@ export const themeConfig = defineConfig({
         heading: { value: '"Literata Variable", "Literata", Georgia, serif' },
       },
     },
+    recipes,
     semanticTokens: {
       colors: {
         fg: {
@@ -183,6 +185,12 @@ export const themeConfig = defineConfig({
           fontSize: 'sm',
           textAlign: 'center',
           color: 'fg.muted',
+        },
+      },
+      control: {
+        value: {
+          fontSize: '0.9rem',
+          lineHeight: '1',
         },
       },
     },

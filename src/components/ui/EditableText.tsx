@@ -1,7 +1,6 @@
 import { Editable, IconButton } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { LuCheck, LuX } from 'react-icons/lu'
-import { subtleIconButtonStyles } from '#/styles/buttonStyles'
 import {
   editableControlStyles,
   editableInputStyles,
@@ -57,9 +56,8 @@ export default function EditableText({
         <Editable.SubmitTrigger asChild>
           <IconButton
             size="xs"
-            variant="plain"
+            variant="quiet"
             aria-label="Confirm change"
-            css={subtleIconButtonStyles}
           >
             <LuCheck />
           </IconButton>
@@ -67,9 +65,8 @@ export default function EditableText({
         <Editable.CancelTrigger asChild>
           <IconButton
             size="xs"
-            variant="plain"
+            variant="quiet"
             aria-label="Discard change"
-            css={subtleIconButtonStyles}
           >
             <LuX />
           </IconButton>

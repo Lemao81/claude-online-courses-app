@@ -1,7 +1,6 @@
 import { CloseButton, Flex, Stack, Text } from '@chakra-ui/react'
 import { formatFileSize } from '#/utils/formatters'
 import { toFileKey } from '#/utils/helpers'
-import { subtleIconButtonStyles } from '#/styles/buttonStyles'
 import { fileNameStyles } from '#/styles/videoUploadStyles'
 
 type VideoFileListProps = {
@@ -23,9 +22,8 @@ export default function VideoFileList({ files, onRemove }: VideoFileListProps) {
             </Stack>
             <CloseButton
               size="sm"
-              variant="plain"
+              variant="quiet"
               aria-label={`Remove ${file.name}`}
-              css={subtleIconButtonStyles}
               onClick={() => onRemove(key)}
             />
           </Flex>

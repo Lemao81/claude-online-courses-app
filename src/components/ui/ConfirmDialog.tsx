@@ -2,11 +2,6 @@ import { Button, CloseButton, Dialog, Portal, Stack, Text } from '@chakra-ui/rea
 import { type ReactNode, useState } from 'react'
 import ErrorText from '#/components/ui/ErrorText'
 import {
-  primaryButtonStyles,
-  secondaryButtonStyles,
-  subtleIconButtonStyles,
-} from '#/styles/buttonStyles'
-import {
   dialogBackdropStyles,
   dialogContentStyles,
   dialogQuestionStyles,
@@ -94,19 +89,17 @@ export default function ConfirmDialog({
               <Dialog.ActionTrigger asChild>
                 <Button
                   type="button"
-                  variant="plain"
+                  variant="secondary"
                   disabled={isConfirming}
-                  css={secondaryButtonStyles}
                 >
                   {cancelLabel}
                 </Button>
               </Dialog.ActionTrigger>
               <Button
                 type="button"
-                variant="plain"
+                variant="primary"
                 loading={isConfirming}
                 onClick={handleConfirm}
-                css={primaryButtonStyles}
               >
                 {confirmLabel}
               </Button>
@@ -114,9 +107,8 @@ export default function ConfirmDialog({
             <Dialog.CloseTrigger asChild>
               <CloseButton
                 size="sm"
-                variant="plain"
+                variant="quiet"
                 disabled={isConfirming}
-                css={subtleIconButtonStyles}
               />
             </Dialog.CloseTrigger>
           </Dialog.Content>

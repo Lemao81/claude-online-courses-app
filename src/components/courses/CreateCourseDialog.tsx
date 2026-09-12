@@ -8,12 +8,6 @@ import CreateCourseForm, {
 } from '#/components/courses/CreateCourseForm'
 import { createCourse } from '#/server/functions/courses.functions'
 import {
-  chipButtonStyles,
-  primaryButtonStyles,
-  secondaryButtonStyles,
-  subtleIconButtonStyles,
-} from '#/styles/buttonStyles'
-import {
   dialogBackdropStyles,
   dialogContentStyles,
   dialogTitleStyles,
@@ -56,7 +50,7 @@ export default function CreateCourseDialog() {
   return (
     <Dialog.Root open={open} onOpenChange={(d) => handleOpenChange(d.open)} placement="center">
       <Dialog.Trigger asChild>
-        <Button type="button" variant="plain" css={chipButtonStyles}>
+        <Button type="button" variant="chip">
           <LuPlus aria-hidden="true" />
           Create Course
         </Button>
@@ -73,7 +67,7 @@ export default function CreateCourseDialog() {
             </Dialog.Body>
             <Dialog.Footer>
               <Dialog.ActionTrigger asChild>
-                <Button type="button" variant="plain" css={secondaryButtonStyles}>
+                <Button type="button" variant="secondary">
                   Cancel
                 </Button>
               </Dialog.ActionTrigger>
@@ -88,9 +82,8 @@ export default function CreateCourseDialog() {
                   <Button
                     type="submit"
                     form={formId}
-                    variant="plain"
+                    variant="primary"
                     disabled={isTitleEmpty || isSubtitleEmpty || isSubmitting}
-                    css={primaryButtonStyles}
                   >
                     {isSubmitting ? 'Creating…' : 'OK'}
                   </Button>
@@ -98,7 +91,7 @@ export default function CreateCourseDialog() {
               </form.Subscribe>
             </Dialog.Footer>
             <Dialog.CloseTrigger asChild>
-              <CloseButton size="sm" variant="plain" css={subtleIconButtonStyles} />
+              <CloseButton size="sm" variant="quiet" />
             </Dialog.CloseTrigger>
           </Dialog.Content>
         </Dialog.Positioner>

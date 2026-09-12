@@ -1,6 +1,5 @@
 import { Button } from '@chakra-ui/react'
 import { Show, SignInButton, UserButton } from '@clerk/tanstack-react-start'
-import { chipButtonStyles } from '#/styles/buttonStyles'
 
 export default function AuthButtons() {
   return (
@@ -10,7 +9,7 @@ export default function AuthButtons() {
       </Show>
       <Show when="signed-out">
         <SignInButton mode="modal">
-          <Button type="button" variant="plain" css={chipButtonStyles}>
+          <Button type="button" variant="chip">
             Sign in
           </Button>
         </SignInButton>

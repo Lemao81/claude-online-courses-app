@@ -8,7 +8,6 @@ import EditChapterForm, {
 } from '#/components/chapters/EditChapterForm'
 import VideoUpload from '#/components/videos/VideoUpload'
 import { updateChapter } from '#/server/functions/chapters.functions'
-import { subtleIconButtonStyles } from '#/styles/buttonStyles'
 import type { Chapter, ChapterLessonVideo } from '#/types'
 
 type EditChapterProps = {
@@ -66,9 +65,8 @@ export default function EditChapter({ chapter, lessons = [], onClose }: EditChap
         </Box>
         <CloseButton
           size="sm"
-          variant="plain"
+          variant="quiet"
           aria-label="Close chapter editor"
-          css={subtleIconButtonStyles}
           onClick={onClose}
         />
       </Flex>

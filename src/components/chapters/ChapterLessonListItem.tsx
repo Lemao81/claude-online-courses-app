@@ -7,7 +7,6 @@ import EditableText from '#/components/ui/EditableText'
 import ErrorText from '#/components/ui/ErrorText'
 import { deleteLesson, updateLessonTitle } from '#/server/functions/lessons.functions'
 import { formatDuration } from '#/utils/formatters'
-import { subtleIconButtonStyles } from '#/styles/buttonStyles'
 import { lessonIconStyles } from '#/styles/chapterStyles'
 import type { ChapterLessonVideo } from '#/types'
 
@@ -59,9 +58,8 @@ export default function ChapterLessonListItem({ lesson }: ChapterLessonListItemP
       </Flex>
       <CloseButton
         size="sm"
-        variant="plain"
+        variant="quiet"
         aria-label={`Remove ${lesson.title}`}
-        css={subtleIconButtonStyles}
         onClick={handleRemove}
       />
       <ConfirmDialog

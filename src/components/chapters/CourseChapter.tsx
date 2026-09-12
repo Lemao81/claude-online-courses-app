@@ -3,7 +3,6 @@ import { LuPencil } from 'react-icons/lu'
 import CourseChapterLessonList from '#/components/chapters/CourseChapterLessonList'
 import Tooltip from '#/components/ui/Tooltip'
 import { formatDuration } from '#/utils/formatters'
-import { chipIconButtonStyles } from '#/styles/buttonStyles'
 import type { Chapter, ChapterLessonVideo } from '#/types'
 
 type CourseChapterProps = {
@@ -31,9 +30,8 @@ export default function CourseChapter({ chapter, lessons = [], onEdit }: CourseC
         </Stack>
         <Tooltip content="Edit" showArrow>
           <Button
-            variant="plain"
+            variant="chipIcon"
             aria-label="Edit chapter"
-            css={chipIconButtonStyles}
             onClick={onEdit}
           >
             <LuPencil aria-hidden="true" />

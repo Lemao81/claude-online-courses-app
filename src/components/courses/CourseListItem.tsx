@@ -3,7 +3,6 @@ import { Link as RouterLink } from '@tanstack/react-router'
 import { LuPencil } from 'react-icons/lu'
 import Tooltip from '#/components/ui/Tooltip'
 import { formatDate, formatDuration, formatPrice, formatRating } from '#/utils/formatters'
-import { chipIconButtonStyles } from '#/styles/buttonStyles'
 import { courseItemStyles, courseStatusStyles } from '#/styles/courseListStyles'
 import type { Course } from '#/types'
 
@@ -32,7 +31,7 @@ export default function CourseListItem({ course }: CourseListItemProps) {
         <Text textStyle="meta">{meta}</Text>
       </Stack>
       <Tooltip content="Edit" showArrow>
-        <Button asChild variant="plain" css={chipIconButtonStyles}>
+        <Button asChild variant="chipIcon">
           <RouterLink
             to="/editcourse/$courseId"
             params={{ courseId: String(course.id) }}

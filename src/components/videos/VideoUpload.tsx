@@ -13,7 +13,6 @@ import {
   toFileKey,
   uploadFile,
 } from '#/utils/helpers'
-import { primaryButtonStyles } from '#/styles/buttonStyles'
 
 type VideoUploadProps = {
   courseId: number
@@ -107,8 +106,7 @@ export default function VideoUpload({ courseId, chapterId }: VideoUploadProps) {
           <Flex justify="flex-end">
             <Button
               type="button"
-              variant="plain"
-              css={primaryButtonStyles}
+              variant="primary"
               loading={isUploading}
               onClick={handleUpload}
             >
