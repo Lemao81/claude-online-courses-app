@@ -36,7 +36,7 @@ pnpm db:studio        # open Drizzle Studio
 
 **Forms**: TanStack Form via `useForm` + `form.Field`, with Chakra UI field primitives styled by the `field` slot recipe and the `input`/`textarea` recipes.
 
-**Linting/Formatting**: Biome (not ESLint/Prettier). Config in `biome.json` — tabs for indentation, double quotes for JS/TS. `src/routeTree.gen.ts` and `src/styles.css` are excluded from Biome.
+**Linting/Formatting**: Biome (not ESLint/Prettier). Config in `biome.json` — two-space indentation, single quotes and no semicolons for JS/TS, 100-column lines, CRLF endings. `src/routeTree.gen.ts` and `src/styles.css` are excluded from Biome.
 
 **Path alias**: `#/*` maps to `src/*` (configured in `tsconfig.json` `paths`; Vite picks it up via `resolve.tsconfigPaths`).
 
