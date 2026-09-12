@@ -4,11 +4,6 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
-@theme {
-  --font-sans: "Plus Jakarta Sans Variable", "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Literata Variable", "Literata", Georgia, serif;
-}
-
 :root {
   color-scheme: light dark;
 
@@ -29,7 +24,6 @@
 
   --link-underline: rgba(50, 143, 151, 0.4);
   --link-hover: light-dark(#246f76, #b4f0e8);
-  --selection-bg: var(--brand);
 
   --danger: light-dark(#9f3030, #f2a3a3);
 
@@ -46,53 +40,9 @@
   color-scheme: dark;
 }
 
-* {
-  box-sizing: border-box;
-}
-
-html,
-body {
-  min-height: 100%;
-}
-
-body {
-  margin: 0;
-  color: var(--ink);
-  font-family: var(--font-sans);
-  background: var(--base);
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-::selection {
-  background-color: var(--selection-bg);
-}
-
-a {
-  color: var(--brand-strong);
-  text-decoration-color: var(--link-underline);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 2px;
-}
-
-a:hover {
-  color: var(--link-hover);
-}
-
 .layout-container {
   width: min(1440px, calc(100% - 2rem));
   margin-inline: auto;
-}
-
-.display-title {
-  font-family: var(--font-serif);
-}
-
-button,
-a {
-  transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease,
-    transform 180ms ease;
 }
 
 .nav-link {

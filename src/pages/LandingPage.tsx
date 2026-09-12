@@ -36,7 +36,6 @@ export default function LandingPage() {
         </Text>
         <Heading
           as="h1"
-          className="display-title"
           mb="5"
           maxW="3xl"
           fontSize={{ base: '4xl', sm: '6xl' }}

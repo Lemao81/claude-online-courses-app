@@ -9,7 +9,6 @@ export default function AboutPage() {
         </Text>
         <Heading
           as="h1"
-          className="display-title"
           mb="3"
           fontSize={{ base: '4xl', sm: '5xl' }}
           fontWeight="bold"

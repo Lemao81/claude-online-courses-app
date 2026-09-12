@@ -1,6 +1,27 @@
 import { createSystem, defaultConfig, defineConfig } from '@chakra-ui/react'
 
 export const themeConfig = defineConfig({
+  globalCss: {
+    body: {
+      overflowX: 'hidden',
+    },
+    '*::selection': {
+      bg: 'accent',
+    },
+    a: {
+      color: 'fg.emphasized',
+      textDecorationColor: 'var(--link-underline)',
+      textDecorationThickness: '1px',
+      textUnderlineOffset: '2px',
+      _hover: {
+        color: 'var(--link-hover)',
+      },
+    },
+    'button, a': {
+      transition:
+        'background-color 180ms ease, color 180ms ease, border-color 180ms ease, transform 180ms ease',
+    },
+  },
   theme: {
     tokens: {
       colors: {
@@ -18,8 +39,11 @@ export const themeConfig = defineConfig({
         glint: { value: 'var(--glint)' },
       },
       fonts: {
-        body: { value: 'var(--font-sans)' },
-        heading: { value: 'var(--font-serif)' },
+        body: {
+          value:
+            '"Plus Jakarta Sans Variable", "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif',
+        },
+        heading: { value: '"Literata Variable", "Literata", Georgia, serif' },
       },
     },
     semanticTokens: {
