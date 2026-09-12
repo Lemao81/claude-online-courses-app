@@ -1,17 +1,14 @@
-import { Box, Button, Flex, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Text, useRecipe } from '@chakra-ui/react'
 import { type ChangeEvent, type DragEvent, useRef, useState } from 'react'
 import { LuCloudUpload, LuFolderOpen } from 'react-icons/lu'
-import {
-  dropZoneActiveStyles,
-  dropZoneIconStyles,
-  dropZoneStyles,
-} from '#/styles/videoUploadStyles'
+import IconTile from '#/components/ui/IconTile'
 
 type VideoDropZoneProps = {
   onFilesSelected: (files: File[]) => void
 }
 
 export default function VideoDropZone({ onFilesSelected }: VideoDropZoneProps) {
+  const recipe = useRecipe({ key: 'dropZone' })
   const inputRef = useRef<HTMLInputElement>(null)
   const dragDepth = useRef(0)
   const [isDragActive, setIsDragActive] = useState(false)
@@ -53,16 +50,16 @@ export default function VideoDropZone({ onFilesSelected }: VideoDropZoneProps) {
 
   return (
     <Box
-      css={isDragActive ? { ...dropZoneStyles, ...dropZoneActiveStyles } : dropZoneStyles}
+      css={recipe({ active: isDragActive })}
       onDragEnter={handleDragEnter}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
     >
       <Flex direction="column" align="center" gap="3">
-        <Box css={dropZoneIconStyles} aria-hidden="true">
+        <IconTile size="lg">
           <LuCloudUpload size={22} />
-        </Box>
+        </IconTile>
         <Text textStyle="title">Drop your videos here</Text>
         <Text textStyle="subtitle">MP4, MOV or WebM — or pick them from your device</Text>
         <Button

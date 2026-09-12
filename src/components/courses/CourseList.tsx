@@ -1,6 +1,5 @@
 import { Stack, Text } from '@chakra-ui/react'
 import CourseListItem from '#/components/courses/CourseListItem'
-import { courseEmptyStyles } from '#/styles/courseListStyles'
 import type { Course } from '#/types'
 
 type CourseListProps = {
@@ -9,7 +8,7 @@ type CourseListProps = {
 
 export default function CourseList({ courses }: CourseListProps) {
   if (courses.length === 0) {
-    return <Text css={courseEmptyStyles}>You have not created any courses yet.</Text>
+    return <Text layerStyle="emptyStateCard" textStyle="emptyState">You have not created any courses yet.</Text>
   }
 
   return (

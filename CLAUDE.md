@@ -32,9 +32,9 @@ pnpm db:studio        # open Drizzle Studio
 
 **Auth**: Clerk (`@clerk/tanstack-react-start`). Provider is at `src/providers/AppClerkProvider.tsx`, rendered by `src/layouts/RootDocument.tsx`. Requires `VITE_CLERK_PUBLISHABLE_KEY` in `.env.local`. Use `<Show when="signed-in">` / `<Show when="signed-out">` for client-side guarding, or `requireSignedIn()` from `src/server/functions/auth.functions.ts` in a route's `beforeLoad`.
 
-**Styling**: Chakra UI v3. The design system lives in `src/theme/index.ts` (`createSystem` over `defaultConfig`) and covers global CSS, color tokens, semantic tokens, text styles, layer styles and animation styles; `src/styles.css` holds only the font imports and the few classes not yet migrated. Shared style objects in `src/styles/*.ts` are applied through the `css` prop. Theme (light/dark/auto) is toggled via `localStorage` and resolved by an inline script injected in `__root.tsx` to prevent flash.
+**Styling**: Chakra UI v3. The design system lives in `src/theme/` — `index.ts` holds global CSS, color tokens, semantic tokens, text styles, layer styles and animation styles, `recipes/` extends the built-in single-part recipes, and `slot-recipes/` the multi-part ones. Components style themselves with `variant`, `textStyle` and `layerStyle` props rather than `css` objects. `src/styles.css` holds only the font imports and the nav link classes. Theme (light/dark/auto) is toggled via `localStorage` and resolved by an inline script injected in `__root.tsx` to prevent flash.
 
-**Forms**: TanStack Form via `useForm` + `form.Field`, with Chakra UI field primitives styled from `src/styles/formStyles.ts`.
+**Forms**: TanStack Form via `useForm` + `form.Field`, with Chakra UI field primitives styled by the `field` slot recipe and the `input`/`textarea` recipes.
 
 **Linting/Formatting**: Biome (not ESLint/Prettier). Config in `biome.json` — tabs for indentation, double quotes for JS/TS. `src/routeTree.gen.ts` and `src/styles.css` are excluded from Biome.
 

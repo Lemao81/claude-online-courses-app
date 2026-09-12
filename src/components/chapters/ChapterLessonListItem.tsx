@@ -1,13 +1,13 @@
-import { Box, CloseButton, Flex, Stack, Text } from '@chakra-ui/react'
+import { CloseButton, Flex, Stack, Text } from '@chakra-ui/react'
 import { useRouter } from '@tanstack/react-router'
 import { useState } from 'react'
 import { LuVideo } from 'react-icons/lu'
 import ConfirmDialog from '#/components/ui/ConfirmDialog'
 import EditableText from '#/components/ui/EditableText'
+import IconTile from '#/components/ui/IconTile'
 import ErrorText from '#/components/ui/ErrorText'
 import { deleteLesson, updateLessonTitle } from '#/server/functions/lessons.functions'
 import { formatDuration } from '#/utils/formatters'
-import { lessonIconStyles } from '#/styles/chapterStyles'
 import type { ChapterLessonVideo } from '#/types'
 
 type ChapterLessonListItemProps = {
@@ -45,9 +45,9 @@ export default function ChapterLessonListItem({ lesson }: ChapterLessonListItemP
   return (
     <Flex align="center" justify="space-between" gap="3" layerStyle="row">
       <Flex align="center" gap="3" minW="0" flex="1">
-        <Box css={lessonIconStyles} aria-hidden="true">
+        <IconTile>
           <LuVideo size={16} />
-        </Box>
+        </IconTile>
         <Stack gap="0.5" minW="0" flex="1">
           <EditableText value={lesson.title} onSubmit={handleTitleSubmit} />
           <Text textStyle="meta" px="0.6rem">

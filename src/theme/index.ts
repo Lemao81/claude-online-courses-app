@@ -223,12 +223,39 @@ export const themeConfig = defineConfig({
           paddingBlock: '1.15rem',
         },
       },
-      emptyState: {
+      emptyStateRow: {
         value: {
+          borderRadius: 'control',
           borderWidth: '1px',
           borderStyle: 'dashed',
           borderColor: 'border',
           paddingInline: '1rem',
+          paddingBlock: '1.25rem',
+        },
+      },
+      emptyStateCard: {
+        value: {
+          borderRadius: 'card',
+          borderWidth: '1px',
+          borderStyle: 'dashed',
+          borderColor: 'border',
+          paddingInline: '1rem',
+          paddingBlock: '2rem',
+        },
+      },
+      card: {
+        value: {
+          borderRadius: 'card',
+          borderWidth: '1px',
+          borderColor: 'border',
+          bg: 'bg.panel',
+          paddingInline: '1rem',
+          paddingBlock: '0.9rem',
+          transition: 'transform 0.15s ease, box-shadow 0.15s ease',
+          _hover: {
+            transform: 'translateY(-2px)',
+            boxShadow: 'raised',
+          },
         },
       },
       surfacePanel: {

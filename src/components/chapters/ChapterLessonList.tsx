@@ -1,6 +1,5 @@
 import { Stack, Text } from '@chakra-ui/react'
 import ChapterLessonListItem from '#/components/chapters/ChapterLessonListItem'
-import { lessonEmptyStyles } from '#/styles/chapterStyles'
 import type { ChapterLessonVideo } from '#/types'
 
 type ChapterLessonListProps = {
@@ -9,7 +8,7 @@ type ChapterLessonListProps = {
 
 export default function ChapterLessonList({ lessons }: ChapterLessonListProps) {
   if (lessons.length === 0) {
-    return <Text css={lessonEmptyStyles}>No lesson videos uploaded yet.</Text>
+    return <Text layerStyle="emptyStateRow" textStyle="emptyState">No lesson videos uploaded yet.</Text>
   }
 
   return (

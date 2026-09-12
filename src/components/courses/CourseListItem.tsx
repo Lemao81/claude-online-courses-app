@@ -3,7 +3,6 @@ import { Link as RouterLink } from '@tanstack/react-router'
 import { LuPencil } from 'react-icons/lu'
 import Tooltip from '#/components/ui/Tooltip'
 import { formatDate, formatDuration, formatPrice, formatRating } from '#/utils/formatters'
-import { courseItemStyles, courseStatusStyles } from '#/styles/courseListStyles'
 import type { Course } from '#/types'
 
 type CourseListItemProps = {
@@ -19,11 +18,11 @@ export default function CourseListItem({ course }: CourseListItemProps) {
   ].join(' · ')
 
   return (
-    <Flex align="center" justify="space-between" gap="4" css={courseItemStyles}>
+    <Flex align="center" justify="space-between" gap="4" layerStyle="card">
       <Stack gap="1" minW="0">
         <Flex align="center" gap="2">
           <Text textStyle="title">{course.title}</Text>
-          <Badge variant="plain" css={courseStatusStyles(course.status)}>
+          <Badge variant={course.status}>
             {course.status}
           </Badge>
         </Flex>
