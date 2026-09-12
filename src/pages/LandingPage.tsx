@@ -55,18 +55,18 @@ export default function LandingPage() {
             href="/about"
             rounded="full"
             borderWidth="1px"
-            borderColor="fg.emphasized"
-            bg="color-mix(in oklab, token(colors.accent) 14%, transparent)"
+            borderColor="accent.fg"
+            bg="accent.subtle"
             px="5"
             py="2.5"
             fontSize="sm"
             fontWeight="semibold"
-            color="fg.emphasized"
+            color="accent.fg"
             textDecoration="none"
             transition="all 0.15s ease"
             _hover={{
               transform: 'translateY(-0.125rem)',
-              bg: 'color-mix(in oklab, token(colors.accent) 24%, transparent)',
+              bg: 'accent.muted',
             }}
           >
             About This Starter
@@ -77,7 +77,7 @@ export default function LandingPage() {
             rel="noopener noreferrer"
             rounded="full"
             borderWidth="1px"
-            borderColor="color-mix(in oklab, token(colors.fg) 20%, transparent)"
+            borderColor="border"
             bg="bg.panel"
             px="5"
             py="2.5"
@@ -88,7 +88,7 @@ export default function LandingPage() {
             transition="all 0.15s ease"
             _hover={{
               transform: 'translateY(-0.125rem)',
-              borderColor: 'color-mix(in oklab, token(colors.fg) 35%, transparent)',
+              borderColor: 'border.emphasized',
             }}
           >
             Router Guide

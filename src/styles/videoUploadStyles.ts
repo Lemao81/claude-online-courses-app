@@ -13,8 +13,8 @@ export const dropZoneStyles: SystemStyleObject = {
 }
 
 export const dropZoneActiveStyles: SystemStyleObject = {
-  borderColor: 'color-mix(in oklab, token(colors.fg.emphasized) 62%, token(colors.border))',
-  bg: 'color-mix(in oklab, token(colors.accent) 14%, token(colors.bg.panel))',
+  borderColor: 'border.focus',
+  bg: 'accent.subtle',
   boxShadow: 'dropRing',
 }
 
@@ -27,7 +27,7 @@ export const dropZoneIconStyles: SystemStyleObject = {
   borderWidth: '1px',
   borderColor: 'border',
   bg: 'bg.subtle',
-  color: 'fg.emphasized',
+  color: 'accent.fg',
 }
 
 export const fileNameStyles: SystemStyleObject = {

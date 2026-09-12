@@ -35,7 +35,7 @@ export const fieldLabelStyles: SystemStyleObject = {
 }
 
 export const fieldRequiredIndicatorStyles: SystemStyleObject = {
-  color: 'fg.emphasized',
+  color: 'accent.fg',
 }
 
 export const fieldControlStyles: SystemStyleObject = {
@@ -53,7 +53,7 @@ export const fieldControlStyles: SystemStyleObject = {
   transition: 'border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease',
   _placeholder: { color: 'fg.muted' },
   _focusVisible: {
-    borderColor: 'color-mix(in oklab, token(colors.fg.emphasized) 58%, token(colors.border))',
+    borderColor: 'border.focus',
     boxShadow: 'focusRing',
   },
 }

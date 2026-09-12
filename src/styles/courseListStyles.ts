@@ -8,13 +8,13 @@ const statusColors: Record<CourseStatus, SystemStyleObject> = {
     color: 'fg.muted',
   },
   published: {
-    borderColor: 'color-mix(in oklab, token(colors.fg.emphasized) 40%, token(colors.border))',
-    bg: 'color-mix(in oklab, token(colors.accent) 20%, token(colors.bg.panel))',
+    borderColor: 'border.accent',
+    bg: 'accent.muted',
     color: 'fg',
   },
   archived: {
-    borderColor: 'color-mix(in oklab, token(colors.danger) 28%, token(colors.border))',
-    bg: 'color-mix(in oklab, token(colors.danger) 10%, token(colors.bg.panel))',
+    borderColor: 'border.error',
+    bg: 'bg.error',
     color: 'fg.muted',
   },
 }

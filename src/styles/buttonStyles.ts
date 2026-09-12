@@ -44,8 +44,8 @@ export const primaryButtonStyles: SystemStyleObject = {
   minH: '0',
   rounded: 'control',
   borderWidth: '1px',
-  borderColor: 'color-mix(in oklab, token(colors.fg.emphasized) 34%, token(colors.border))',
-  bg: 'color-mix(in oklab, token(colors.accent) 22%, token(colors.bg.panel))',
+  borderColor: 'border.accent',
+  bg: 'accent.muted',
   px: '1rem',
   py: '0.72rem',
   fontSize: '0.9rem',
@@ -55,7 +55,7 @@ export const primaryButtonStyles: SystemStyleObject = {
   transition: 'all 0.15s ease',
   _hover: {
     transform: 'translateY(-1px)',
-    bg: 'color-mix(in oklab, token(colors.accent) 30%, token(colors.bg.panel))',
+    bg: 'accent.emphasized',
   },
   _disabled: { cursor: 'not-allowed', opacity: '0.55', transform: 'none' },
 }

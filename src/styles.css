@@ -2,42 +2,6 @@
 @import "@fontsource-variable/plus-jakarta-sans";
 @import "@fontsource-variable/literata";
 
-:root {
-  color-scheme: light dark;
-
-  --ink: light-dark(#173a40, #d7ece8);
-  --ink-soft: light-dark(#416166, #afcdc8);
-
-  --brand: light-dark(#4fb8b2, #60d7cf);
-  --brand-strong: light-dark(#328f97, #8de5db);
-
-  --base: light-dark(#e7f3ec, #0a1418);
-  --base-muted: light-dark(#e7f0e8, #0f1a1e);
-
-  --surface: light-dark(rgba(255, 255, 255, 0.74), rgba(16, 30, 34, 0.8));
-  --surface-strong: light-dark(rgba(255, 255, 255, 0.9), rgba(15, 27, 31, 0.92));
-  --surface-strong-solid: light-dark(#fdfefd, #0f1a1e);
-  --line: light-dark(rgba(23, 58, 64, 0.14), rgba(141, 229, 219, 0.18));
-  --glint: light-dark(rgba(255, 255, 255, 0.82), rgba(194, 247, 238, 0.14));
-
-  --link-underline: rgba(50, 143, 151, 0.4);
-  --link-hover: light-dark(#246f76, #b4f0e8);
-
-  --danger: light-dark(#9f3030, #f2a3a3);
-
-  --shadow-rgb: 30 90 72;
-  --shadow-deep-rgb: 23 58 64;
-
-}
-
-:root.light {
-  color-scheme: light;
-}
-
-:root.dark {
-  color-scheme: dark;
-}
-
 .layout-container {
   width: min(1440px, calc(100% - 2rem));
   margin-inline: auto;
@@ -48,7 +12,7 @@
   display: inline-flex;
   align-items: center;
   text-decoration: none;
-  color: var(--ink-soft);
+  color: var(--chakra-colors-fg-muted);
 }
 
 .nav-sublink {
@@ -64,13 +28,13 @@
   height: 2px;
   transform: scaleX(0);
   transform-origin: left;
-  background: var(--brand);
+  background: var(--chakra-colors-accent);
   transition: transform 170ms ease;
 }
 
 .nav-link:hover,
 .nav-link.is-active {
-  color: var(--ink);
+  color: var(--chakra-colors-fg);
 }
 
 .nav-link:hover::after,

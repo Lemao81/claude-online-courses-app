@@ -10,7 +10,7 @@ export const lessonIconStyles: SystemStyleObject = {
   borderWidth: '1px',
   borderColor: 'border',
   bg: 'bg.subtle',
-  color: 'fg.emphasized',
+  color: 'accent.fg',
 }
 
 export const lessonEmptyStyles: SystemStyleObject = {
