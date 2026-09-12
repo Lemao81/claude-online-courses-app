@@ -1,4 +1,4 @@
-import { Box, Flex, Heading } from '@chakra-ui/react'
+import { Box, Flex, Heading, Link } from '@chakra-ui/react'
 import { Link as RouterLink } from '@tanstack/react-router'
 
 export default function Sidebar() {
@@ -26,36 +26,20 @@ export default function Sidebar() {
         Menu
       </Heading>
       <Flex as="nav" direction="column" gap="1">
-        <RouterLink
-          to="/overview"
-          className="nav-link"
-          activeProps={{ className: 'nav-link is-active' }}
-        >
-          Overview
-        </RouterLink>
-        <RouterLink
-          to="/courses"
-          className="nav-link"
-          activeProps={{ className: 'nav-link is-active' }}
-        >
-          Courses
-        </RouterLink>
+        <Link asChild variant="nav">
+          <RouterLink to="/overview">Overview</RouterLink>
+        </Link>
+        <Link asChild variant="nav">
+          <RouterLink to="/courses">Courses</RouterLink>
+        </Link>
         <Flex direction="column" gap="1" pl="4">
-          <RouterLink
-            to="/mycourses"
-            className="nav-link nav-sublink"
-            activeProps={{ className: 'nav-link nav-sublink is-active' }}
-          >
-            My Courses
-          </RouterLink>
+          <Link asChild variant="nav" fontSize="sm">
+            <RouterLink to="/mycourses">My Courses</RouterLink>
+          </Link>
         </Flex>
-        <RouterLink
-          to="/about"
-          className="nav-link"
-          activeProps={{ className: 'nav-link is-active' }}
-        >
-          About
-        </RouterLink>
+        <Link asChild variant="nav">
+          <RouterLink to="/about">About</RouterLink>
+        </Link>
       </Flex>
     </Box>
   )

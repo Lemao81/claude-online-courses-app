@@ -46,16 +46,12 @@ export default function Navbar() {
         fontSize="sm"
         fontWeight="semibold"
       >
-        <RouterLink to="/" className="nav-link" activeProps={{ className: 'nav-link is-active' }}>
-          Home
-        </RouterLink>
-        <RouterLink
-          to="/about"
-          className="nav-link"
-          activeProps={{ className: 'nav-link is-active' }}
-        >
-          About
-        </RouterLink>
+        <Link asChild variant="nav">
+          <RouterLink to="/">Home</RouterLink>
+        </Link>
+        <Link asChild variant="nav">
+          <RouterLink to="/about">About</RouterLink>
+        </Link>
       </Flex>
     </Flex>
   )
