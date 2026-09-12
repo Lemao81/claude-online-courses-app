@@ -7,11 +7,6 @@ import CreateCourseForm, {
   useCreateCourseForm,
 } from '#/components/courses/CreateCourseForm'
 import { createCourse } from '#/server/functions/courses.functions'
-import {
-  dialogBackdropStyles,
-  dialogContentStyles,
-  dialogTitleStyles,
-} from '#/styles/formStyles'
 import type { Course } from '#/types'
 
 export default function CreateCourseDialog() {
@@ -56,11 +51,11 @@ export default function CreateCourseDialog() {
         </Button>
       </Dialog.Trigger>
       <Portal>
-        <Dialog.Backdrop css={dialogBackdropStyles} />
+        <Dialog.Backdrop />
         <Dialog.Positioner>
-          <Dialog.Content css={dialogContentStyles}>
+          <Dialog.Content>
             <Dialog.Header>
-              <Dialog.Title css={dialogTitleStyles}>Create Course</Dialog.Title>
+              <Dialog.Title>Create Course</Dialog.Title>
             </Dialog.Header>
             <Dialog.Body>
               <CreateCourseForm form={form} submitError={submitError} />

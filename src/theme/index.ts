@@ -1,5 +1,6 @@
 import { createSystem, defaultConfig, defineConfig } from '@chakra-ui/react'
 import { recipes } from './recipes'
+import { slotRecipes } from './slot-recipes'
 
 export const themeConfig = defineConfig({
   globalCss: {
@@ -63,6 +64,7 @@ export const themeConfig = defineConfig({
       },
     },
     recipes,
+    slotRecipes,
     semanticTokens: {
       colors: {
         fg: {
@@ -185,6 +187,12 @@ export const themeConfig = defineConfig({
           fontSize: 'sm',
           textAlign: 'center',
           color: 'fg.muted',
+        },
+      },
+      errorText: {
+        value: {
+          fontSize: 'sm',
+          color: 'fg.error',
         },
       },
       control: {

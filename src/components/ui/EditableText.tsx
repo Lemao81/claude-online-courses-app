@@ -1,12 +1,6 @@
 import { Editable, IconButton } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { LuCheck, LuX } from 'react-icons/lu'
-import {
-  editableControlStyles,
-  editableInputStyles,
-  editablePreviewStyles,
-  editableRootStyles,
-} from '#/styles/editableStyles'
 
 type EditableTextProps = {
   value: string
@@ -46,28 +40,19 @@ export default function EditableText({
       activationMode="click"
       placeholder={placeholder}
       disabled={disabled}
-      css={editableRootStyles}
       onValueChange={(d) => setDraft(d.value)}
       onValueCommit={handleValueCommit}
     >
-      <Editable.Preview css={editablePreviewStyles} />
-      <Editable.Input css={editableInputStyles} />
-      <Editable.Control css={editableControlStyles}>
+      <Editable.Preview />
+      <Editable.Input />
+      <Editable.Control>
         <Editable.SubmitTrigger asChild>
-          <IconButton
-            size="xs"
-            variant="quiet"
-            aria-label="Confirm change"
-          >
+          <IconButton size="xs" variant="quiet" aria-label="Confirm change">
             <LuCheck />
           </IconButton>
         </Editable.SubmitTrigger>
         <Editable.CancelTrigger asChild>
-          <IconButton
-            size="xs"
-            variant="quiet"
-            aria-label="Discard change"
-          >
+          <IconButton size="xs" variant="quiet" aria-label="Discard change">
             <LuX />
           </IconButton>
         </Editable.CancelTrigger>

@@ -1,12 +1,6 @@
 import { Field, Input, Stack, Textarea } from '@chakra-ui/react'
 import { useForm } from '@tanstack/react-form'
 import ErrorText from '#/components/ui/ErrorText'
-import {
-  fieldControlStyles,
-  fieldLabelStyles,
-  fieldRequiredIndicatorStyles,
-  textareaControlStyles,
-} from '#/styles/formStyles'
 
 const formId = 'create-course-form'
 
@@ -50,16 +44,15 @@ export default function CreateCourseForm({ form, submitError }: CreateCourseForm
         <form.Field name="title">
           {(field) => (
             <Field.Root required>
-              <Field.Label css={fieldLabelStyles}>
+              <Field.Label>
                 Title
-                <Field.RequiredIndicator css={fieldRequiredIndicatorStyles} />
+                <Field.RequiredIndicator />
               </Field.Label>
               <Input
                 name={field.name}
                 value={field.state.value}
                 onBlur={field.handleBlur}
                 onChange={(e) => field.handleChange(e.target.value)}
-                css={fieldControlStyles}
               />
             </Field.Root>
           )}
@@ -67,16 +60,15 @@ export default function CreateCourseForm({ form, submitError }: CreateCourseForm
         <form.Field name="subtitle">
           {(field) => (
             <Field.Root required>
-              <Field.Label css={fieldLabelStyles}>
+              <Field.Label>
                 Subtitle
-                <Field.RequiredIndicator css={fieldRequiredIndicatorStyles} />
+                <Field.RequiredIndicator />
               </Field.Label>
               <Input
                 name={field.name}
                 value={field.state.value}
                 onBlur={field.handleBlur}
                 onChange={(e) => field.handleChange(e.target.value)}
-                css={fieldControlStyles}
               />
             </Field.Root>
           )}
@@ -84,14 +76,13 @@ export default function CreateCourseForm({ form, submitError }: CreateCourseForm
         <form.Field name="description">
           {(field) => (
             <Field.Root>
-              <Field.Label css={fieldLabelStyles}>Description</Field.Label>
+              <Field.Label>Description</Field.Label>
               <Textarea
                 name={field.name}
                 rows={4}
                 value={field.state.value}
                 onBlur={field.handleBlur}
                 onChange={(e) => field.handleChange(e.target.value)}
-                css={textareaControlStyles}
               />
             </Field.Root>
           )}

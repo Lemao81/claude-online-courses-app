@@ -1,12 +1,6 @@
 import { Button, CloseButton, Dialog, Portal, Stack, Text } from '@chakra-ui/react'
 import { type ReactNode, useState } from 'react'
 import ErrorText from '#/components/ui/ErrorText'
-import {
-  dialogBackdropStyles,
-  dialogContentStyles,
-  dialogQuestionStyles,
-  dialogTitleStyles,
-} from '#/styles/formStyles'
 
 type ConfirmDialogProps = {
   question: string
@@ -72,15 +66,15 @@ export default function ConfirmDialog({
       onOpenChange={(d) => handleOpenChange(d.open)}
     >
       <Portal>
-        <Dialog.Backdrop css={dialogBackdropStyles} />
+        <Dialog.Backdrop />
         <Dialog.Positioner>
-          <Dialog.Content css={dialogContentStyles}>
+          <Dialog.Content>
             <Dialog.Header>
-              <Dialog.Title css={dialogTitleStyles}>{title}</Dialog.Title>
+              <Dialog.Title>{title}</Dialog.Title>
             </Dialog.Header>
             <Dialog.Body>
               <Stack gap="2">
-                <Dialog.Description css={dialogQuestionStyles}>{question}</Dialog.Description>
+                <Dialog.Description>{question}</Dialog.Description>
                 {description && <Text textStyle="subtitle">{description}</Text>}
                 <ErrorText message={confirmError} />
               </Stack>

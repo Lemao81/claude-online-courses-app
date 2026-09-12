@@ -1,5 +1,4 @@
 import { type SystemStyleObject, Text } from '@chakra-ui/react'
-import { formErrorStyles } from '#/styles/formStyles'
 
 type ErrorTextProps = {
   message: string
@@ -12,7 +11,7 @@ export default function ErrorText({ message, css }: ErrorTextProps) {
   }
 
   return (
-    <Text css={{ ...formErrorStyles, ...css }} role="alert">
+    <Text textStyle="errorText" css={css} role="alert">
       {message}
     </Text>
   )
