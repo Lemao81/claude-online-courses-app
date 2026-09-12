@@ -8,7 +8,11 @@ type ChapterLessonListProps = {
 
 export default function ChapterLessonList({ lessons }: ChapterLessonListProps) {
   if (lessons.length === 0) {
-    return <Text layerStyle="emptyStateRow" textStyle="emptyState">No lesson videos uploaded yet.</Text>
+    return (
+      <Text layerStyle="emptyStateRow" textStyle="emptyState">
+        No lesson videos uploaded yet.
+      </Text>
+    )
   }
 
   return (

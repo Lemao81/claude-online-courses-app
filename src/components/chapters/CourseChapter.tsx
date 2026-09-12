@@ -2,8 +2,8 @@ import { Button, Flex, Stack, Text } from '@chakra-ui/react'
 import { LuPencil } from 'react-icons/lu'
 import CourseChapterLessonList from '#/components/chapters/CourseChapterLessonList'
 import Tooltip from '#/components/ui/Tooltip'
-import { formatDuration } from '#/utils/formatters'
 import type { Chapter, ChapterLessonVideo } from '#/types'
+import { formatDuration } from '#/utils/formatters'
 
 type CourseChapterProps = {
   chapter: Chapter
@@ -29,11 +29,7 @@ export default function CourseChapter({ chapter, lessons = [], onEdit }: CourseC
           <Text textStyle="meta">{meta}</Text>
         </Stack>
         <Tooltip content="Edit" showArrow>
-          <Button
-            variant="chipIcon"
-            aria-label="Edit chapter"
-            onClick={onEdit}
-          >
+          <Button variant="chipIcon" aria-label="Edit chapter" onClick={onEdit}>
             <LuPencil aria-hidden="true" />
           </Button>
         </Tooltip>

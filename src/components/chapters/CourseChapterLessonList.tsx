@@ -8,7 +8,11 @@ type CourseChapterLessonListProps = {
 
 export default function CourseChapterLessonList({ lessons }: CourseChapterLessonListProps) {
   if (lessons.length === 0) {
-    return <Text layerStyle="emptyStateRow" textStyle="emptyState">No lessons in this chapter yet.</Text>
+    return (
+      <Text layerStyle="emptyStateRow" textStyle="emptyState">
+        No lessons in this chapter yet.
+      </Text>
+    )
   }
 
   return (

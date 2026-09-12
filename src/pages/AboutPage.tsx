@@ -7,13 +7,7 @@ export default function AboutPage() {
         <Text textStyle="kicker" mb="2">
           About
         </Text>
-        <Heading
-          as="h1"
-          mb="3"
-          fontSize={{ base: '4xl', sm: '5xl' }}
-          fontWeight="bold"
-          color="fg"
-        >
+        <Heading as="h1" mb="3" fontSize={{ base: '4xl', sm: '5xl' }} fontWeight="bold" color="fg">
           Learn at your own pace.
         </Heading>
         <Text m="0" maxW="3xl" fontSize="md" lineHeight="2rem" color="fg.muted">

@@ -8,7 +8,11 @@ type CourseListProps = {
 
 export default function CourseList({ courses }: CourseListProps) {
   if (courses.length === 0) {
-    return <Text layerStyle="emptyStateCard" textStyle="emptyState">You have not created any courses yet.</Text>
+    return (
+      <Text layerStyle="emptyStateCard" textStyle="emptyState">
+        You have not created any courses yet.
+      </Text>
+    )
   }
 
   return (

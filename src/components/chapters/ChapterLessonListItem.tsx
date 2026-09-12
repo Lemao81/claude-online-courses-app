@@ -4,11 +4,11 @@ import { useState } from 'react'
 import { LuVideo } from 'react-icons/lu'
 import ConfirmDialog from '#/components/ui/ConfirmDialog'
 import EditableText from '#/components/ui/EditableText'
-import IconTile from '#/components/ui/IconTile'
 import ErrorText from '#/components/ui/ErrorText'
+import IconTile from '#/components/ui/IconTile'
 import { deleteLesson, updateLessonTitle } from '#/server/functions/lessons.functions'
-import { formatDuration } from '#/utils/formatters'
 import type { ChapterLessonVideo } from '#/types'
+import { formatDuration } from '#/utils/formatters'
 
 type ChapterLessonListItemProps = {
   lesson: ChapterLessonVideo

@@ -15,8 +15,8 @@ import { requireUserId } from '#/server/functions/auth.server'
 import { validateInput } from '#/server/functions/validation.helpers'
 import { minioClient } from '#/server/minio/client'
 import { ensureBucket } from '#/server/minio/operations'
-import { toFileExtension } from '#/utils/helpers'
 import type { Lesson, VideoUploadTarget } from '#/types'
+import { toFileExtension } from '#/utils/helpers'
 
 const createVideoUploadUrlSchema = z.object({
   courseId: z.number().int('Course id is required'),

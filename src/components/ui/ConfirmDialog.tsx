@@ -81,11 +81,7 @@ export default function ConfirmDialog({
             </Dialog.Body>
             <Dialog.Footer>
               <Dialog.ActionTrigger asChild>
-                <Button
-                  type="button"
-                  variant="secondary"
-                  disabled={isConfirming}
-                >
+                <Button type="button" variant="secondary" disabled={isConfirming}>
                   {cancelLabel}
                 </Button>
               </Dialog.ActionTrigger>
@@ -99,11 +95,7 @@ export default function ConfirmDialog({
               </Button>
             </Dialog.Footer>
             <Dialog.CloseTrigger asChild>
-              <CloseButton
-                size="sm"
-                variant="quiet"
-                disabled={isConfirming}
-              />
+              <CloseButton size="sm" variant="quiet" disabled={isConfirming} />
             </Dialog.CloseTrigger>
           </Dialog.Content>
         </Dialog.Positioner>

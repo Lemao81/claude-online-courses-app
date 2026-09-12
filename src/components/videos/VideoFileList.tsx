@@ -16,7 +16,9 @@ export default function VideoFileList({ files, onRemove }: VideoFileListProps) {
         return (
           <Flex key={key} align="center" justify="space-between" gap="3" layerStyle="row">
             <Stack gap="0.5" minW="0">
-              <Text textStyle="itemTitle" wordBreak="break-all">{file.name}</Text>
+              <Text textStyle="itemTitle" wordBreak="break-all">
+                {file.name}
+              </Text>
               <Text textStyle="meta">{formatFileSize(file.size)}</Text>
             </Stack>
             <CloseButton

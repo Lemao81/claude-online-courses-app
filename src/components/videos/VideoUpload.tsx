@@ -104,12 +104,7 @@ export default function VideoUpload({ courseId, chapterId }: VideoUploadProps) {
           <VideoFileList files={files} onRemove={handleRemove} />
           <ErrorText message={uploadError} />
           <Flex justify="flex-end">
-            <Button
-              type="button"
-              variant="primary"
-              loading={isUploading}
-              onClick={handleUpload}
-            >
+            <Button type="button" variant="primary" loading={isUploading} onClick={handleUpload}>
               Upload
             </Button>
           </Flex>

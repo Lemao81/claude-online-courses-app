@@ -2,8 +2,8 @@ import { badgeRecipe } from './badge'
 import { buttonRecipe } from './button'
 import { dropZoneRecipe } from './dropZone'
 import { iconTileRecipe } from './iconTile'
-import { linkRecipe } from './link'
 import { inputRecipe } from './input'
+import { linkRecipe } from './link'
 import { textareaRecipe } from './textarea'
 
 export const recipes = {

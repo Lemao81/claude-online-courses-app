@@ -62,11 +62,7 @@ export default function VideoDropZone({ onFilesSelected }: VideoDropZoneProps) {
         </IconTile>
         <Text textStyle="title">Drop your videos here</Text>
         <Text textStyle="subtitle">MP4, MOV or WebM — or pick them from your device</Text>
-        <Button
-          type="button"
-          variant="secondary"
-          onClick={handleSelectClick}
-        >
+        <Button type="button" variant="secondary" onClick={handleSelectClick}>
           <LuFolderOpen aria-hidden="true" />
           Select Videos
         </Button>
