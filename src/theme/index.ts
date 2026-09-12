@@ -22,7 +22,7 @@ export const themeConfig = defineConfig({
     },
     a: {
       color: 'accent.fg',
-      textDecorationColor: 'brand.600/40',
+      textDecorationColor: 'accent.fg/40',
       textDecorationThickness: '1px',
       textUnderlineOffset: '2px',
       _hover: {
