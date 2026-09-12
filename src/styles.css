@@ -1,8 +1,3 @@
 
 @import "@fontsource-variable/plus-jakarta-sans";
 @import "@fontsource-variable/literata";
-
-.layout-container {
-  width: min(1440px, calc(100% - 2rem));
-  margin-inline: auto;
-}

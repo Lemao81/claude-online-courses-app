@@ -243,6 +243,12 @@ export const themeConfig = defineConfig({
           paddingBlock: '2rem',
         },
       },
+      container: {
+        value: {
+          width: 'min(1440px, calc(100% - 2rem))',
+          marginInline: 'auto',
+        },
+      },
       card: {
         value: {
           borderRadius: 'card',
