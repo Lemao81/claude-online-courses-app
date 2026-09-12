@@ -3,6 +3,7 @@ import { createSystem, defaultConfig, defineConfig } from '@chakra-ui/react'
 export const themeConfig = defineConfig({
   globalCss: {
     body: {
+      overflowWrap: 'anywhere',
       overflowX: 'hidden',
     },
     '*::selection': {
