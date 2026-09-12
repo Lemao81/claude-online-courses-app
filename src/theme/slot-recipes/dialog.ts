@@ -19,6 +19,7 @@ export const dialogSlotRecipe = defineSlotRecipe({
       backdropFilter: 'blur(3px)',
     },
     content: {
+      w: 'calc(100% - 2rem)',
       rounded: 'panel',
       borderWidth: '1px',
       borderColor: 'border',

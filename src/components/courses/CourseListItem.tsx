@@ -18,13 +18,16 @@ export default function CourseListItem({ course }: CourseListItemProps) {
   ].join(' · ')
 
   return (
-    <Flex align="center" justify="space-between" gap="4" layerStyle="card">
+    <Flex
+      align={{ base: 'flex-start', sm: 'center' }}
+      justify="space-between"
+      gap="4"
+      layerStyle="card"
+    >
       <Stack gap="1" minW="0">
-        <Flex align="center" gap="2">
+        <Flex align="center" gap="2" minW="0">
           <Text textStyle="title">{course.title}</Text>
-          <Badge variant={course.status}>
-            {course.status}
-          </Badge>
+          <Badge variant={course.status}>{course.status}</Badge>
         </Flex>
         <Text textStyle="subtitle">{course.subtitle}</Text>
         <Text textStyle="meta">{meta}</Text>
