@@ -87,12 +87,6 @@ export const themeConfig = defineConfig({
         },
         border: {
           DEFAULT: { value: { _light: 'rgb(23 58 64 / 0.14)', _dark: 'rgb(141 229 219 / 0.18)' } },
-          emphasized: {
-            value: {
-              _light: 'color-mix(in oklab, {colors.fg} 35%, transparent)',
-              _dark: 'color-mix(in oklab, {colors.fg} 35%, transparent)',
-            },
-          },
           accent: { value: 'color-mix(in oklab, {colors.accent.fg} 34%, {colors.border})' },
           focus: { value: 'color-mix(in oklab, {colors.accent.fg} 60%, {colors.border})' },
           error: {
@@ -114,17 +108,12 @@ export const themeConfig = defineConfig({
         },
         glint: { value: { _light: 'rgb(255 255 255 / 0.82)', _dark: 'rgb(194 247 238 / 0.14)' } },
       },
-      gradients: {
-        glow: { value: 'radial-gradient(circle, {colors.accent}, transparent 66%)' },
-        glowMuted: { value: 'radial-gradient(circle, {colors.fg.muted}, transparent 66%)' },
-      },
       radii: {
         icon: { value: '0.6rem' },
         field: { value: '{radii.xl}' },
         control: { value: '0.85rem' },
         card: { value: '{radii.2xl}' },
         panel: { value: '1.25rem' },
-        island: { value: '2rem' },
       },
       shadows: {
         chip: { value: '0 8px 22px {colors.shadowTint/8}' },
@@ -271,28 +260,6 @@ export const themeConfig = defineConfig({
           bg: 'bg.surface',
           transition:
             'background-color 180ms ease, color 180ms ease, border-color 180ms ease, transform 180ms ease',
-        },
-      },
-    },
-    keyframes: {
-      riseIn: {
-        from: {
-          opacity: '0',
-          transform: 'translateY(12px)',
-        },
-        to: {
-          opacity: '1',
-          transform: 'translateY(0)',
-        },
-      },
-    },
-    animationStyles: {
-      riseIn: {
-        value: {
-          animationName: 'riseIn',
-          animationDuration: '700ms',
-          animationTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
-          animationFillMode: 'both',
         },
       },
     },
