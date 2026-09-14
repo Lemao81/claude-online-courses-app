@@ -14,20 +14,9 @@ export default function Footer() {
       pt="10"
       color="fg.muted"
     >
-      <Flex
-        direction={{ base: 'column', sm: 'row' }}
-        align="center"
-        justify="space-between"
-        gap="4"
-        textAlign={{ base: 'center', sm: 'left' }}
-      >
-        <Text m="0" fontSize="sm">
-          &copy; {year} Your name here. All rights reserved.
-        </Text>
-        <Text textStyle="kicker" m="0">
-          Built with TanStack Start
-        </Text>
-      </Flex>
+      <Text m="0" fontSize="sm" textAlign={{ base: 'center', sm: 'left' }}>
+        &copy; {year} Online Courses. All rights reserved.
+      </Text>
       <Flex mt="4" justify="center" gap="4">
         <Link
           href="https://x.com/tan_stack"
