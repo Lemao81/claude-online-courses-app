@@ -38,6 +38,7 @@ export const themeConfig = defineConfig({
     tokens: {
       colors: {
         brand: {
+          50: { value: '#eef8f6' },
           100: { value: '#d7ece8' },
           200: { value: '#b4f0e8' },
           300: { value: '#8de5db' },
@@ -50,8 +51,17 @@ export const themeConfig = defineConfig({
           950: { value: '#0a1418' },
         },
         danger: {
+          50: { value: '#fdf3f3' },
+          100: { value: '#fbe4e4' },
+          200: { value: '#f7c7c7' },
           300: { value: '#f2a3a3' },
+          400: { value: '#e87878' },
+          500: { value: '#d85353' },
+          600: { value: '#bd3d3d' },
           700: { value: '#9f3030' },
+          800: { value: '#7a2727' },
+          900: { value: '#4d1a1a' },
+          950: { value: '#2e0f0f' },
         },
         shadowTint: { value: '#1e5a48' },
       },
@@ -78,23 +88,13 @@ export const themeConfig = defineConfig({
           muted: { value: { _light: '#e7f0e8', _dark: '{colors.brand.900}' } },
           panel: { value: { _light: 'rgb(255 255 255 / 0.9)', _dark: 'rgb(15 27 31 / 0.92)' } },
           surface: { value: { _light: '#fdfefd', _dark: '{colors.brand.900}' } },
-          error: {
-            value: {
-              _light: 'color-mix(in oklab, {colors.fg.error} 10%, {colors.bg.panel})',
-              _dark: 'color-mix(in oklab, {colors.fg.error} 10%, {colors.bg.panel})',
-            },
-          },
+          error: { value: { _light: '{colors.danger.50}', _dark: '{colors.danger.950}' } },
         },
         border: {
           DEFAULT: { value: { _light: 'rgb(23 58 64 / 0.14)', _dark: 'rgb(141 229 219 / 0.18)' } },
           accent: { value: 'color-mix(in oklab, {colors.accent.fg} 34%, {colors.border})' },
           focus: { value: 'color-mix(in oklab, {colors.accent.fg} 60%, {colors.border})' },
-          error: {
-            value: {
-              _light: 'color-mix(in oklab, {colors.fg.error} 28%, {colors.border})',
-              _dark: 'color-mix(in oklab, {colors.fg.error} 28%, {colors.border})',
-            },
-          },
+          error: { value: { _light: '{colors.danger.200}', _dark: '{colors.danger.700}' } },
         },
         accent: {
           DEFAULT: { value: { _light: '{colors.brand.500}', _dark: '{colors.brand.400}' } },
