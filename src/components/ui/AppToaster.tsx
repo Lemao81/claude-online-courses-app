@@ -22,7 +22,7 @@ export default function AppToaster() {
         {(toast) => (
           <Toast.Root width={{ md: 'sm' }}>
             {toast.type === 'loading' ? (
-              <Spinner size="sm" color="blue.solid" />
+              <Spinner size="sm" color="accent" />
             ) : (
               <Toast.Indicator />
             )}
