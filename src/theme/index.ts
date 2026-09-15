@@ -50,6 +50,19 @@ export const themeConfig = defineConfig({
           900: { value: '#0b1b21' },
           950: { value: '#09141a' },
         },
+        secondary: {
+          50: { value: '#f3f4ff' },
+          100: { value: '#e6e8fe' },
+          200: { value: '#cdd0fc' },
+          300: { value: '#b0b3fa' },
+          400: { value: '#8b8bef' },
+          500: { value: '#6a64d8' },
+          600: { value: '#5850bd' },
+          700: { value: '#49429f' },
+          800: { value: '#38347a' },
+          900: { value: '#24224f' },
+          950: { value: '#13122e' },
+        },
         danger: {
           50: { value: '#fdf3f3' },
           100: { value: '#fbe4e4' },
@@ -116,6 +129,18 @@ export const themeConfig = defineConfig({
           solid: { value: { _light: '{colors.brand.500}', _dark: '{colors.brand.400}' } },
           focusRing: { value: { _light: '{colors.brand.500}', _dark: '{colors.brand.400}' } },
           border: { value: { _light: '{colors.brand.500}', _dark: '{colors.brand.400}' } },
+        },
+        secondary: {
+          contrast: { value: 'white' },
+          fg: { value: { _light: '{colors.secondary.700}', _dark: '{colors.secondary.300}' } },
+          subtle: { value: { _light: '{colors.secondary.100}', _dark: '{colors.secondary.900}' } },
+          muted: { value: { _light: '{colors.secondary.200}', _dark: '{colors.secondary.800}' } },
+          emphasized: {
+            value: { _light: '{colors.secondary.300}', _dark: '{colors.secondary.700}' },
+          },
+          solid: { value: '{colors.secondary.500}' },
+          focusRing: { value: '{colors.secondary.500}' },
+          border: { value: { _light: '{colors.secondary.500}', _dark: '{colors.secondary.400}' } },
         },
         danger: {
           contrast: { value: 'white' },
