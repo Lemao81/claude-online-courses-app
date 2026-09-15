@@ -76,7 +76,6 @@ export const themeConfig = defineConfig({
           900: { value: '#4f1b1d' },
           950: { value: '#2f0f10' },
         },
-        shadowTint: { value: '#1e5a48' },
       },
       fonts: {
         body: {
@@ -97,14 +96,14 @@ export const themeConfig = defineConfig({
         },
         bg: {
           DEFAULT: { value: { _light: '{colors.brand.50}', _dark: '{colors.brand.950}' } },
-          subtle: { value: { _light: 'rgb(255 255 255 / 0.74)', _dark: 'rgb(16 30 34 / 0.8)' } },
+          subtle: { value: { _light: '{colors.white/74}', _dark: '{colors.brand.900/80}' } },
           muted: { value: { _light: '{colors.brand.100}', _dark: '{colors.brand.900}' } },
-          panel: { value: { _light: 'rgb(255 255 255 / 0.9)', _dark: 'rgb(15 27 31 / 0.92)' } },
+          panel: { value: { _light: '{colors.white/90}', _dark: '{colors.brand.900/92}' } },
           surface: { value: { _light: '{colors.brand.50}', _dark: '{colors.brand.900}' } },
           error: { value: { _light: '{colors.danger.50}', _dark: '{colors.danger.950}' } },
         },
         border: {
-          DEFAULT: { value: { _light: 'rgb(23 58 64 / 0.14)', _dark: 'rgb(141 229 219 / 0.18)' } },
+          DEFAULT: { value: { _light: '{colors.brand.800/14}', _dark: '{colors.brand.300/18}' } },
           accent: { value: 'color-mix(in oklab, {colors.accent.fg} 34%, {colors.border})' },
           focus: { value: 'color-mix(in oklab, {colors.accent.fg} 60%, {colors.border})' },
           error: { value: { _light: '{colors.danger.200}', _dark: '{colors.danger.700}' } },
@@ -119,7 +118,7 @@ export const themeConfig = defineConfig({
           muted: { value: 'color-mix(in oklab, {colors.accent} 22%, {colors.bg.panel})' },
           emphasized: { value: 'color-mix(in oklab, {colors.accent} 30%, {colors.bg.panel})' },
         },
-        glint: { value: { _light: 'rgb(255 255 255 / 0.82)', _dark: 'rgb(194 247 238 / 0.14)' } },
+        glint: { value: { _light: '{colors.white/82}', _dark: '{colors.brand.200/14}' } },
         brand: {
           contrast: { value: '{colors.brand.950}' },
           fg: { value: { _light: '{colors.brand.600}', _dark: '{colors.brand.300}' } },
@@ -161,11 +160,11 @@ export const themeConfig = defineConfig({
         panel: { value: '1.25rem' },
       },
       shadows: {
-        chip: { value: '0 8px 22px {colors.shadowTint/8}' },
-        raised: { value: '0 12px 26px {colors.shadowTint/10}' },
+        chip: { value: '0 8px 22px {colors.brand.800/8}' },
+        raised: { value: '0 12px 26px {colors.brand.800/10}' },
         card: {
           value:
-            '0 1px 0 {colors.glint} inset, 0 18px 34px {colors.shadowTint/10}, 0 4px 14px {colors.brand.800/6}',
+            '0 1px 0 {colors.glint} inset, 0 18px 34px {colors.brand.800/10}, 0 4px 14px {colors.brand.800/6}',
         },
         focusRing: { value: '0 0 0 3px {colors.accent}' },
         dropRing: { value: '0 0 0 4px {colors.accent}' },
