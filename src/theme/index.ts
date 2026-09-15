@@ -18,7 +18,7 @@ export const themeConfig = defineConfig({
       overflowX: 'hidden',
     },
     '*::selection': {
-      bg: 'accent',
+      bg: 'accent.muted',
     },
     a: {
       color: 'accent.fg',
@@ -104,19 +104,18 @@ export const themeConfig = defineConfig({
         },
         border: {
           DEFAULT: { value: { _light: '{colors.brand.800/14}', _dark: '{colors.brand.300/18}' } },
-          accent: { value: 'color-mix(in oklab, {colors.accent.fg} 34%, {colors.border})' },
-          focus: { value: 'color-mix(in oklab, {colors.accent.fg} 60%, {colors.border})' },
+          accent: { value: '{colors.secondary.muted}' },
+          focus: { value: '{colors.secondary.border}' },
           error: { value: '{colors.danger.border}' },
         },
         accent: {
-          DEFAULT: { value: '{colors.brand.solid}' },
+          DEFAULT: { value: '{colors.secondary.solid}' },
           fg: {
-            DEFAULT: { value: '{colors.brand.fg}' },
-            hover: { value: { _light: '{colors.brand.700}', _dark: '{colors.brand.200}' } },
+            DEFAULT: { value: '{colors.secondary.fg}' },
+            hover: { value: { _light: '{colors.secondary.800}', _dark: '{colors.secondary.200}' } },
           },
-          subtle: { value: 'color-mix(in oklab, {colors.accent} 14%, {colors.bg.panel})' },
-          muted: { value: 'color-mix(in oklab, {colors.accent} 22%, {colors.bg.panel})' },
-          emphasized: { value: 'color-mix(in oklab, {colors.accent} 30%, {colors.bg.panel})' },
+          subtle: { value: '{colors.secondary.subtle}' },
+          muted: { value: '{colors.secondary.muted}' },
         },
         glint: { value: { _light: '{colors.white/82}', _dark: '{colors.brand.200/14}' } },
         brand: {
