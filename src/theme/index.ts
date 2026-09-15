@@ -80,7 +80,7 @@ export const themeConfig = defineConfig({
         fg: {
           DEFAULT: { value: { _light: '{colors.brand.800}', _dark: '{colors.brand.100}' } },
           muted: { value: { _light: '#416166', _dark: '#afcdc8' } },
-          error: { value: { _light: '{colors.danger.700}', _dark: '{colors.danger.300}' } },
+          error: { value: '{colors.danger.fg}' },
         },
         bg: {
           DEFAULT: { value: { _light: '#e7f3ec', _dark: '{colors.brand.950}' } },
@@ -97,9 +97,9 @@ export const themeConfig = defineConfig({
           error: { value: { _light: '{colors.danger.200}', _dark: '{colors.danger.700}' } },
         },
         accent: {
-          DEFAULT: { value: { _light: '{colors.brand.500}', _dark: '{colors.brand.400}' } },
+          DEFAULT: { value: '{colors.brand.solid}' },
           fg: {
-            DEFAULT: { value: { _light: '{colors.brand.600}', _dark: '{colors.brand.300}' } },
+            DEFAULT: { value: '{colors.brand.fg}' },
             hover: { value: { _light: '{colors.brand.700}', _dark: '{colors.brand.200}' } },
           },
           subtle: { value: 'color-mix(in oklab, {colors.accent} 14%, {colors.bg.panel})' },
@@ -107,6 +107,26 @@ export const themeConfig = defineConfig({
           emphasized: { value: 'color-mix(in oklab, {colors.accent} 30%, {colors.bg.panel})' },
         },
         glint: { value: { _light: 'rgb(255 255 255 / 0.82)', _dark: 'rgb(194 247 238 / 0.14)' } },
+        brand: {
+          contrast: { value: '{colors.brand.950}' },
+          fg: { value: { _light: '{colors.brand.600}', _dark: '{colors.brand.300}' } },
+          subtle: { value: { _light: '{colors.brand.100}', _dark: '{colors.brand.800}' } },
+          muted: { value: { _light: '{colors.brand.200}', _dark: '{colors.brand.700}' } },
+          emphasized: { value: { _light: '{colors.brand.300}', _dark: '{colors.brand.600}' } },
+          solid: { value: { _light: '{colors.brand.500}', _dark: '{colors.brand.400}' } },
+          focusRing: { value: { _light: '{colors.brand.500}', _dark: '{colors.brand.400}' } },
+          border: { value: { _light: '{colors.brand.500}', _dark: '{colors.brand.400}' } },
+        },
+        danger: {
+          contrast: { value: 'white' },
+          fg: { value: { _light: '{colors.danger.700}', _dark: '{colors.danger.300}' } },
+          subtle: { value: { _light: '{colors.danger.100}', _dark: '{colors.danger.900}' } },
+          muted: { value: { _light: '{colors.danger.200}', _dark: '{colors.danger.800}' } },
+          emphasized: { value: { _light: '{colors.danger.300}', _dark: '{colors.danger.700}' } },
+          solid: { value: '{colors.danger.600}' },
+          focusRing: { value: '{colors.danger.500}' },
+          border: { value: { _light: '{colors.danger.500}', _dark: '{colors.danger.400}' } },
+        },
       },
       radii: {
         icon: { value: '0.6rem' },
