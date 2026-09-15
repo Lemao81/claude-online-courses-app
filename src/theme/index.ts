@@ -106,7 +106,7 @@ export const themeConfig = defineConfig({
           DEFAULT: { value: { _light: '{colors.brand.800/14}', _dark: '{colors.brand.300/18}' } },
           accent: { value: 'color-mix(in oklab, {colors.accent.fg} 34%, {colors.border})' },
           focus: { value: 'color-mix(in oklab, {colors.accent.fg} 60%, {colors.border})' },
-          error: { value: { _light: '{colors.danger.200}', _dark: '{colors.danger.700}' } },
+          error: { value: '{colors.danger.border}' },
         },
         accent: {
           DEFAULT: { value: '{colors.brand.solid}' },

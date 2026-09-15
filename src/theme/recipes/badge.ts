@@ -24,7 +24,7 @@ export const badgeRecipe = defineRecipe({
       },
       archived: {
         ...statusStyles,
-        borderColor: 'border.error',
+        borderColor: 'danger.muted',
         bg: 'bg.error',
         color: 'fg.muted',
       },
