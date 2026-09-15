@@ -38,17 +38,17 @@ export const themeConfig = defineConfig({
     tokens: {
       colors: {
         brand: {
-          50: { value: '#eef8f6' },
-          100: { value: '#d7ece8' },
-          200: { value: '#b4f0e8' },
-          300: { value: '#8de5db' },
-          400: { value: '#60d7cf' },
-          500: { value: '#4fb8b2' },
-          600: { value: '#328f97' },
-          700: { value: '#246f76' },
-          800: { value: '#173a40' },
-          900: { value: '#0f1a1e' },
-          950: { value: '#0a1418' },
+          50: { value: '#eef8fc' },
+          100: { value: '#d7ecf4' },
+          200: { value: '#bde4f3' },
+          300: { value: '#a1d9ef' },
+          400: { value: '#83cae4' },
+          500: { value: '#69b7d3' },
+          600: { value: '#3f8ba6' },
+          700: { value: '#2b6c84' },
+          800: { value: '#133948' },
+          900: { value: '#0b1b21' },
+          950: { value: '#09141a' },
         },
         danger: {
           50: { value: '#fdf3f3' },
