@@ -79,15 +79,15 @@ export const themeConfig = defineConfig({
       colors: {
         fg: {
           DEFAULT: { value: { _light: '{colors.brand.800}', _dark: '{colors.brand.100}' } },
-          muted: { value: { _light: '#416166', _dark: '#afcdc8' } },
+          muted: { value: { _light: '{colors.brand.700}', _dark: '{colors.brand.200}' } },
           error: { value: '{colors.danger.fg}' },
         },
         bg: {
-          DEFAULT: { value: { _light: '#e7f3ec', _dark: '{colors.brand.950}' } },
+          DEFAULT: { value: { _light: '{colors.brand.50}', _dark: '{colors.brand.950}' } },
           subtle: { value: { _light: 'rgb(255 255 255 / 0.74)', _dark: 'rgb(16 30 34 / 0.8)' } },
-          muted: { value: { _light: '#e7f0e8', _dark: '{colors.brand.900}' } },
+          muted: { value: { _light: '{colors.brand.100}', _dark: '{colors.brand.900}' } },
           panel: { value: { _light: 'rgb(255 255 255 / 0.9)', _dark: 'rgb(15 27 31 / 0.92)' } },
-          surface: { value: { _light: '#fdfefd', _dark: '{colors.brand.900}' } },
+          surface: { value: { _light: '{colors.brand.50}', _dark: '{colors.brand.900}' } },
           error: { value: { _light: '{colors.danger.50}', _dark: '{colors.danger.950}' } },
         },
         border: {
