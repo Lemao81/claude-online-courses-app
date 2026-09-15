@@ -92,18 +92,28 @@ export const themeConfig = defineConfig({
         fg: {
           DEFAULT: { value: { _light: '{colors.brand.800}', _dark: '{colors.brand.100}' } },
           muted: { value: { _light: '{colors.brand.700}', _dark: '{colors.brand.200}' } },
+          subtle: { value: { _light: '{colors.brand.500}', _dark: '{colors.brand.600}' } },
+          inverted: { value: { _light: '{colors.brand.50}', _dark: '{colors.brand.950}' } },
           error: { value: '{colors.danger.fg}' },
         },
         bg: {
           DEFAULT: { value: { _light: '{colors.brand.50}', _dark: '{colors.brand.950}' } },
           subtle: { value: { _light: '{colors.white/74}', _dark: '{colors.brand.900/80}' } },
           muted: { value: { _light: '{colors.brand.100}', _dark: '{colors.brand.900}' } },
+          emphasized: { value: { _light: '{colors.brand.200}', _dark: '{colors.brand.800}' } },
+          inverted: { value: { _light: '{colors.brand.950}', _dark: '{colors.brand.50}' } },
           panel: { value: { _light: '{colors.white/90}', _dark: '{colors.brand.900/92}' } },
           surface: { value: { _light: '{colors.brand.50}', _dark: '{colors.brand.900}' } },
           error: { value: { _light: '{colors.danger.50}', _dark: '{colors.danger.950}' } },
         },
         border: {
           DEFAULT: { value: { _light: '{colors.brand.800/14}', _dark: '{colors.brand.300/18}' } },
+          muted: { value: { _light: '{colors.brand.800/10}', _dark: '{colors.brand.300/12}' } },
+          subtle: { value: { _light: '{colors.brand.800/6}', _dark: '{colors.brand.300/8}' } },
+          emphasized: {
+            value: { _light: '{colors.brand.800/24}', _dark: '{colors.brand.300/28}' },
+          },
+          inverted: { value: { _light: '{colors.brand.800}', _dark: '{colors.brand.200}' } },
           accent: { value: '{colors.secondary.muted}' },
           focus: { value: '{colors.secondary.border}' },
           error: { value: '{colors.danger.border}' },
