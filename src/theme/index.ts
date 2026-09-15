@@ -117,7 +117,6 @@ export const themeConfig = defineConfig({
           emphasized: { value: { _light: '{colors.brand.200}', _dark: '{colors.brand.800}' } },
           inverted: { value: { _light: '{colors.brand.950}', _dark: '{colors.brand.50}' } },
           panel: { value: { _light: '{colors.white/90}', _dark: '{colors.brand.900/92}' } },
-          surface: { value: { _light: '{colors.brand.50}', _dark: '{colors.brand.900}' } },
           success: { value: { _light: '{colors.success.50}', _dark: '{colors.success.950}' } },
           error: { value: { _light: '{colors.danger.50}', _dark: '{colors.danger.950}' } },
         },
@@ -338,7 +337,7 @@ export const themeConfig = defineConfig({
         value: {
           borderWidth: '1px',
           borderColor: 'border',
-          bg: 'bg.surface',
+          bg: 'bg.panel',
           transition:
             'background-color 180ms ease, color 180ms ease, border-color 180ms ease, transform 180ms ease',
         },
