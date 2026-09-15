@@ -63,6 +63,19 @@ export const themeConfig = defineConfig({
           900: { value: '#24224f' },
           950: { value: '#13122e' },
         },
+        success: {
+          50: { value: '#edfbf0' },
+          100: { value: '#d8f6de' },
+          200: { value: '#b7eec4' },
+          300: { value: '#8fe0a5' },
+          400: { value: '#6ed08c' },
+          500: { value: '#59c07a' },
+          600: { value: '#3f945b' },
+          700: { value: '#2f7346' },
+          800: { value: '#225332' },
+          900: { value: '#163620' },
+          950: { value: '#0a2011' },
+        },
         danger: {
           50: { value: '#fef4f3' },
           100: { value: '#fde6e5' },
@@ -94,6 +107,7 @@ export const themeConfig = defineConfig({
           muted: { value: { _light: '{colors.brand.700}', _dark: '{colors.brand.200}' } },
           subtle: { value: { _light: '{colors.brand.500}', _dark: '{colors.brand.600}' } },
           inverted: { value: { _light: '{colors.brand.50}', _dark: '{colors.brand.950}' } },
+          success: { value: '{colors.success.fg}' },
           error: { value: '{colors.danger.fg}' },
         },
         bg: {
@@ -104,6 +118,7 @@ export const themeConfig = defineConfig({
           inverted: { value: { _light: '{colors.brand.950}', _dark: '{colors.brand.50}' } },
           panel: { value: { _light: '{colors.white/90}', _dark: '{colors.brand.900/92}' } },
           surface: { value: { _light: '{colors.brand.50}', _dark: '{colors.brand.900}' } },
+          success: { value: { _light: '{colors.success.50}', _dark: '{colors.success.950}' } },
           error: { value: { _light: '{colors.danger.50}', _dark: '{colors.danger.950}' } },
         },
         border: {
@@ -116,6 +131,7 @@ export const themeConfig = defineConfig({
           inverted: { value: { _light: '{colors.brand.800}', _dark: '{colors.brand.200}' } },
           accent: { value: '{colors.secondary.muted}' },
           focus: { value: '{colors.secondary.border}' },
+          success: { value: '{colors.success.border}' },
           error: { value: '{colors.danger.border}' },
         },
         accent: {
@@ -151,6 +167,16 @@ export const themeConfig = defineConfig({
             value: { _light: '{colors.secondary.500}', _dark: '{colors.secondary.400}' },
           },
           border: { value: { _light: '{colors.secondary.500}', _dark: '{colors.secondary.400}' } },
+        },
+        success: {
+          contrast: { value: '{colors.success.950}' },
+          fg: { value: { _light: '{colors.success.700}', _dark: '{colors.success.300}' } },
+          subtle: { value: { _light: '{colors.success.100}', _dark: '{colors.success.900}' } },
+          muted: { value: { _light: '{colors.success.200}', _dark: '{colors.success.800}' } },
+          emphasized: { value: { _light: '{colors.success.300}', _dark: '{colors.success.700}' } },
+          solid: { value: { _light: '{colors.success.500}', _dark: '{colors.success.400}' } },
+          focusRing: { value: { _light: '{colors.success.500}', _dark: '{colors.success.400}' } },
+          border: { value: { _light: '{colors.success.500}', _dark: '{colors.success.400}' } },
         },
         danger: {
           contrast: { value: { _light: 'white', _dark: '{colors.danger.950}' } },
