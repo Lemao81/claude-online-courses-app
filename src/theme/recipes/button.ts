@@ -5,13 +5,13 @@ const chipStyles: SystemStyleObject = {
   minH: '0',
   rounded: 'full',
   borderWidth: '1px',
-  borderColor: 'border',
-  bg: 'bg.subtle',
+  borderColor: 'colorPalette.muted',
+  bg: 'colorPalette.subtle',
   px: '3',
   py: '1.5',
   fontSize: 'sm',
   fontWeight: 'semibold',
-  color: 'fg',
+  color: 'colorPalette.fg',
   boxShadow: 'chip',
   transition: 'all 0.15s ease',
   _hover: { transform: 'translateY(-2px)' },
@@ -32,20 +32,23 @@ const raisedStyles: SystemStyleObject = {
 }
 
 export const buttonRecipe = defineRecipe({
+  base: {
+    colorPalette: 'brand',
+  },
   variants: {
     variant: {
       primary: {
         ...raisedStyles,
-        borderColor: 'border.accent',
-        bg: 'accent.muted',
-        color: 'fg',
-        _hover: { transform: 'translateY(-1px)', bg: 'accent.emphasized' },
+        borderColor: 'colorPalette.border',
+        bg: 'colorPalette.muted',
+        color: 'colorPalette.fg',
+        _hover: { transform: 'translateY(-1px)', bg: 'colorPalette.emphasized' },
       },
       secondary: {
         ...raisedStyles,
-        borderColor: 'border',
-        bg: 'bg.panel',
-        color: 'fg.muted',
+        borderColor: 'colorPalette.muted',
+        color: 'colorPalette.fg',
+        _hover: { transform: 'translateY(-1px)', bg: 'colorPalette.subtle' },
       },
       chip: chipStyles,
       chipRound: {
@@ -61,11 +64,10 @@ export const buttonRecipe = defineRecipe({
         ...chipStyles,
         px: '2',
         py: '2',
-        _hover: { transform: 'translateY(-2px)', color: 'fg' },
       },
       quiet: {
-        color: 'fg.muted',
-        _hover: { bg: 'bg.panel', color: 'fg' },
+        color: 'colorPalette.fg',
+        _hover: { bg: 'colorPalette.subtle' },
       },
     },
   },
