@@ -54,7 +54,7 @@ Session date: 2026-09-16.
 14. **An unready course shows a readiness checklist**, naming each lesson still missing a video —
     never a disabled publish button.
 15. **An enrollment is an access grant** recording the price at the moment access was granted. It is
-    not a payment record; money is handled elsewhere.
+    not a payment record; payments come later as a separate record.
 16. **Price may change at any time**, published or not. The enrollment snapshot is what makes this
     safe.
 17. **A thumbnail reuses the video pipeline shape** — presigned MinIO URL, an `assets` row of kind
