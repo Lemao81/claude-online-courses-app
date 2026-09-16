@@ -1,7 +1,8 @@
 # Course Authoring — Design Session
 
 A design interview about the **authoring** half of the app. The tree is closed: every branch below
-is settled, confirmed as a shared understanding and not yet built.
+is settled, confirmed as a shared understanding. The build is tracked commit by commit in
+[`course-authoring-plan.md`](course-authoring-plan.md).
 
 Vocabulary settled here lives in [`CONTEXT.md`](../../CONTEXT.md), not in this file.
 
