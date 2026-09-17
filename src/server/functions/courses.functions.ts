@@ -1,13 +1,13 @@
 import { clerkClient } from '@clerk/tanstack-react-start/server'
 import { notFound, redirect } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
-import { asc, desc, eq } from 'drizzle-orm'
+import { asc, desc, eq, isNull } from 'drizzle-orm'
 import { z } from 'zod'
 import { db } from '#/server/db/client'
 import { chapters, courses, lessons, users } from '#/server/db/schema'
 import { requireUserId } from '#/server/functions/auth.server'
 import { validateInput } from '#/server/functions/validation.helpers'
-import type { Course, CourseWithChapters } from '#/types'
+import type { Course, CourseOutline } from '#/types'
 
 const courseIdSchema = z.number().int('Course id is required')
 
@@ -72,16 +72,21 @@ export const getAuthoredCourse = createServerFn({
     return course
   })
 
-export const getAuthoredCourseWithChapters = createServerFn({
+export const getAuthoredCourseOutline = createServerFn({
   method: 'GET',
 })
   .validator((data: number) => validateInput(courseIdSchema, data))
-  .handler(async ({ data }): Promise<CourseWithChapters> => {
+  .handler(async ({ data }): Promise<CourseOutline> => {
     const userId = await requireUserId()
 
     const course = await db.query.courses.findFirst({
       where: eq(courses.id, data),
       with: {
+        lessons: {
+          columns: { id: true, title: true, durationSec: true },
+          where: isNull(lessons.chapterId),
+          orderBy: asc(lessons.position),
+        },
         chapters: {
           orderBy: asc(chapters.position),
           with: {

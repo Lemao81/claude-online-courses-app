@@ -12,7 +12,7 @@ export type LessonVideo = Pick<Lesson, 'id' | 'title' | 'durationSec'>
 
 export type ChapterWithLessons = Chapter & { lessons: LessonVideo[] }
 
-export type CourseWithChapters = Course & { chapters: ChapterWithLessons[] }
+export type CourseOutline = Course & { lessons: LessonVideo[]; chapters: ChapterWithLessons[] }
 
 export type VideoMetadata = {
   durationSec: number

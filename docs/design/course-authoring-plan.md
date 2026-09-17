@@ -21,7 +21,7 @@ refers to decision N in that file.
 - [x] **1.1 Rename the lesson row for use in both zones.** `ChapterLessonList` /
       `ChapterLessonListItem` become `LessonList` / `LessonListItem` in `components/lessons/`, and
       `ChapterLessonVideo` becomes `LessonVideo`. Rename only (Settled 35).
-- [ ] **1.2 Load the whole outline.** `getAuthoredCourseOutline` returns
+- [x] **1.2 Load the whole outline.** `getAuthoredCourseOutline` returns
       `CourseOutline = Course & { lessons, chapters }`, with course-level lessons ordered by position,
       replacing `getAuthoredCourseWithChapters` and `CourseWithChapters` (Settled 19).
 - [ ] **1.3 Show course-level lessons** in a Lessons section of `EditCoursePage`, before the
