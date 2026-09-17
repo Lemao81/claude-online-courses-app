@@ -47,6 +47,12 @@ type ChapterSeed = {
   lessons: LessonSeed[]
 }
 
+const courseLessonSeeds: LessonSeed[] = [
+  { title: 'Course trailer', durationSec: 180, isFreePreview: true },
+  { title: 'What you need before you start', durationSec: 420 },
+  { title: 'How to follow along with the exercises', durationSec: 360 },
+]
+
 const chapterSeeds: ChapterSeed[] = [
   {
     title: 'Course Overview',
@@ -123,7 +129,11 @@ async function seedCourses(): Promise<void> {
   }))
 }
 
-async function seedChapters(): Promise<{ courseId: number; lessonCount: number }> {
+async function seedOutline(): Promise<{
+  courseId: number
+  courseLessonCount: number
+  chapterLessonCount: number
+}> {
   const [course] = await db
     .select({ id: courses.id })
     .from(courses)
@@ -131,8 +141,18 @@ async function seedChapters(): Promise<{ courseId: number; lessonCount: number }
     .limit(1)
 
   if (!course) {
-    throw new Error('No seeded course to attach chapters to')
+    throw new Error('No seeded course to attach an outline to')
   }
+
+  await db.insert(lessons).values(
+    courseLessonSeeds.map((lesson, index) => ({
+      courseId: course.id,
+      position: index,
+      title: lesson.title,
+      durationSec: lesson.durationSec,
+      isFreePreview: lesson.isFreePreview ?? false,
+    })),
+  )
 
   const insertedChapters = await db
     .insert(chapters)
@@ -147,7 +167,7 @@ async function seedChapters(): Promise<{ courseId: number; lessonCount: number }
     )
     .returning({ id: chapters.id, position: chapters.position })
 
-  const lessonValues = insertedChapters.flatMap((chapter) =>
+  const chapterLessonValues = insertedChapters.flatMap((chapter) =>
     chapterSeeds[chapter.position].lessons.map((lesson, index) => ({
       courseId: course.id,
       chapterId: chapter.id,
@@ -158,11 +178,15 @@ async function seedChapters(): Promise<{ courseId: number; lessonCount: number }
     })),
   )
 
-  if (lessonValues.length > 0) {
-    await db.insert(lessons).values(lessonValues)
+  if (chapterLessonValues.length > 0) {
+    await db.insert(lessons).values(chapterLessonValues)
   }
 
-  return { courseId: course.id, lessonCount: lessonValues.length }
+  return {
+    courseId: course.id,
+    courseLessonCount: courseLessonSeeds.length,
+    chapterLessonCount: chapterLessonValues.length,
+  }
 }
 
 async function clearUnpublishedDates(): Promise<void> {
@@ -183,11 +207,12 @@ async function seedDatabase(): Promise<void> {
   await seedCourses()
   await clearUnpublishedDates()
   await resyncCourseIds()
-  const { courseId, lessonCount } = await seedChapters()
+  const { courseId, courseLessonCount, chapterLessonCount } = await seedOutline()
 
   console.log(`Seeded ${courseTitles.length} courses for ${authorId}`)
+  console.log(`Seeded ${courseLessonCount} course-level lessons for course ${courseId}`)
   console.log(`Seeded ${chapterSeeds.length} chapters for course ${courseId}`)
-  console.log(`Seeded ${lessonCount} lessons for course ${courseId}`)
+  console.log(`Seeded ${chapterLessonCount} chapter lessons for course ${courseId}`)
 }
 
 await seedDatabase()
