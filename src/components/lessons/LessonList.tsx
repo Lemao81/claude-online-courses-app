@@ -10,7 +10,7 @@ export default function LessonList({ lessons }: LessonListProps) {
   if (lessons.length === 0) {
     return (
       <Text layerStyle="emptyStateRow" textStyle="emptyState">
-        No lesson videos uploaded yet.
+        No lessons yet.
       </Text>
     )
   }

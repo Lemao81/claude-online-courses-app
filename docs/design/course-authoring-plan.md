@@ -24,7 +24,7 @@ refers to decision N in that file.
 - [x] **1.2 Load the whole outline.** `getAuthoredCourseOutline` returns
       `CourseOutline = Course & { lessons, chapters }`, with course-level lessons ordered by position,
       replacing `getAuthoredCourseWithChapters` and `CourseWithChapters` (Settled 19).
-- [ ] **1.3 Show course-level lessons** in a Lessons section of `EditCoursePage`, before the
+- [x] **1.3 Show course-level lessons** in a Lessons section of `EditCoursePage`, before the
       chapters (Settled 5, 18).
 
 ## Step 2 — Creating lessons and chapters
