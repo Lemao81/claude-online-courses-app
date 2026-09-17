@@ -5,6 +5,7 @@ import { showErrorToast, showSuccessToast } from '#/components/ui/AppToaster'
 import ErrorText from '#/components/ui/ErrorText'
 import VideoDropZone from '#/components/videos/VideoDropZone'
 import VideoFileList from '#/components/videos/VideoFileList'
+import { createLesson } from '#/server/functions/lessons.functions'
 import { completeVideoUpload, createVideoUploadUrl } from '#/server/functions/videos.functions'
 import {
   isVideoFile,
@@ -51,12 +52,14 @@ export default function VideoUpload({ courseId, chapterId }: VideoUploadProps) {
     ])
 
     await uploadFile(file, target.uploadUrl, target.contentType)
+    const lesson = await createLesson({
+      data: { courseId, chapterId, title: toFileBaseName(file.name) },
+    })
     await completeVideoUpload({
       data: {
         courseId,
-        chapterId,
+        lessonId: lesson.id,
         objectName: target.objectName,
-        title: toFileBaseName(file.name),
         durationSec: metadata.durationSec,
         width: metadata.width,
         height: metadata.height,

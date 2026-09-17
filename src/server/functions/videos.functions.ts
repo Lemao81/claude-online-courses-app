@@ -1,6 +1,6 @@
 import { notFound, redirect } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
-import { desc, eq } from 'drizzle-orm'
+import { eq } from 'drizzle-orm'
 import { z } from 'zod'
 import {
   maxVideoDimensionPx,
@@ -10,7 +10,7 @@ import {
 } from '#/config/constants'
 import { recomputeCourseDuration } from '#/server/db/aggregates.helpers'
 import { db } from '#/server/db/client'
-import { assets, chapters, courses, lessons } from '#/server/db/schema'
+import { assets, courses, lessons } from '#/server/db/schema'
 import { requireUserId } from '#/server/functions/auth.server'
 import { validateInput } from '#/server/functions/validation.helpers'
 import { minioClient } from '#/server/minio/client'
@@ -69,9 +69,8 @@ export const createVideoUploadUrl = createServerFn({
 
 type CompleteVideoUploadInput = {
   courseId: number
-  chapterId: number
+  lessonId: number
   objectName: string
-  title: string
   durationSec: number
   width: number
   height: number
@@ -86,9 +85,8 @@ function clampedNumberSchema(max: number) {
 
 const completeVideoUploadSchema = z.object({
   courseId: z.number().int('Course id is required'),
-  chapterId: z.number().int('Chapter id is required'),
+  lessonId: z.number().int('Lesson id is required'),
   objectName: z.string().trim().nonempty('Object name is required'),
-  title: z.string().trim().nonempty('Title is required'),
   durationSec: clampedNumberSchema(maxVideoDurationSec),
   width: clampedNumberSchema(maxVideoDimensionPx),
   height: clampedNumberSchema(maxVideoDimensionPx),
@@ -101,20 +99,24 @@ export const completeVideoUpload = createServerFn({
   .handler(async ({ data }): Promise<Lesson> => {
     const userId = await requireUserId()
 
-    const chapter = await db.query.chapters.findFirst({
-      where: eq(chapters.id, data.chapterId),
-      columns: { id: true, courseId: true },
+    const lesson = await db.query.lessons.findFirst({
+      where: eq(lessons.id, data.lessonId),
+      columns: { id: true, courseId: true, videoAssetId: true },
       with: {
         course: { columns: { authorId: true } },
       },
     })
 
-    if (!chapter || chapter.courseId !== data.courseId) {
+    if (!lesson || lesson.courseId !== data.courseId) {
       throw notFound()
     }
 
-    if (chapter.course.authorId !== userId) {
+    if (lesson.course.authorId !== userId) {
       throw redirect({ to: '/courses' })
+    }
+
+    if (lesson.videoAssetId !== null) {
+      throw new Error('This lesson already has a video')
     }
 
     if (!data.objectName.startsWith(`${userId}/${data.courseId}/`)) {
@@ -145,27 +147,14 @@ export const completeVideoUpload = createServerFn({
         })
         .returning()
 
-      const [last] = await tx
-        .select({ position: lessons.position })
-        .from(lessons)
-        .where(eq(lessons.chapterId, chapter.id))
-        .orderBy(desc(lessons.position))
-        .limit(1)
-
-      const [lesson] = await tx
-        .insert(lessons)
-        .values({
-          courseId: chapter.courseId,
-          chapterId: chapter.id,
-          position: last ? last.position + 1 : 0,
-          title: data.title,
-          videoAssetId: asset.id,
-          durationSec: data.durationSec,
-        })
+      const [updated] = await tx
+        .update(lessons)
+        .set({ videoAssetId: asset.id, durationSec: data.durationSec })
+        .where(eq(lessons.id, lesson.id))
         .returning()
 
-      await recomputeCourseDuration(tx, chapter.courseId)
+      await recomputeCourseDuration(tx, lesson.courseId)
 
-      return lesson
+      return updated
     })
   })
