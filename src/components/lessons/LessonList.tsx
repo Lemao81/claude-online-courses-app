@@ -1,16 +1,16 @@
 import { Stack, Text } from '@chakra-ui/react'
-import CourseChapterLessonListItem from '#/components/chapters/CourseChapterLessonListItem'
+import LessonListItem from '#/components/lessons/LessonListItem'
 import type { LessonVideo } from '#/types'
 
-type CourseChapterLessonListProps = {
+type LessonListProps = {
   lessons: LessonVideo[]
 }
 
-export default function CourseChapterLessonList({ lessons }: CourseChapterLessonListProps) {
+export default function LessonList({ lessons }: LessonListProps) {
   if (lessons.length === 0) {
     return (
       <Text layerStyle="emptyStateRow" textStyle="emptyState">
-        No lessons in this chapter yet.
+        No lesson videos uploaded yet.
       </Text>
     )
   }
@@ -18,7 +18,7 @@ export default function CourseChapterLessonList({ lessons }: CourseChapterLesson
   return (
     <Stack gap="2">
       {lessons.map((l) => (
-        <CourseChapterLessonListItem key={l.id} lesson={l} />
+        <LessonListItem key={l.id} lesson={l} />
       ))}
     </Stack>
   )

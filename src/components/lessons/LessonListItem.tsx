@@ -7,14 +7,14 @@ import EditableText from '#/components/ui/EditableText'
 import ErrorText from '#/components/ui/ErrorText'
 import IconTile from '#/components/ui/IconTile'
 import { deleteLesson, updateLessonTitle } from '#/server/functions/lessons.functions'
-import type { ChapterLessonVideo } from '#/types'
+import type { LessonVideo } from '#/types'
 import { formatDuration } from '#/utils/formatters'
 
-type ChapterLessonListItemProps = {
-  lesson: ChapterLessonVideo
+type LessonListItemProps = {
+  lesson: LessonVideo
 }
 
-export default function ChapterLessonListItem({ lesson }: ChapterLessonListItemProps) {
+export default function LessonListItem({ lesson }: LessonListItemProps) {
   const router = useRouter()
   const [titleError, setTitleError] = useState('')
   const [isRemoveOpen, setIsRemoveOpen] = useState(false)

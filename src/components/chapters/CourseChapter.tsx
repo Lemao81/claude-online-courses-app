@@ -2,12 +2,12 @@ import { Button, Flex, Stack, Text } from '@chakra-ui/react'
 import { LuPencil } from 'react-icons/lu'
 import CourseChapterLessonList from '#/components/chapters/CourseChapterLessonList'
 import Tooltip from '#/components/ui/Tooltip'
-import type { Chapter, ChapterLessonVideo } from '#/types'
+import type { Chapter, LessonVideo } from '#/types'
 import { formatDuration } from '#/utils/formatters'
 
 type CourseChapterProps = {
   chapter: Chapter
-  lessons?: ChapterLessonVideo[]
+  lessons?: LessonVideo[]
   onEdit: () => void
 }
 

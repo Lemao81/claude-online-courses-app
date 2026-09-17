@@ -1,18 +1,18 @@
 import { Box, CloseButton, Flex, Stack, Text } from '@chakra-ui/react'
 import { useRouter } from '@tanstack/react-router'
 import { useRef, useState } from 'react'
-import ChapterLessonList from '#/components/chapters/ChapterLessonList'
+import LessonList from '#/components/lessons/LessonList'
 import EditChapterForm, {
   type EditChapterFormValues,
   useEditChapterForm,
 } from '#/components/chapters/EditChapterForm'
 import VideoUpload from '#/components/videos/VideoUpload'
 import { updateChapter } from '#/server/functions/chapters.functions'
-import type { Chapter, ChapterLessonVideo } from '#/types'
+import type { Chapter, LessonVideo } from '#/types'
 
 type EditChapterProps = {
   chapter?: Chapter
-  lessons?: ChapterLessonVideo[]
+  lessons?: LessonVideo[]
   onClose: () => void
 }
 
@@ -72,7 +72,7 @@ export default function EditChapter({ chapter, lessons = [], onClose }: EditChap
       </Flex>
       <Stack gap="2">
         <Text textStyle="sectionLabel">Lesson Videos</Text>
-        <ChapterLessonList lessons={lessons} />
+        <LessonList lessons={lessons} />
       </Stack>
       {chapter && <VideoUpload courseId={chapter.courseId} chapterId={chapter.id} />}
     </Stack>

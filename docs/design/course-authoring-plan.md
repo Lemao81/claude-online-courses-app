@@ -18,7 +18,7 @@ refers to decision N in that file.
 
 ## Step 1 — Outline read path
 
-- [ ] **1.1 Rename the lesson row for use in both zones.** `ChapterLessonList` /
+- [x] **1.1 Rename the lesson row for use in both zones.** `ChapterLessonList` /
       `ChapterLessonListItem` become `LessonList` / `LessonListItem` in `components/lessons/`, and
       `ChapterLessonVideo` becomes `LessonVideo`. Rename only (Settled 35).
 - [ ] **1.2 Load the whole outline.** `getAuthoredCourseOutline` returns

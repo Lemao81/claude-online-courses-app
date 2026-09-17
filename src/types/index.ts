@@ -8,9 +8,9 @@ export type Chapter = typeof chapters.$inferSelect
 
 export type Lesson = typeof lessons.$inferSelect
 
-export type ChapterLessonVideo = Pick<Lesson, 'id' | 'title' | 'durationSec'>
+export type LessonVideo = Pick<Lesson, 'id' | 'title' | 'durationSec'>
 
-export type ChapterWithLessons = Chapter & { lessons: ChapterLessonVideo[] }
+export type ChapterWithLessons = Chapter & { lessons: LessonVideo[] }
 
 export type CourseWithChapters = Course & { chapters: ChapterWithLessons[] }
 

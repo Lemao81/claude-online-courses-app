@@ -1,11 +1,11 @@
 import { Flex, Stack, Text } from '@chakra-ui/react'
 import { LuVideo } from 'react-icons/lu'
 import IconTile from '#/components/ui/IconTile'
-import type { ChapterLessonVideo } from '#/types'
+import type { LessonVideo } from '#/types'
 import { formatDuration } from '#/utils/formatters'
 
 type CourseChapterLessonListItemProps = {
-  lesson: ChapterLessonVideo
+  lesson: LessonVideo
 }
 
 export default function CourseChapterLessonListItem({ lesson }: CourseChapterLessonListItemProps) {
