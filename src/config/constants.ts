@@ -23,3 +23,5 @@ export const assetDeleteRetryLimit = 5
 export const assetDeleteRetryDelaySec = 30
 
 export const workerStopTimeoutMs = 30000
+
+export const untitledLessonTitle = 'Untitled lesson'

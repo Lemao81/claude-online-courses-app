@@ -29,7 +29,7 @@ refers to decision N in that file.
 
 ## Step 2 — Creating lessons and chapters
 
-- [ ] **2.1 Add `createLesson`** for a course or a chapter parent, titled "Untitled lesson" unless a
+- [x] **2.1 Add `createLesson`** for a course or a chapter parent, titled "Untitled lesson" unless a
       title is given, at `max + 1` (Settled 9, 27).
 - [ ] **2.2 Attach uploads to an existing lesson.** `completeVideoUpload` takes a lesson id instead
       of a chapter id and a title; `VideoUpload` creates the lesson first, titled from the file name,
