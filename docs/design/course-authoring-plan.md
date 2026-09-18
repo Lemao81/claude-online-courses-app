@@ -84,7 +84,8 @@ refers to decision N in that file.
       shared by publishing and the checklist, with tests (Settled 12).
 - [ ] **6.2 Add `publishCourse`, `unpublishCourse`, `archiveCourse`**, with tests (Settled 13, 24,
       39).
-- [ ] **6.3 Sticky header** with status, Publish/Unpublish, the missing-video count and the free note
+- [ ] **6.3 Sticky header** built from the editor's title row, keeping its centred title and back
+      link, and adding status, Publish/Unpublish, the missing-video count and the free note
       (Settled 18, 32, 33).
 - [ ] **6.4 Readiness checklist** atop the Lessons section, each item jumping to its lesson
       (Settled 14, 32).
