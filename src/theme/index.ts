@@ -235,7 +235,7 @@ export const themeConfig = defineConfig({
       },
       sectionLabel: {
         value: {
-          fontSize: 'xs',
+          fontSize: 'sm',
           fontWeight: 'semibold',
           letterSpacing: 'wider',
           textTransform: 'uppercase',
