@@ -4,6 +4,7 @@ import { useState } from 'react'
 import CourseChapterList from '#/components/chapters/CourseChapterList'
 import AddLessonButton from '#/components/lessons/AddLessonButton'
 import LessonList from '#/components/lessons/LessonList'
+import VideoUpload from '#/components/videos/VideoUpload'
 
 const routeApi = getRouteApi('/editcourse/$courseId')
 
@@ -19,6 +20,7 @@ export default function EditCoursePage() {
         </Heading>
         <LessonList lessons={course.lessons} newLessonId={newLessonId} />
         <AddLessonButton courseId={course.id} onAdded={(l) => setNewLessonId(l.id)} />
+        <VideoUpload courseId={course.id} />
       </Stack>
       <Stack as="section" gap="3">
         <Heading as="h2" m="0" textStyle="sectionLabel">

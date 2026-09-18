@@ -17,7 +17,7 @@ import {
 
 type VideoUploadProps = {
   courseId: number
-  chapterId: number
+  chapterId?: number
 }
 
 export default function VideoUpload({ courseId, chapterId }: VideoUploadProps) {

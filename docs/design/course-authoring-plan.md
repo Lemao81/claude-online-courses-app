@@ -7,7 +7,8 @@ refers to decision N in that file.
 
 - **One commit at a time.** Implement a single unchecked commit below, type-check it, then stop and
   report what changed and the proposed commit message. The user reviews, runs `pnpm check` /
-  `pnpm test`, and says when to commit. Move on only after that commit exists.
+  `pnpm test`, and says when to commit. Move on only when the user says to, never automatically
+  after a commit.
 - **Tick the box in the same commit** that does the work, so the first unchecked box is always the
   next commit, in any session.
 - **When a commit turns out wrong-sized** (too big to review, or too small to stand alone), change
@@ -36,7 +37,7 @@ refers to decision N in that file.
       then attaches (Settled 9).
 - [x] **2.3 "Add lesson"** creates the lesson and drops into inline rename, in both zones
       (Settled 10, 31).
-- [ ] **2.4 `VideoUpload` in the course-level zone**, with an optional chapter id (Settled 31).
+- [x] **2.4 `VideoUpload` in the course-level zone**, with an optional chapter id (Settled 31).
 - [ ] **2.5 Add `createChapter` and "Add chapter"**, which appends "Untitled chapter" and opens its
       `EditChapter` panel with the title focused (Settled 31).
 
