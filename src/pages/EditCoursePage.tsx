@@ -20,7 +20,7 @@ export default function EditCoursePage() {
         </Heading>
         <LessonList lessons={course.lessons} newLessonId={newLessonId} />
         <AddLessonButton courseId={course.id} onAdded={(l) => setNewLessonId(l.id)} />
-        <VideoUpload courseId={course.id} />
+        <VideoUpload courseId={course.id} onAdded={(l) => setNewLessonId(l.id)} />
       </Stack>
       <Stack as="section" gap="3">
         <Heading as="h2" m="0" textStyle="sectionLabel">

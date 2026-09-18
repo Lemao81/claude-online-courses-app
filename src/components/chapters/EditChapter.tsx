@@ -83,7 +83,13 @@ export default function EditChapter({ chapter, lessons = [], onClose }: EditChap
           />
         )}
       </Stack>
-      {chapter && <VideoUpload courseId={chapter.courseId} chapterId={chapter.id} />}
+      {chapter && (
+        <VideoUpload
+          courseId={chapter.courseId}
+          chapterId={chapter.id}
+          onAdded={(l) => setNewLessonId(l.id)}
+        />
+      )}
     </Stack>
   )
 }

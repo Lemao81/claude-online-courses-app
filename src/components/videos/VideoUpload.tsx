@@ -7,6 +7,7 @@ import VideoDropZone from '#/components/videos/VideoDropZone'
 import VideoFileList from '#/components/videos/VideoFileList'
 import { createLesson } from '#/server/functions/lessons.functions'
 import { completeVideoUpload, createVideoUploadUrl } from '#/server/functions/videos.functions'
+import type { Lesson } from '#/types'
 import {
   isVideoFile,
   probeVideoMetadata,
@@ -18,9 +19,10 @@ import {
 type VideoUploadProps = {
   courseId: number
   chapterId?: number
+  onAdded: (lesson: Lesson) => void
 }
 
-export default function VideoUpload({ courseId, chapterId }: VideoUploadProps) {
+export default function VideoUpload({ courseId, chapterId, onAdded }: VideoUploadProps) {
   const router = useRouter()
   const [files, setFiles] = useState<File[]>([])
   const [isUploading, setIsUploading] = useState(false)
@@ -43,7 +45,7 @@ export default function VideoUpload({ courseId, chapterId }: VideoUploadProps) {
     setFiles((c) => c.filter((f) => toFileKey(f) !== key))
   }
 
-  async function uploadVideo(file: File): Promise<void> {
+  async function uploadVideo(file: File): Promise<Lesson> {
     const [target, metadata] = await Promise.all([
       createVideoUploadUrl({
         data: { courseId, fileName: file.name, contentType: file.type },
@@ -65,16 +67,20 @@ export default function VideoUpload({ courseId, chapterId }: VideoUploadProps) {
         height: metadata.height,
       },
     })
+
+    return lesson
   }
 
   async function handleUpload(): Promise<void> {
     setUploadError('')
     setIsUploading(true)
     const failed: File[] = []
+    let firstLesson: Lesson | undefined
     let firstError = ''
     for (const file of files) {
       try {
-        await uploadVideo(file)
+        const lesson = await uploadVideo(file)
+        firstLesson ??= lesson
       } catch (error) {
         console.error(error)
         failed.push(file)
@@ -89,12 +95,13 @@ export default function VideoUpload({ courseId, chapterId }: VideoUploadProps) {
     setFiles(failed)
     setUploadError(firstError)
     setIsUploading(false)
-    if (uploaded === 0) {
+    if (!firstLesson) {
       showErrorToast('No video was uploaded', firstError)
 
       return
     }
 
+    onAdded(firstLesson)
     showSuccessToast(`${uploaded} ${uploaded === 1 ? 'video' : 'videos'} uploaded`)
     await router.invalidate()
   }
