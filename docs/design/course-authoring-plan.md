@@ -38,7 +38,7 @@ refers to decision N in that file.
 - [x] **2.3 "Add lesson"** creates the lesson and drops into inline rename, in both zones
       (Settled 10, 31).
 - [x] **2.4 `VideoUpload` in the course-level zone**, with an optional chapter id (Settled 31).
-- [ ] **2.5 Add `createChapter` and "Add chapter"**, which appends "Untitled chapter" and opens its
+- [x] **2.5 Add `createChapter` and "Add chapter"**, which appends "Untitled chapter" and opens its
       `EditChapter` panel with the title focused (Settled 31).
 
 ## Step 3 — Deleting chapters and courses

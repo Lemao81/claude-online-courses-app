@@ -1,5 +1,6 @@
 import { Field, Input, Stack, Textarea } from '@chakra-ui/react'
 import { useForm } from '@tanstack/react-form'
+import { useEffect, useRef } from 'react'
 import ErrorText from '#/components/ui/ErrorText'
 import { autoSaveDebounceMs } from '#/config/constants'
 import type { Chapter } from '#/types'
@@ -28,6 +29,7 @@ type EditChapterFormProps = {
   form: ReturnType<typeof useEditChapterForm>['form']
   formId: string
   autoSaveError: string
+  focusTitle?: boolean
   onAutoSave: (value: EditChapterFormValues) => void
 }
 
@@ -35,8 +37,18 @@ export default function EditChapterForm({
   form,
   formId,
   autoSaveError,
+  focusTitle,
   onAutoSave,
 }: EditChapterFormProps) {
+  const titleRef = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    if (focusTitle) {
+      titleRef.current?.focus()
+      titleRef.current?.select()
+    }
+  }, [focusTitle])
+
   return (
     <form id={formId} onSubmit={(e) => e.preventDefault()}>
       <Stack gap="4">
@@ -55,6 +67,7 @@ export default function EditChapterForm({
                 <Field.RequiredIndicator />
               </Field.Label>
               <Input
+                ref={titleRef}
                 name={field.name}
                 value={field.state.value}
                 onBlur={field.handleBlur}

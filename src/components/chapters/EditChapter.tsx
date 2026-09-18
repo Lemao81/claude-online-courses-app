@@ -14,10 +14,16 @@ import type { Chapter, LessonVideo } from '#/types'
 type EditChapterProps = {
   chapter?: Chapter
   lessons?: LessonVideo[]
+  focusTitle?: boolean
   onClose: () => void
 }
 
-export default function EditChapter({ chapter, lessons = [], onClose }: EditChapterProps) {
+export default function EditChapter({
+  chapter,
+  lessons = [],
+  focusTitle,
+  onClose,
+}: EditChapterProps) {
   const router = useRouter()
   const [autoSaveError, setAutoSaveError] = useState('')
   const [newLessonId, setNewLessonId] = useState<number>()
@@ -62,6 +68,7 @@ export default function EditChapter({ chapter, lessons = [], onClose }: EditChap
             form={form}
             formId={formId}
             autoSaveError={autoSaveError}
+            focusTitle={focusTitle}
             onAutoSave={handleAutoSave}
           />
         </Box>

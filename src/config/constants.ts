@@ -25,3 +25,5 @@ export const assetDeleteRetryDelaySec = 30
 export const workerStopTimeoutMs = 30000
 
 export const untitledLessonTitle = 'Untitled lesson'
+
+export const untitledChapterTitle = 'Untitled chapter'

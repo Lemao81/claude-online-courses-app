@@ -26,7 +26,7 @@ export default function EditCoursePage() {
         <Heading as="h2" m="0" textStyle="sectionLabel">
           Chapters
         </Heading>
-        <CourseChapterList chapters={course.chapters} />
+        <CourseChapterList courseId={course.id} chapters={course.chapters} />
       </Stack>
     </Stack>
   )
