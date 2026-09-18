@@ -26,7 +26,7 @@ export default function EditCoursePage() {
         </CloseButton>
       </Grid>
       <Stack as="section" gap="3">
-        <Heading as="h2" m="0" textStyle="sectionLabel">
+        <Heading as="h2" m="0" textStyle="sectionHeading">
           Lessons
         </Heading>
         <LessonList lessons={course.lessons} newLessonId={newLessonId} />
@@ -34,7 +34,7 @@ export default function EditCoursePage() {
         <VideoUpload courseId={course.id} onAdded={(l) => setNewLessonId(l.id)} />
       </Stack>
       <Stack as="section" gap="3">
-        <Heading as="h2" m="0" textStyle="sectionLabel">
+        <Heading as="h2" m="0" textStyle="sectionHeading">
           Chapters
         </Heading>
         <CourseChapterList courseId={course.id} chapters={course.chapters} />

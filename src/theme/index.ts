@@ -242,6 +242,15 @@ export const themeConfig = defineConfig({
           color: 'fg.muted',
         },
       },
+      sectionHeading: {
+        value: {
+          fontSize: 'md',
+          fontWeight: 'semibold',
+          letterSpacing: 'wider',
+          textTransform: 'uppercase',
+          color: 'fg.muted',
+        },
+      },
       kicker: {
         value: {
           fontSize: '0.69rem',
