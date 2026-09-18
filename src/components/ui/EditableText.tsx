@@ -7,6 +7,7 @@ type EditableTextProps = {
   onSubmit: (value: string) => void
   placeholder?: string
   disabled?: boolean
+  defaultEdit?: boolean
 }
 
 export default function EditableText({
@@ -14,6 +15,7 @@ export default function EditableText({
   onSubmit,
   placeholder,
   disabled,
+  defaultEdit,
 }: EditableTextProps) {
   const [draft, setDraft] = useState(value)
 
@@ -38,6 +40,7 @@ export default function EditableText({
     <Editable.Root
       value={draft}
       activationMode="click"
+      defaultEdit={defaultEdit}
       placeholder={placeholder}
       disabled={disabled}
       onValueChange={(d) => setDraft(d.value)}

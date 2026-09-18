@@ -1,6 +1,7 @@
 import { Box, CloseButton, Flex, Stack, Text } from '@chakra-ui/react'
 import { useRouter } from '@tanstack/react-router'
 import { useRef, useState } from 'react'
+import AddLessonButton from '#/components/lessons/AddLessonButton'
 import LessonList from '#/components/lessons/LessonList'
 import EditChapterForm, {
   type EditChapterFormValues,
@@ -19,6 +20,7 @@ type EditChapterProps = {
 export default function EditChapter({ chapter, lessons = [], onClose }: EditChapterProps) {
   const router = useRouter()
   const [autoSaveError, setAutoSaveError] = useState('')
+  const [newLessonId, setNewLessonId] = useState<number>()
   const savedValues = useRef<EditChapterFormValues>({
     title: chapter?.title ?? '',
     description: chapter?.description ?? '',
@@ -72,7 +74,14 @@ export default function EditChapter({ chapter, lessons = [], onClose }: EditChap
       </Flex>
       <Stack gap="2">
         <Text textStyle="sectionLabel">Lesson Videos</Text>
-        <LessonList lessons={lessons} />
+        <LessonList lessons={lessons} newLessonId={newLessonId} />
+        {chapter && (
+          <AddLessonButton
+            courseId={chapter.courseId}
+            chapterId={chapter.id}
+            onAdded={(l) => setNewLessonId(l.id)}
+          />
+        )}
       </Stack>
       {chapter && <VideoUpload courseId={chapter.courseId} chapterId={chapter.id} />}
     </Stack>

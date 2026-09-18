@@ -4,9 +4,10 @@ import type { LessonVideo } from '#/types'
 
 type LessonListProps = {
   lessons: LessonVideo[]
+  newLessonId?: number
 }
 
-export default function LessonList({ lessons }: LessonListProps) {
+export default function LessonList({ lessons, newLessonId }: LessonListProps) {
   if (lessons.length === 0) {
     return (
       <Text layerStyle="emptyStateRow" textStyle="emptyState">
@@ -18,7 +19,7 @@ export default function LessonList({ lessons }: LessonListProps) {
   return (
     <Stack gap="2">
       {lessons.map((l) => (
-        <LessonListItem key={l.id} lesson={l} />
+        <LessonListItem key={l.id} lesson={l} isNew={l.id === newLessonId} />
       ))}
     </Stack>
   )

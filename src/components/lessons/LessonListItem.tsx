@@ -12,9 +12,10 @@ import { formatDuration } from '#/utils/formatters'
 
 type LessonListItemProps = {
   lesson: LessonVideo
+  isNew?: boolean
 }
 
-export default function LessonListItem({ lesson }: LessonListItemProps) {
+export default function LessonListItem({ lesson, isNew }: LessonListItemProps) {
   const router = useRouter()
   const [titleError, setTitleError] = useState('')
   const [isRemoveOpen, setIsRemoveOpen] = useState(false)
@@ -49,7 +50,7 @@ export default function LessonListItem({ lesson }: LessonListItemProps) {
           <LuVideo size={16} />
         </IconTile>
         <Stack gap="0.5" minW="0" flex="1">
-          <EditableText value={lesson.title} onSubmit={handleTitleSubmit} />
+          <EditableText value={lesson.title} defaultEdit={isNew} onSubmit={handleTitleSubmit} />
           <Text textStyle="meta" px="0.6rem">
             {formatDuration(lesson.durationSec)}
           </Text>
