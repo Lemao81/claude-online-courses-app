@@ -1,9 +1,6 @@
 import { eq, sql } from 'drizzle-orm'
-import type { db } from '#/server/db/client'
 import { chapters, courses, lessons, reviews } from '#/server/db/schema'
-import type { Transaction } from '#/server/db/types'
-
-type Database = typeof db | Transaction
+import type { Database } from '#/server/db/types'
 
 export async function recomputeCourseRating(tx: Database, courseId: number): Promise<void> {
   await tx

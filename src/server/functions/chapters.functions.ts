@@ -3,6 +3,7 @@ import { createServerFn } from '@tanstack/react-start'
 import { desc, eq } from 'drizzle-orm'
 import { z } from 'zod'
 import { untitledChapterTitle } from '#/config/constants'
+import { removeChapter } from '#/server/db/chapters.helpers'
 import { db } from '#/server/db/client'
 import { chapters, courses } from '#/server/db/schema'
 import { requireUserId } from '#/server/functions/auth.server'
@@ -97,4 +98,36 @@ export const updateChapter = createServerFn({
       .returning()
 
     return updated
+  })
+
+const deleteChapterSchema = z.object({
+  id: z.number().int('Chapter id is required'),
+})
+
+type DeleteChapterInput = z.input<typeof deleteChapterSchema>
+
+export const deleteChapter = createServerFn({
+  method: 'POST',
+})
+  .validator((data: DeleteChapterInput) => validateInput(deleteChapterSchema, data))
+  .handler(async ({ data }): Promise<void> => {
+    const userId = await requireUserId()
+
+    const chapter = await db.query.chapters.findFirst({
+      where: eq(chapters.id, data.id),
+      columns: { id: true, courseId: true },
+      with: {
+        course: { columns: { authorId: true } },
+      },
+    })
+
+    if (!chapter) {
+      throw notFound()
+    }
+
+    if (chapter.course.authorId !== userId) {
+      throw redirect({ to: '/courses' })
+    }
+
+    await removeChapter(db, chapter)
   })

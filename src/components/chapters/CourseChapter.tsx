@@ -7,13 +7,19 @@ import { formatDuration } from '#/utils/formatters'
 
 type CourseChapterProps = {
   chapter: Chapter
+  number: number
   lessons?: LessonVideo[]
   onEdit: () => void
 }
 
-export default function CourseChapter({ chapter, lessons = [], onEdit }: CourseChapterProps) {
+export default function CourseChapter({
+  chapter,
+  number,
+  lessons = [],
+  onEdit,
+}: CourseChapterProps) {
   const meta = [
-    `Chapter ${chapter.position + 1}`,
+    `Chapter ${number}`,
     `${lessons.length} ${lessons.length === 1 ? 'lesson' : 'lessons'}`,
     formatDuration(chapter.durationSec),
   ].join(' · ')

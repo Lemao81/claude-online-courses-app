@@ -21,7 +21,7 @@ export default function CourseChapterList({ courseId, chapters }: CourseChapterL
 
   return (
     <Stack gap="4">
-      {chapters.map((c) =>
+      {chapters.map((c, i) =>
         c.id === editedChapterId ? (
           <EditChapter
             key={c.id}
@@ -34,6 +34,7 @@ export default function CourseChapterList({ courseId, chapters }: CourseChapterL
           <CourseChapter
             key={c.id}
             chapter={c}
+            number={i + 1}
             lessons={c.lessons}
             onEdit={() => editChapter(c.id)}
           />
