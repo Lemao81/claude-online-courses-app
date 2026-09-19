@@ -83,20 +83,22 @@ export default function EditChapter({
         <Text textStyle="sectionLabel">Lesson Videos</Text>
         <LessonList lessons={lessons} newLessonId={newLessonId} />
         {chapter && (
-          <AddLessonButton
-            courseId={chapter.courseId}
-            chapterId={chapter.id}
-            onAdded={(l) => setNewLessonId(l.id)}
-          />
+          <Flex align="center" justify="center" gap="4" wrap="wrap" w="full" maxW="32rem" mx="auto">
+            <AddLessonButton
+              courseId={chapter.courseId}
+              chapterId={chapter.id}
+              onAdded={(l) => setNewLessonId(l.id)}
+            />
+            <Box flex="1" minW="16rem">
+              <VideoUpload
+                courseId={chapter.courseId}
+                chapterId={chapter.id}
+                onAdded={(l) => setNewLessonId(l.id)}
+              />
+            </Box>
+          </Flex>
         )}
       </Stack>
-      {chapter && (
-        <VideoUpload
-          courseId={chapter.courseId}
-          chapterId={chapter.id}
-          onAdded={(l) => setNewLessonId(l.id)}
-        />
-      )}
     </Stack>
   )
 }

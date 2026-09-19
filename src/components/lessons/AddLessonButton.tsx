@@ -41,7 +41,6 @@ export default function AddLessonButton({ courseId, chapterId, onAdded }: AddLes
     <Button
       type="button"
       variant="chip"
-      alignSelf="flex-start"
       loading={isAdding}
       onClick={handleAdd}
     >

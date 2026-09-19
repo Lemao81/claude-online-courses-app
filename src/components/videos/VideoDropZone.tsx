@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Text, useRecipe } from '@chakra-ui/react'
+import { Box, Button, Flex, Stack, Text, useRecipe } from '@chakra-ui/react'
 import { type ChangeEvent, type DragEvent, useRef, useState } from 'react'
 import { LuCloudUpload, LuFolderOpen } from 'react-icons/lu'
 import IconTile from '#/components/ui/IconTile'
@@ -56,13 +56,15 @@ export default function VideoDropZone({ onFilesSelected }: VideoDropZoneProps) {
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
     >
-      <Flex direction="column" align="center" gap="3">
-        <IconTile size="lg">
-          <LuCloudUpload size={22} />
+      <Flex direction="column" align="center" gap="2" textAlign="center">
+        <IconTile>
+          <LuCloudUpload size={16} />
         </IconTile>
-        <Text textStyle="title">Drop your videos here</Text>
-        <Text textStyle="subtitle">MP4, MOV or WebM — or pick them from your device</Text>
-        <Button type="button" variant="secondary" onClick={handleSelectClick}>
+        <Stack gap="0.5">
+          <Text textStyle="itemTitle">Drop your videos here</Text>
+          <Text textStyle="meta">MP4, MOV or WebM</Text>
+        </Stack>
+        <Button type="button" variant="chip" onClick={handleSelectClick}>
           <LuFolderOpen aria-hidden="true" />
           Select Videos
         </Button>
