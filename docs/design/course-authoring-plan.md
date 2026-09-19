@@ -43,9 +43,9 @@ refers to decision N in that file.
 
 ## Step 3 — Deleting chapters and courses
 
-- [ ] **3.1 Set up Vitest for server rules.**
-      _Open:_ how the rules reach a database — a real Postgres in Docker, or rule logic extracted
-      into functions testable without one.
+- [x] **3.1 Set up Vitest for server rules.** A Testcontainers Postgres, started and migrated once
+      per run, with each test inside a rolled-back transaction. Rules take a `Database | Transaction`
+      so the tests can call them without auth.
 - [ ] **3.2 Add `deleteChapter`**, appending its lessons to the course-level zone in chapter order in
       one transaction, with tests (Settled 7, 28). Chapter numbers in the UI come from list order,
       not `position`, since deletion leaves gaps (Settled 27).

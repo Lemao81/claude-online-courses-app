@@ -1,4 +1,7 @@
 allowBuilds:
+  cpu-features: false
   esbuild: true
   lightningcss: true
+  protobufjs: false
+  ssh2: false
 minimumReleaseAge: 20160
