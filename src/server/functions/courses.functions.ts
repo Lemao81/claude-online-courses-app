@@ -4,9 +4,11 @@ import { createServerFn } from '@tanstack/react-start'
 import { asc, desc, eq, isNull } from 'drizzle-orm'
 import { z } from 'zod'
 import { db } from '#/server/db/client'
+import { removeCourse } from '#/server/db/courses.helpers'
 import { chapters, courses, lessons, users } from '#/server/db/schema'
 import { requireUserId } from '#/server/functions/auth.server'
 import { validateInput } from '#/server/functions/validation.helpers'
+import { enqueueAssetDeletion } from '#/server/jobs/assets.jobs'
 import type { Course, CourseOutline } from '#/types'
 
 const courseIdSchema = z.number().int('Course id is required')
@@ -141,4 +143,39 @@ export const createCourse = createServerFn({
       .returning()
 
     return course
+  })
+
+const deleteCourseSchema = z.object({
+  id: courseIdSchema,
+})
+
+type DeleteCourseInput = z.input<typeof deleteCourseSchema>
+
+export const deleteCourse = createServerFn({
+  method: 'POST',
+})
+  .validator((data: DeleteCourseInput) => validateInput(deleteCourseSchema, data))
+  .handler(async ({ data }): Promise<void> => {
+    const userId = await requireUserId()
+
+    const course = await db.query.courses.findFirst({
+      where: eq(courses.id, data.id),
+      columns: { authorId: true },
+    })
+
+    if (!course) {
+      throw notFound()
+    }
+
+    if (course.authorId !== userId) {
+      throw redirect({ to: '/courses' })
+    }
+
+    await db.transaction(async (tx) => {
+      const assetIds = await removeCourse(tx, data.id)
+
+      for (const assetId of assetIds) {
+        await enqueueAssetDeletion(tx, assetId)
+      }
+    })
   })

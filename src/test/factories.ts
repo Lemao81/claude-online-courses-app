@@ -1,12 +1,16 @@
-import { chapters, courses, lessons, users } from '#/server/db/schema'
+import { assets, chapters, courses, enrollments, lessons, users } from '#/server/db/schema'
 import type { Transaction } from '#/server/db/types'
-import type { Chapter, Course, Lesson } from '#/types'
+import type { Asset, Chapter, Course, Enrollment, Lesson } from '#/types'
 
 type CourseValues = Partial<typeof courses.$inferInsert>
 
 type ChapterValues = Pick<Chapter, 'courseId'> & Partial<typeof chapters.$inferInsert>
 
 type LessonValues = Pick<Lesson, 'courseId'> & Partial<typeof lessons.$inferInsert>
+
+type AssetValues = Pick<Asset, 'ownerId'> & Partial<typeof assets.$inferInsert>
+
+type EnrollmentValues = Pick<Enrollment, 'courseId'> & Partial<typeof enrollments.$inferInsert>
 
 export async function insertUser(tx: Transaction): Promise<string> {
   const [user] = await tx
@@ -48,4 +52,31 @@ export async function insertLesson(tx: Transaction, values: LessonValues): Promi
     .returning()
 
   return lesson
+}
+
+export async function insertAsset(tx: Transaction, values: AssetValues): Promise<Asset> {
+  const [asset] = await tx
+    .insert(assets)
+    .values({
+      kind: 'video',
+      bucket: 'test',
+      objectName: crypto.randomUUID(),
+      contentType: 'video/mp4',
+      ...values,
+    })
+    .returning()
+
+  return asset
+}
+
+export async function insertEnrollment(
+  tx: Transaction,
+  values: EnrollmentValues,
+): Promise<Enrollment> {
+  const [enrollment] = await tx
+    .insert(enrollments)
+    .values({ pricePaid: '0', userId: values.userId ?? (await insertUser(tx)), ...values })
+    .returning()
+
+  return enrollment
 }

@@ -50,7 +50,7 @@ refers to decision N in that file.
       one transaction, with tests (Settled 7, 28). Chapter numbers in the UI come from list order,
       not `position`, since deletion leaves gaps (Settled 27).
 - [x] **3.3 "Remove Chapter" control** with a confirmation naming how many lessons move (Settled 28).
-- [ ] **3.4 Add `deleteCourse`**, allowed only for a draft that never had an enrollment, soft-deleting
+- [x] **3.4 Add `deleteCourse`**, allowed only for a draft that never had an enrollment, soft-deleting
       and enqueuing its assets, with tests (Settled 37).
 - [ ] **3.5 Delete-course control** with confirmation.
       _Open:_ where it lives before the step 6 header exists — `/mycourses`, or the editor.

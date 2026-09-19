@@ -1,4 +1,4 @@
-import type { chapters, courses, lessons } from '#/server/db/schema'
+import type { assets, chapters, courses, enrollments, lessons } from '#/server/db/schema'
 
 export type Course = typeof courses.$inferSelect
 
@@ -7,6 +7,10 @@ export type CourseStatus = Course['status']
 export type Chapter = typeof chapters.$inferSelect
 
 export type Lesson = typeof lessons.$inferSelect
+
+export type Asset = typeof assets.$inferSelect
+
+export type Enrollment = typeof enrollments.$inferSelect
 
 export type LessonVideo = Pick<Lesson, 'id' | 'title' | 'durationSec'>
 
