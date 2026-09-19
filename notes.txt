@@ -1,0 +1,1 @@
+Clerk test users: emails ending with +clerk_test@test.com sign in with the OTP 424242.
