@@ -1,7 +1,7 @@
 import { and, eq, isNotNull, sql } from 'drizzle-orm'
 import type { Job, PgBoss } from 'pg-boss'
 import { fromDrizzle } from 'pg-boss'
-import { assetSweepBatchSize } from '#/config/constants'
+import { assetSweepBatchSize } from '#/constants/config'
 import { db } from '#/server/db/client'
 import { assets } from '#/server/db/schema'
 import type { Transaction } from '#/server/db/types'

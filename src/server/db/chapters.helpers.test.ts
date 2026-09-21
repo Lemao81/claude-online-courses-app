@@ -1,6 +1,6 @@
 import { asc, eq } from 'drizzle-orm'
 import { describe, expect, it } from 'vitest'
-import { outlineChangedMessage } from '#/config/constants'
+import { outlineChangedMessage } from '#/constants/error.messages'
 import { removeChapter, setChapterOrder } from '#/server/db/chapters.helpers'
 import { chapters, lessons } from '#/server/db/schema'
 import type { Transaction } from '#/server/db/types'

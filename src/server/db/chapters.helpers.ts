@@ -1,5 +1,5 @@
 import { and, asc, desc, eq, isNull } from 'drizzle-orm'
-import { outlineChangedMessage } from '#/config/constants'
+import { outlineChangedMessage } from '#/constants/error.messages'
 import { chapters, lessons } from '#/server/db/schema'
 import type { Database } from '#/server/db/types'
 import { hasSameIds } from '#/server/helpers'

@@ -2,12 +2,12 @@ import { notFound, redirect } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
 import { eq } from 'drizzle-orm'
 import { z } from 'zod'
+import { videoBucket } from '#/constants'
 import {
   maxVideoDimensionPx,
   maxVideoDurationSec,
-  videoBucket,
   videoUploadUrlExpirySec,
-} from '#/config/constants'
+} from '#/constants/config'
 import { recomputeCourseDuration } from '#/server/db/aggregates.helpers'
 import { db } from '#/server/db/client'
 import { assets, courses, lessons } from '#/server/db/schema'
