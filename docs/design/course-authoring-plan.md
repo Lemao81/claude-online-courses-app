@@ -57,7 +57,7 @@ refers to decision N in that file.
 
 ## Step 4 — Reordering
 
-- [ ] **4.1 Add chapter reordering on the server** — whole order for one course, rewrite `0..n`,
+- [x] **4.1 Add chapter reordering on the server** — whole order for one course, rewrite `0..n`,
       reject stale id sets, with tests (Settled 20, 38).
 - [ ] **4.2 Add lesson reordering and re-parenting on the server** — one or two parent lists in one
       transaction, recompute durations, reject stale id sets, with tests (Settled 6, 20, 38).

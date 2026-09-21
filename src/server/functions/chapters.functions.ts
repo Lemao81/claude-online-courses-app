@@ -3,7 +3,7 @@ import { createServerFn } from '@tanstack/react-start'
 import { desc, eq } from 'drizzle-orm'
 import { z } from 'zod'
 import { untitledChapterTitle } from '#/config/constants'
-import { removeChapter } from '#/server/db/chapters.helpers'
+import { removeChapter, setChapterOrder } from '#/server/db/chapters.helpers'
 import { db } from '#/server/db/client'
 import { chapters, courses } from '#/server/db/schema'
 import { requireUserId } from '#/server/functions/auth.server'
@@ -130,4 +130,34 @@ export const deleteChapter = createServerFn({
     }
 
     await removeChapter(db, chapter)
+  })
+
+const reorderChaptersSchema = z.object({
+  courseId: z.number().int('Course id is required'),
+  chapterIds: z.array(z.number().int('Chapter id is required')),
+})
+
+type ReorderChaptersInput = z.input<typeof reorderChaptersSchema>
+
+export const reorderChapters = createServerFn({
+  method: 'POST',
+})
+  .validator((data: ReorderChaptersInput) => validateInput(reorderChaptersSchema, data))
+  .handler(async ({ data }): Promise<void> => {
+    const userId = await requireUserId()
+
+    const course = await db.query.courses.findFirst({
+      where: eq(courses.id, data.courseId),
+      columns: { authorId: true },
+    })
+
+    if (!course) {
+      throw notFound()
+    }
+
+    if (course.authorId !== userId) {
+      throw redirect({ to: '/courses' })
+    }
+
+    await setChapterOrder(db, data.courseId, data.chapterIds)
   })

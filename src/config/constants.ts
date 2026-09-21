@@ -27,3 +27,5 @@ export const workerStopTimeoutMs = 30000
 export const untitledLessonTitle = 'Untitled lesson'
 
 export const untitledChapterTitle = 'Untitled chapter'
+
+export const outlineChangedMessage = 'The outline changed'

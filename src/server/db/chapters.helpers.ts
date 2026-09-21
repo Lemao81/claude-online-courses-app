@@ -1,6 +1,8 @@
 import { and, asc, desc, eq, isNull } from 'drizzle-orm'
+import { outlineChangedMessage } from '#/config/constants'
 import { chapters, lessons } from '#/server/db/schema'
 import type { Database } from '#/server/db/types'
+import { hasSameIds } from '#/server/helpers'
 import type { Chapter } from '#/types'
 
 export async function removeChapter(
@@ -31,5 +33,27 @@ export async function removeChapter(
     }
 
     await tx.delete(chapters).where(eq(chapters.id, chapter.id))
+  })
+}
+
+export async function setChapterOrder(
+  database: Database,
+  courseId: number,
+  chapterIds: number[],
+): Promise<void> {
+  await database.transaction(async (tx) => {
+    const current = await tx
+      .select({ id: chapters.id })
+      .from(chapters)
+      .where(eq(chapters.courseId, courseId))
+      .for('update')
+
+    if (!hasSameIds(current.map((c) => c.id), chapterIds)) {
+      throw new Error(outlineChangedMessage)
+    }
+
+    for (const [position, id] of chapterIds.entries()) {
+      await tx.update(chapters).set({ position }).where(eq(chapters.id, id))
+    }
   })
 }
