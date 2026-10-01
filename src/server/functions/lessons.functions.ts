@@ -5,6 +5,7 @@ import { z } from 'zod'
 import { untitledLessonTitle } from '#/constants'
 import { recomputeCourseDuration } from '#/server/db/aggregates.helpers'
 import { db } from '#/server/db/client'
+import { setLessonOrder } from '#/server/db/lessons.helpers'
 import { assets, chapters, courses, lessons } from '#/server/db/schema'
 import { requireUserId } from '#/server/functions/auth.server'
 import { validateInput } from '#/server/functions/validation.helpers'
@@ -162,4 +163,42 @@ export const deleteLesson = createServerFn({
         await enqueueAssetDeletion(tx, video.id)
       }
     })
+  })
+
+const reorderLessonsSchema = z.object({
+  courseId: z.number().int('Course id is required'),
+  orders: z
+    .array(
+      z.object({
+        chapterId: z.number().int('Chapter id must be a whole number').nullable(),
+        lessonIds: z.array(z.number().int('Lesson id is required')),
+      }),
+    )
+    .min(1, 'An order is required')
+    .max(2, 'At most two parents can change'),
+})
+
+type ReorderLessonsInput = z.input<typeof reorderLessonsSchema>
+
+export const reorderLessons = createServerFn({
+  method: 'POST',
+})
+  .validator((data: ReorderLessonsInput) => validateInput(reorderLessonsSchema, data))
+  .handler(async ({ data }): Promise<void> => {
+    const userId = await requireUserId()
+
+    const course = await db.query.courses.findFirst({
+      where: eq(courses.id, data.courseId),
+      columns: { authorId: true },
+    })
+
+    if (!course) {
+      throw notFound()
+    }
+
+    if (course.authorId !== userId) {
+      throw redirect({ to: '/courses' })
+    }
+
+    await setLessonOrder(db, data.courseId, data.orders)
   })

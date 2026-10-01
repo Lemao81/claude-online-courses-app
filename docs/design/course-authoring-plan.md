@@ -59,7 +59,7 @@ refers to decision N in that file.
 
 - [x] **4.1 Add chapter reordering on the server** — whole order for one course, rewrite `0..n`,
       reject stale id sets, with tests (Settled 20, 38).
-- [ ] **4.2 Add lesson reordering and re-parenting on the server** — one or two parent lists in one
+- [x] **4.2 Add lesson reordering and re-parenting on the server** — one or two parent lists in one
       transaction, recompute durations, reject stale id sets, with tests (Settled 6, 20, 38).
 - [ ] **4.3 Drag lessons within one parent** by a grip handle, optimistic with rollback and an
       error toast (Settled 29).

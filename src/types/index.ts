@@ -18,6 +18,8 @@ export type ChapterWithLessons = Chapter & { lessons: LessonVideo[] }
 
 export type CourseOutline = Course & { lessons: LessonVideo[]; chapters: ChapterWithLessons[] }
 
+export type LessonOrder = { chapterId: number | null; lessonIds: number[] }
+
 export type VideoMetadata = {
   durationSec: number
   width: number
