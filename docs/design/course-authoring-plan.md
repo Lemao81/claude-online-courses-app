@@ -61,7 +61,7 @@ refers to decision N in that file.
       reject stale id sets, with tests (Settled 20, 38).
 - [x] **4.2 Add lesson reordering and re-parenting on the server** — one or two parent lists in one
       transaction, recompute durations, reject stale id sets, with tests (Settled 6, 20, 38).
-- [ ] **4.3 Drag lessons within one parent** by a grip handle, optimistic with rollback and an
+- [x] **4.3 Drag lessons within one parent** by a grip handle, optimistic with rollback and an
       error toast (Settled 29).
 - [ ] **4.4 Drag lessons across parents**, including empty-chapter drop zones and an open
       `EditChapter` panel (Settled 30).

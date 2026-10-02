@@ -3,22 +3,27 @@ import { useRouter } from '@tanstack/react-router'
 import { useState } from 'react'
 import { LuVideo } from 'react-icons/lu'
 import ConfirmDialog from '#/components/ui/ConfirmDialog'
+import DragHandle from '#/components/ui/DragHandle'
 import EditableText from '#/components/ui/EditableText'
 import ErrorText from '#/components/ui/ErrorText'
 import IconTile from '#/components/ui/IconTile'
+import { useLessonSortable } from '#/hooks/useLessonSortable'
 import { deleteLesson, updateLessonTitle } from '#/server/functions/lessons.functions'
 import type { LessonVideo } from '#/types'
 import { formatDuration } from '#/utils/formatters'
 
 type LessonListItemProps = {
   lesson: LessonVideo
+  index: number
+  chapterId: number | null
   isNew?: boolean
 }
 
-export default function LessonListItem({ lesson, isNew }: LessonListItemProps) {
+export default function LessonListItem({ lesson, index, chapterId, isNew }: LessonListItemProps) {
   const router = useRouter()
   const [titleError, setTitleError] = useState('')
   const [isRemoveOpen, setIsRemoveOpen] = useState(false)
+  const { ref, handleRef } = useLessonSortable(lesson.id, index, chapterId)
 
   function handleRemove(): void {
     setIsRemoveOpen(true)
@@ -44,8 +49,9 @@ export default function LessonListItem({ lesson, isNew }: LessonListItemProps) {
   }
 
   return (
-    <Flex align="center" justify="space-between" gap="3" layerStyle="row">
+    <Flex ref={ref} align="center" justify="space-between" gap="3" layerStyle="row">
       <Flex align="center" gap="3" minW="0" flex="1">
+        <DragHandle ref={handleRef} label={`Reorder ${lesson.title}`} />
         <IconTile>
           <LuVideo size={16} />
         </IconTile>

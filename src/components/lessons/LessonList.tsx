@@ -3,11 +3,12 @@ import LessonListItem from '#/components/lessons/LessonListItem'
 import type { LessonVideo } from '#/types'
 
 type LessonListProps = {
+  chapterId: number | null
   lessons: LessonVideo[]
   newLessonId?: number
 }
 
-export default function LessonList({ lessons, newLessonId }: LessonListProps) {
+export default function LessonList({ chapterId, lessons, newLessonId }: LessonListProps) {
   if (lessons.length === 0) {
     return (
       <Text layerStyle="emptyStateRow" textStyle="emptyState">
@@ -18,8 +19,14 @@ export default function LessonList({ lessons, newLessonId }: LessonListProps) {
 
   return (
     <Stack gap="2">
-      {lessons.map((l) => (
-        <LessonListItem key={l.id} lesson={l} isNew={l.id === newLessonId} />
+      {lessons.map((l, i) => (
+        <LessonListItem
+          key={l.id}
+          lesson={l}
+          index={i}
+          chapterId={chapterId}
+          isNew={l.id === newLessonId}
+        />
       ))}
     </Stack>
   )

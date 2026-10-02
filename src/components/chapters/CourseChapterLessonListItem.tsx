@@ -1,16 +1,27 @@
 import { Flex, Stack, Text } from '@chakra-ui/react'
 import { LuVideo } from 'react-icons/lu'
+import DragHandle from '#/components/ui/DragHandle'
 import IconTile from '#/components/ui/IconTile'
+import { useLessonSortable } from '#/hooks/useLessonSortable'
 import type { LessonVideo } from '#/types'
 import { formatDuration } from '#/utils/formatters'
 
 type CourseChapterLessonListItemProps = {
   lesson: LessonVideo
+  index: number
+  chapterId: number
 }
 
-export default function CourseChapterLessonListItem({ lesson }: CourseChapterLessonListItemProps) {
+export default function CourseChapterLessonListItem({
+  lesson,
+  index,
+  chapterId,
+}: CourseChapterLessonListItemProps) {
+  const { ref, handleRef } = useLessonSortable(lesson.id, index, chapterId)
+
   return (
-    <Flex align="center" gap="3" layerStyle="row">
+    <Flex ref={ref} align="center" gap="3" layerStyle="row">
+      <DragHandle ref={handleRef} label={`Reorder ${lesson.title}`} />
       <IconTile>
         <LuVideo size={16} />
       </IconTile>

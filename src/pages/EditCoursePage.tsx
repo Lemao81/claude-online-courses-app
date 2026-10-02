@@ -4,13 +4,16 @@ import { useState } from 'react'
 import { LuArrowLeft } from 'react-icons/lu'
 import CourseChapterList from '#/components/chapters/CourseChapterList'
 import AddLessonButton from '#/components/lessons/AddLessonButton'
+import LessonDragDrop from '#/components/lessons/LessonDragDrop'
 import LessonList from '#/components/lessons/LessonList'
 import VideoUpload from '#/components/videos/VideoUpload'
+import { useSyncedState } from '#/hooks/useSyncedState'
 
 const routeApi = getRouteApi('/editcourse/$courseId')
 
 export default function EditCoursePage() {
   const course = routeApi.useLoaderData()
+  const [outline, setOutline] = useSyncedState(course)
   const [newLessonId, setNewLessonId] = useState<number>()
 
   return (
@@ -25,24 +28,26 @@ export default function EditCoursePage() {
           </RouterLink>
         </CloseButton>
       </Grid>
-      <Stack as="section" gap="3">
-        <Heading as="h2" m="0" textStyle="sectionHeading">
-          Lessons
-        </Heading>
-        <LessonList lessons={course.lessons} newLessonId={newLessonId} />
-        <Flex align="center" justify="center" gap="4" wrap="wrap" w="full" maxW="32rem" mx="auto">
-          <AddLessonButton courseId={course.id} onAdded={(l) => setNewLessonId(l.id)} />
-          <Box flex="1" minW="16rem">
-            <VideoUpload courseId={course.id} onAdded={(l) => setNewLessonId(l.id)} />
-          </Box>
-        </Flex>
-      </Stack>
-      <Stack as="section" gap="3">
-        <Heading as="h2" m="0" textStyle="sectionHeading">
-          Chapters
-        </Heading>
-        <CourseChapterList courseId={course.id} chapters={course.chapters} />
-      </Stack>
+      <LessonDragDrop outline={outline} onOutlineChange={setOutline}>
+        <Stack as="section" gap="3">
+          <Heading as="h2" m="0" textStyle="sectionHeading">
+            Lessons
+          </Heading>
+          <LessonList chapterId={null} lessons={outline.lessons} newLessonId={newLessonId} />
+          <Flex align="center" justify="center" gap="4" wrap="wrap" w="full" maxW="32rem" mx="auto">
+            <AddLessonButton courseId={course.id} onAdded={(l) => setNewLessonId(l.id)} />
+            <Box flex="1" minW="16rem">
+              <VideoUpload courseId={course.id} onAdded={(l) => setNewLessonId(l.id)} />
+            </Box>
+          </Flex>
+        </Stack>
+        <Stack as="section" gap="3">
+          <Heading as="h2" m="0" textStyle="sectionHeading">
+            Chapters
+          </Heading>
+          <CourseChapterList courseId={course.id} chapters={outline.chapters} />
+        </Stack>
+      </LessonDragDrop>
     </Stack>
   )
 }

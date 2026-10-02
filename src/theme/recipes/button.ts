@@ -69,6 +69,13 @@ export const buttonRecipe = defineRecipe({
         color: 'colorPalette.fg',
         _hover: { bg: 'colorPalette.subtle' },
       },
+      grip: {
+        color: 'fg.muted',
+        cursor: 'grab',
+        touchAction: 'none',
+        _hover: { bg: 'colorPalette.subtle', color: 'colorPalette.fg' },
+        _active: { cursor: 'grabbing' },
+      },
     },
   },
 })

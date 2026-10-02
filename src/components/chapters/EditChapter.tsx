@@ -81,7 +81,7 @@ export default function EditChapter({
       </Flex>
       <Stack gap="2">
         <Text textStyle="sectionLabel">Lesson Videos</Text>
-        <LessonList lessons={lessons} newLessonId={newLessonId} />
+        <LessonList chapterId={chapter?.id ?? null} lessons={lessons} newLessonId={newLessonId} />
         {chapter && (
           <Flex align="center" justify="center" gap="4" wrap="wrap" w="full" maxW="32rem" mx="auto">
             <AddLessonButton

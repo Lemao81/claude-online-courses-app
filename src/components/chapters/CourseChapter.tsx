@@ -69,7 +69,7 @@ export default function CourseChapter({
       </Flex>
       <Stack gap="2">
         <Text textStyle="sectionLabel">Lesson Videos</Text>
-        <CourseChapterLessonList lessons={lessons} />
+        <CourseChapterLessonList chapterId={chapter.id} lessons={lessons} />
       </Stack>
       <ConfirmDialog
         open={isRemoveOpen}
