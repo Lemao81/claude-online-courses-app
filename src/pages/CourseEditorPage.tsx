@@ -1,6 +1,6 @@
-import { Heading, Stack } from '@chakra-ui/react'
+import { Stack } from '@chakra-ui/react'
 import { getRouteApi } from '@tanstack/react-router'
-import ChapterList from '#/components/chapters/ChapterList'
+import CourseChaptersSection from '#/components/courses/CourseChaptersSection'
 import CourseEditorTitleBar from '#/components/courses/CourseEditorTitleBar'
 import CourseLessonsSection from '#/components/courses/CourseLessonsSection'
 import OutlineDragDrop from '#/components/courses/OutlineDragDrop'
@@ -17,12 +17,7 @@ export default function CourseEditorPage() {
       <CourseEditorTitleBar title={course.title} />
       <OutlineDragDrop outline={outline} onOutlineChange={setOutline}>
         <CourseLessonsSection courseId={course.id} lessons={outline.lessons} />
-        <Stack as="section" gap="3">
-          <Heading as="h2" m="0" textStyle="sectionHeading">
-            Chapters
-          </Heading>
-          <ChapterList courseId={course.id} chapters={outline.chapters} />
-        </Stack>
+        <CourseChaptersSection courseId={course.id} chapters={outline.chapters} />
       </OutlineDragDrop>
     </Stack>
   )
