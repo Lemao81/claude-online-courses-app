@@ -5,7 +5,7 @@ import ChapterTitle from '#/components/chapters/ChapterTitle'
 import DragHandle from '#/components/ui/DragHandle'
 import type { Chapter, LessonVideo } from '#/types'
 
-type CourseChapterProps = {
+type ChapterViewProps = {
   chapter: Chapter
   number: number
   lessons?: LessonVideo[]
@@ -13,13 +13,13 @@ type CourseChapterProps = {
   onEdit: () => void
 }
 
-export default function CourseChapter({
+export default function ChapterView({
   chapter,
   number,
   lessons = [],
   handleRef,
   onEdit,
-}: CourseChapterProps) {
+}: ChapterViewProps) {
   return (
     <Stack gap="5" layerStyle="chapterPanel">
       <Flex align="flex-start" justify="space-between" gap="4">

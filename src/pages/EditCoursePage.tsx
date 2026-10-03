@@ -2,7 +2,7 @@ import { Box, CloseButton, Flex, Grid, Heading, Stack } from '@chakra-ui/react'
 import { getRouteApi, Link as RouterLink } from '@tanstack/react-router'
 import { useState } from 'react'
 import { LuArrowLeft } from 'react-icons/lu'
-import CourseChapterList from '#/components/chapters/CourseChapterList'
+import ChapterList from '#/components/chapters/ChapterList'
 import OutlineDragDrop from '#/components/courses/OutlineDragDrop'
 import AddLessonButton from '#/components/lessons/AddLessonButton'
 import LessonList from '#/components/lessons/LessonList'
@@ -45,7 +45,7 @@ export default function EditCoursePage() {
           <Heading as="h2" m="0" textStyle="sectionHeading">
             Chapters
           </Heading>
-          <CourseChapterList courseId={course.id} chapters={outline.chapters} />
+          <ChapterList courseId={course.id} chapters={outline.chapters} />
         </Stack>
       </OutlineDragDrop>
     </Stack>

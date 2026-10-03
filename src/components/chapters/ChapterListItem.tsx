@@ -1,5 +1,5 @@
 import { Box } from '@chakra-ui/react'
-import CourseChapter from '#/components/chapters/CourseChapter'
+import ChapterView from '#/components/chapters/ChapterView'
 import EditChapter from '#/components/chapters/EditChapter'
 import { useChapterSortable } from '#/hooks/useChapterSortable'
 import type { ChapterWithLessons } from '#/types'
@@ -34,7 +34,7 @@ export default function ChapterListItem({
           onClose={onClose}
         />
       ) : (
-        <CourseChapter
+        <ChapterView
           chapter={chapter}
           number={index + 1}
           lessons={chapter.lessons}

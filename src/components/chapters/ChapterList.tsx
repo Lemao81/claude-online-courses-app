@@ -4,12 +4,12 @@ import AddChapterButton from '#/components/chapters/AddChapterButton'
 import ChapterListItem from '#/components/chapters/ChapterListItem'
 import type { ChapterWithLessons } from '#/types'
 
-type CourseChapterListProps = {
+type ChapterListProps = {
   courseId: number
   chapters: ChapterWithLessons[]
 }
 
-export default function CourseChapterList({ courseId, chapters }: CourseChapterListProps) {
+export default function ChapterList({ courseId, chapters }: ChapterListProps) {
   const [editedChapterId, setEditedChapterId] = useState<number | null>(null)
   const [newChapterId, setNewChapterId] = useState<number | null>(null)
 
