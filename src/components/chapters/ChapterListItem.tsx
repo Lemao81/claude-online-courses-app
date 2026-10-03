@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/react'
 import ChapterView from '#/components/chapters/ChapterView'
-import EditChapter from '#/components/chapters/EditChapter'
+import ChapterEditor from '#/components/chapters/ChapterEditor'
 import { useChapterSortable } from '#/hooks/useChapterSortable'
 import type { ChapterWithLessons } from '#/types'
 
@@ -26,7 +26,7 @@ export default function ChapterListItem({
   return (
     <Box ref={ref}>
       {isEdited ? (
-        <EditChapter
+        <ChapterEditor
           chapter={chapter}
           lessons={chapter.lessons}
           focusTitle={isNew}

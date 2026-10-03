@@ -39,7 +39,7 @@ refers to decision N in that file.
       (Settled 10, 31).
 - [x] **2.4 `VideoUpload` in the course-level zone**, with an optional chapter id (Settled 31).
 - [x] **2.5 Add `createChapter` and "Add chapter"**, which appends "Untitled chapter" and opens its
-      `EditChapter` panel with the title focused (Settled 31).
+      `ChapterEditor` panel with the title focused (Settled 31).
 
 ## Step 3 — Deleting chapters and courses
 
@@ -64,7 +64,7 @@ refers to decision N in that file.
 - [x] **4.3 Drag lessons within one parent** by a grip handle, optimistic with rollback and an
       error toast (Settled 29).
 - [x] **4.4 Drag lessons across parents**, including empty-chapter drop zones and an open
-      `EditChapter` panel (Settled 30).
+      `ChapterEditor` panel (Settled 30).
 - [x] **4.5 Drag chapters** among chapters (Settled 30).
 - [ ] **4.6 "Move to…"** menu action for keyboard re-parenting (Settled 20).
 

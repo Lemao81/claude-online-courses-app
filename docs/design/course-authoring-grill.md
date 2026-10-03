@@ -71,8 +71,9 @@ Session date: 2026-09-16.
 20. **A reorder sends the whole new order for one parent** and rewrites positions `0..n` in a
     transaction. Drag re-parents: a cross-zone drop sends both parents' lists in one transaction. A
     "Move to…" menu action offers the same operation from the keyboard.
-21. **Course details auto-save** on blur the way `EditChapter` does — title, subtitle, description
-    and price alike. Title is required; price is `>= 0` with two decimals; lengths match the schema.
+21. **Course details auto-save** on blur the way `ChapterEditor` does — title, subtitle,
+    description and price alike. Title is required; price is `>= 0` with two decimals; lengths
+    match the schema.
 22. **The publish gate applies only at the moment of publishing.** A published course may gain empty
     lessons or lose videos; learners see only lessons with a ready video, and the readiness
     checklist warns the author.
@@ -94,11 +95,11 @@ Session date: 2026-09-16.
 29. **Drag uses a grip handle** per row, with `@dnd-kit/react`, and updates optimistically: on failure
     it rolls back, shows an error toast and invalidates the router.
 30. **Drop rules**: lessons drop into the course-level list or any chapter's list, including empty
-    chapters (which render a drop zone) and an open `EditChapter` panel. Chapters reorder only among
-    chapters.
-31. **"Add chapter"** creates "Untitled chapter" at the end and opens its `EditChapter` panel with the
-    title focused. "Add lesson" and `VideoUpload` appear under the course-level lessons and inside
-    each chapter.
+    chapters (which render a drop zone) and an open `ChapterEditor` panel. Chapters reorder only
+    among chapters.
+31. **"Add chapter"** creates "Untitled chapter" at the end and opens its `ChapterEditor` panel with
+    the title focused. "Add lesson" and `VideoUpload` appear under the course-level lessons and
+    inside each chapter.
 
 ### Readiness, price and thumbnail
 
@@ -112,7 +113,7 @@ Session date: 2026-09-16.
     placeholder and "Replace", with no "Remove".
 35. **One lesson row for both zones**: `ChapterLessonListItem` / `ChapterLessonVideo` become
     `LessonListItem` / `LessonVideo` under `components/lessons/`. Course-detail auto-save surfaces
-    errors only, as `EditChapter` does.
+    errors only, as `ChapterEditor` does.
 
 ### Guards and build order
 

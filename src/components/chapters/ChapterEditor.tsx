@@ -3,16 +3,16 @@ import { useRouter } from '@tanstack/react-router'
 import { useRef, useState } from 'react'
 import AddLessonButton from '#/components/lessons/AddLessonButton'
 import LessonList from '#/components/lessons/LessonList'
-import EditChapterForm, {
-  type EditChapterFormValues,
-  useEditChapterForm,
-} from '#/components/chapters/EditChapterForm'
+import ChapterEditorForm, {
+  type ChapterEditorFormValues,
+  useChapterEditorForm,
+} from '#/components/chapters/ChapterEditorForm'
 import DragHandle from '#/components/ui/DragHandle'
 import VideoUpload from '#/components/videos/VideoUpload'
 import { updateChapter } from '#/server/functions/chapters.functions'
 import type { Chapter, LessonVideo } from '#/types'
 
-type EditChapterProps = {
+type ChapterEditorProps = {
   chapter?: Chapter
   lessons?: LessonVideo[]
   focusTitle?: boolean
@@ -20,23 +20,23 @@ type EditChapterProps = {
   onClose: () => void
 }
 
-export default function EditChapter({
+export default function ChapterEditor({
   chapter,
   lessons = [],
   focusTitle,
   handleRef,
   onClose,
-}: EditChapterProps) {
+}: ChapterEditorProps) {
   const router = useRouter()
   const [autoSaveError, setAutoSaveError] = useState('')
   const [newLessonId, setNewLessonId] = useState<number>()
-  const savedValues = useRef<EditChapterFormValues>({
+  const savedValues = useRef<ChapterEditorFormValues>({
     title: chapter?.title ?? '',
     description: chapter?.description ?? '',
   })
-  const { form, formId } = useEditChapterForm(chapter)
+  const { form, formId } = useChapterEditorForm(chapter)
 
-  async function handleAutoSave(value: EditChapterFormValues): Promise<void> {
+  async function handleAutoSave(value: ChapterEditorFormValues): Promise<void> {
     if (!chapter) {
       return
     }
@@ -68,7 +68,7 @@ export default function EditChapter({
       <Flex align="flex-start" gap="4">
         <DragHandle ref={handleRef} label={`Reorder ${chapter?.title ?? 'chapter'}`} />
         <Box flex="1" minW="0">
-          <EditChapterForm
+          <ChapterEditorForm
             form={form}
             formId={formId}
             autoSaveError={autoSaveError}

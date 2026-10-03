@@ -5,7 +5,7 @@ import ErrorText from '#/components/ui/ErrorText'
 import { autoSaveDebounceMs } from '#/constants/config'
 import type { Chapter } from '#/types'
 
-export type EditChapterFormValues = {
+export type ChapterEditorFormValues = {
   title: string
   description: string
 }
@@ -14,7 +14,7 @@ function toFormId(chapter?: Chapter): string {
   return `edit-chapter-form-${chapter?.id ?? 'new'}`
 }
 
-export function useEditChapterForm(chapter: Chapter | undefined) {
+export function useChapterEditorForm(chapter: Chapter | undefined) {
   const form = useForm({
     defaultValues: {
       title: chapter?.title ?? '',
@@ -25,21 +25,21 @@ export function useEditChapterForm(chapter: Chapter | undefined) {
   return { form, formId: toFormId(chapter) }
 }
 
-type EditChapterFormProps = {
-  form: ReturnType<typeof useEditChapterForm>['form']
+type ChapterEditorFormProps = {
+  form: ReturnType<typeof useChapterEditorForm>['form']
   formId: string
   autoSaveError: string
   focusTitle?: boolean
-  onAutoSave: (value: EditChapterFormValues) => void
+  onAutoSave: (value: ChapterEditorFormValues) => void
 }
 
-export default function EditChapterForm({
+export default function ChapterEditorForm({
   form,
   formId,
   autoSaveError,
   focusTitle,
   onAutoSave,
-}: EditChapterFormProps) {
+}: ChapterEditorFormProps) {
   const titleRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
