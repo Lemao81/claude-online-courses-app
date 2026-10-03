@@ -1,8 +1,8 @@
-import { Box, CloseButton, Flex, Grid, Heading, Stack } from '@chakra-ui/react'
-import { getRouteApi, Link as RouterLink } from '@tanstack/react-router'
+import { Box, Flex, Heading, Stack } from '@chakra-ui/react'
+import { getRouteApi } from '@tanstack/react-router'
 import { useState } from 'react'
-import { LuArrowLeft } from 'react-icons/lu'
 import ChapterList from '#/components/chapters/ChapterList'
+import CourseEditorTitleBar from '#/components/courses/CourseEditorTitleBar'
 import OutlineDragDrop from '#/components/courses/OutlineDragDrop'
 import AddLessonButton from '#/components/lessons/AddLessonButton'
 import LessonList from '#/components/lessons/LessonList'
@@ -18,16 +18,7 @@ export default function CourseEditorPage() {
 
   return (
     <Stack gap="8" px="4" py="6" data-course-id={course.id}>
-      <Grid templateColumns="1fr auto 1fr" alignItems="center" gap="3">
-        <CloseButton asChild justifySelf="start" size="lg" variant="quiet">
-          <RouterLink to="/mycourses" aria-label="Back to My Courses">
-            <LuArrowLeft aria-hidden="true" />
-          </RouterLink>
-        </CloseButton>
-        <Heading as="h1" gridColumn="2" m="0" minW="0" fontSize="xl" color="fg" textAlign="center">
-          {course.title}
-        </Heading>
-      </Grid>
+      <CourseEditorTitleBar title={course.title} />
       <OutlineDragDrop outline={outline} onOutlineChange={setOutline}>
         <Stack as="section" gap="3">
           <Heading as="h2" m="0" textStyle="sectionHeading">
