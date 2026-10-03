@@ -2,20 +2,20 @@ import { Button, CloseButton, Dialog, Portal } from '@chakra-ui/react'
 import { useNavigate } from '@tanstack/react-router'
 import { useState } from 'react'
 import { LuPlus } from 'react-icons/lu'
-import CreateCourseForm, {
-  type CreateCourseFormValues,
-  useCreateCourseForm,
-} from '#/components/courses/CreateCourseForm'
+import NewCourseForm, {
+  type NewCourseFormValues,
+  useNewCourseForm,
+} from '#/components/courses/NewCourseForm'
 import { createCourse } from '#/server/functions/courses.functions'
 import type { Course } from '#/types'
 
-export default function CreateCourseDialog() {
+export default function NewCourseDialog() {
   const navigate = useNavigate()
   const [open, setOpen] = useState(false)
   const [submitError, setSubmitError] = useState('')
-  const { form, formId } = useCreateCourseForm(handleSubmit)
+  const { form, formId } = useNewCourseForm(handleSubmit)
 
-  async function handleSubmit(value: CreateCourseFormValues): Promise<void> {
+  async function handleSubmit(value: NewCourseFormValues): Promise<void> {
     setSubmitError('')
     let course: Course
     try {
@@ -58,7 +58,7 @@ export default function CreateCourseDialog() {
               <Dialog.Title>Create Course</Dialog.Title>
             </Dialog.Header>
             <Dialog.Body>
-              <CreateCourseForm form={form} submitError={submitError} />
+              <NewCourseForm form={form} submitError={submitError} />
             </Dialog.Body>
             <Dialog.Footer>
               <Dialog.ActionTrigger asChild>

@@ -2,21 +2,21 @@ import { Field, Input, Stack, Textarea } from '@chakra-ui/react'
 import { useForm } from '@tanstack/react-form'
 import ErrorText from '#/components/ui/ErrorText'
 
-const formId = 'create-course-form'
+const formId = 'new-course-form'
 
-export type CreateCourseFormValues = {
+export type NewCourseFormValues = {
   title: string
   subtitle: string
   description: string
 }
 
-const defaultValues: CreateCourseFormValues = {
+const defaultValues: NewCourseFormValues = {
   title: '',
   subtitle: '',
   description: '',
 }
 
-export function useCreateCourseForm(onSubmit: (value: CreateCourseFormValues) => Promise<void>) {
+export function useNewCourseForm(onSubmit: (value: NewCourseFormValues) => Promise<void>) {
   const form = useForm({
     defaultValues,
     onSubmit: async ({ value }) => await onSubmit(value),
@@ -25,12 +25,12 @@ export function useCreateCourseForm(onSubmit: (value: CreateCourseFormValues) =>
   return { form, formId }
 }
 
-type CreateCourseFormProps = {
-  form: ReturnType<typeof useCreateCourseForm>['form']
+type NewCourseFormProps = {
+  form: ReturnType<typeof useNewCourseForm>['form']
   submitError: string
 }
 
-export default function CreateCourseForm({ form, submitError }: CreateCourseFormProps) {
+export default function NewCourseForm({ form, submitError }: NewCourseFormProps) {
   return (
     <form
       id={formId}

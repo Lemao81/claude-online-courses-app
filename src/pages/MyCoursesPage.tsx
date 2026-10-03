@@ -1,7 +1,7 @@
 import { Flex, Heading } from '@chakra-ui/react'
 import { getRouteApi } from '@tanstack/react-router'
 import CourseList from '#/components/courses/CourseList'
-import CreateCourseDialog from '#/components/courses/CreateCourseDialog'
+import NewCourseDialog from '#/components/courses/NewCourseDialog'
 
 const routeApi = getRouteApi('/mycourses')
 
@@ -14,7 +14,7 @@ export default function MyCoursesPage() {
         <Heading as="h1" m="0" fontSize="xl" color="fg">
           My Courses
         </Heading>
-        <CreateCourseDialog />
+        <NewCourseDialog />
       </Flex>
       <CourseList courses={courses} />
     </Flex>
