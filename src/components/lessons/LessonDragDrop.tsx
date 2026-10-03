@@ -5,7 +5,7 @@ import { type Dispatch, type ReactNode, type SetStateAction, useRef } from 'reac
 import { showErrorToast } from '#/components/ui/AppToaster'
 import { reorderLessons } from '#/server/functions/lessons.functions'
 import type { CourseOutline } from '#/types'
-import { getChangedLessonOrders, setLessonGroups, toLessonGroups } from '#/utils/outline-helpers'
+import { getChangedLessonOrders, setLessonGroups, toLessonGroups } from '#/utils/outlineHelpers'
 
 type LessonDragDropProps = {
   outline: CourseOutline

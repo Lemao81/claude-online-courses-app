@@ -2,7 +2,7 @@
 
 import { useSortable } from '@dnd-kit/react/sortable'
 import { lessonDragType } from '#/constants'
-import { toLessonGroup } from '#/utils/outline-helpers'
+import { toLessonGroup } from '#/utils/outlineHelpers'
 
 type LessonSortable = {
   ref: (element: Element | null) => void
