@@ -65,7 +65,7 @@ refers to decision N in that file.
       error toast (Settled 29).
 - [x] **4.4 Drag lessons across parents**, including empty-chapter drop zones and an open
       `EditChapter` panel (Settled 30).
-- [ ] **4.5 Drag chapters** among chapters (Settled 30).
+- [x] **4.5 Drag chapters** among chapters (Settled 30).
 - [ ] **4.6 "Move to…"** menu action for keyboard re-parenting (Settled 20).
 
 ## Step 5 — Course details

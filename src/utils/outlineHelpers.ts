@@ -7,6 +7,10 @@ export function toLessonGroup(chapterId: number | null): string {
   return chapterId === null ? courseLevelGroup : `chapter-${chapterId}`
 }
 
+export function toChapterSortableId(chapterId: number): string {
+  return `chapter-sortable-${chapterId}`
+}
+
 export function toLessonGroups(outline: CourseOutline): LessonGroups {
   const groups: LessonGroups = { [toLessonGroup(null)]: outline.lessons }
   for (const chapter of outline.chapters) {

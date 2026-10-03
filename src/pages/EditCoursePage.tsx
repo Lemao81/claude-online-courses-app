@@ -3,8 +3,8 @@ import { getRouteApi, Link as RouterLink } from '@tanstack/react-router'
 import { useState } from 'react'
 import { LuArrowLeft } from 'react-icons/lu'
 import CourseChapterList from '#/components/chapters/CourseChapterList'
+import OutlineDragDrop from '#/components/courses/OutlineDragDrop'
 import AddLessonButton from '#/components/lessons/AddLessonButton'
-import LessonDragDrop from '#/components/lessons/LessonDragDrop'
 import LessonList from '#/components/lessons/LessonList'
 import VideoUpload from '#/components/videos/VideoUpload'
 import { useSyncedState } from '#/hooks/useSyncedState'
@@ -28,7 +28,7 @@ export default function EditCoursePage() {
           {course.title}
         </Heading>
       </Grid>
-      <LessonDragDrop outline={outline} onOutlineChange={setOutline}>
+      <OutlineDragDrop outline={outline} onOutlineChange={setOutline}>
         <Stack as="section" gap="3">
           <Heading as="h2" m="0" textStyle="sectionHeading">
             Lessons
@@ -47,7 +47,7 @@ export default function EditCoursePage() {
           </Heading>
           <CourseChapterList courseId={course.id} chapters={outline.chapters} />
         </Stack>
-      </LessonDragDrop>
+      </OutlineDragDrop>
     </Stack>
   )
 }

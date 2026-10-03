@@ -1,8 +1,7 @@
 import { Stack } from '@chakra-ui/react'
 import { useState } from 'react'
 import AddChapterButton from '#/components/chapters/AddChapterButton'
-import CourseChapter from '#/components/chapters/CourseChapter'
-import EditChapter from '#/components/chapters/EditChapter'
+import ChapterListItem from '#/components/chapters/ChapterListItem'
 import type { ChapterWithLessons } from '#/types'
 
 type CourseChapterListProps = {
@@ -21,25 +20,17 @@ export default function CourseChapterList({ courseId, chapters }: CourseChapterL
 
   return (
     <Stack gap="4">
-      {chapters.map((c, i) =>
-        c.id === editedChapterId ? (
-          <EditChapter
-            key={c.id}
-            chapter={c}
-            lessons={c.lessons}
-            focusTitle={c.id === newChapterId}
-            onClose={() => editChapter(null)}
-          />
-        ) : (
-          <CourseChapter
-            key={c.id}
-            chapter={c}
-            number={i + 1}
-            lessons={c.lessons}
-            onEdit={() => editChapter(c.id)}
-          />
-        ),
-      )}
+      {chapters.map((c, i) => (
+        <ChapterListItem
+          key={c.id}
+          chapter={c}
+          index={i}
+          isEdited={c.id === editedChapterId}
+          isNew={c.id === newChapterId}
+          onEdit={() => editChapter(c.id)}
+          onClose={() => editChapter(null)}
+        />
+      ))}
       <AddChapterButton courseId={courseId} onAdded={(c) => editChapter(c.id, true)} />
     </Stack>
   )

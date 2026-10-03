@@ -7,6 +7,7 @@ import EditChapterForm, {
   type EditChapterFormValues,
   useEditChapterForm,
 } from '#/components/chapters/EditChapterForm'
+import DragHandle from '#/components/ui/DragHandle'
 import VideoUpload from '#/components/videos/VideoUpload'
 import { updateChapter } from '#/server/functions/chapters.functions'
 import type { Chapter, LessonVideo } from '#/types'
@@ -15,6 +16,7 @@ type EditChapterProps = {
   chapter?: Chapter
   lessons?: LessonVideo[]
   focusTitle?: boolean
+  handleRef: (element: Element | null) => void
   onClose: () => void
 }
 
@@ -22,6 +24,7 @@ export default function EditChapter({
   chapter,
   lessons = [],
   focusTitle,
+  handleRef,
   onClose,
 }: EditChapterProps) {
   const router = useRouter()
@@ -63,6 +66,7 @@ export default function EditChapter({
   return (
     <Stack gap="5" layerStyle="chapterPanel">
       <Flex align="flex-start" gap="4">
+        <DragHandle ref={handleRef} label={`Reorder ${chapter?.title ?? 'chapter'}`} />
         <Box flex="1" minW="0">
           <EditChapterForm
             form={form}
