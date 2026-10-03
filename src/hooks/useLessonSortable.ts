@@ -1,7 +1,8 @@
 'use client'
 
 import { useSortable } from '@dnd-kit/react/sortable'
-import { toLessonGroup } from '#/utils/outline'
+import { lessonDragType } from '#/constants'
+import { toLessonGroup } from '#/utils/outline-helpers'
 
 type LessonSortable = {
   ref: (element: Element | null) => void
@@ -13,9 +14,13 @@ export function useLessonSortable(
   index: number,
   chapterId: number | null,
 ): LessonSortable {
-  const group = toLessonGroup(chapterId)
-  const type = `lesson-${group}`
-  const { ref, handleRef } = useSortable({ id, index, group, type, accept: type })
+  const { ref, handleRef } = useSortable({
+    id,
+    index,
+    group: toLessonGroup(chapterId),
+    type: lessonDragType,
+    accept: lessonDragType,
+  })
 
   return { ref, handleRef }
 }

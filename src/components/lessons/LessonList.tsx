@@ -1,5 +1,6 @@
 import { Stack, Text } from '@chakra-ui/react'
 import LessonListItem from '#/components/lessons/LessonListItem'
+import { useLessonDroppable } from '#/hooks/useLessonDroppable'
 import type { LessonVideo } from '#/types'
 
 type LessonListProps = {
@@ -9,25 +10,25 @@ type LessonListProps = {
 }
 
 export default function LessonList({ chapterId, lessons, newLessonId }: LessonListProps) {
-  if (lessons.length === 0) {
-    return (
-      <Text layerStyle="emptyStateRow" textStyle="emptyState">
-        No lessons yet.
-      </Text>
-    )
-  }
+  const ref = useLessonDroppable(chapterId)
 
   return (
-    <Stack gap="2">
-      {lessons.map((l, i) => (
-        <LessonListItem
-          key={l.id}
-          lesson={l}
-          index={i}
-          chapterId={chapterId}
-          isNew={l.id === newLessonId}
-        />
-      ))}
+    <Stack ref={ref} gap="2">
+      {lessons.length === 0 ? (
+        <Text layerStyle="emptyStateRow" textStyle="emptyState">
+          No lessons yet.
+        </Text>
+      ) : (
+        lessons.map((l, i) => (
+          <LessonListItem
+            key={l.id}
+            lesson={l}
+            index={i}
+            chapterId={chapterId}
+            isNew={l.id === newLessonId}
+          />
+        ))
+      )}
     </Stack>
   )
 }

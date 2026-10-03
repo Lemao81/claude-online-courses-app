@@ -1,15 +1,15 @@
-import { type DragEndEvent, DragDropProvider } from '@dnd-kit/react'
-import { isSortable } from '@dnd-kit/react/sortable'
+import { move } from '@dnd-kit/helpers'
+import { type DragEndEvent, type DragOverEvent, DragDropProvider } from '@dnd-kit/react'
 import { useRouter } from '@tanstack/react-router'
-import type { ReactNode } from 'react'
+import { type Dispatch, type ReactNode, type SetStateAction, useRef } from 'react'
 import { showErrorToast } from '#/components/ui/AppToaster'
 import { reorderLessons } from '#/server/functions/lessons.functions'
 import type { CourseOutline } from '#/types'
-import { getParentLessons, moveItem, setParentLessons, toChapterId } from '#/utils/outline'
+import { getChangedLessonOrders, setLessonGroups, toLessonGroups } from '#/utils/outline-helpers'
 
 type LessonDragDropProps = {
   outline: CourseOutline
-  onOutlineChange: (outline: CourseOutline) => void
+  onOutlineChange: Dispatch<SetStateAction<CourseOutline>>
   children: ReactNode
 }
 
@@ -19,27 +19,44 @@ export default function LessonDragDrop({
   children,
 }: LessonDragDropProps) {
   const router = useRouter()
+  const dragStartOutline = useRef<CourseOutline | null>(null)
 
-  async function handleDragEnd({ canceled, operation }: DragEndEvent): Promise<void> {
-    const { source } = operation
-    if (canceled || !isSortable(source)) {
+  function handleDragStart(): void {
+    dragStartOutline.current = outline
+  }
+
+  function handleDragOver(event: DragOverEvent): void {
+    onOutlineChange((current) => {
+      const groups = toLessonGroups(current)
+      const moved = move(groups, event)
+
+      return moved === groups ? current : setLessonGroups(current, moved)
+    })
+  }
+
+  async function handleDragEnd({ canceled }: DragEndEvent): Promise<void> {
+    const initialOutline = dragStartOutline.current
+    dragStartOutline.current = null
+    if (!initialOutline) {
       return
     }
 
-    if (source.group !== source.initialGroup || source.index === source.initialIndex) {
+    if (canceled) {
+      onOutlineChange(initialOutline)
+
       return
     }
 
-    const chapterId = toChapterId(source.group)
-    const parentLessons = getParentLessons(outline, chapterId)
-    const lessons = moveItem(parentLessons, source.initialIndex, source.index)
-    const lessonIds = lessons.map((l) => l.id)
-    onOutlineChange(setParentLessons(outline, chapterId, lessons))
+    const orders = getChangedLessonOrders(initialOutline, outline)
+    if (orders.length === 0) {
+      return
+    }
+
     try {
-      await reorderLessons({ data: { courseId: outline.id, orders: [{ chapterId, lessonIds }] } })
+      await reorderLessons({ data: { courseId: outline.id, orders } })
     } catch (error) {
       console.error(error)
-      onOutlineChange(outline)
+      onOutlineChange(initialOutline)
       showErrorToast(
         'The lesson order was not saved',
         error instanceof Error ? error.message : 'Failed to reorder the lessons',
@@ -49,5 +66,13 @@ export default function LessonDragDrop({
     await router.invalidate()
   }
 
-  return <DragDropProvider onDragEnd={handleDragEnd}>{children}</DragDropProvider>
+  return (
+    <DragDropProvider
+      onDragStart={handleDragStart}
+      onDragOver={handleDragOver}
+      onDragEnd={handleDragEnd}
+    >
+      {children}
+    </DragDropProvider>
+  )
 }
