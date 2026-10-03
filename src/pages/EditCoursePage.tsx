@@ -19,14 +19,14 @@ export default function EditCoursePage() {
   return (
     <Stack gap="8" px="4" py="6" data-course-id={course.id}>
       <Grid templateColumns="1fr auto 1fr" alignItems="center" gap="3">
-        <Heading as="h1" gridColumn="2" m="0" minW="0" fontSize="xl" color="fg" textAlign="center">
-          {course.title}
-        </Heading>
-        <CloseButton asChild justifySelf="end" size="lg" variant="quiet">
+        <CloseButton asChild justifySelf="start" size="lg" variant="quiet">
           <RouterLink to="/mycourses" aria-label="Back to My Courses">
             <LuArrowLeft aria-hidden="true" />
           </RouterLink>
         </CloseButton>
+        <Heading as="h1" gridColumn="2" m="0" minW="0" fontSize="xl" color="fg" textAlign="center">
+          {course.title}
+        </Heading>
       </Grid>
       <LessonDragDrop outline={outline} onOutlineChange={setOutline}>
         <Stack as="section" gap="3">
