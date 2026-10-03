@@ -3,11 +3,11 @@ import { useRouter } from '@tanstack/react-router'
 import { useState } from 'react'
 import { LuPencil, LuTrash2 } from 'react-icons/lu'
 import ChapterLessonList from '#/components/chapters/ChapterLessonList'
+import ChapterTitle from '#/components/chapters/ChapterTitle'
 import ConfirmDialog from '#/components/ui/ConfirmDialog'
 import Tooltip from '#/components/ui/Tooltip'
 import { deleteChapter } from '#/server/functions/chapters.functions'
 import type { Chapter, LessonVideo } from '#/types'
-import { formatDuration } from '#/utils/formatters'
 
 type CourseChapterProps = {
   chapter: Chapter
@@ -25,11 +25,6 @@ export default function CourseChapter({
   const router = useRouter()
   const [isRemoveOpen, setIsRemoveOpen] = useState(false)
 
-  const meta = [
-    `Chapter ${number}`,
-    `${lessons.length} ${lessons.length === 1 ? 'lesson' : 'lessons'}`,
-    formatDuration(chapter.durationSec),
-  ].join(' · ')
   const movedLessons =
     lessons.length === 1 ? 'Its lesson moves' : `Its ${lessons.length} lessons move`
   const moveNote =
@@ -43,13 +38,7 @@ export default function CourseChapter({
   return (
     <Stack gap="5" layerStyle="chapterPanel">
       <Flex align="flex-start" justify="space-between" gap="4">
-        <Stack gap="1" minW="0">
-          <Text textStyle="title">{chapter.title}</Text>
-          {chapter.description.length > 0 && (
-            <Text textStyle="subtitle">{chapter.description}</Text>
-          )}
-          <Text textStyle="meta">{meta}</Text>
-        </Stack>
+        <ChapterTitle chapter={chapter} number={number} lessonCount={lessons.length} />
         <Flex gap="2">
           <Tooltip content="Edit" showArrow>
             <Button variant="chipIcon" aria-label="Edit chapter" onClick={onEdit}>
