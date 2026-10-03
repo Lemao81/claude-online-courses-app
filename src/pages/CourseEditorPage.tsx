@@ -11,7 +11,7 @@ import { useSyncedState } from '#/hooks/useSyncedState'
 
 const routeApi = getRouteApi('/editcourse/$courseId')
 
-export default function EditCoursePage() {
+export default function CourseEditorPage() {
   const course = routeApi.useLoaderData()
   const [outline, setOutline] = useSyncedState(course)
   const [newLessonId, setNewLessonId] = useState<number>()
