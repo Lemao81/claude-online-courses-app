@@ -2,7 +2,7 @@ import { Button, Flex, Stack, Text } from '@chakra-ui/react'
 import { useRouter } from '@tanstack/react-router'
 import { useState } from 'react'
 import { LuPencil, LuTrash2 } from 'react-icons/lu'
-import CourseChapterLessonList from '#/components/chapters/CourseChapterLessonList'
+import ChapterLessonList from '#/components/chapters/ChapterLessonList'
 import ConfirmDialog from '#/components/ui/ConfirmDialog'
 import Tooltip from '#/components/ui/Tooltip'
 import { deleteChapter } from '#/server/functions/chapters.functions'
@@ -69,7 +69,7 @@ export default function CourseChapter({
       </Flex>
       <Stack gap="2">
         <Text textStyle="sectionLabel">Lesson Videos</Text>
-        <CourseChapterLessonList chapterId={chapter.id} lessons={lessons} />
+        <ChapterLessonList chapterId={chapter.id} lessons={lessons} />
       </Stack>
       <ConfirmDialog
         open={isRemoveOpen}

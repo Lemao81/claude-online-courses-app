@@ -6,17 +6,17 @@ import { useLessonSortable } from '#/hooks/useLessonSortable'
 import type { LessonVideo } from '#/types'
 import { formatDuration } from '#/utils/formatters'
 
-type CourseChapterLessonListItemProps = {
+type ChapterLessonListItemProps = {
   lesson: LessonVideo
   index: number
   chapterId: number
 }
 
-export default function CourseChapterLessonListItem({
+export default function ChapterLessonListItem({
   lesson,
   index,
   chapterId,
-}: CourseChapterLessonListItemProps) {
+}: ChapterLessonListItemProps) {
   const { ref, handleRef } = useLessonSortable(lesson.id, index, chapterId)
 
   return (

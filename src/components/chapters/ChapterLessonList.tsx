@@ -1,17 +1,14 @@
 import { Stack, Text } from '@chakra-ui/react'
-import CourseChapterLessonListItem from '#/components/chapters/CourseChapterLessonListItem'
+import ChapterLessonListItem from '#/components/chapters/ChapterLessonListItem'
 import { useLessonDroppable } from '#/hooks/useLessonDroppable'
 import type { LessonVideo } from '#/types'
 
-type CourseChapterLessonListProps = {
+type ChapterLessonListProps = {
   chapterId: number
   lessons: LessonVideo[]
 }
 
-export default function CourseChapterLessonList({
-  chapterId,
-  lessons,
-}: CourseChapterLessonListProps) {
+export default function ChapterLessonList({ chapterId, lessons }: ChapterLessonListProps) {
   const ref = useLessonDroppable(chapterId)
 
   return (
@@ -22,7 +19,7 @@ export default function CourseChapterLessonList({
         </Text>
       ) : (
         lessons.map((l, i) => (
-          <CourseChapterLessonListItem key={l.id} lesson={l} index={i} chapterId={chapterId} />
+          <ChapterLessonListItem key={l.id} lesson={l} index={i} chapterId={chapterId} />
         ))
       )}
     </Stack>
