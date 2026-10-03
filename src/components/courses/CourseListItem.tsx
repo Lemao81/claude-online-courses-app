@@ -1,12 +1,12 @@
-import { Badge, Button, Flex, Stack, Text } from '@chakra-ui/react'
+import { Button, Flex } from '@chakra-ui/react'
 import { Link as RouterLink, useRouter } from '@tanstack/react-router'
 import { useState } from 'react'
 import { LuPencil, LuTrash2 } from 'react-icons/lu'
+import CourseTitle from '#/components/courses/CourseTitle'
 import ConfirmDialog from '#/components/ui/ConfirmDialog'
 import Tooltip from '#/components/ui/Tooltip'
 import { deleteCourse } from '#/server/functions/courses.functions'
 import type { Course } from '#/types'
-import { formatDate, formatDuration, formatPrice, formatRating } from '#/utils/formatters'
 
 type CourseListItemProps = {
   course: Course
@@ -15,13 +15,6 @@ type CourseListItemProps = {
 export default function CourseListItem({ course }: CourseListItemProps) {
   const router = useRouter()
   const [isDeleteOpen, setIsDeleteOpen] = useState(false)
-
-  const meta = [
-    formatDuration(course.durationSec),
-    formatPrice(course.price),
-    formatRating(course.rating, course.ratingCount),
-    `Updated ${formatDate(course.updatedAt)}`,
-  ].join(' · ')
 
   async function handleDeleteConfirm(): Promise<void> {
     await deleteCourse({ data: { id: course.id } })
@@ -35,14 +28,7 @@ export default function CourseListItem({ course }: CourseListItemProps) {
       gap="4"
       layerStyle="card"
     >
-      <Stack gap="1" minW="0">
-        <Flex align="center" gap="2" minW="0">
-          <Text textStyle="title">{course.title}</Text>
-          <Badge variant={course.status}>{course.status}</Badge>
-        </Flex>
-        <Text textStyle="subtitle">{course.subtitle}</Text>
-        <Text textStyle="meta">{meta}</Text>
-      </Stack>
+      <CourseTitle course={course} />
       <Flex gap="2">
         <Tooltip content="Edit" showArrow>
           <Button asChild variant="chipIcon">
