@@ -48,7 +48,12 @@ export async function setChapterOrder(
       .where(eq(chapters.courseId, courseId))
       .for('update')
 
-    if (!hasSameIds(current.map((c) => c.id), chapterIds)) {
+    if (
+      !hasSameIds(
+        current.map((c) => c.id),
+        chapterIds,
+      )
+    ) {
       throw new Error(outlineChangedMessage)
     }
 

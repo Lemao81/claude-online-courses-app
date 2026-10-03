@@ -36,10 +36,7 @@ export function getParentLessons(outline: CourseOutline, chapterId: number | nul
   return outline.chapters.find((c) => c.id === chapterId)?.lessons ?? []
 }
 
-export function getChangedLessonOrders(
-  before: CourseOutline,
-  after: CourseOutline,
-): LessonOrder[] {
+export function getChangedLessonOrders(before: CourseOutline, after: CourseOutline): LessonOrder[] {
   const chapterIds = [null, ...after.chapters.map((c) => c.id)]
 
   return chapterIds

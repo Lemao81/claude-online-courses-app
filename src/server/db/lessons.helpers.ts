@@ -52,7 +52,12 @@ async function requireLessonsUnchanged(
     )
     .for('update')
 
-  if (!hasSameIds(current.map((l) => l.id), sentIds)) {
+  if (
+    !hasSameIds(
+      current.map((l) => l.id),
+      sentIds,
+    )
+  ) {
     throw new Error(outlineChangedMessage)
   }
 }

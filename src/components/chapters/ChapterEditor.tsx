@@ -1,12 +1,12 @@
 import { Box, CloseButton, Flex, Stack, Text } from '@chakra-ui/react'
 import { useRouter } from '@tanstack/react-router'
 import { useRef, useState } from 'react'
-import AddLessonButton from '#/components/lessons/AddLessonButton'
-import LessonList from '#/components/lessons/LessonList'
 import ChapterEditorForm, {
   type ChapterEditorFormValues,
   useChapterEditorForm,
 } from '#/components/chapters/ChapterEditorForm'
+import AddLessonButton from '#/components/lessons/AddLessonButton'
+import LessonList from '#/components/lessons/LessonList'
 import DragHandle from '#/components/ui/DragHandle'
 import VideoUpload from '#/components/videos/VideoUpload'
 import { updateChapter } from '#/server/functions/chapters.functions'

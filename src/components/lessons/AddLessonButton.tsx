@@ -38,12 +38,7 @@ export default function AddLessonButton({ courseId, chapterId, onAdded }: AddLes
   }
 
   return (
-    <Button
-      type="button"
-      variant="chip"
-      loading={isAdding}
-      onClick={handleAdd}
-    >
+    <Button type="button" variant="chip" loading={isAdding} onClick={handleAdd}>
       <LuPlus aria-hidden="true" />
       Add lesson
     </Button>

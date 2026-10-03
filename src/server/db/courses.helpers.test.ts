@@ -75,9 +75,7 @@ describe('removeCourse', () => {
         publishedAt: new Date(),
       })
 
-      await expect(removeCourse(tx, courseId)).rejects.toThrow(
-        'Only a draft course can be deleted',
-      )
+      await expect(removeCourse(tx, courseId)).rejects.toThrow('Only a draft course can be deleted')
       expect(await selectCourseIds(tx, courseId)).toEqual([{ id: courseId }])
     }))
 
