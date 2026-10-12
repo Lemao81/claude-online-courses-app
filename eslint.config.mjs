@@ -3,10 +3,13 @@ import { defineConfig, globalIgnores } from 'eslint/config'
 import tseslint from 'typescript-eslint'
 
 export default defineConfig([
-  globalIgnores(['.expo/', 'android/', 'dist/', 'modules/*/android/']),
+  globalIgnores(['dist/', 'src/theme/eject/']),
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.mts', '**/*.cts'],
-    languageOptions: { parser: tseslint.parser, parserOptions: { projectService: true } },
+    languageOptions: {
+      parser: tseslint.parser,
+      parserOptions: { project: './tsconfig.json', tsconfigRootDir: import.meta.dirname },
+    },
     plugins: { '@stylistic': stylistic, '@typescript-eslint': tseslint.plugin },
     rules: {
       '@stylistic/padding-line-between-statements': [
