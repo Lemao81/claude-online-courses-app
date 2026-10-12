@@ -191,12 +191,8 @@
           "tableFrom": "assets",
           "tableTo": "users",
           "schemaTo": "coca",
-          "columnsFrom": [
-            "owner_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["owner_id"],
+          "columnsTo": ["id"],
           "onDelete": "restrict",
           "onUpdate": "no action"
         }
@@ -304,12 +300,8 @@
           "tableFrom": "chapters",
           "tableTo": "courses",
           "schemaTo": "coca",
-          "columnsFrom": [
-            "course_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["course_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -319,10 +311,7 @@
         "chapters_id_course_id_unique": {
           "name": "chapters_id_course_id_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "id",
-            "course_id"
-          ]
+          "columns": ["id", "course_id"]
         }
       },
       "policies": {},
@@ -383,12 +372,8 @@
           "tableFrom": "course_tags",
           "tableTo": "courses",
           "schemaTo": "coca",
-          "columnsFrom": [
-            "course_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["course_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -397,12 +382,8 @@
           "tableFrom": "course_tags",
           "tableTo": "tags",
           "schemaTo": "coca",
-          "columnsFrom": [
-            "tag_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["tag_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -410,10 +391,7 @@
       "compositePrimaryKeys": {
         "course_tags_course_id_tag_id_pk": {
           "name": "course_tags_course_id_tag_id_pk",
-          "columns": [
-            "course_id",
-            "tag_id"
-          ]
+          "columns": ["course_id", "tag_id"]
         }
       },
       "uniqueConstraints": {},
@@ -587,12 +565,8 @@
           "tableFrom": "courses",
           "tableTo": "users",
           "schemaTo": "coca",
-          "columnsFrom": [
-            "author_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["author_id"],
+          "columnsTo": ["id"],
           "onDelete": "restrict",
           "onUpdate": "no action"
         },
@@ -601,12 +575,8 @@
           "tableFrom": "courses",
           "tableTo": "assets",
           "schemaTo": "coca",
-          "columnsFrom": [
-            "thumbnail_asset_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["thumbnail_asset_id"],
+          "columnsTo": ["id"],
           "onDelete": "set null",
           "onUpdate": "no action"
         }
@@ -720,12 +690,8 @@
           "tableFrom": "enrollments",
           "tableTo": "users",
           "schemaTo": "coca",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -734,12 +700,8 @@
           "tableFrom": "enrollments",
           "tableTo": "courses",
           "schemaTo": "coca",
-          "columnsFrom": [
-            "course_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["course_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -844,12 +806,8 @@
           "tableFrom": "lesson_progress",
           "tableTo": "users",
           "schemaTo": "coca",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -858,12 +816,8 @@
           "tableFrom": "lesson_progress",
           "tableTo": "lessons",
           "schemaTo": "coca",
-          "columnsFrom": [
-            "lesson_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["lesson_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -872,12 +826,8 @@
           "tableFrom": "lesson_progress",
           "tableTo": "courses",
           "schemaTo": "coca",
-          "columnsFrom": [
-            "course_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["course_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -885,10 +835,7 @@
       "compositePrimaryKeys": {
         "lesson_progress_user_id_lesson_id_pk": {
           "name": "lesson_progress_user_id_lesson_id_pk",
-          "columns": [
-            "user_id",
-            "lesson_id"
-          ]
+          "columns": ["user_id", "lesson_id"]
         }
       },
       "uniqueConstraints": {},
@@ -1042,12 +989,8 @@
           "tableFrom": "lessons",
           "tableTo": "courses",
           "schemaTo": "coca",
-          "columnsFrom": [
-            "course_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["course_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -1056,12 +999,8 @@
           "tableFrom": "lessons",
           "tableTo": "assets",
           "schemaTo": "coca",
-          "columnsFrom": [
-            "video_asset_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["video_asset_id"],
+          "columnsTo": ["id"],
           "onDelete": "restrict",
           "onUpdate": "no action"
         },
@@ -1070,14 +1009,8 @@
           "tableFrom": "lessons",
           "tableTo": "chapters",
           "schemaTo": "coca",
-          "columnsFrom": [
-            "chapter_id",
-            "course_id"
-          ],
-          "columnsTo": [
-            "id",
-            "course_id"
-          ],
+          "columnsFrom": ["chapter_id", "course_id"],
+          "columnsTo": ["id", "course_id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -1192,12 +1125,8 @@
           "tableFrom": "reviews",
           "tableTo": "users",
           "schemaTo": "coca",
-          "columnsFrom": [
-            "user_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
           "onDelete": "set null",
           "onUpdate": "no action"
         },
@@ -1206,12 +1135,8 @@
           "tableFrom": "reviews",
           "tableTo": "courses",
           "schemaTo": "coca",
-          "columnsFrom": [
-            "course_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["course_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -1282,9 +1207,7 @@
         "tags_normalized_unique": {
           "name": "tags_normalized_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "normalized"
-          ]
+          "columns": ["normalized"]
         }
       },
       "policies": {},
@@ -1369,29 +1292,17 @@
     "coca.asset_kind": {
       "name": "asset_kind",
       "schema": "coca",
-      "values": [
-        "video",
-        "image",
-        "attachment"
-      ]
+      "values": ["video", "image", "attachment"]
     },
     "coca.asset_status": {
       "name": "asset_status",
       "schema": "coca",
-      "values": [
-        "pending",
-        "ready",
-        "failed"
-      ]
+      "values": ["pending", "ready", "failed"]
     },
     "coca.course_status": {
       "name": "course_status",
       "schema": "coca",
-      "values": [
-        "draft",
-        "published",
-        "archived"
-      ]
+      "values": ["draft", "published", "archived"]
     }
   },
   "schemas": {
