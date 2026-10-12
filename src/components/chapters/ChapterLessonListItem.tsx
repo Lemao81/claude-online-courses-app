@@ -1,10 +1,10 @@
 import { Flex, Stack, Text } from '@chakra-ui/react'
 import { LuVideo } from 'react-icons/lu'
-import DragHandle from '#/components/ui/DragHandle'
-import IconTile from '#/components/ui/IconTile'
-import { useLessonSortable } from '#/hooks/use-lesson-sortable'
-import type { LessonVideo } from '#/types'
-import { formatDuration } from '#/utils/formatters'
+import DragHandle from '@/components/ui/DragHandle'
+import IconTile from '@/components/ui/IconTile'
+import { useLessonSortable } from '@/hooks/use-lesson-sortable'
+import type { LessonVideo } from '@/types'
+import { formatDuration } from '@/utils/formatters'
 
 type ChapterLessonListItemProps = {
   lesson: LessonVideo

@@ -1,6 +1,6 @@
 import { Stack, Text } from '@chakra-ui/react'
-import type { Chapter } from '#/types'
-import { formatDuration } from '#/utils/formatters'
+import type { Chapter } from '@/types'
+import { formatDuration } from '@/utils/formatters'
 
 type ChapterTitleProps = {
   chapter: Chapter

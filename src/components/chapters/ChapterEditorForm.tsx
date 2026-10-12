@@ -1,9 +1,9 @@
 import { Field, Input, Stack, Textarea } from '@chakra-ui/react'
 import { useForm } from '@tanstack/react-form'
 import { useEffect, useRef } from 'react'
-import ErrorText from '#/components/ui/ErrorText'
-import { autoSaveDebounceMs } from '#/constants/config'
-import type { Chapter, FormApi } from '#/types'
+import ErrorText from '@/components/ui/ErrorText'
+import { autoSaveDebounceMs } from '@/constants/config'
+import type { Chapter, FormApi } from '@/types'
 
 export type ChapterEditorFormValues = {
   title: string

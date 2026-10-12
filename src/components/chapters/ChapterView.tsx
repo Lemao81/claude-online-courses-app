@@ -1,9 +1,9 @@
 import { Flex, Stack, Text } from '@chakra-ui/react'
-import ChapterActions from '#/components/chapters/ChapterActions'
-import ChapterLessonList from '#/components/chapters/ChapterLessonList'
-import ChapterTitle from '#/components/chapters/ChapterTitle'
-import DragHandle from '#/components/ui/DragHandle'
-import type { Chapter, LessonVideo } from '#/types'
+import ChapterActions from '@/components/chapters/ChapterActions'
+import ChapterLessonList from '@/components/chapters/ChapterLessonList'
+import ChapterTitle from '@/components/chapters/ChapterTitle'
+import DragHandle from '@/components/ui/DragHandle'
+import type { Chapter, LessonVideo } from '@/types'
 
 type ChapterViewProps = {
   chapter: Chapter

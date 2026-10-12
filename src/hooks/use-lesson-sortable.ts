@@ -1,8 +1,8 @@
 'use client'
 
 import { useSortable } from '@dnd-kit/react/sortable'
-import { lessonDragType } from '#/constants'
-import { toLessonGroup } from '#/utils/outline-helpers'
+import { lessonDragType } from '@/constants'
+import { toLessonGroup } from '@/utils/outline-helpers'
 
 type LessonSortable = {
   ref: (element: Element | null) => void

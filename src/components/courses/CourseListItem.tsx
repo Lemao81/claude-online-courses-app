@@ -1,7 +1,7 @@
 import { Flex } from '@chakra-ui/react'
-import CourseActions from '#/components/courses/CourseActions'
-import CourseTitle from '#/components/courses/CourseTitle'
-import type { Course } from '#/types'
+import CourseActions from '@/components/courses/CourseActions'
+import CourseTitle from '@/components/courses/CourseTitle'
+import type { Course } from '@/types'
 
 type CourseListItemProps = {
   course: Course

@@ -3,12 +3,12 @@ import { DragDropProvider, type DragEndEvent, type DragOverEvent } from '@dnd-ki
 import { isSortable } from '@dnd-kit/react/sortable'
 import { useRouter } from '@tanstack/react-router'
 import { type Dispatch, type ReactNode, type SetStateAction, useRef } from 'react'
-import { showErrorToast } from '#/components/ui/AppToaster'
-import { chapterDragType, lessonDragType } from '#/constants'
-import { reorderChapters } from '#/server/functions/chapters.functions'
-import { reorderLessons } from '#/server/functions/lessons.functions'
-import type { CourseOutline } from '#/types'
-import { getChangedLessonOrders, setLessonGroups, toLessonGroups } from '#/utils/outline-helpers'
+import { showErrorToast } from '@/components/ui/AppToaster'
+import { chapterDragType, lessonDragType } from '@/constants'
+import { reorderChapters } from '@/server/functions/chapters.functions'
+import { reorderLessons } from '@/server/functions/lessons.functions'
+import type { CourseOutline } from '@/types'
+import { getChangedLessonOrders, setLessonGroups, toLessonGroups } from '@/utils/outline-helpers'
 
 type OutlineDragDropProps = {
   outline: CourseOutline

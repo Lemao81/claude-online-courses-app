@@ -1,7 +1,7 @@
 import { Stack, Text } from '@chakra-ui/react'
-import LessonListItem from '#/components/lessons/LessonListItem'
-import { useLessonDroppable } from '#/hooks/use-lesson-droppable'
-import type { LessonVideo } from '#/types'
+import LessonListItem from '@/components/lessons/LessonListItem'
+import { useLessonDroppable } from '@/hooks/use-lesson-droppable'
+import type { LessonVideo } from '@/types'
 
 type LessonListProps = {
   chapterId: number | null

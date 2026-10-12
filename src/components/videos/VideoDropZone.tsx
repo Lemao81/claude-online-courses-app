@@ -1,7 +1,7 @@
 import { Box, Button, Flex, Stack, Text, useRecipe } from '@chakra-ui/react'
 import { type ChangeEvent, type DragEvent, useRef, useState } from 'react'
 import { LuCloudUpload, LuFolderOpen } from 'react-icons/lu'
-import IconTile from '#/components/ui/IconTile'
+import IconTile from '@/components/ui/IconTile'
 
 type VideoDropZoneProps = {
   onFilesSelected: (files: File[]) => void

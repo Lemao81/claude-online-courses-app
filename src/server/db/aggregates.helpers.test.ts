@@ -1,9 +1,9 @@
 import { eq } from 'drizzle-orm'
 import { describe, expect, it } from 'vitest'
-import { recomputeCourseDuration } from '#/server/db/aggregates.helpers'
-import { chapters, courses } from '#/server/db/schema'
-import { withRollback } from '#/test/db'
-import { insertChapter, insertCourse, insertLesson } from '#/test/factories'
+import { recomputeCourseDuration } from '@/server/db/aggregates.helpers'
+import { chapters, courses } from '@/server/db/schema'
+import { withRollback } from '@/test/db'
+import { insertChapter, insertCourse, insertLesson } from '@/test/factories'
 
 describe('recomputeCourseDuration', () => {
   it('sums lesson durations', () =>

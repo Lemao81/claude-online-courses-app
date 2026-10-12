@@ -1,7 +1,7 @@
 import { createRootRouteWithContext } from '@tanstack/react-router'
-import RootDocument from '#/layouts/RootDocument'
-import type { AppRouterContext } from '#/router'
-import appCss from '#/styles.css?url'
+import RootDocument from '@/layouts/RootDocument'
+import type { AppRouterContext } from '@/router'
+import appCss from '@/styles.css?url'
 
 export const Route = createRootRouteWithContext<AppRouterContext>()({
   head: () => ({

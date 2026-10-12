@@ -10,7 +10,7 @@ import {
   reviews,
   tags,
   users,
-} from '#/server/db/schema'
+} from '@/server/db/schema'
 
 export const assetsRelations = relations(assets, ({ one, many }) => ({
   owner: one(users, {

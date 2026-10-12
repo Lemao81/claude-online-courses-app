@@ -1,6 +1,6 @@
 import { Badge, Flex, Stack, Text } from '@chakra-ui/react'
-import type { Course } from '#/types'
-import { formatDate, formatDuration, formatPrice, formatRating } from '#/utils/formatters'
+import type { Course } from '@/types'
+import { formatDate, formatDuration, formatPrice, formatRating } from '@/utils/formatters'
 
 type CourseTitleProps = {
   course: Course

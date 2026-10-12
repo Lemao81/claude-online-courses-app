@@ -2,9 +2,9 @@ import { Button } from '@chakra-ui/react'
 import { useRouter } from '@tanstack/react-router'
 import { useState } from 'react'
 import { LuPlus } from 'react-icons/lu'
-import { showErrorToast } from '#/components/ui/AppToaster'
-import { createLesson } from '#/server/functions/lessons.functions'
-import type { Lesson } from '#/types'
+import { showErrorToast } from '@/components/ui/AppToaster'
+import { createLesson } from '@/server/functions/lessons.functions'
+import type { Lesson } from '@/types'
 
 type AddLessonButtonProps = {
   courseId: number

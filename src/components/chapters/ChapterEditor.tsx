@@ -4,13 +4,13 @@ import { useRef, useState } from 'react'
 import ChapterEditorForm, {
   type ChapterEditorFormValues,
   useChapterEditorForm,
-} from '#/components/chapters/ChapterEditorForm'
-import AddLessonButton from '#/components/lessons/AddLessonButton'
-import LessonList from '#/components/lessons/LessonList'
-import DragHandle from '#/components/ui/DragHandle'
-import VideoUpload from '#/components/videos/VideoUpload'
-import { updateChapter } from '#/server/functions/chapters.functions'
-import type { Chapter, LessonVideo } from '#/types'
+} from '@/components/chapters/ChapterEditorForm'
+import AddLessonButton from '@/components/lessons/AddLessonButton'
+import LessonList from '@/components/lessons/LessonList'
+import DragHandle from '@/components/ui/DragHandle'
+import VideoUpload from '@/components/videos/VideoUpload'
+import { updateChapter } from '@/server/functions/chapters.functions'
+import type { Chapter, LessonVideo } from '@/types'
 
 type ChapterEditorProps = {
   chapter?: Chapter

@@ -4,10 +4,10 @@ import {
   assetDeleteRetryLimit,
   assetSweepCron,
   workerStopTimeoutMs,
-} from '#/constants/config'
-import { handleAssetDeletion, sweepDeletedAssets } from '#/server/jobs/assets.jobs'
-import { createWorkerBoss } from '#/server/jobs/client'
-import { assetDeadLetterQueue, assetDeleteQueue, assetSweepQueue } from '#/server/jobs/queues'
+} from '@/constants/config'
+import { handleAssetDeletion, sweepDeletedAssets } from '@/server/jobs/assets.jobs'
+import { createWorkerBoss } from '@/server/jobs/client'
+import { assetDeadLetterQueue, assetDeleteQueue, assetSweepQueue } from '@/server/jobs/queues'
 
 const boss = createWorkerBoss()
 

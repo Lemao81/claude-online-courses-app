@@ -3,7 +3,7 @@ import type {
   FormValidateOrFn,
   ReactFormExtendedApi,
 } from '@tanstack/react-form'
-import type { assets, chapters, courses, enrollments, lessons } from '#/server/db/schema'
+import type { assets, chapters, courses, enrollments, lessons } from '@/server/db/schema'
 
 export type Course = typeof courses.$inferSelect
 

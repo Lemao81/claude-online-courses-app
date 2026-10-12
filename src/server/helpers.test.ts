@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { hasSameIds } from '#/server/helpers'
+import { hasSameIds } from '@/server/helpers'
 
 describe('hasSameIds', () => {
   it('accepts the same ids', () => {

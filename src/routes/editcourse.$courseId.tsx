@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
-import CourseEditorPage from '#/pages/CourseEditorPage'
-import { requireSignedIn } from '#/server/functions/auth.functions'
-import { getAuthoredCourseOutline } from '#/server/functions/courses.functions'
+import CourseEditorPage from '@/pages/CourseEditorPage'
+import { requireSignedIn } from '@/server/functions/auth.functions'
+import { getAuthoredCourseOutline } from '@/server/functions/courses.functions'
 
 export const Route = createFileRoute('/editcourse/$courseId')({
   beforeLoad: () => requireSignedIn(),

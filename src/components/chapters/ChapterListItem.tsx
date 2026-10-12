@@ -1,8 +1,8 @@
 import { Box } from '@chakra-ui/react'
-import ChapterEditor from '#/components/chapters/ChapterEditor'
-import ChapterView from '#/components/chapters/ChapterView'
-import { useChapterSortable } from '#/hooks/use-chapter-sortable'
-import type { ChapterWithLessons } from '#/types'
+import ChapterEditor from '@/components/chapters/ChapterEditor'
+import ChapterView from '@/components/chapters/ChapterView'
+import { useChapterSortable } from '@/hooks/use-chapter-sortable'
+import type { ChapterWithLessons } from '@/types'
 
 type ChapterListItemProps = {
   chapter: ChapterWithLessons

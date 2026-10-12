@@ -1,7 +1,7 @@
 import { Flex, Heading } from '@chakra-ui/react'
 import { getRouteApi } from '@tanstack/react-router'
-import CourseList from '#/components/courses/CourseList'
-import NewCourseDialog from '#/components/courses/NewCourseDialog'
+import CourseList from '@/components/courses/CourseList'
+import NewCourseDialog from '@/components/courses/NewCourseDialog'
 
 const routeApi = getRouteApi('/mycourses')
 

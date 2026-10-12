@@ -1,9 +1,9 @@
 import { eq, inArray } from 'drizzle-orm'
 import { describe, expect, it } from 'vitest'
-import { removeCourse } from '#/server/db/courses.helpers'
-import { assets, courses, lessons } from '#/server/db/schema'
-import type { Transaction } from '#/server/db/types'
-import { withRollback } from '#/test/db'
+import { removeCourse } from '@/server/db/courses.helpers'
+import { assets, courses, lessons } from '@/server/db/schema'
+import type { Transaction } from '@/server/db/types'
+import { withRollback } from '@/test/db'
 import {
   insertAsset,
   insertChapter,
@@ -11,7 +11,7 @@ import {
   insertEnrollment,
   insertLesson,
   insertUser,
-} from '#/test/factories'
+} from '@/test/factories'
 
 async function selectCourseIds(tx: Transaction, courseId: number): Promise<{ id: number }[]> {
   return tx.select({ id: courses.id }).from(courses).where(eq(courses.id, courseId))

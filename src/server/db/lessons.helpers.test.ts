@@ -1,12 +1,12 @@
 import { asc, eq } from 'drizzle-orm'
 import { describe, expect, it } from 'vitest'
-import { outlineChangedMessage } from '#/constants/error.messages'
-import { setLessonOrder } from '#/server/db/lessons.helpers'
-import { chapters, courses, lessons } from '#/server/db/schema'
-import type { Transaction } from '#/server/db/types'
-import { withRollback } from '#/test/db'
-import { insertChapter, insertCourse, insertLesson } from '#/test/factories'
-import type { Lesson } from '#/types'
+import { outlineChangedMessage } from '@/constants/error.messages'
+import { setLessonOrder } from '@/server/db/lessons.helpers'
+import { chapters, courses, lessons } from '@/server/db/schema'
+import type { Transaction } from '@/server/db/types'
+import { withRollback } from '@/test/db'
+import { insertChapter, insertCourse, insertLesson } from '@/test/factories'
+import type { Lesson } from '@/types'
 
 type LessonPlacement = Pick<Lesson, 'title' | 'chapterId' | 'position'>
 

@@ -1,8 +1,8 @@
 import { Stack } from '@chakra-ui/react'
 import { useState } from 'react'
-import AddChapterButton from '#/components/chapters/AddChapterButton'
-import ChapterListItem from '#/components/chapters/ChapterListItem'
-import type { ChapterWithLessons } from '#/types'
+import AddChapterButton from '@/components/chapters/AddChapterButton'
+import ChapterListItem from '@/components/chapters/ChapterListItem'
+import type { ChapterWithLessons } from '@/types'
 
 type ChapterListProps = {
   courseId: number

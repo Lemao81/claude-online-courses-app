@@ -1,9 +1,9 @@
 import { Box, Flex, Heading, Stack } from '@chakra-ui/react'
 import { useState } from 'react'
-import AddLessonButton from '#/components/lessons/AddLessonButton'
-import LessonList from '#/components/lessons/LessonList'
-import VideoUpload from '#/components/videos/VideoUpload'
-import type { LessonVideo } from '#/types'
+import AddLessonButton from '@/components/lessons/AddLessonButton'
+import LessonList from '@/components/lessons/LessonList'
+import VideoUpload from '@/components/videos/VideoUpload'
+import type { LessonVideo } from '@/types'
 
 type CourseLessonsSectionProps = {
   courseId: number

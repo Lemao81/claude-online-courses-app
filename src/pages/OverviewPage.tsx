@@ -1,5 +1,5 @@
 import { Flex, Text } from '@chakra-ui/react'
-import Greeting from '#/components/overview/Greeting'
+import Greeting from '@/components/overview/Greeting'
 
 export default function OverviewPage(): React.JSX.Element {
   return (

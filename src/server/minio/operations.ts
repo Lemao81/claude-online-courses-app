@@ -1,5 +1,5 @@
 import { S3Error } from 'minio'
-import { minioClient } from '#/server/minio/client'
+import { minioClient } from '@/server/minio/client'
 
 const ensuredBuckets = new Map<string, Promise<void>>()
 

@@ -1,6 +1,6 @@
 import { and, eq, inArray, isNotNull } from 'drizzle-orm'
-import { assets, courses, enrollments, lessons } from '#/server/db/schema'
-import type { Database } from '#/server/db/types'
+import { assets, courses, enrollments, lessons } from '@/server/db/schema'
+import type { Database } from '@/server/db/types'
 
 export async function removeCourse(database: Database, courseId: number): Promise<number[]> {
   return database.transaction(async (tx) => {

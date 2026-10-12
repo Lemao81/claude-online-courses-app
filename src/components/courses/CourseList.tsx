@@ -1,6 +1,6 @@
 import { Stack, Text } from '@chakra-ui/react'
-import CourseListItem from '#/components/courses/CourseListItem'
-import type { Course } from '#/types'
+import CourseListItem from '@/components/courses/CourseListItem'
+import type { Course } from '@/types'
 
 type CourseListProps = {
   courses: Course[]

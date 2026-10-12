@@ -1,7 +1,7 @@
 import { Field, Input, Stack, Textarea } from '@chakra-ui/react'
 import { useForm } from '@tanstack/react-form'
-import ErrorText from '#/components/ui/ErrorText'
-import type { FormApi } from '#/types'
+import ErrorText from '@/components/ui/ErrorText'
+import type { FormApi } from '@/types'
 
 const formId = 'new-course-form'
 

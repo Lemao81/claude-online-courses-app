@@ -1,6 +1,6 @@
 import { Button, CloseButton, Dialog, Portal, Stack, Text } from '@chakra-ui/react'
 import { type ReactNode, useState } from 'react'
-import ErrorText from '#/components/ui/ErrorText'
+import ErrorText from '@/components/ui/ErrorText'
 
 type ConfirmDialogProps = {
   question: string

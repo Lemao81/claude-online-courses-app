@@ -1,5 +1,5 @@
-import { courseLevelGroup } from '#/constants'
-import type { CourseOutline, LessonOrder, LessonVideo } from '#/types'
+import { courseLevelGroup } from '@/constants'
+import type { CourseOutline, LessonOrder, LessonVideo } from '@/types'
 
 export type LessonGroups = Record<string, LessonVideo[]>
 

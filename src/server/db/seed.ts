@@ -1,8 +1,8 @@
 import { asc, ne, sql } from 'drizzle-orm'
 import { getTableConfig } from 'drizzle-orm/pg-core'
 import { reset, seed } from 'drizzle-seed'
-import { db } from '#/server/db/client'
-import { chapters, courses, lessons } from '#/server/db/schema'
+import { db } from '@/server/db/client'
+import { chapters, courses, lessons } from '@/server/db/schema'
 
 const authorId = process.env.SEED_AUTHOR_ID
 

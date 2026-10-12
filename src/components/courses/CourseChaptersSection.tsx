@@ -1,6 +1,6 @@
 import { Heading, Stack } from '@chakra-ui/react'
-import ChapterList from '#/components/chapters/ChapterList'
-import type { ChapterWithLessons } from '#/types'
+import ChapterList from '@/components/chapters/ChapterList'
+import type { ChapterWithLessons } from '@/types'
 
 type CourseChaptersSectionProps = {
   courseId: number

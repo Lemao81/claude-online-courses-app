@@ -1,20 +1,20 @@
 import { Button, Flex, Stack } from '@chakra-ui/react'
 import { useRouter } from '@tanstack/react-router'
 import { useState } from 'react'
-import { showErrorToast, showSuccessToast } from '#/components/ui/AppToaster'
-import ErrorText from '#/components/ui/ErrorText'
-import VideoDropZone from '#/components/videos/VideoDropZone'
-import VideoFileList from '#/components/videos/VideoFileList'
-import { createLesson } from '#/server/functions/lessons.functions'
-import { completeVideoUpload, createVideoUploadUrl } from '#/server/functions/videos.functions'
-import type { Lesson } from '#/types'
+import { showErrorToast, showSuccessToast } from '@/components/ui/AppToaster'
+import ErrorText from '@/components/ui/ErrorText'
+import VideoDropZone from '@/components/videos/VideoDropZone'
+import VideoFileList from '@/components/videos/VideoFileList'
+import { createLesson } from '@/server/functions/lessons.functions'
+import { completeVideoUpload, createVideoUploadUrl } from '@/server/functions/videos.functions'
+import type { Lesson } from '@/types'
 import {
   isVideoFile,
   probeVideoMetadata,
   toFileBaseName,
   toFileKey,
   uploadFile,
-} from '#/utils/helpers'
+} from '@/utils/helpers'
 
 type VideoUploadProps = {
   courseId: number
