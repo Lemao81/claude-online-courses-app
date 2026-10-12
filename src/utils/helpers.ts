@@ -64,6 +64,7 @@ export function probeVideoMetadata(file: File): Promise<VideoMetadata> {
 
       finish(video.duration)
     }
+
     video.onerror = () => finish(0)
     video.preload = 'metadata'
     video.muted = true

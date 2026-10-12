@@ -61,6 +61,7 @@ export default function VideoUpload({
     const lesson = await createLesson({
       data: { courseId, chapterId, title: toFileBaseName(file.name) },
     })
+
     await completeVideoUpload({
       data: {
         courseId,

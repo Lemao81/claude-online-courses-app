@@ -31,6 +31,7 @@ export default function AddLessonButton({
         'No lesson was added',
         error instanceof Error ? error.message : 'Failed to add the lesson',
       )
+
       setIsAdding(false)
 
       return

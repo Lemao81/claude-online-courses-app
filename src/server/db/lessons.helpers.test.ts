@@ -123,6 +123,7 @@ describe('setLessonOrder', () => {
       await expect(
         setLessonOrder(tx, courseId, [{ chapterId: null, lessonIds: [a.id] }]),
       ).rejects.toThrow(outlineChangedMessage)
+
       expect(await selectLessons(tx, courseId)).toEqual([
         { title: 'A', chapterId: null, position: 0 },
         { title: 'B', chapterId: null, position: 1 },
@@ -139,6 +140,7 @@ describe('setLessonOrder', () => {
       await expect(
         setLessonOrder(tx, courseId, [{ chapterId: chapter.id, lessonIds: [b.id, a.id] }]),
       ).rejects.toThrow(outlineChangedMessage)
+
       expect(await selectLessons(tx, courseId)).toEqual([
         { title: 'A', chapterId: null, position: 0 },
         { title: 'B', chapterId: chapter.id, position: 0 },
@@ -155,6 +157,7 @@ describe('setLessonOrder', () => {
       await expect(
         setLessonOrder(tx, courseId, [{ chapterId: null, lessonIds: [b.id, a.id] }]),
       ).rejects.toThrow(outlineChangedMessage)
+
       expect(await selectLessons(tx, courseId)).toEqual([
         { title: 'A', chapterId: null, position: 0 },
       ])
@@ -182,6 +185,7 @@ describe('setLessonOrder', () => {
       await expect(
         setLessonOrder(tx, courseId, [{ chapterId: chapter.id, lessonIds: [a.id] }]),
       ).rejects.toThrow(outlineChangedMessage)
+
       expect(await selectLessons(tx, courseId)).toEqual([
         { title: 'A', chapterId: null, position: 0 },
       ])

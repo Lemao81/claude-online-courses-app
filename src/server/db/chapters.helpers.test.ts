@@ -124,6 +124,7 @@ describe('setChapterOrder', () => {
       await expect(setChapterOrder(tx, courseId, [b.id, a.id])).rejects.toThrow(
         outlineChangedMessage,
       )
+
       expect(await selectChapters(tx, courseId)).toEqual([{ title: 'A', position: 0 }])
     }))
 

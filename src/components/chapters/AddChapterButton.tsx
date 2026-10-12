@@ -29,6 +29,7 @@ export default function AddChapterButton({
         'No chapter was added',
         error instanceof Error ? error.message : 'Failed to add the chapter',
       )
+
       setIsAdding(false)
 
       return

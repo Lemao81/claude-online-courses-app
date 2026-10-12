@@ -88,6 +88,7 @@ describe('removeCourse', () => {
       await expect(removeCourse(tx, courseId)).rejects.toThrow(
         'A course with enrollments cannot be deleted',
       )
+
       expect(await selectCourseIds(tx, courseId)).toEqual([{ id: courseId }])
     }))
 })

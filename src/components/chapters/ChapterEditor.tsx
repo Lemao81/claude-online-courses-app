@@ -34,6 +34,7 @@ export default function ChapterEditor({
     title: chapter?.title ?? '',
     description: chapter?.description ?? '',
   })
+
   const { form, formId } = useChapterEditorForm(chapter)
 
   async function handleAutoSave(value: ChapterEditorFormValues): Promise<void> {

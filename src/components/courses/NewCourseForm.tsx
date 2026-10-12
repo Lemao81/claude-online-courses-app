@@ -48,7 +48,7 @@ export default function NewCourseForm({
       onSubmit={(event) => {
         event.preventDefault()
         event.stopPropagation()
-        form.handleSubmit()
+        void form.handleSubmit()
       }}
     >
       <Stack gap="4">
