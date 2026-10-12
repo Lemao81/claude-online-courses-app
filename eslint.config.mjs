@@ -6,10 +6,7 @@ export default defineConfig([
   globalIgnores(['dist/', 'src/theme/eject/']),
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.mts', '**/*.cts'],
-    languageOptions: {
-      parser: tseslint.parser,
-      parserOptions: { project: './tsconfig.json', tsconfigRootDir: import.meta.dirname },
-    },
+    languageOptions: { parser: tseslint.parser, parserOptions: { projectService: true } },
     plugins: { '@stylistic': stylistic, '@typescript-eslint': tseslint.plugin },
     rules: {
       '@stylistic/padding-line-between-statements': [
