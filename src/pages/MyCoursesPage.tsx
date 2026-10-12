@@ -5,7 +5,7 @@ import NewCourseDialog from '#/components/courses/NewCourseDialog'
 
 const routeApi = getRouteApi('/mycourses')
 
-export default function MyCoursesPage() {
+export default function MyCoursesPage(): React.JSX.Element {
   const courses = routeApi.useLoaderData()
 
   return (

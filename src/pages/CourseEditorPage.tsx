@@ -8,7 +8,7 @@ import { useSyncedState } from '#/hooks/useSyncedState'
 
 const routeApi = getRouteApi('/editcourse/$courseId')
 
-export default function CourseEditorPage() {
+export default function CourseEditorPage(): React.JSX.Element {
   const course = routeApi.useLoaderData()
   const [outline, setOutline] = useSyncedState(course)
 

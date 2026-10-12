@@ -3,7 +3,7 @@ import { useForm } from '@tanstack/react-form'
 import { useEffect, useRef } from 'react'
 import ErrorText from '#/components/ui/ErrorText'
 import { autoSaveDebounceMs } from '#/constants/config'
-import type { Chapter } from '#/types'
+import type { Chapter, FormApi } from '#/types'
 
 export type ChapterEditorFormValues = {
   title: string
@@ -14,7 +14,12 @@ function toFormId(chapter?: Chapter): string {
   return `edit-chapter-form-${chapter?.id ?? 'new'}`
 }
 
-export function useChapterEditorForm(chapter: Chapter | undefined) {
+type ChapterEditorFormState = {
+  form: FormApi<ChapterEditorFormValues>
+  formId: string
+}
+
+export function useChapterEditorForm(chapter: Chapter | undefined): ChapterEditorFormState {
   const form = useForm({
     defaultValues: {
       title: chapter?.title ?? '',
@@ -39,7 +44,7 @@ export default function ChapterEditorForm({
   autoSaveError,
   focusTitle,
   onAutoSave,
-}: ChapterEditorFormProps) {
+}: ChapterEditorFormProps): React.JSX.Element {
   const titleRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {

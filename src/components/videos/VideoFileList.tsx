@@ -7,7 +7,7 @@ type VideoFileListProps = {
   onRemove: (key: string) => void
 }
 
-export default function VideoFileList({ files, onRemove }: VideoFileListProps) {
+export default function VideoFileList({ files, onRemove }: VideoFileListProps): React.JSX.Element {
   return (
     <Stack gap="2">
       {files.map((file) => {

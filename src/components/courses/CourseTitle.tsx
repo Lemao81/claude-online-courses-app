@@ -6,7 +6,7 @@ type CourseTitleProps = {
   course: Course
 }
 
-export default function CourseTitle({ course }: CourseTitleProps) {
+export default function CourseTitle({ course }: CourseTitleProps): React.JSX.Element {
   const meta = [
     formatDuration(course.durationSec),
     formatPrice(course.price),

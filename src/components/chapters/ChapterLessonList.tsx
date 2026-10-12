@@ -8,7 +8,10 @@ type ChapterLessonListProps = {
   lessons: LessonVideo[]
 }
 
-export default function ChapterLessonList({ chapterId, lessons }: ChapterLessonListProps) {
+export default function ChapterLessonList({
+  chapterId,
+  lessons,
+}: ChapterLessonListProps): React.JSX.Element {
   const ref = useLessonDroppable(chapterId)
 
   return (

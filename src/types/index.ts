@@ -1,3 +1,8 @@
+import type {
+  FormAsyncValidateOrFn,
+  FormValidateOrFn,
+  ReactFormExtendedApi,
+} from '@tanstack/react-form'
 import type { assets, chapters, courses, enrollments, lessons } from '#/server/db/schema'
 
 export type Course = typeof courses.$inferSelect
@@ -40,3 +45,22 @@ export type AssetDeletePayload = {
 export type ColorMode = 'light' | 'dark'
 
 export type ColorModePreference = ColorMode | 'system'
+
+type Sync<T> = FormValidateOrFn<T> | undefined
+
+type Async<T> = FormAsyncValidateOrFn<T> | undefined
+
+export type FormApi<T> = ReactFormExtendedApi<
+  T,
+  Sync<T>,
+  Sync<T>,
+  Async<T>,
+  Sync<T>,
+  Async<T>,
+  Sync<T>,
+  Async<T>,
+  Sync<T>,
+  Async<T>,
+  Async<T>,
+  unknown
+>

@@ -8,7 +8,11 @@ type ChapterTitleProps = {
   lessonCount: number
 }
 
-export default function ChapterTitle({ chapter, number, lessonCount }: ChapterTitleProps) {
+export default function ChapterTitle({
+  chapter,
+  number,
+  lessonCount,
+}: ChapterTitleProps): React.JSX.Element {
   const meta = [
     `Chapter ${number}`,
     `${lessonCount} ${lessonCount === 1 ? 'lesson' : 'lessons'}`,

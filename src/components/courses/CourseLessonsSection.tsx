@@ -10,7 +10,10 @@ type CourseLessonsSectionProps = {
   lessons: LessonVideo[]
 }
 
-export default function CourseLessonsSection({ courseId, lessons }: CourseLessonsSectionProps) {
+export default function CourseLessonsSection({
+  courseId,
+  lessons,
+}: CourseLessonsSectionProps): React.JSX.Element {
   const [newLessonId, setNewLessonId] = useState<number>()
 
   return (

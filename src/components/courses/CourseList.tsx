@@ -6,7 +6,7 @@ type CourseListProps = {
   courses: Course[]
 }
 
-export default function CourseList({ courses }: CourseListProps) {
+export default function CourseList({ courses }: CourseListProps): React.JSX.Element {
   if (courses.length === 0) {
     return (
       <Text layerStyle="emptyStateCard" textStyle="emptyState">

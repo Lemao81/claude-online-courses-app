@@ -19,7 +19,12 @@ type LessonListItemProps = {
   isNew?: boolean
 }
 
-export default function LessonListItem({ lesson, index, chapterId, isNew }: LessonListItemProps) {
+export default function LessonListItem({
+  lesson,
+  index,
+  chapterId,
+  isNew,
+}: LessonListItemProps): React.JSX.Element {
   const router = useRouter()
   const [titleError, setTitleError] = useState('')
   const [isRemoveOpen, setIsRemoveOpen] = useState(false)

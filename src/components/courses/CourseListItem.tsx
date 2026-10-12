@@ -7,7 +7,7 @@ type CourseListItemProps = {
   course: Course
 }
 
-export default function CourseListItem({ course }: CourseListItemProps) {
+export default function CourseListItem({ course }: CourseListItemProps): React.JSX.Element {
   return (
     <Flex
       align={{ base: 'flex-start', sm: 'center' }}

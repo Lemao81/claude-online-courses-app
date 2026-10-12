@@ -9,7 +9,11 @@ type LessonListProps = {
   newLessonId?: number
 }
 
-export default function LessonList({ chapterId, lessons, newLessonId }: LessonListProps) {
+export default function LessonList({
+  chapterId,
+  lessons,
+  newLessonId,
+}: LessonListProps): React.JSX.Element {
   const ref = useLessonDroppable(chapterId)
 
   return (

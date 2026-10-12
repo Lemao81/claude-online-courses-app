@@ -9,7 +9,7 @@ type ChapterListProps = {
   chapters: ChapterWithLessons[]
 }
 
-export default function ChapterList({ courseId, chapters }: ChapterListProps) {
+export default function ChapterList({ courseId, chapters }: ChapterListProps): React.JSX.Element {
   const [editedChapterId, setEditedChapterId] = useState<number | null>(null)
   const [newChapterId, setNewChapterId] = useState<number | null>(null)
 

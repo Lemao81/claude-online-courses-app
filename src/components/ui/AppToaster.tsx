@@ -15,7 +15,7 @@ export function showErrorToast(title: string, description?: string): void {
   toaster.create({ type: 'error', title, description })
 }
 
-export default function AppToaster() {
+export default function AppToaster(): React.JSX.Element {
   return (
     <Portal>
       <Toaster toaster={toaster} insetInline={{ mdDown: '4' }}>

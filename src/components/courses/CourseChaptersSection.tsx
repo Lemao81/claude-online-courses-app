@@ -7,7 +7,10 @@ type CourseChaptersSectionProps = {
   chapters: ChapterWithLessons[]
 }
 
-export default function CourseChaptersSection({ courseId, chapters }: CourseChaptersSectionProps) {
+export default function CourseChaptersSection({
+  courseId,
+  chapters,
+}: CourseChaptersSectionProps): React.JSX.Element {
   return (
     <Stack as="section" gap="3">
       <Heading as="h2" m="0" textStyle="sectionHeading">

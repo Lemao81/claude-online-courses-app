@@ -11,7 +11,7 @@ type CourseActionsProps = {
   course: Course
 }
 
-export default function CourseActions({ course }: CourseActionsProps) {
+export default function CourseActions({ course }: CourseActionsProps): React.JSX.Element {
   const router = useRouter()
   const [isDeleteOpen, setIsDeleteOpen] = useState(false)
 

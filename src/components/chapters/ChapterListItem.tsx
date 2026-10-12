@@ -20,7 +20,7 @@ export default function ChapterListItem({
   isNew,
   onEdit,
   onClose,
-}: ChapterListItemProps) {
+}: ChapterListItemProps): React.JSX.Element {
   const { ref, handleRef } = useChapterSortable(chapter.id, index)
 
   return (

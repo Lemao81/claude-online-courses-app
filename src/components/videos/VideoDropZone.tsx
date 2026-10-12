@@ -7,7 +7,7 @@ type VideoDropZoneProps = {
   onFilesSelected: (files: File[]) => void
 }
 
-export default function VideoDropZone({ onFilesSelected }: VideoDropZoneProps) {
+export default function VideoDropZone({ onFilesSelected }: VideoDropZoneProps): React.JSX.Element {
   const recipe = useRecipe({ key: 'dropZone' })
   const inputRef = useRef<HTMLInputElement>(null)
   const dragDepth = useRef(0)

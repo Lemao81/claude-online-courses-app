@@ -19,7 +19,7 @@ export default function ChapterView({
   lessons = [],
   handleRef,
   onEdit,
-}: ChapterViewProps) {
+}: ChapterViewProps): React.JSX.Element {
   return (
     <Stack gap="5" layerStyle="chapterPanel">
       <Flex align="flex-start" justify="space-between" gap="4">

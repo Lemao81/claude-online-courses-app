@@ -21,7 +21,7 @@ export default function Tooltip({
   portalRef,
   ref,
   ...rest
-}: TooltipProps) {
+}: TooltipProps): ReactNode {
   if (disabled) {
     return children
   }

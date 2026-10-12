@@ -1,7 +1,7 @@
 import { Button } from '@chakra-ui/react'
 import { Show, SignInButton, UserButton } from '@clerk/tanstack-react-start'
 
-export default function AuthButtons() {
+export default function AuthButtons(): React.JSX.Element {
   return (
     <>
       <Show when="signed-in">

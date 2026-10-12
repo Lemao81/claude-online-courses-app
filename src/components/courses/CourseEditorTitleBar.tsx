@@ -6,7 +6,9 @@ type CourseEditorTitleBarProps = {
   title: string
 }
 
-export default function CourseEditorTitleBar({ title }: CourseEditorTitleBarProps) {
+export default function CourseEditorTitleBar({
+  title,
+}: CourseEditorTitleBarProps): React.JSX.Element {
   return (
     <Grid templateColumns="1fr auto 1fr" alignItems="center" gap="3">
       <CloseButton asChild justifySelf="start" size="lg" variant="quiet">

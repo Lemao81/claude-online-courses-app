@@ -6,7 +6,7 @@ type IconTileProps = {
   children: ReactNode
 }
 
-export default function IconTile({ size, children }: IconTileProps) {
+export default function IconTile({ size, children }: IconTileProps): React.JSX.Element {
   const recipe = useRecipe({ key: 'iconTile' })
 
   return (

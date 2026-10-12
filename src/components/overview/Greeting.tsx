@@ -1,7 +1,7 @@
 import { Heading } from '@chakra-ui/react'
 import { useUser } from '@clerk/tanstack-react-start'
 
-export default function Greeting() {
+export default function Greeting(): React.JSX.Element | null {
   const { isLoaded, user } = useUser()
 
   if (!isLoaded) {

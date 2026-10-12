@@ -1,6 +1,6 @@
 import { Box, Flex, Icon, Link, Text, VisuallyHidden } from '@chakra-ui/react'
 
-export default function Footer() {
+export default function Footer(): React.JSX.Element {
   const year = new Date().getFullYear()
 
   return (

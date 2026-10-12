@@ -11,7 +11,10 @@ type AddChapterButtonProps = {
   onAdded: (chapter: Chapter) => void
 }
 
-export default function AddChapterButton({ courseId, onAdded }: AddChapterButtonProps) {
+export default function AddChapterButton({
+  courseId,
+  onAdded,
+}: AddChapterButtonProps): React.JSX.Element {
   const router = useRouter()
   const [isAdding, setIsAdding] = useState(false)
 

@@ -2,7 +2,7 @@ import { Box, Flex } from '@chakra-ui/react'
 import Navbar from '#/layouts/Navbar'
 import Toolbar from '#/layouts/Toolbar'
 
-export default function Appbar() {
+export default function Appbar(): React.JSX.Element {
   return (
     <Box
       as="header"

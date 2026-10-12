@@ -8,7 +8,7 @@ type MainLayoutProps = {
   children: React.ReactNode
 }
 
-export default function MainLayout({ children }: MainLayoutProps) {
+export default function MainLayout({ children }: MainLayoutProps): React.JSX.Element {
   return (
     <Flex direction="column" minH="100dvh">
       <Appbar />

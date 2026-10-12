@@ -1,7 +1,7 @@
 import { Box, Flex, Heading, Link } from '@chakra-ui/react'
 import { Link as RouterLink } from '@tanstack/react-router'
 
-export default function Sidebar() {
+export default function Sidebar(): React.JSX.Element {
   return (
     <Box
       as="aside"

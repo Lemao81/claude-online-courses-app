@@ -5,7 +5,7 @@ type ErrorTextProps = {
   css?: SystemStyleObject
 }
 
-export default function ErrorText({ message, css }: ErrorTextProps) {
+export default function ErrorText({ message, css }: ErrorTextProps): React.JSX.Element | null {
   if (message === '') {
     return null
   }

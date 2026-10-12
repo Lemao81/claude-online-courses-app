@@ -22,7 +22,7 @@ export default function ConfirmDialog({
   open,
   onOpenChange,
   onConfirm,
-}: ConfirmDialogProps) {
+}: ConfirmDialogProps): React.JSX.Element {
   const [isConfirming, setIsConfirming] = useState(false)
   const [confirmError, setConfirmError] = useState('')
 

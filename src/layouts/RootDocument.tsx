@@ -13,7 +13,7 @@ type RootDocumentProps = {
   children: React.ReactNode
 }
 
-export default function RootDocument({ children }: RootDocumentProps) {
+export default function RootDocument({ children }: RootDocumentProps): React.JSX.Element {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>

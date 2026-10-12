@@ -26,7 +26,7 @@ export default function ChapterEditor({
   focusTitle,
   handleRef,
   onClose,
-}: ChapterEditorProps) {
+}: ChapterEditorProps): React.JSX.Element {
   const router = useRouter()
   const [autoSaveError, setAutoSaveError] = useState('')
   const [newLessonId, setNewLessonId] = useState<number>()

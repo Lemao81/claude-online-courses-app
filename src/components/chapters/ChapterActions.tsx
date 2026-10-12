@@ -23,7 +23,11 @@ function getMoveNote(lessonCount: number): string | undefined {
   return `${movedLessons} to the end of the course-level lessons.`
 }
 
-export default function ChapterActions({ chapter, lessonCount, onEdit }: ChapterActionsProps) {
+export default function ChapterActions({
+  chapter,
+  lessonCount,
+  onEdit,
+}: ChapterActionsProps): React.JSX.Element {
   const router = useRouter()
   const [isRemoveOpen, setIsRemoveOpen] = useState(false)
 

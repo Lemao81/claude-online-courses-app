@@ -22,7 +22,11 @@ type VideoUploadProps = {
   onAdded: (lesson: Lesson) => void
 }
 
-export default function VideoUpload({ courseId, chapterId, onAdded }: VideoUploadProps) {
+export default function VideoUpload({
+  courseId,
+  chapterId,
+  onAdded,
+}: VideoUploadProps): React.JSX.Element {
   const router = useRouter()
   const [files, setFiles] = useState<File[]>([])
   const [isUploading, setIsUploading] = useState(false)

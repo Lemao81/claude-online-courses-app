@@ -76,7 +76,9 @@ type CompleteVideoUploadInput = {
   height: number
 }
 
-function clampedNumberSchema(max: number) {
+function clampedNumberSchema(
+  max: number,
+): z.ZodPipe<z.ZodCatch<z.ZodNumber>, z.ZodTransform<number, number>> {
   return z
     .number()
     .catch(0)

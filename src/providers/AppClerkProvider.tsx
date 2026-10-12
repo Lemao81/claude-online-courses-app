@@ -5,7 +5,11 @@ if (!PUBLISHABLE_KEY) {
   throw new Error('Add your Clerk Publishable Key to the .env.local file')
 }
 
-export default function AppClerkProvider({ children }: { children: React.ReactNode }) {
+export default function AppClerkProvider({
+  children,
+}: {
+  children: React.ReactNode
+}): React.JSX.Element {
   return (
     <ClerkProvider
       publishableKey={PUBLISHABLE_KEY}

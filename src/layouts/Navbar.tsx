@@ -1,7 +1,7 @@
 import { Flex, Link } from '@chakra-ui/react'
 import { Link as RouterLink } from '@tanstack/react-router'
 
-export default function Navbar() {
+export default function Navbar(): React.JSX.Element {
   return (
     <Flex
       as="nav"

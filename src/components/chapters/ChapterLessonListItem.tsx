@@ -16,7 +16,7 @@ export default function ChapterLessonListItem({
   lesson,
   index,
   chapterId,
-}: ChapterLessonListItemProps) {
+}: ChapterLessonListItemProps): React.JSX.Element {
   const { ref, handleRef } = useLessonSortable(lesson.id, index, chapterId)
 
   return (

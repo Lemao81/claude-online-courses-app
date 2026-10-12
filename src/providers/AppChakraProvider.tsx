@@ -5,7 +5,11 @@ import { ThemeProvider } from 'next-themes'
 import type { ReactNode } from 'react'
 import { system } from '#/theme'
 
-export default function AppChakraProvider({ children }: { children: ReactNode }) {
+export default function AppChakraProvider({
+  children,
+}: {
+  children: ReactNode
+}): React.JSX.Element {
   return (
     <ChakraProvider value={system}>
       <ThemeProvider attribute="class" disableTransitionOnChange>

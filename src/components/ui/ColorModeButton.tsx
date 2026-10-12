@@ -18,7 +18,7 @@ const nextModes: Record<ColorModePreference, ColorModePreference> = {
   system: 'light',
 }
 
-export default function ColorModeButton() {
+export default function ColorModeButton(): React.JSX.Element {
   const { colorModePreference, setColorMode } = useColorMode()
   const ModeIcon = modeIcons[colorModePreference]
 

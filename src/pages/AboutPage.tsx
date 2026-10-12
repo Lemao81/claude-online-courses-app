@@ -1,6 +1,6 @@
 import { Box, Heading, Text } from '@chakra-ui/react'
 
-export default function AboutPage() {
+export default function AboutPage(): React.JSX.Element {
   return (
     <Box px="4" py="12">
       <Box as="section" layerStyle="surfacePanel" rounded="card" p={{ base: '6', sm: '8' }}>

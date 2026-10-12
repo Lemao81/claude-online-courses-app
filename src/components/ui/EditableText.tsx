@@ -16,7 +16,7 @@ export default function EditableText({
   placeholder,
   disabled,
   defaultEdit,
-}: EditableTextProps) {
+}: EditableTextProps): React.JSX.Element {
   const [draft, setDraft] = useState(value)
 
   useEffect(() => {

@@ -20,7 +20,7 @@ export default function OutlineDragDrop({
   outline,
   onOutlineChange,
   children,
-}: OutlineDragDropProps) {
+}: OutlineDragDropProps): React.JSX.Element {
   const router = useRouter()
   const dragStartOutline = useRef<CourseOutline | null>(null)
 
