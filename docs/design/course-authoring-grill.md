@@ -4,7 +4,7 @@ A design interview about the **authoring** half of the app. The tree is closed: 
 is settled, confirmed as a shared understanding. The build is tracked commit by commit in
 [`course-authoring-plan.md`](course-authoring-plan.md).
 
-Vocabulary settled here lives in [`CONTEXT.md`](../../CONTEXT.md), not in this file.
+Vocabulary settled here lives in [`GLOSSARY.md`](../../GLOSSARY.md), not in this file.
 
 Session date: 2026-09-16.
 
@@ -16,7 +16,7 @@ Session date: 2026-09-16.
    not the learner-facing side, which stays untouched for now.
 2. **Course-level lessons are built first.** They currently have no read path, no creation path and
    no UI, so nothing else in the branch can be dragged, published or priced around them.
-3. **Documentation**: `CONTEXT.md` is kept current as terms resolve; ADRs are written only for
+3. **Documentation**: `GLOSSARY.md` is kept current as terms resolve; ADRs are written only for
    decisions that are hard to reverse, surprising, and a real trade-off.
 
 ### The outline model
