@@ -4,6 +4,7 @@ import { migrate } from 'drizzle-orm/node-postgres/migrator'
 import type { TestProject } from 'vitest/node'
 
 declare module 'vitest' {
+  // biome-ignore lint/style/useConsistentTypeDefinitions: module augmentation needs an interface to merge
   export interface ProvidedContext {
     databaseUrl: string
   }

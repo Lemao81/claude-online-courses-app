@@ -17,7 +17,6 @@ export default function RootDocument({ children }: RootDocumentProps): React.JSX
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/** biome-ignore lint/security/noDangerouslySetInnerHtml: trusted scaffold script */}
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
         <HeadContent />
       </head>
