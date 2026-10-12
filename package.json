@@ -13,11 +13,9 @@
     "preview": "vite preview",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
-    "bm:format": "biome format",
-    "bm:format:write": "biome format --write",
-    "bm:lint": "biome lint",
-    "bm:check": "biome check",
-    "bm:check:write": "biome check --write",
+    "bm:check:ci": "biome ci",
+    "bm:check:dev": "biome check",
+    "bm:fix": "biome check --write",
     "docker:up": "docker compose --env-file .env.local up -d",
     "docker:down": "docker compose --env-file .env.local down",
     "docker:build": "docker compose --env-file .env.local build",
@@ -67,9 +65,10 @@
     "zod": "4.4.3"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.4.5",
+    "@biomejs/biome": "2.5.14",
     "@chakra-ui/cli": "3.36.1",
-    "@tanstack/devtools-vite": "0.8.1",
+    "@stylistic/eslint-plugin": "5.10.0",
+    "@tanstack/devtools-vite": "0.8.5",
     "@tanstack/router-cli": "1.167.17",
     "@testcontainers/postgresql": "12.1.0",
     "@testing-library/dom": "10.4.1",
@@ -81,10 +80,12 @@
     "@vitejs/plugin-react": "6.0.3",
     "cross-env": "10.1.0",
     "dotenv": "17.4.2",
+    "eslint": "10.11.0",
     "jsdom": "28.1.0",
     "tsx": "4.22.4",
     "typescript": "6.0.3",
+    "typescript-eslint": "8.70.1",
     "vite": "8.1.0",
-    "vitest": "4.1.9"
+    "vitest": "5.0.3"
   }
 }
