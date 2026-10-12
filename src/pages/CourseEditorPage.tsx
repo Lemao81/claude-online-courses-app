@@ -4,7 +4,7 @@ import CourseChaptersSection from '#/components/courses/CourseChaptersSection'
 import CourseEditorTitleBar from '#/components/courses/CourseEditorTitleBar'
 import CourseLessonsSection from '#/components/courses/CourseLessonsSection'
 import OutlineDragDrop from '#/components/courses/OutlineDragDrop'
-import { useSyncedState } from '#/hooks/useSyncedState'
+import { useSyncedState } from '#/hooks/use-synced-state'
 
 const routeApi = getRouteApi('/editcourse/$courseId')
 

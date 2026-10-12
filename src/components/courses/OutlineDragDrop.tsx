@@ -8,7 +8,7 @@ import { chapterDragType, lessonDragType } from '#/constants'
 import { reorderChapters } from '#/server/functions/chapters.functions'
 import { reorderLessons } from '#/server/functions/lessons.functions'
 import type { CourseOutline } from '#/types'
-import { getChangedLessonOrders, setLessonGroups, toLessonGroups } from '#/utils/outlineHelpers'
+import { getChangedLessonOrders, setLessonGroups, toLessonGroups } from '#/utils/outline-helpers'
 
 type OutlineDragDropProps = {
   outline: CourseOutline

@@ -57,7 +57,7 @@
       }
     },
     {
-      "includes": ["src/components/**"],
+      "includes": ["src/components/**", "src/pages/**", "src/layouts/**", "src/providers/**"],
       "linter": {
         "rules": {
           "style": {
@@ -70,7 +70,7 @@
       }
     },
     {
-      "includes": ["modules/**"],
+      "includes": ["modules/**", "src/routes/**"],
       "linter": {
         "rules": {
           "style": {

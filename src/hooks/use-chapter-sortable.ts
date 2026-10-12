@@ -2,7 +2,7 @@
 
 import { useSortable } from '@dnd-kit/react/sortable'
 import { chapterDragType } from '#/constants'
-import { toChapterSortableId } from '#/utils/outlineHelpers'
+import { toChapterSortableId } from '#/utils/outline-helpers'
 
 type ChapterSortable = {
   ref: (element: Element | null) => void
