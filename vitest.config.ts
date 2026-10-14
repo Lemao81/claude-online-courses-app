@@ -1,4 +1,4 @@
-import { defineConfig } from 'vitest/config'
+import { configDefaults, defineConfig } from 'vitest/config'
 
 export default defineConfig({
   resolve: { tsconfigPaths: true },
@@ -7,8 +7,16 @@ export default defineConfig({
       {
         extends: true,
         test: {
-          name: 'server',
+          name: 'unit',
           include: ['src/**/*.test.ts'],
+          exclude: [...configDefaults.exclude, 'src/**/*.db.test.ts'],
+        },
+      },
+      {
+        extends: true,
+        test: {
+          name: 'db',
+          include: ['src/**/*.db.test.ts'],
           globalSetup: ['src/test/global-setup.ts'],
           setupFiles: ['src/test/setup.ts'],
         },
