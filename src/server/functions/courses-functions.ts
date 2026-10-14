@@ -36,44 +36,6 @@ async function ensureAuthor(userId: string): Promise<void> {
     .onConflictDoNothing()
 }
 
-export const getCourse = createServerFn({
-  method: 'GET',
-})
-  .validator((data: number) => validateInput(courseIdSchema, data))
-  .handler(async ({ data }): Promise<Course> => {
-    const course = await db.query.courses.findFirst({
-      where: eq(courses.id, data),
-    })
-
-    if (!course) {
-      throw notFound()
-    }
-
-    return course
-  })
-
-export const getAuthoredCourse = createServerFn({
-  method: 'GET',
-})
-  .validator((data: number) => validateInput(courseIdSchema, data))
-  .handler(async ({ data }): Promise<Course> => {
-    const userId = await requireUserId()
-
-    const course = await db.query.courses.findFirst({
-      where: eq(courses.id, data),
-    })
-
-    if (!course) {
-      throw notFound()
-    }
-
-    if (course.authorId !== userId) {
-      throw redirect({ to: '/courses' })
-    }
-
-    return course
-  })
-
 export const getAuthoredCourseOutline = createServerFn({
   method: 'GET',
 })
