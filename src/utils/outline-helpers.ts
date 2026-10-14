@@ -51,3 +51,28 @@ function getLessonIds(outline: CourseOutline, chapterId: number | null): number[
 function isSameOrder(ids: number[], otherIds: number[]): boolean {
   return ids.length === otherIds.length && ids.every((id, i) => id === otherIds[i])
 }
+
+export function moveLessonToParent(
+  outline: CourseOutline,
+  lessonId: number,
+  chapterId: number | null,
+): CourseOutline {
+  const groups = toLessonGroups(outline)
+  const target = toLessonGroup(chapterId)
+  const lesson = Object.values(groups)
+    .flat()
+    .find((l) => l.id === lessonId)
+
+  if (!lesson || !(target in groups)) {
+    return outline
+  }
+
+  const moved: LessonGroups = {}
+  for (const [group, lessons] of Object.entries(groups)) {
+    moved[group] = lessons.filter((l) => l.id !== lessonId)
+  }
+
+  moved[target] = [...moved[target], lesson]
+
+  return setLessonGroups(outline, moved)
+}

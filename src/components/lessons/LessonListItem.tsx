@@ -2,6 +2,7 @@ import { CloseButton, Flex, Stack, Text } from '@chakra-ui/react'
 import { useRouter } from '@tanstack/react-router'
 import { useState } from 'react'
 import { LuVideo } from 'react-icons/lu'
+import LessonMoveMenu from '@/components/lessons/LessonMoveMenu'
 import ConfirmDialog from '@/components/ui/ConfirmDialog'
 import DragHandle from '@/components/ui/DragHandle'
 import EditableText from '@/components/ui/EditableText'
@@ -68,6 +69,7 @@ export default function LessonListItem({
           <ErrorText message={titleError} css={{ px: '0.6rem' }} />
         </Stack>
       </Flex>
+      <LessonMoveMenu lesson={lesson} chapterId={chapterId} />
       <CloseButton
         size="sm"
         variant="quiet"

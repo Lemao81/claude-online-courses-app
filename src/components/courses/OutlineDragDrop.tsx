@@ -5,10 +5,10 @@ import { useRouter } from '@tanstack/react-router'
 import { type Dispatch, type ReactNode, type SetStateAction, useRef } from 'react'
 import { showErrorToast } from '@/components/ui/AppToaster'
 import { chapterDragType, lessonDragType } from '@/constants'
+import { useSaveLessonOrders } from '@/hooks/use-save-lesson-orders'
 import { reorderChapters } from '@/server/functions/chapters.functions'
-import { reorderLessons } from '@/server/functions/lessons.functions'
 import type { CourseOutline } from '@/types'
-import { getChangedLessonOrders, setLessonGroups, toLessonGroups } from '@/utils/outline-helpers'
+import { setLessonGroups, toLessonGroups } from '@/utils/outline-helpers'
 
 type OutlineDragDropProps = {
   outline: CourseOutline
@@ -22,6 +22,7 @@ export default function OutlineDragDrop({
   children,
 }: OutlineDragDropProps): React.JSX.Element {
   const router = useRouter()
+  const saveLessonOrders = useSaveLessonOrders(onOutlineChange)
   const dragStartOutline = useRef<CourseOutline | null>(null)
 
   function handleDragStart(): void {
@@ -58,7 +59,7 @@ export default function OutlineDragDrop({
     if (source?.type === chapterDragType && isSortable(source)) {
       await saveChapterOrder(initialOutline, source.initialIndex, source.index)
     } else if (source?.type === lessonDragType) {
-      await saveLessonOrders(initialOutline)
+      await saveLessonOrders(initialOutline, outline)
     }
   }
 
@@ -82,26 +83,6 @@ export default function OutlineDragDrop({
       showErrorToast(
         'The chapter order was not saved',
         error instanceof Error ? error.message : 'Failed to reorder the chapters',
-      )
-    }
-
-    await router.invalidate()
-  }
-
-  async function saveLessonOrders(initialOutline: CourseOutline): Promise<void> {
-    const orders = getChangedLessonOrders(initialOutline, outline)
-    if (orders.length === 0) {
-      return
-    }
-
-    try {
-      await reorderLessons({ data: { courseId: outline.id, orders } })
-    } catch (error) {
-      console.error(error)
-      onOutlineChange(initialOutline)
-      showErrorToast(
-        'The lesson order was not saved',
-        error instanceof Error ? error.message : 'Failed to reorder the lessons',
       )
     }
 
