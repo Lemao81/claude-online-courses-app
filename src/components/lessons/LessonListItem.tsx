@@ -9,7 +9,7 @@ import EditableText from '@/components/ui/EditableText'
 import ErrorText from '@/components/ui/ErrorText'
 import IconTile from '@/components/ui/IconTile'
 import { useLessonSortable } from '@/hooks/use-lesson-sortable'
-import { deleteLesson, updateLessonTitle } from '@/server/functions/lessons.functions'
+import { deleteLesson, updateLessonTitle } from '@/server/functions/lessons-functions'
 import type { LessonVideo } from '@/types'
 import { formatDuration } from '@/utils/formatters'
 

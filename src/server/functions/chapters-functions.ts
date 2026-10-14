@@ -3,11 +3,11 @@ import { createServerFn } from '@tanstack/react-start'
 import { desc, eq } from 'drizzle-orm'
 import { z } from 'zod'
 import { untitledChapterTitle } from '@/constants'
-import { removeChapter, setChapterOrder } from '@/server/db/chapters.helpers'
+import { removeChapter, setChapterOrder } from '@/server/db/chapters-helpers'
 import { db } from '@/server/db/client'
 import { chapters, courses } from '@/server/db/schema'
 import { requireUserId } from '@/server/functions/auth.server'
-import { validateInput } from '@/server/functions/validation.helpers'
+import { validateInput } from '@/server/functions/validation-helpers'
 import type { Chapter } from '@/types'
 
 const createChapterSchema = z.object({

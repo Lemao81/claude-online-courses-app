@@ -6,7 +6,7 @@ import NewCourseForm, {
   type NewCourseFormValues,
   useNewCourseForm,
 } from '@/components/courses/NewCourseForm'
-import { createCourse } from '@/server/functions/courses.functions'
+import { createCourse } from '@/server/functions/courses-functions'
 import type { Course } from '@/types'
 
 export default function NewCourseDialog(): React.JSX.Element {

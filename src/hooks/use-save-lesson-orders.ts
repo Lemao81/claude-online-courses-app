@@ -3,7 +3,7 @@
 import { useRouter } from '@tanstack/react-router'
 import type { Dispatch, SetStateAction } from 'react'
 import { showErrorToast } from '@/components/ui/AppToaster'
-import { reorderLessons } from '@/server/functions/lessons.functions'
+import { reorderLessons } from '@/server/functions/lessons-functions'
 import type { CourseOutline } from '@/types'
 import { getChangedLessonOrders } from '@/utils/outline-helpers'
 

@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { LuPencil, LuTrash2 } from 'react-icons/lu'
 import ConfirmDialog from '@/components/ui/ConfirmDialog'
 import Tooltip from '@/components/ui/Tooltip'
-import { deleteCourse } from '@/server/functions/courses.functions'
+import { deleteCourse } from '@/server/functions/courses-functions'
 import type { Course } from '@/types'
 
 type CourseActionsProps = {

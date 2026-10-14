@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { LuPencil, LuTrash2 } from 'react-icons/lu'
 import ConfirmDialog from '@/components/ui/ConfirmDialog'
 import Tooltip from '@/components/ui/Tooltip'
-import { deleteChapter } from '@/server/functions/chapters.functions'
+import { deleteChapter } from '@/server/functions/chapters-functions'
 import type { Chapter } from '@/types'
 
 type ChapterActionsProps = {

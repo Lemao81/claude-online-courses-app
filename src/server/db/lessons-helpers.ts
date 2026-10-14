@@ -1,6 +1,6 @@
 import { and, eq, inArray, isNull, or } from 'drizzle-orm'
-import { outlineChangedMessage } from '@/constants/error.messages'
-import { recomputeCourseDuration } from '@/server/db/aggregates.helpers'
+import { outlineChangedMessage } from '@/constants/error-messages'
+import { recomputeCourseDuration } from '@/server/db/aggregates-helpers'
 import { chapters, lessons } from '@/server/db/schema'
 import type { Database } from '@/server/db/types'
 import { hasSameIds } from '@/server/helpers'

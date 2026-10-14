@@ -8,11 +8,11 @@ import {
   maxVideoDurationSec,
   videoUploadUrlExpirySec,
 } from '@/constants/config'
-import { recomputeCourseDuration } from '@/server/db/aggregates.helpers'
+import { recomputeCourseDuration } from '@/server/db/aggregates-helpers'
 import { db } from '@/server/db/client'
 import { assets, courses, lessons } from '@/server/db/schema'
 import { requireUserId } from '@/server/functions/auth.server'
-import { validateInput } from '@/server/functions/validation.helpers'
+import { validateInput } from '@/server/functions/validation-helpers'
 import { minioClient } from '@/server/minio/client'
 import { ensureBucket } from '@/server/minio/operations'
 import type { Lesson, VideoUploadTarget } from '@/types'

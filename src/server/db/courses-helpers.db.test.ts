@@ -1,6 +1,6 @@
 import { eq, inArray } from 'drizzle-orm'
 import { describe, expect, it } from 'vitest'
-import { removeCourse } from '@/server/db/courses.helpers'
+import { removeCourse } from '@/server/db/courses-helpers'
 import { assets, courses, lessons } from '@/server/db/schema'
 import type { Transaction } from '@/server/db/types'
 import { withRollback } from '@/test/db'

@@ -5,8 +5,8 @@ import { showErrorToast, showSuccessToast } from '@/components/ui/AppToaster'
 import ErrorText from '@/components/ui/ErrorText'
 import VideoDropZone from '@/components/videos/VideoDropZone'
 import VideoFileList from '@/components/videos/VideoFileList'
-import { createLesson } from '@/server/functions/lessons.functions'
-import { completeVideoUpload, createVideoUploadUrl } from '@/server/functions/videos.functions'
+import { createLesson } from '@/server/functions/lessons-functions'
+import { completeVideoUpload, createVideoUploadUrl } from '@/server/functions/videos-functions'
 import type { Lesson } from '@/types'
 import {
   isVideoFile,

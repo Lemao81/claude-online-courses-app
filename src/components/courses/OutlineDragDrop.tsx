@@ -6,7 +6,7 @@ import { type Dispatch, type ReactNode, type SetStateAction, useRef } from 'reac
 import { showErrorToast } from '@/components/ui/AppToaster'
 import { chapterDragType, lessonDragType } from '@/constants'
 import { useSaveLessonOrders } from '@/hooks/use-save-lesson-orders'
-import { reorderChapters } from '@/server/functions/chapters.functions'
+import { reorderChapters } from '@/server/functions/chapters-functions'
 import type { CourseOutline } from '@/types'
 import { setLessonGroups, toLessonGroups } from '@/utils/outline-helpers'
 
