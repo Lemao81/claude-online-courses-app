@@ -145,6 +145,54 @@ export const createCourse = createServerFn({
     return course
   })
 
+const updateCourseSchema = z.object({
+  id: courseIdSchema,
+  title: z.string().trim().nonempty('Title is required'),
+  subtitle: z.string().trim().nonempty('Subtitle is required'),
+  description: z.string().trim(),
+  price: z
+    .string()
+    .trim()
+    .regex(/^\d+(\.\d{1,2})?$/, 'Price must be 0 or more, with at most two decimals')
+    .regex(/^\d{1,8}(\.|$)/, 'Price must be below 100,000,000'),
+})
+
+type UpdateCourseInput = z.input<typeof updateCourseSchema>
+
+export const updateCourse = createServerFn({
+  method: 'POST',
+})
+  .validator((data: UpdateCourseInput) => validateInput(updateCourseSchema, data))
+  .handler(async ({ data }): Promise<Course> => {
+    const userId = await requireUserId()
+
+    const course = await db.query.courses.findFirst({
+      where: eq(courses.id, data.id),
+      columns: { authorId: true },
+    })
+
+    if (!course) {
+      throw notFound()
+    }
+
+    if (course.authorId !== userId) {
+      throw redirect({ to: '/courses' })
+    }
+
+    const [updated] = await db
+      .update(courses)
+      .set({
+        title: data.title,
+        subtitle: data.subtitle,
+        description: data.description,
+        price: data.price,
+      })
+      .where(eq(courses.id, data.id))
+      .returning()
+
+    return updated
+  })
+
 const deleteCourseSchema = z.object({
   id: courseIdSchema,
 })

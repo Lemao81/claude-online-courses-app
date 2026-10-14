@@ -70,8 +70,9 @@ refers to decision N in that file.
 
 ## Step 5 — Course details
 
-- [ ] **5.1 Add `updateCourse`** for title, subtitle, description and price, validated as in
-      Settled 21.
+- [x] **5.1 Add `updateCourse`** for title, subtitle, description and price, validated as in
+      Settled 21. Every save sends all four fields, and the subtitle stays required as in
+      `createCourse`.
 - [ ] **5.2 Details section** auto-saving on blur, errors only (Settled 21, 35).
 - [ ] **5.3 Thumbnail upload on the server** — presigned URL into an image bucket, JPEG/PNG/WebP up to
       5 MB, replacing soft-deletes and enqueues the old asset (Settled 17, 34).
