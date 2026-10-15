@@ -1,6 +1,7 @@
 import { Stack } from '@chakra-ui/react'
 import { getRouteApi } from '@tanstack/react-router'
 import CourseChaptersSection from '@/components/courses/CourseChaptersSection'
+import CourseDetailsSection from '@/components/courses/CourseDetailsSection'
 import CourseEditorTitleBar from '@/components/courses/CourseEditorTitleBar'
 import CourseLessonsSection from '@/components/courses/CourseLessonsSection'
 import LessonMoveProvider from '@/components/courses/LessonMoveProvider'
@@ -16,6 +17,7 @@ export default function CourseEditorPage(): React.JSX.Element {
   return (
     <Stack gap="8" px="4" py="6" data-course-id={course.id}>
       <CourseEditorTitleBar title={course.title} />
+      <CourseDetailsSection course={course} />
       <LessonMoveProvider outline={outline} onOutlineChange={setOutline}>
         <OutlineDragDrop outline={outline} onOutlineChange={setOutline}>
           <CourseLessonsSection courseId={course.id} lessons={outline.lessons} />

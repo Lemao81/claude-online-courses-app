@@ -73,7 +73,9 @@ refers to decision N in that file.
 - [x] **5.1 Add `updateCourse`** for title, subtitle, description and price, validated as in
       Settled 21. Every save sends all four fields, and the subtitle stays required as in
       `createCourse`.
-- [ ] **5.2 Details section** auto-saving on blur, errors only (Settled 21, 35).
+- [x] **5.2 Details section** auto-saving on blur, errors only (Settled 21, 35). Text fields save
+      like `ChapterEditor`, after typing stops; the price saves on blur, so a half-typed price never
+      shows an error.
 - [ ] **5.3 Thumbnail upload on the server** — presigned URL into an image bucket, JPEG/PNG/WebP up to
       5 MB, replacing soft-deletes and enqueues the old asset (Settled 17, 34).
 - [ ] **5.4 Thumbnail control** in the Details section, 16:9 cover, placeholder and "Replace"
