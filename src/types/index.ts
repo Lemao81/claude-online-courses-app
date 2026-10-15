@@ -31,7 +31,7 @@ export type VideoMetadata = {
   height: number
 }
 
-export type VideoUploadTarget = {
+export type UploadTarget = {
   bucket: string
   objectName: string
   contentType: string

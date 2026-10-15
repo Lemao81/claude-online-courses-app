@@ -1,6 +1,6 @@
 import { eq, inArray } from 'drizzle-orm'
 import { describe, expect, it } from 'vitest'
-import { removeCourse } from '@/server/db/courses-helpers'
+import { removeCourse, replaceCourseThumbnail } from '@/server/db/courses-helpers'
 import { assets, courses, lessons } from '@/server/db/schema'
 import type { Transaction } from '@/server/db/types'
 import { withRollback } from '@/test/db'
@@ -90,5 +90,90 @@ describe('removeCourse', () => {
       )
 
       expect(await selectCourseIds(tx, courseId)).toEqual([{ id: courseId }])
+    }))
+})
+
+describe('replaceCourseThumbnail', () => {
+  it('sets the first thumbnail', () =>
+    withRollback(async (tx) => {
+      const ownerId = await insertUser(tx)
+      const thumbnail = await insertAsset(tx, { ownerId, kind: 'image' })
+      const { id: courseId } = await insertCourse(tx, { authorId: ownerId })
+
+      const { course, replacedAssetId } = await replaceCourseThumbnail(tx, courseId, thumbnail.id)
+
+      expect(course.thumbnailAssetId).toBe(thumbnail.id)
+      expect(replacedAssetId).toBeNull()
+    }))
+
+  it('soft-deletes the replaced thumbnail', () =>
+    withRollback(async (tx) => {
+      const ownerId = await insertUser(tx)
+      const oldThumbnail = await insertAsset(tx, { ownerId, kind: 'image' })
+      const newThumbnail = await insertAsset(tx, { ownerId, kind: 'image' })
+      const { id: courseId } = await insertCourse(tx, {
+        authorId: ownerId,
+        thumbnailAssetId: oldThumbnail.id,
+      })
+
+      const { course, replacedAssetId } = await replaceCourseThumbnail(
+        tx,
+        courseId,
+        newThumbnail.id,
+      )
+
+      const thumbnails = await tx
+        .select({ id: assets.id, deletedAt: assets.deletedAt })
+        .from(assets)
+        .where(inArray(assets.id, [oldThumbnail.id, newThumbnail.id]))
+
+      expect(course.thumbnailAssetId).toBe(newThumbnail.id)
+      expect(replacedAssetId).toBe(oldThumbnail.id)
+      expect(thumbnails).toEqual(
+        expect.arrayContaining([
+          { id: oldThumbnail.id, deletedAt: expect.any(Date) },
+          { id: newThumbnail.id, deletedAt: null },
+        ]),
+      )
+    }))
+
+  it('leaves other assets alone', () =>
+    withRollback(async (tx) => {
+      const ownerId = await insertUser(tx)
+      const otherThumbnail = await insertAsset(tx, { ownerId, kind: 'image' })
+      const video = await insertAsset(tx, { ownerId })
+      const oldThumbnail = await insertAsset(tx, { ownerId, kind: 'image' })
+      const newThumbnail = await insertAsset(tx, { ownerId, kind: 'image' })
+      const { id: courseId } = await insertCourse(tx, {
+        authorId: ownerId,
+        thumbnailAssetId: oldThumbnail.id,
+      })
+
+      await insertCourse(tx, { authorId: ownerId, thumbnailAssetId: otherThumbnail.id })
+      await insertLesson(tx, { courseId, videoAssetId: video.id })
+
+      await replaceCourseThumbnail(tx, courseId, newThumbnail.id)
+
+      const untouched = await tx
+        .select({ id: assets.id, deletedAt: assets.deletedAt })
+        .from(assets)
+        .where(inArray(assets.id, [otherThumbnail.id, video.id]))
+
+      expect(untouched).toEqual(
+        expect.arrayContaining([
+          { id: otherThumbnail.id, deletedAt: null },
+          { id: video.id, deletedAt: null },
+        ]),
+      )
+    }))
+
+  it('rejects a missing course', () =>
+    withRollback(async (tx) => {
+      const ownerId = await insertUser(tx)
+      const thumbnail = await insertAsset(tx, { ownerId, kind: 'image' })
+
+      await expect(replaceCourseThumbnail(tx, -1, thumbnail.id)).rejects.toThrow(
+        'The course no longer exists',
+      )
     }))
 })

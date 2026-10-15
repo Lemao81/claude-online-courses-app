@@ -1,6 +1,12 @@
 import { and, eq, inArray, isNotNull } from 'drizzle-orm'
 import { assets, courses, enrollments, lessons } from '@/server/db/schema'
-import type { Database } from '@/server/db/types'
+import type { Database, Transaction } from '@/server/db/types'
+import type { Course } from '@/types'
+
+type ThumbnailReplacement = {
+  course: Course
+  replacedAssetId: number | null
+}
 
 export async function removeCourse(database: Database, courseId: number): Promise<number[]> {
   return database.transaction(async (tx) => {
@@ -45,4 +51,34 @@ export async function removeCourse(database: Database, courseId: number): Promis
 
     return assetIds
   })
+}
+
+export async function replaceCourseThumbnail(
+  tx: Transaction,
+  courseId: number,
+  assetId: number,
+): Promise<ThumbnailReplacement> {
+  const [course] = await tx
+    .select({ thumbnailAssetId: courses.thumbnailAssetId })
+    .from(courses)
+    .where(eq(courses.id, courseId))
+    .for('update')
+
+  if (!course) {
+    throw new Error('The course no longer exists')
+  }
+
+  const [updated] = await tx
+    .update(courses)
+    .set({ thumbnailAssetId: assetId })
+    .where(eq(courses.id, courseId))
+    .returning()
+
+  const replacedAssetId = course.thumbnailAssetId
+
+  if (replacedAssetId !== null) {
+    await tx.update(assets).set({ deletedAt: new Date() }).where(eq(assets.id, replacedAssetId))
+  }
+
+  return { course: updated, replacedAssetId }
 }

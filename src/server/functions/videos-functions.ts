@@ -15,7 +15,7 @@ import { requireUserId } from '@/server/functions/auth.server'
 import { validateInput } from '@/server/functions/validation-helpers'
 import { minioClient } from '@/server/minio/client'
 import { ensureBucket } from '@/server/minio/operations'
-import type { Lesson, VideoUploadTarget } from '@/types'
+import type { Lesson, UploadTarget } from '@/types'
 import { toFileExtension } from '@/utils/helpers'
 
 const createVideoUploadUrlSchema = z.object({
@@ -33,7 +33,7 @@ export const createVideoUploadUrl = createServerFn({
   method: 'POST',
 })
   .validator((data: CreateVideoUploadUrlInput) => validateInput(createVideoUploadUrlSchema, data))
-  .handler(async ({ data }): Promise<VideoUploadTarget> => {
+  .handler(async ({ data }): Promise<UploadTarget> => {
     const userId = await requireUserId()
 
     const course = await db.query.courses.findFirst({
