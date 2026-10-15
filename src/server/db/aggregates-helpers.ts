@@ -1,8 +1,8 @@
 import { eq, sql } from 'drizzle-orm'
 import { chapters, courses, lessons, reviews } from '@/server/db/schema'
-import type { Database } from '@/server/db/types'
+import type { Transaction } from '@/server/db/types'
 
-export async function recomputeCourseRating(tx: Database, courseId: number): Promise<void> {
+export async function recomputeCourseRating(tx: Transaction, courseId: number): Promise<void> {
   await tx
     .update(courses)
     .set({
@@ -12,7 +12,7 @@ export async function recomputeCourseRating(tx: Database, courseId: number): Pro
     .where(eq(courses.id, courseId))
 }
 
-export async function recomputeCourseDuration(tx: Database, courseId: number): Promise<void> {
+export async function recomputeCourseDuration(tx: Transaction, courseId: number): Promise<void> {
   await tx
     .update(chapters)
     .set({
