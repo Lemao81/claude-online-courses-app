@@ -3,12 +3,14 @@ import { notFound, redirect } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
 import { asc, desc, eq, isNull } from 'drizzle-orm'
 import { z } from 'zod'
+import { imageDownloadUrlExpirySec } from '@/constants/config'
 import { db } from '@/server/db/client'
 import { removeCourse } from '@/server/db/courses-helpers'
 import { chapters, courses, lessons, users } from '@/server/db/schema'
 import { requireUserId } from '@/server/functions/auth.server'
 import { validateInput } from '@/server/functions/validation-helpers'
 import { enqueueAssetDeletion } from '@/server/jobs/assets-jobs'
+import { minioClient } from '@/server/minio/client'
 import type { Course, CourseOutline } from '@/types'
 
 const courseIdSchema = z.number().int('Course id is required')
@@ -46,6 +48,7 @@ export const getAuthoredCourseOutline = createServerFn({
     const course = await db.query.courses.findFirst({
       where: eq(courses.id, data),
       with: {
+        thumbnail: { columns: { bucket: true, objectName: true } },
         lessons: {
           columns: { id: true, title: true, durationSec: true },
           where: isNull(lessons.chapterId),
@@ -71,7 +74,16 @@ export const getAuthoredCourseOutline = createServerFn({
       throw redirect({ to: '/courses' })
     }
 
-    return course
+    const { thumbnail, ...outline } = course
+    const thumbnailUrl = thumbnail
+      ? await minioClient.presignedGetObject(
+          thumbnail.bucket,
+          thumbnail.objectName,
+          imageDownloadUrlExpirySec,
+        )
+      : null
+
+    return { ...outline, thumbnailUrl }
   })
 
 export const getAuthoredCourses = createServerFn({

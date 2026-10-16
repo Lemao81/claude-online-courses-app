@@ -2,8 +2,9 @@ import { notFound, redirect } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
 import { eq } from 'drizzle-orm'
 import { z } from 'zod'
-import { imageBucket, thumbnailContentTypes } from '@/constants'
+import { imageBucket } from '@/constants'
 import { imageUploadUrlExpirySec, maxThumbnailSizeBytes } from '@/constants/config'
+import { thumbnailSizeMessage, thumbnailTypeMessage } from '@/constants/error-messages'
 import { db } from '@/server/db/client'
 import { replaceCourseThumbnail } from '@/server/db/courses-helpers'
 import { assets, courses } from '@/server/db/schema'
@@ -13,15 +14,7 @@ import { enqueueAssetDeletion } from '@/server/jobs/assets-jobs'
 import { minioClient } from '@/server/minio/client'
 import { ensureBucket, removeObject } from '@/server/minio/operations'
 import type { Course, UploadTarget } from '@/types'
-import { toFileExtension } from '@/utils/helpers'
-
-const thumbnailTypeMessage = 'A thumbnail must be a JPEG, PNG or WebP image'
-
-const thumbnailSizeMessage = 'A thumbnail must be 5 MB or smaller'
-
-function isThumbnailContentType(contentType: string): boolean {
-  return thumbnailContentTypes.some((t) => t === contentType)
-}
+import { isThumbnailContentType, toFileExtension } from '@/utils/helpers'
 
 async function requireAuthoredCourse(courseId: number, userId: string): Promise<void> {
   const course = await db.query.courses.findFirst({
@@ -41,7 +34,7 @@ async function requireAuthoredCourse(courseId: number, userId: string): Promise<
 const createThumbnailUploadUrlSchema = z.object({
   courseId: z.number().int('Course id is required'),
   fileName: z.string().trim().nonempty('File name is required'),
-  contentType: z.enum(thumbnailContentTypes, thumbnailTypeMessage),
+  contentType: z.string().refine(isThumbnailContentType, thumbnailTypeMessage),
   sizeBytes: z.number().max(maxThumbnailSizeBytes, thumbnailSizeMessage),
 })
 

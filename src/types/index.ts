@@ -21,7 +21,11 @@ export type LessonVideo = Pick<Lesson, 'id' | 'title' | 'durationSec'>
 
 export type ChapterWithLessons = Chapter & { lessons: LessonVideo[] }
 
-export type CourseOutline = Course & { lessons: LessonVideo[]; chapters: ChapterWithLessons[] }
+export type CourseOutline = Course & {
+  lessons: LessonVideo[]
+  chapters: ChapterWithLessons[]
+  thumbnailUrl: string | null
+}
 
 export type LessonOrder = { chapterId: number | null; lessonIds: number[] }
 

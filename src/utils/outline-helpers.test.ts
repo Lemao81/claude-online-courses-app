@@ -40,6 +40,7 @@ function makeOutline(lessonIds: number[], chapters: ChapterWithLessons[]): Cours
     updatedAt: createdAt,
     lessons: lessonIds.map(makeLesson),
     chapters,
+    thumbnailUrl: null,
   }
 }
 

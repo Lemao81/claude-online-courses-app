@@ -17,7 +17,7 @@ export default function CourseEditorPage(): React.JSX.Element {
   return (
     <Stack gap="8" px="4" py="6" data-course-id={course.id}>
       <CourseEditorTitleBar title={course.title} />
-      <CourseDetailsSection course={course} />
+      <CourseDetailsSection course={course} thumbnailUrl={course.thumbnailUrl} />
       <LessonMoveProvider outline={outline} onOutlineChange={setOutline}>
         <OutlineDragDrop outline={outline} onOutlineChange={setOutline}>
           <CourseLessonsSection courseId={course.id} lessons={outline.lessons} />

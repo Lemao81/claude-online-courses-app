@@ -4,6 +4,8 @@ export const videoUploadUrlExpirySec = 60 * 60
 
 export const imageUploadUrlExpirySec = 10 * 60
 
+export const imageDownloadUrlExpirySec = 60 * 60
+
 export const maxThumbnailSizeBytes = 5 * 1024 * 1024
 
 export const videoDurationProbeTimeoutMs = 15000

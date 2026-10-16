@@ -5,11 +5,13 @@ import CourseDetailsForm, {
   type CourseDetailsFormValues,
   useCourseDetailsForm,
 } from '@/components/courses/CourseDetailsForm'
+import CourseThumbnail from '@/components/courses/CourseThumbnail'
 import { updateCourse } from '@/server/functions/courses-functions'
 import type { Course } from '@/types'
 
 type CourseDetailsSectionProps = {
   course: Course
+  thumbnailUrl: string | null
 }
 
 function toSavedValues(course: Course): CourseDetailsFormValues {
@@ -32,6 +34,7 @@ function isSameValues(value: CourseDetailsFormValues, other: CourseDetailsFormVa
 
 export default function CourseDetailsSection({
   course,
+  thumbnailUrl,
 }: CourseDetailsSectionProps): React.JSX.Element {
   const router = useRouter()
   const [autoSaveError, setAutoSaveError] = useState('')
@@ -62,12 +65,15 @@ export default function CourseDetailsSection({
       <Heading as="h2" m="0" textStyle="sectionHeading">
         Details
       </Heading>
-      <CourseDetailsForm
-        form={form}
-        formId={formId}
-        autoSaveError={autoSaveError}
-        onAutoSave={handleAutoSave}
-      />
+      <Stack gap="6">
+        <CourseThumbnail courseId={course.id} thumbnailUrl={thumbnailUrl} />
+        <CourseDetailsForm
+          form={form}
+          formId={formId}
+          autoSaveError={autoSaveError}
+          onAutoSave={handleAutoSave}
+        />
+      </Stack>
     </Stack>
   )
 }

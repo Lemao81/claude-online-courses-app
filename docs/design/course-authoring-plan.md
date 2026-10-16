@@ -78,8 +78,9 @@ refers to decision N in that file.
       shows an error.
 - [x] **5.3 Thumbnail upload on the server** — presigned URL into an image bucket, JPEG/PNG/WebP up to
       5 MB, replacing soft-deletes and enqueues the old asset (Settled 17, 34).
-- [ ] **5.4 Thumbnail control** in the Details section, 16:9 cover, placeholder and "Replace"
-      (Settled 34).
+- [x] **5.4 Thumbnail control** in the Details section, 16:9 cover, placeholder and "Replace"
+      (Settled 34). The outline carries a presigned GET URL for the thumbnail, and the button
+      reads "Upload thumbnail" until one exists.
 
 ## Step 6 — Lifecycle
 

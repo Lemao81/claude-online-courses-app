@@ -1,3 +1,4 @@
+import { thumbnailContentTypes } from '@/constants'
 import { videoDurationProbeSeekSec, videoDurationProbeTimeoutMs } from '@/constants/config'
 import type { VideoMetadata } from '@/types'
 
@@ -11,6 +12,10 @@ export function isVideoFile(file: File): boolean {
   const name = file.name.toLowerCase()
 
   return videoExtensions.some((e) => name.endsWith(e))
+}
+
+export function isThumbnailContentType(contentType: string): boolean {
+  return thumbnailContentTypes.some((t) => t === contentType)
 }
 
 export function toFileKey(file: File): string {
