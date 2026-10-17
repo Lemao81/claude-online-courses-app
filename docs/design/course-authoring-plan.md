@@ -5,17 +5,8 @@ refers to decision N in that file.
 
 ## How to work through it
 
-- **One commit at a time.** Implement a single unchecked commit below, type-check it, then stop and
-  report what changed and the proposed commit message. The user reviews, runs `pnpm check` /
-  `pnpm test`, and says when to commit. Move on only when the user says to, never automatically
-  after a commit.
-- **Tick the box in the same commit** that does the work, so the first unchecked box is always the
-  next commit, in any session.
-- **When a commit turns out wrong-sized** (too big to review, or too small to stand alone), change
-  this list in that commit instead of drifting away from it.
 - **Resolve a commit's open question with the user** before implementing it, and replace the
   _Open:_ note with the decision in that same commit.
-- **Resume in a new session** by reading this file and starting at the first unchecked box.
 
 ## Step 1 — Outline read path
 
