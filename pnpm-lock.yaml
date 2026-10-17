@@ -278,6 +278,9 @@ importers:
       '@tanstack/router-cli':
         specifier: 1.167.17
         version: 1.167.17
+      '@testcontainers/minio':
+        specifier: 12.1.0
+        version: 12.1.0
       '@testcontainers/postgresql':
         specifier: 12.1.0
         version: 12.1.0
@@ -2003,6 +2006,9 @@ packages:
   '@tanstack/virtual-file-routes@1.162.0':
     resolution: {integrity: sha512-uhOeFyxLcU41HzvrxsGpiWdcMbScY1EDgbZ5K7DVRMYInbLYWAC0EA/kx9wXAoSM8q82bUG2hRl8+EAjE6XAbA==}
     engines: {node: '>=20.19'}
+
+  '@testcontainers/minio@12.1.0':
+    resolution: {integrity: sha512-coIZA1CFNZyLElcAgIxR3YcJxohm/2Q2XbSmM+PhxmzCrjcXgw2BIqoSeh1IBwjdIzndWNayXwmfV7wbQuFYjQ==}
 
   '@testcontainers/postgresql@12.1.0':
     resolution: {integrity: sha512-Pjf2VSVNirEPfz36nidyrVAnZvc2YhajOznY4VgyEsvfTd5qiMNOuPq96drREvxAUtXl5SFLX7vXj7sSq4aTcA==}
@@ -6072,6 +6078,15 @@ snapshots:
   '@tanstack/store@0.9.3': {}
 
   '@tanstack/virtual-file-routes@1.162.0': {}
+
+  '@testcontainers/minio@12.1.0':
+    dependencies:
+      testcontainers: 12.1.0
+    transitivePeerDependencies:
+      - bare-abort-controller
+      - bare-buffer
+      - react-native-b4a
+      - supports-color
 
   '@testcontainers/postgresql@12.1.0':
     dependencies:
