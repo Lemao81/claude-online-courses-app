@@ -8,9 +8,9 @@ import {
   maxVideoDurationSec,
   videoUploadUrlExpirySec,
 } from '@/constants/config'
-import { recomputeCourseDuration } from '@/server/db/aggregates-helpers'
 import { db } from '@/server/db/client'
-import { assets, courses, lessons } from '@/server/db/schema'
+import { courses, lessons } from '@/server/db/schema'
+import { attachVideo } from '@/server/db/videos-helpers'
 import { requireUserId } from '@/server/functions/auth.server'
 import { validateInput } from '@/server/functions/validation-helpers'
 import { minioClient } from '@/server/minio/client'
@@ -103,7 +103,7 @@ export const completeVideoUpload = createServerFn({
 
     const lesson = await db.query.lessons.findFirst({
       where: eq(lessons.id, data.lessonId),
-      columns: { id: true, courseId: true, videoAssetId: true },
+      columns: { courseId: true },
       with: {
         course: { columns: { authorId: true } },
       },
@@ -117,46 +117,5 @@ export const completeVideoUpload = createServerFn({
       throw redirect({ to: '/courses' })
     }
 
-    if (lesson.videoAssetId !== null) {
-      throw new Error('This lesson already has a video')
-    }
-
-    if (!data.objectName.startsWith(`${userId}/${data.courseId}/`)) {
-      throw new Error('The uploaded video does not belong to this course')
-    }
-
-    const stat = await minioClient.statObject(videoBucket, data.objectName).catch(() => null)
-
-    if (!stat) {
-      throw new Error('The uploaded video was not found')
-    }
-
-    return db.transaction(async (tx) => {
-      const [asset] = await tx
-        .insert(assets)
-        .values({
-          ownerId: userId,
-          kind: 'video',
-          status: 'ready',
-          bucket: videoBucket,
-          objectName: data.objectName,
-          contentType: stat.metaData['content-type'] ?? 'application/octet-stream',
-          sizeBytes: stat.size,
-          checksum: stat.etag,
-          durationSec: data.durationSec === 0 ? null : data.durationSec,
-          width: data.width === 0 ? null : data.width,
-          height: data.height === 0 ? null : data.height,
-        })
-        .returning()
-
-      const [updated] = await tx
-        .update(lessons)
-        .set({ videoAssetId: asset.id, durationSec: data.durationSec })
-        .where(eq(lessons.id, lesson.id))
-        .returning()
-
-      await recomputeCourseDuration(tx, lesson.courseId)
-
-      return updated
-    })
+    return db.transaction((tx) => attachVideo(tx, { ...data, ownerId: userId }))
   })
