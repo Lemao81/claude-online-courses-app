@@ -6,13 +6,13 @@ import { imageBucket } from '@/constants'
 import { imageUploadUrlExpirySec, maxThumbnailSizeBytes } from '@/constants/config'
 import { thumbnailSizeMessage, thumbnailTypeMessage } from '@/constants/error-messages'
 import { db } from '@/server/db/client'
-import { replaceCourseThumbnail } from '@/server/db/courses-helpers'
-import { assets, courses } from '@/server/db/schema'
+import { courses } from '@/server/db/schema'
+import { attachThumbnail } from '@/server/db/thumbnails-helpers'
 import { requireUserId } from '@/server/functions/auth.server'
 import { validateInput } from '@/server/functions/validation-helpers'
 import { enqueueAssetDeletion } from '@/server/jobs/assets-jobs'
 import { minioClient } from '@/server/minio/client'
-import { ensureBucket, removeObject } from '@/server/minio/operations'
+import { ensureBucket } from '@/server/minio/operations'
 import type { Course, UploadTarget } from '@/types'
 import { isThumbnailContentType, toFileExtension } from '@/utils/helpers'
 
@@ -86,42 +86,12 @@ export const completeThumbnailUpload = createServerFn({
 
     await requireAuthoredCourse(data.courseId, userId)
 
-    if (!data.objectName.startsWith(`${userId}/${data.courseId}/`)) {
-      throw new Error('The uploaded thumbnail does not belong to this course')
-    }
-
-    const stat = await minioClient.statObject(imageBucket, data.objectName).catch(() => null)
-
-    if (!stat) {
-      throw new Error('The uploaded thumbnail was not found')
-    }
-
-    const contentType = stat.metaData['content-type'] ?? ''
-
-    if (!isThumbnailContentType(contentType) || stat.size > maxThumbnailSizeBytes) {
-      await removeObject(imageBucket, data.objectName)
-
-      throw new Error(
-        isThumbnailContentType(contentType) ? thumbnailSizeMessage : thumbnailTypeMessage,
-      )
-    }
-
     return db.transaction(async (tx) => {
-      const [asset] = await tx
-        .insert(assets)
-        .values({
-          ownerId: userId,
-          kind: 'image',
-          status: 'ready',
-          bucket: imageBucket,
-          objectName: data.objectName,
-          contentType,
-          sizeBytes: stat.size,
-          checksum: stat.etag,
-        })
-        .returning({ id: assets.id })
-
-      const { course, replacedAssetId } = await replaceCourseThumbnail(tx, data.courseId, asset.id)
+      const { course, replacedAssetId } = await attachThumbnail(tx, {
+        ownerId: userId,
+        courseId: data.courseId,
+        objectName: data.objectName,
+      })
 
       if (replacedAssetId !== null) {
         await enqueueAssetDeletion(tx, replacedAssetId)

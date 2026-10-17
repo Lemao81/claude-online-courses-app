@@ -3,7 +3,7 @@ import { assets, courses, enrollments, lessons } from '@/server/db/schema'
 import type { Transaction } from '@/server/db/types'
 import type { Course } from '@/types'
 
-type ThumbnailReplacement = {
+export type ThumbnailReplacement = {
   course: Course
   replacedAssetId: number | null
 }
