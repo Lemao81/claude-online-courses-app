@@ -8,18 +8,22 @@ This file is shared across projects. Apart from current project descriptions, an
 
 ## Agent Instructions
 
-- In this sandbox, tools run from its own Linux `node_modules`, bind-mounted over the repo's shared one. Before the first tool run of a session, check `mountpoint -q node_modules`; when it fails, set the sandbox up per `docs/references/sandbox-node-modules.md` first.
-- Run pnpm here only on the mounted `node_modules`, and install only with `pnpm install --frozen-lockfile`. To change dependencies, edit `package.json` and tell the user to run the install on the host; run the frozen install here too whenever the user reports an install on the host, or `[ pnpm-lock.yaml -nt node_modules/.modules.yaml ]` holds before a tool run.
+- Treat a question as a request for its answer, capability questions (`can you …?`) included. Answering covers any undoable check that firms up the answer, undone once checked; the action the question is about is what you propose, and it waits for the user's go-ahead.
+- Before the first tool run of a session, prepare the environment it runs in:
+    - Cloud session (`CLAUDE_CODE_REMOTE=true`) → read `docs/references/cloud-session.md` first.
+    - Local sandbox (`SANDBOX_NAME` set) → tools run from its own Linux `node_modules`, bind-mounted over the repo's shared one. Check `mountpoint -q node_modules`; when it fails, set the sandbox up per `docs/references/sandbox-node-modules.md` first. Run pnpm only on the mounted `node_modules`.
+- In a local sandbox, install only with `pnpm install --frozen-lockfile`. To change dependencies, edit `package.json` and tell the user to run the install on the host; run the frozen install here too whenever the user reports an install on the host, or `[ pnpm-lock.yaml -nt node_modules/.modules.yaml ]` holds before a tool run.
 - Leave `electron` and `electron-forge` to the host.
 - If the project uses Biome: whenever you have edited files it checks, run `biome check --write` before handing back to the user.
 - Fix every finding a check reports, whether from your own run or a failed pre-commit hook, in the code; after a hook failure, re-stage and retry the commit. Ask first before a suppression comment, a linter config change, `--no-verify`, a fix that changes behaviour, or an edit to files outside the commit.
 - When a commit prints that a hook `was ignored because it's not set as executable`, run `chmod +x` on that hook, then `git hook run <hook>` to check the commit it skipped, and report both to the user.
-- Never execute `git commit` on your own without explicit instruction. After explicit instruction, commit directly to main — this is a solo project and does not use feature branches.
+- Never execute `git commit` on your own without explicit instruction. After explicit instruction, commit directly to main — this is a solo project and does not use feature branches. A cloud session commits to its session branch instead.
 - After executing a commit, stop. Never start the next task or planned commit automatically — wait for the user to say so.
 - After creating a file that belongs in the repository, run `git add` on it right away so it is tracked rather than left untracked.
 - When the entire user message is `coa`, treat it as the command `commit all`.
 - When the entire user message is `moveon`, treat it as the command "Move on with the plan".
 - When asked to print your last response to answers (`print last response to answers`), append that response as Markdown to `ANSWERS.md` in the repo root. Start the entry with a line holding the current timestamp (`## YYYY-MM-DD HH:MM`).
+- When a user message starts with `idea:`, append the text after it to `IDEAS.md` in the repo root as one bullet (`- YYYY-MM-DD: <idea>`). Recording it is the whole task; confirm in one line.
 
 ## Code Style
 
@@ -49,3 +53,7 @@ Before editing CLAUDE.md, AGENTS.md, a skill, or a doc one of them points to, lo
 ### Commits
 
 Before committing, load `commit-messages`.
+
+### Domain docs
+
+Single-context: one `GLOSSARY.md` and `docs/adr/` at the repo root, created lazily.
