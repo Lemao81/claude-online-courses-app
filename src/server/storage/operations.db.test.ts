@@ -1,6 +1,7 @@
+import { CreateBucketCommand, PutObjectCommand } from '@aws-sdk/client-s3'
 import { describe, expect, it } from 'vitest'
-import { minioClient } from '@/server/minio/client'
-import { ensureBucket, removeObject } from '@/server/minio/operations'
+import { storageClient } from '@/server/storage/client'
+import { bucketExists, ensureBucket, removeObject, statObject } from '@/server/storage/operations'
 
 function toBucketName(): string {
   return `test-${crypto.randomUUID()}`
@@ -12,13 +13,13 @@ describe('ensureBucket', () => {
 
     await ensureBucket(bucket)
 
-    expect(await minioClient.bucketExists(bucket)).toBe(true)
+    expect(await bucketExists(bucket)).toBe(true)
   })
 
   it('accepts an existing bucket', async () => {
     const bucket = toBucketName()
 
-    await minioClient.makeBucket(bucket)
+    await storageClient.send(new CreateBucketCommand({ Bucket: bucket }))
 
     await expect(ensureBucket(bucket)).resolves.toBeUndefined()
   })
@@ -29,11 +30,13 @@ describe('removeObject', () => {
     const bucket = toBucketName()
 
     await ensureBucket(bucket)
-    await minioClient.putObject(bucket, 'file.txt', Buffer.from('content'))
+    await storageClient.send(
+      new PutObjectCommand({ Bucket: bucket, Key: 'file.txt', Body: Buffer.from('content') }),
+    )
 
     await removeObject(bucket, 'file.txt')
 
-    await expect(minioClient.statObject(bucket, 'file.txt')).rejects.toThrow()
+    await expect(statObject(bucket, 'file.txt')).rejects.toThrow()
   })
 
   it('ignores a missing object', async () => {

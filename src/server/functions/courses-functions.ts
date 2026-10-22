@@ -10,7 +10,7 @@ import { chapters, courses, lessons, users } from '@/server/db/schema'
 import { requireUserId } from '@/server/functions/auth.server'
 import { validateInput } from '@/server/functions/validation-helpers'
 import { enqueueAssetDeletion } from '@/server/jobs/assets-jobs'
-import { minioClient } from '@/server/minio/client'
+import { createDownloadUrl } from '@/server/storage/operations'
 import type { Course, CourseOutline } from '@/types'
 
 const courseIdSchema = z.number().int('Course id is required')
@@ -76,11 +76,7 @@ export const getAuthoredCourseOutline = createServerFn({
 
     const { thumbnail, ...outline } = course
     const thumbnailUrl = thumbnail
-      ? await minioClient.presignedGetObject(
-          thumbnail.bucket,
-          thumbnail.objectName,
-          imageDownloadUrlExpirySec,
-        )
+      ? await createDownloadUrl(thumbnail.bucket, thumbnail.objectName, imageDownloadUrlExpirySec)
       : null
 
     return { ...outline, thumbnailUrl }

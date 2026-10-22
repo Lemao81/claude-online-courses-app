@@ -4,8 +4,7 @@ import { thumbnailSizeMessage, thumbnailTypeMessage } from '@/constants/error-me
 import { replaceCourseThumbnail, type ThumbnailReplacement } from '@/server/db/courses-helpers'
 import { assets } from '@/server/db/schema'
 import type { Transaction } from '@/server/db/types'
-import { minioClient } from '@/server/minio/client'
-import { removeObject } from '@/server/minio/operations'
+import { removeObject, statObject } from '@/server/storage/operations'
 import { isThumbnailContentType } from '@/utils/helpers'
 
 type ThumbnailUpload = {
@@ -22,13 +21,13 @@ export async function attachThumbnail(
     throw new Error('The uploaded thumbnail does not belong to this course')
   }
 
-  const stat = await minioClient.statObject(imageBucket, upload.objectName).catch(() => null)
+  const stat = await statObject(imageBucket, upload.objectName).catch(() => null)
 
   if (!stat) {
     throw new Error('The uploaded thumbnail was not found')
   }
 
-  const contentType = stat.metaData['content-type'] ?? ''
+  const contentType = stat.contentType ?? ''
 
   if (!isThumbnailContentType(contentType) || stat.size > maxThumbnailSizeBytes) {
     await removeObject(imageBucket, upload.objectName)

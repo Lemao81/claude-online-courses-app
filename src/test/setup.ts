@@ -1,10 +1,10 @@
 import { inject } from 'vitest'
 
-const minio = inject('minio')
+const rustfs = inject('rustfs')
 
 process.env.DATABASE_URL = inject('databaseUrl')
-process.env.MINIO_ENDPOINT = minio.endpoint
-process.env.MINIO_PORT = String(minio.port)
-process.env.MINIO_USE_SSL = 'false'
-process.env.MINIO_ROOT_USER = minio.user
-process.env.MINIO_ROOT_PASSWORD = minio.password
+process.env.RUSTFS_ENDPOINT = rustfs.endpoint
+process.env.RUSTFS_PORT = String(rustfs.port)
+process.env.RUSTFS_USE_SSL = 'false'
+process.env.RUSTFS_ACCESS_KEY = rustfs.accessKey
+process.env.RUSTFS_SECRET_KEY = rustfs.secretKey

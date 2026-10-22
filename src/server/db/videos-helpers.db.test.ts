@@ -1,10 +1,11 @@
+import { PutObjectCommand } from '@aws-sdk/client-s3'
 import { eq } from 'drizzle-orm'
 import { describe, expect, it } from 'vitest'
 import { videoBucket } from '@/constants'
 import { assets, chapters, courses } from '@/server/db/schema'
 import { attachVideo } from '@/server/db/videos-helpers'
-import { minioClient } from '@/server/minio/client'
-import { ensureBucket } from '@/server/minio/operations'
+import { storageClient } from '@/server/storage/client'
+import { ensureBucket } from '@/server/storage/operations'
 import { withRollback } from '@/test/db'
 import {
   insertAsset,
@@ -22,9 +23,14 @@ function toObjectName(ownerId: string, courseId: number): string {
 
 async function putVideo(objectName: string): Promise<void> {
   await ensureBucket(videoBucket)
-  await minioClient.putObject(videoBucket, objectName, Buffer.alloc(16), 16, {
-    'Content-Type': 'video/mp4',
-  })
+  await storageClient.send(
+    new PutObjectCommand({
+      Bucket: videoBucket,
+      Key: objectName,
+      Body: Buffer.alloc(16),
+      ContentType: 'video/mp4',
+    }),
+  )
 }
 
 describe('attachVideo', () => {

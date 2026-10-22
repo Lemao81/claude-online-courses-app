@@ -17,11 +17,11 @@ DATABASE_URL=postgres://<user>:<password>@localhost:5432/<database>
 POSTGRES_USER=
 POSTGRES_PASSWORD=
 POSTGRES_DB=
-MINIO_ROOT_USER=
-MINIO_ROOT_PASSWORD=
+RUSTFS_ACCESS_KEY=
+RUSTFS_SECRET_KEY=
 ```
 
-Start the backing services (PostgreSQL and MinIO), apply the migrations, then run the dev server on
+Start the backing services (PostgreSQL and RustFS), apply the migrations, then run the dev server on
 port 3000:
 
 ```bash
@@ -65,7 +65,7 @@ Generated migrations are committed under `drizzle/`.
 
 ### Local services
 
-`docker-compose.yml` provides PostgreSQL (port 5432) and MinIO (API on 9000, console on 9001).
+`docker-compose.yml` provides PostgreSQL (port 5432) and RustFS (S3 API on 9000, console on 9001).
 Both read their credentials from `.env.local`:
 
 ```bash

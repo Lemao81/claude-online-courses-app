@@ -1,3 +1,4 @@
+import { PutObjectCommand } from '@aws-sdk/client-s3'
 import { eq } from 'drizzle-orm'
 import { describe, expect, it } from 'vitest'
 import { imageBucket } from '@/constants'
@@ -5,8 +6,8 @@ import { maxThumbnailSizeBytes } from '@/constants/config'
 import { thumbnailSizeMessage, thumbnailTypeMessage } from '@/constants/error-messages'
 import { assets } from '@/server/db/schema'
 import { attachThumbnail } from '@/server/db/thumbnails-helpers'
-import { minioClient } from '@/server/minio/client'
-import { ensureBucket } from '@/server/minio/operations'
+import { storageClient } from '@/server/storage/client'
+import { ensureBucket, statObject } from '@/server/storage/operations'
 import { withRollback } from '@/test/db'
 import { insertCourse, insertUser } from '@/test/factories'
 
@@ -16,13 +17,18 @@ function toObjectName(ownerId: string, courseId: number): string {
 
 async function putObject(objectName: string, contentType: string, sizeBytes = 16): Promise<void> {
   await ensureBucket(imageBucket)
-  await minioClient.putObject(imageBucket, objectName, Buffer.alloc(sizeBytes), sizeBytes, {
-    'Content-Type': contentType,
-  })
+  await storageClient.send(
+    new PutObjectCommand({
+      Bucket: imageBucket,
+      Key: objectName,
+      Body: Buffer.alloc(sizeBytes),
+      ContentType: contentType,
+    }),
+  )
 }
 
 async function isStored(objectName: string): Promise<boolean> {
-  return minioClient.statObject(imageBucket, objectName).then(
+  return statObject(imageBucket, objectName).then(
     () => true,
     () => false,
   )

@@ -13,8 +13,7 @@ import { courses, lessons } from '@/server/db/schema'
 import { attachVideo } from '@/server/db/videos-helpers'
 import { requireUserId } from '@/server/functions/auth.server'
 import { validateInput } from '@/server/functions/validation-helpers'
-import { minioClient } from '@/server/minio/client'
-import { ensureBucket } from '@/server/minio/operations'
+import { createUploadUrl, ensureBucket } from '@/server/storage/operations'
 import type { Lesson, UploadTarget } from '@/types'
 import { toFileExtension } from '@/utils/helpers'
 
@@ -53,11 +52,7 @@ export const createVideoUploadUrl = createServerFn({
 
     const extension = toFileExtension(data.fileName)
     const objectName = `${userId}/${data.courseId}/${crypto.randomUUID()}${extension}`
-    const uploadUrl = await minioClient.presignedPutObject(
-      videoBucket,
-      objectName,
-      videoUploadUrlExpirySec,
-    )
+    const uploadUrl = await createUploadUrl(videoBucket, objectName, videoUploadUrlExpirySec)
 
     return {
       bucket: videoBucket,

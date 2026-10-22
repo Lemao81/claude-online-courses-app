@@ -3,7 +3,7 @@ import { videoBucket } from '@/constants'
 import { recomputeCourseDuration } from '@/server/db/aggregates-helpers'
 import { assets, lessons } from '@/server/db/schema'
 import type { Transaction } from '@/server/db/types'
-import { minioClient } from '@/server/minio/client'
+import { statObject } from '@/server/storage/operations'
 import type { Lesson, VideoMetadata } from '@/types'
 
 type VideoUpload = VideoMetadata & {
@@ -32,7 +32,7 @@ export async function attachVideo(tx: Transaction, upload: VideoUpload): Promise
     throw new Error('The uploaded video does not belong to this course')
   }
 
-  const stat = await minioClient.statObject(videoBucket, upload.objectName).catch(() => null)
+  const stat = await statObject(videoBucket, upload.objectName).catch(() => null)
 
   if (!stat) {
     throw new Error('The uploaded video was not found')
@@ -46,7 +46,7 @@ export async function attachVideo(tx: Transaction, upload: VideoUpload): Promise
       status: 'ready',
       bucket: videoBucket,
       objectName: upload.objectName,
-      contentType: stat.metaData['content-type'] ?? 'application/octet-stream',
+      contentType: stat.contentType ?? 'application/octet-stream',
       sizeBytes: stat.size,
       checksum: stat.etag,
       durationSec: upload.durationSec === 0 ? null : upload.durationSec,

@@ -11,8 +11,7 @@ import { attachThumbnail } from '@/server/db/thumbnails-helpers'
 import { requireUserId } from '@/server/functions/auth.server'
 import { validateInput } from '@/server/functions/validation-helpers'
 import { enqueueAssetDeletion } from '@/server/jobs/assets-jobs'
-import { minioClient } from '@/server/minio/client'
-import { ensureBucket } from '@/server/minio/operations'
+import { createUploadUrl, ensureBucket } from '@/server/storage/operations'
 import type { Course, UploadTarget } from '@/types'
 import { isThumbnailContentType, toFileExtension } from '@/utils/helpers'
 
@@ -54,11 +53,7 @@ export const createThumbnailUploadUrl = createServerFn({
 
     const extension = toFileExtension(data.fileName)
     const objectName = `${userId}/${data.courseId}/${crypto.randomUUID()}${extension}`
-    const uploadUrl = await minioClient.presignedPutObject(
-      imageBucket,
-      objectName,
-      imageUploadUrlExpirySec,
-    )
+    const uploadUrl = await createUploadUrl(imageBucket, objectName, imageUploadUrlExpirySec)
 
     return {
       bucket: imageBucket,
