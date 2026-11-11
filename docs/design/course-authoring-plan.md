@@ -46,7 +46,7 @@ This plan builds the design in [`course-authoring-grill.md`](course-authoring-gr
 
 ## Step 6 — Lifecycle
 
-- [ ] **6.1 Course readiness rule** — at least one lesson, and which lessons lack a ready video — shared by publishing and the checklist, with tests (Settled 12).
+- [x] **6.1 Course readiness rule** — at least one lesson, and which lessons lack a ready video — shared by publishing and the checklist, with tests (Settled 12).
 - [ ] **6.2 Add `publishCourse`, `unpublishCourse`, `archiveCourse`**, with tests (Settled 13, 24, 39).
 - [ ] **6.3 Sticky header** built from the editor's title row, keeping its centred title and back link, and adding status, Publish/Unpublish, the missing-video count and the free note (Settled 18, 32, 33).
 - [ ] **6.4 Readiness checklist** atop the Lessons section, each item jumping to its lesson (Settled 14, 32).

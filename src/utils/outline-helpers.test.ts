@@ -5,7 +5,7 @@ import { moveLessonToParent, toLessonGroups } from '@/utils/outline-helpers'
 const createdAt = new Date('2026-01-01')
 
 function makeLesson(id: number): LessonVideo {
-  return { id, title: `Lesson ${id}`, durationSec: 60 }
+  return { id, title: `Lesson ${id}`, durationSec: 60, videoStatus: 'ready' }
 }
 
 function makeChapter(id: number, lessonIds: number[]): ChapterWithLessons {

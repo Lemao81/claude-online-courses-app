@@ -15,9 +15,13 @@ export type Lesson = typeof lessons.$inferSelect
 
 export type Asset = typeof assets.$inferSelect
 
+export type AssetStatus = Asset['status']
+
 export type Enrollment = typeof enrollments.$inferSelect
 
-export type LessonVideo = Pick<Lesson, 'id' | 'title' | 'durationSec'>
+export type LessonVideo = Pick<Lesson, 'id' | 'title' | 'durationSec'> & {
+  videoStatus: AssetStatus | null
+}
 
 export type ChapterWithLessons = Chapter & { lessons: LessonVideo[] }
 
@@ -25,6 +29,16 @@ export type CourseOutline = Course & {
   lessons: LessonVideo[]
   chapters: ChapterWithLessons[]
   thumbnailUrl: string | null
+}
+
+export type OutlineLessons = {
+  lessons: LessonVideo[]
+  chapters: { lessons: LessonVideo[] }[]
+}
+
+export type CourseReadiness = {
+  hasLessons: boolean
+  lessonsMissingVideo: LessonVideo[]
 }
 
 export type LessonOrder = { chapterId: number | null; lessonIds: number[] }

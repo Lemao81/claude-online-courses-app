@@ -11,7 +11,7 @@ import { requireUserId } from '@/server/functions/auth.server'
 import { validateInput } from '@/server/functions/validation-helpers'
 import { enqueueAssetDeletion } from '@/server/jobs/assets-jobs'
 import { createDownloadUrl } from '@/server/storage/operations'
-import type { Course, CourseOutline } from '@/types'
+import type { AssetStatus, Course, CourseOutline, LessonVideo } from '@/types'
 
 const courseIdSchema = z.number().int('Course id is required')
 
@@ -22,6 +22,14 @@ const createCourseSchema = z.object({
 })
 
 type CreateCourseInput = z.input<typeof createCourseSchema>
+
+type OutlineLessonRow = Omit<LessonVideo, 'videoStatus'> & {
+  videoAsset: { status: AssetStatus } | null
+}
+
+function toLessonVideo({ videoAsset, ...lesson }: OutlineLessonRow): LessonVideo {
+  return { ...lesson, videoStatus: videoAsset?.status ?? null }
+}
 
 async function ensureAuthor(userId: string): Promise<void> {
   const user = await clerkClient().users.getUser(userId)
@@ -53,6 +61,7 @@ export const getAuthoredCourseOutline = createServerFn({
           columns: { id: true, title: true, durationSec: true },
           where: isNull(lessons.chapterId),
           orderBy: asc(lessons.position),
+          with: { videoAsset: { columns: { status: true } } },
         },
         chapters: {
           orderBy: asc(chapters.position),
@@ -60,6 +69,7 @@ export const getAuthoredCourseOutline = createServerFn({
             lessons: {
               columns: { id: true, title: true, durationSec: true },
               orderBy: asc(lessons.position),
+              with: { videoAsset: { columns: { status: true } } },
             },
           },
         },
@@ -79,7 +89,12 @@ export const getAuthoredCourseOutline = createServerFn({
       ? await createDownloadUrl(thumbnail.bucket, thumbnail.objectName, imageDownloadUrlExpirySec)
       : null
 
-    return { ...outline, thumbnailUrl }
+    return {
+      ...outline,
+      lessons: outline.lessons.map(toLessonVideo),
+      chapters: outline.chapters.map((c) => ({ ...c, lessons: c.lessons.map(toLessonVideo) })),
+      thumbnailUrl,
+    }
   })
 
 export const getAuthoredCourses = createServerFn({
