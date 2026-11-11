@@ -4,7 +4,7 @@ This file is shared across projects. Apart from current project descriptions, an
 
 ## Tooling
 
-- Use pnpm as frontend package manager (`pnpm-lock.yaml`, `pnpm-workspace.yaml`).
+- Use pnpm as frontend package manager (`pnpm-lock.yaml`, `pnpm-workspace.yaml`), and run project CLIs with `pnpm exec` (`pnpm exec expo export`).
 
 ## Agent Instructions
 
@@ -12,7 +12,9 @@ This file is shared across projects. Apart from current project descriptions, an
 - Before the first tool run of a session, prepare the environment it runs in:
     - Cloud session (`CLAUDE_CODE_REMOTE=true`) → read `docs/references/cloud-session.md` first.
     - Local sandbox (`SANDBOX_NAME` set) → tools run from its own Linux `node_modules`, bind-mounted over the repo's shared one. Check `mountpoint -q node_modules`; when it fails, set the sandbox up per `docs/references/sandbox-node-modules.md` first. Run pnpm only on the mounted `node_modules`.
+    - Local sandbox in an Expo project (`expo` in `package.json` dependencies) → check `[ -x "$ANDROID_HOME/cmdline-tools/latest/bin/android" ]`; when it fails, install the Android SDK per `docs/references/sandbox-android-sdk.md` first.
 - In a local sandbox, install only with `pnpm install --frozen-lockfile`. To change dependencies, edit `package.json` and tell the user to run the install on the host; run the frozen install here too whenever the user reports an install on the host, or `[ pnpm-lock.yaml -nt node_modules/.modules.yaml ]` holds before a tool run.
+- When the sandbox firewall blocks a documentation site, stop and list every docs domain the task still needs; resume once the user has unblocked them or says to go without them. A subagent stops the same way and returns the list as its result.
 - Leave `electron` and `electron-forge` to the host.
 - If the project uses Biome: whenever you have edited files it checks, run `biome check --write` before handing back to the user.
 - Fix every finding a check reports, whether from your own run or a failed pre-commit hook, in the code; after a hook failure, re-stage and retry the commit. Ask first before a suppression comment, a linter config change, `--no-verify`, a fix that changes behaviour, or an edit to files outside the commit.
@@ -39,6 +41,7 @@ This file is shared across projects. Apart from current project descriptions, an
 - Writing TypeScript → read `docs/references/typescript-code-style.md` first.
 - Writing C# → read `docs/references/csharp-code-style.md` first.
 - Writing Cypress tests → read `docs/references/cypress-tests.md` first.
+- Running Maestro E2E flows or diagnosing a failed run → read `docs/references/maestro-e2e.md` first.
 - Working with shadcn/ui → read `docs/references/shadcn.md` first.
 - Adding or changing an API endpoint → read `docs/references/api-endpoints.md` first.
 - Starting a feature or writing its issues and plan → read `docs/references/feature-start-issue-tracker.md` first.
