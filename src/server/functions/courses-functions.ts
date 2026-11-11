@@ -1,17 +1,24 @@
 import { clerkClient } from '@clerk/tanstack-react-start/server'
 import { notFound, redirect } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
-import { asc, desc, eq, isNull } from 'drizzle-orm'
+import { desc, eq } from 'drizzle-orm'
 import { z } from 'zod'
 import { imageDownloadUrlExpirySec } from '@/constants/config'
 import { db } from '@/server/db/client'
-import { removeCourse } from '@/server/db/courses-helpers'
-import { chapters, courses, lessons, users } from '@/server/db/schema'
+import {
+  removeCourse,
+  selectOutlineLessons,
+  setCourseArchived,
+  setCourseDraft,
+  setCoursePublished,
+} from '@/server/db/courses-helpers'
+import { courses, users } from '@/server/db/schema'
+import type { Transaction } from '@/server/db/types'
 import { requireUserId } from '@/server/functions/auth.server'
 import { validateInput } from '@/server/functions/validation-helpers'
 import { enqueueAssetDeletion } from '@/server/jobs/assets-jobs'
 import { createDownloadUrl } from '@/server/storage/operations'
-import type { AssetStatus, Course, CourseOutline, LessonVideo } from '@/types'
+import type { Course, CourseOutline } from '@/types'
 
 const courseIdSchema = z.number().int('Course id is required')
 
@@ -22,14 +29,6 @@ const createCourseSchema = z.object({
 })
 
 type CreateCourseInput = z.input<typeof createCourseSchema>
-
-type OutlineLessonRow = Omit<LessonVideo, 'videoStatus'> & {
-  videoAsset: { status: AssetStatus } | null
-}
-
-function toLessonVideo({ videoAsset, ...lesson }: OutlineLessonRow): LessonVideo {
-  return { ...lesson, videoStatus: videoAsset?.status ?? null }
-}
 
 async function ensureAuthor(userId: string): Promise<void> {
   const user = await clerkClient().users.getUser(userId)
@@ -55,25 +54,7 @@ export const getAuthoredCourseOutline = createServerFn({
 
     const course = await db.query.courses.findFirst({
       where: eq(courses.id, data),
-      with: {
-        thumbnail: { columns: { bucket: true, objectName: true } },
-        lessons: {
-          columns: { id: true, title: true, durationSec: true },
-          where: isNull(lessons.chapterId),
-          orderBy: asc(lessons.position),
-          with: { videoAsset: { columns: { status: true } } },
-        },
-        chapters: {
-          orderBy: asc(chapters.position),
-          with: {
-            lessons: {
-              columns: { id: true, title: true, durationSec: true },
-              orderBy: asc(lessons.position),
-              with: { videoAsset: { columns: { status: true } } },
-            },
-          },
-        },
-      },
+      with: { thumbnail: { columns: { bucket: true, objectName: true } } },
     })
 
     if (!course) {
@@ -89,12 +70,7 @@ export const getAuthoredCourseOutline = createServerFn({
       ? await createDownloadUrl(thumbnail.bucket, thumbnail.objectName, imageDownloadUrlExpirySec)
       : null
 
-    return {
-      ...outline,
-      lessons: outline.lessons.map(toLessonVideo),
-      chapters: outline.chapters.map((c) => ({ ...c, lessons: c.lessons.map(toLessonVideo) })),
-      thumbnailUrl,
-    }
+    return { ...outline, ...(await selectOutlineLessons(db, data)), thumbnailUrl }
   })
 
 export const getAuthoredCourses = createServerFn({
@@ -212,3 +188,49 @@ export const deleteCourse = createServerFn({
       }
     })
   })
+
+const changeCourseStatusSchema = z.object({
+  id: courseIdSchema,
+})
+
+type ChangeCourseStatusInput = z.input<typeof changeCourseStatusSchema>
+
+async function changeCourseStatus(
+  courseId: number,
+  change: (tx: Transaction, courseId: number) => Promise<Course>,
+): Promise<Course> {
+  const userId = await requireUserId()
+
+  const course = await db.query.courses.findFirst({
+    where: eq(courses.id, courseId),
+    columns: { authorId: true },
+  })
+
+  if (!course) {
+    throw notFound()
+  }
+
+  if (course.authorId !== userId) {
+    throw redirect({ to: '/courses' })
+  }
+
+  return db.transaction((tx) => change(tx, courseId))
+}
+
+export const publishCourse = createServerFn({
+  method: 'POST',
+})
+  .validator((data: ChangeCourseStatusInput) => validateInput(changeCourseStatusSchema, data))
+  .handler(({ data }): Promise<Course> => changeCourseStatus(data.id, setCoursePublished))
+
+export const unpublishCourse = createServerFn({
+  method: 'POST',
+})
+  .validator((data: ChangeCourseStatusInput) => validateInput(changeCourseStatusSchema, data))
+  .handler(({ data }): Promise<Course> => changeCourseStatus(data.id, setCourseDraft))
+
+export const archiveCourse = createServerFn({
+  method: 'POST',
+})
+  .validator((data: ChangeCourseStatusInput) => validateInput(changeCourseStatusSchema, data))
+  .handler(({ data }): Promise<Course> => changeCourseStatus(data.id, setCourseArchived))

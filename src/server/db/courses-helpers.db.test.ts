@@ -1,6 +1,12 @@
 import { eq, inArray } from 'drizzle-orm'
 import { describe, expect, it } from 'vitest'
-import { removeCourse, replaceCourseThumbnail } from '@/server/db/courses-helpers'
+import {
+  removeCourse,
+  replaceCourseThumbnail,
+  setCourseArchived,
+  setCourseDraft,
+  setCoursePublished,
+} from '@/server/db/courses-helpers'
 import { assets, courses, lessons } from '@/server/db/schema'
 import type { Transaction } from '@/server/db/types'
 import { withRollback } from '@/test/db'
@@ -12,9 +18,34 @@ import {
   insertLesson,
   insertUser,
 } from '@/test/factories'
+import type { AssetStatus, Course, CourseStatus } from '@/types'
 
 async function selectCourseIds(tx: Transaction, courseId: number): Promise<{ id: number }[]> {
   return tx.select({ id: courses.id }).from(courses).where(eq(courses.id, courseId))
+}
+
+async function selectCourseStatus(tx: Transaction, courseId: number): Promise<CourseStatus> {
+  const [course] = await tx
+    .select({ status: courses.status })
+    .from(courses)
+    .where(eq(courses.id, courseId))
+
+  return course.status
+}
+
+async function insertVideoLesson(
+  tx: Transaction,
+  course: Pick<Course, 'id' | 'authorId'>,
+  status: AssetStatus = 'ready',
+  chapterId: number | null = null,
+): Promise<void> {
+  const video = await insertAsset(tx, { ownerId: course.authorId, status })
+
+  await insertLesson(tx, { courseId: course.id, chapterId, videoAssetId: video.id })
+}
+
+async function insertPublishedCourse(tx: Transaction): Promise<Course> {
+  return insertCourse(tx, { status: 'published', publishedAt: new Date('2026-01-01') })
 }
 
 describe('removeCourse', () => {
@@ -174,6 +205,163 @@ describe('replaceCourseThumbnail', () => {
 
       await expect(replaceCourseThumbnail(tx, -1, thumbnail.id)).rejects.toThrow(
         'The course no longer exists',
+      )
+    }))
+})
+
+describe('setCoursePublished', () => {
+  it('publishes a draft whose every lesson has a ready video', () =>
+    withRollback(async (tx) => {
+      const draft = await insertCourse(tx)
+      const chapter = await insertChapter(tx, { courseId: draft.id })
+
+      await insertVideoLesson(tx, draft)
+      await insertVideoLesson(tx, draft, 'ready', chapter.id)
+
+      const course = await setCoursePublished(tx, draft.id)
+
+      expect(course.status).toBe('published')
+      expect(course.publishedAt).toEqual(expect.any(Date))
+    }))
+
+  it('sets publishedAt again when a course returns', () =>
+    withRollback(async (tx) => {
+      const previous = new Date('2026-01-01')
+      const draft = await insertCourse(tx, { publishedAt: previous })
+
+      await insertVideoLesson(tx, draft)
+
+      const course = await setCoursePublished(tx, draft.id)
+
+      expect(course.publishedAt?.getTime()).toBeGreaterThan(previous.getTime())
+    }))
+
+  it('rejects a course without lessons', () =>
+    withRollback(async (tx) => {
+      const draft = await insertCourse(tx)
+
+      await insertChapter(tx, { courseId: draft.id })
+
+      await expect(setCoursePublished(tx, draft.id)).rejects.toThrow(
+        'Add a lesson before publishing',
+      )
+
+      expect(await selectCourseStatus(tx, draft.id)).toBe('draft')
+    }))
+
+  it('rejects a lesson without a video', () =>
+    withRollback(async (tx) => {
+      const draft = await insertCourse(tx)
+
+      await insertVideoLesson(tx, draft)
+      await insertLesson(tx, { courseId: draft.id })
+
+      await expect(setCoursePublished(tx, draft.id)).rejects.toThrow(
+        'Every lesson needs a ready video before publishing',
+      )
+
+      expect(await selectCourseStatus(tx, draft.id)).toBe('draft')
+    }))
+
+  it('rejects a chapter lesson whose video is not ready', () =>
+    withRollback(async (tx) => {
+      const draft = await insertCourse(tx)
+      const chapter = await insertChapter(tx, { courseId: draft.id })
+
+      await insertVideoLesson(tx, draft)
+      await insertVideoLesson(tx, draft, 'pending', chapter.id)
+
+      await expect(setCoursePublished(tx, draft.id)).rejects.toThrow(
+        'Every lesson needs a ready video before publishing',
+      )
+    }))
+
+  it('rejects a published course', () =>
+    withRollback(async (tx) => {
+      const published = await insertPublishedCourse(tx)
+
+      await insertVideoLesson(tx, published)
+
+      await expect(setCoursePublished(tx, published.id)).rejects.toThrow(
+        'Only a draft course can be published',
+      )
+    }))
+
+  it('rejects an archived course', () =>
+    withRollback(async (tx) => {
+      const archived = await insertCourse(tx, { status: 'archived' })
+
+      await insertVideoLesson(tx, archived)
+
+      await expect(setCoursePublished(tx, archived.id)).rejects.toThrow(
+        'Only a draft course can be published',
+      )
+    }))
+
+  it('rejects a missing course', () =>
+    withRollback(async (tx) => {
+      await expect(setCoursePublished(tx, -1)).rejects.toThrow('The course no longer exists')
+    }))
+})
+
+describe('setCourseDraft', () => {
+  it('returns a published course to draft, keeping publishedAt', () =>
+    withRollback(async (tx) => {
+      const published = await insertPublishedCourse(tx)
+
+      const course = await setCourseDraft(tx, published.id)
+
+      expect(course.status).toBe('draft')
+      expect(course.publishedAt).toEqual(published.publishedAt)
+    }))
+
+  it('rejects a draft', () =>
+    withRollback(async (tx) => {
+      const draft = await insertCourse(tx)
+
+      await expect(setCourseDraft(tx, draft.id)).rejects.toThrow(
+        'Only a published course can be unpublished',
+      )
+    }))
+
+  it('rejects an archived course', () =>
+    withRollback(async (tx) => {
+      const archived = await insertCourse(tx, { status: 'archived' })
+
+      await expect(setCourseDraft(tx, archived.id)).rejects.toThrow(
+        'Only a published course can be unpublished',
+      )
+
+      expect(await selectCourseStatus(tx, archived.id)).toBe('archived')
+    }))
+})
+
+describe('setCourseArchived', () => {
+  it('archives a draft', () =>
+    withRollback(async (tx) => {
+      const draft = await insertCourse(tx)
+
+      const course = await setCourseArchived(tx, draft.id)
+
+      expect(course.status).toBe('archived')
+    }))
+
+  it('archives a published course, keeping publishedAt', () =>
+    withRollback(async (tx) => {
+      const published = await insertPublishedCourse(tx)
+
+      const course = await setCourseArchived(tx, published.id)
+
+      expect(course.status).toBe('archived')
+      expect(course.publishedAt).toEqual(published.publishedAt)
+    }))
+
+  it('rejects an archived course', () =>
+    withRollback(async (tx) => {
+      const archived = await insertCourse(tx, { status: 'archived' })
+
+      await expect(setCourseArchived(tx, archived.id)).rejects.toThrow(
+        'The course is already archived',
       )
     }))
 })
