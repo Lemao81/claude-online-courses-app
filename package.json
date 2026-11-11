@@ -5,23 +5,13 @@
   "engines": {
     "node": ">=24.19.0"
   },
-  "devEngines": {
-    "runtime": {
-      "name": "node",
-      "version": "24.21.0"
-    },
-    "packageManager": {
-      "name": "pnpm",
-      "version": "12.10.1"
-    }
-  },
   "scripts": {
     "dev": "vite dev --port 3000",
     "start:all": "pnpm docker:up && pnpm dev",
     "generate-routes": "tsr generate",
     "build": "vite build",
     "preview": "vite preview",
-    "prepare": "git config core.hooksPath .githooks",
+    "prepare": "git config core.hooksPath .githooks && git config core.createObject rename",
     "postinstall": "pnpm chakra:typegen",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
@@ -43,6 +33,16 @@
     "chakra:eject": "chakra eject --outdir src/theme/eject",
     "worker": "tsx --env-file=.env.local src/server/worker.ts",
     "worker:dashboard": "cross-env PORT=3001 HOST=localhost node --env-file=.env.local node_modules/@pg-boss/dashboard/bin/cli.js"
+  },
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": "24.21.0"
+    },
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.10.1"
+    }
   },
   "dependencies": {
     "@aws-sdk/client-s3": "3.1151.0",
