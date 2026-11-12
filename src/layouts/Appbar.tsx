@@ -1,10 +1,15 @@
 import { Box, Flex } from '@chakra-ui/react'
+import { appbarHeightVariable } from '@/constants'
+import { useHeightVariable } from '@/hooks/use-height-variable'
 import Navbar from '@/layouts/Navbar'
 import Toolbar from '@/layouts/Toolbar'
 
 export default function Appbar(): React.JSX.Element {
+  const ref = useHeightVariable<HTMLDivElement>(appbarHeightVariable)
+
   return (
     <Box
+      ref={ref}
       as="header"
       position="sticky"
       top="0"

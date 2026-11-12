@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import type { AssetStatus, LessonVideo, OutlineLessons } from '@/types'
-import { getCourseReadiness, isCourseReady } from '@/utils/readiness-helpers'
+import { getCourseReadiness, isCourseReady, toReadinessNote } from '@/utils/readiness-helpers'
 
 function makeLesson(id: number, videoStatus: AssetStatus | null = 'ready'): LessonVideo {
   return { id, title: `Lesson ${id}`, durationSec: 60, videoStatus }
@@ -63,5 +63,29 @@ describe('isCourseReady', () => {
 
   it('accepts a course whose every lesson has a ready video', () => {
     expect(isCourseReady({ hasLessons: true, lessonsMissingVideo: [] })).toBe(true)
+  })
+})
+
+describe('toReadinessNote', () => {
+  it('notes a course without lessons', () => {
+    expect(toReadinessNote({ hasLessons: false, lessonsMissingVideo: [] })).toBe('No lessons yet')
+  })
+
+  it('counts one lesson missing a video', () => {
+    expect(toReadinessNote({ hasLessons: true, lessonsMissingVideo: [makeLesson(1, null)] })).toBe(
+      '1 lesson missing a video',
+    )
+  })
+
+  it('counts several lessons missing a video', () => {
+    const lessonsMissingVideo = [makeLesson(1, null), makeLesson(2, 'pending')]
+
+    expect(toReadinessNote({ hasLessons: true, lessonsMissingVideo })).toBe(
+      '2 lessons missing a video',
+    )
+  })
+
+  it('has no note for a ready course', () => {
+    expect(toReadinessNote({ hasLessons: true, lessonsMissingVideo: [] })).toBeNull()
   })
 })

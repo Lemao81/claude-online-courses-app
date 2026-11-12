@@ -13,3 +13,5 @@ export const lessonDragType = 'lesson'
 export const courseLevelGroup = 'course'
 
 export const chapterDragType = 'chapter'
+
+export const appbarHeightVariable = '--appbar-height'
