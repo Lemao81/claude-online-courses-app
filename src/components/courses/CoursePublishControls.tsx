@@ -1,10 +1,12 @@
-import { Badge, Button, Flex, Text } from '@chakra-ui/react'
+import { Badge, Button, Flex, Link, Text } from '@chakra-ui/react'
 import { useRouter } from '@tanstack/react-router'
 import { useState } from 'react'
 import { LuTriangleAlert } from 'react-icons/lu'
 import { showErrorToast } from '@/components/ui/AppToaster'
+import { readinessChecklistId } from '@/constants'
 import { publishCourse, unpublishCourse } from '@/server/functions/courses-functions'
 import type { CourseOutline } from '@/types'
+import { revealElement } from '@/utils/helpers'
 import { getCourseReadiness, toReadinessNote } from '@/utils/readiness-helpers'
 
 type CoursePublishControlsProps = {
@@ -53,10 +55,12 @@ export default function CoursePublishControls({
     >
       <Badge variant={course.status}>{course.status}</Badge>
       {!isArchived && readinessNote && (
-        <Flex align="center" gap="1" textStyle="meta" color={isDraft ? 'fg.muted' : 'fg.error'}>
-          {!isDraft && <LuTriangleAlert aria-hidden="true" />}
-          {readinessNote}
-        </Flex>
+        <Link asChild gap="1" textStyle="meta" color={isDraft ? 'fg.muted' : 'fg.error'}>
+          <button type="button" onClick={() => revealElement(readinessChecklistId)}>
+            {!isDraft && <LuTriangleAlert aria-hidden="true" />}
+            {readinessNote}
+          </button>
+        </Link>
       )}
       {isDraft && Number(course.price) === 0 && <Text textStyle="meta">This course is free</Text>}
       {!isArchived && (

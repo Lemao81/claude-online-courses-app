@@ -12,6 +12,7 @@ import { useLessonSortable } from '@/hooks/use-lesson-sortable'
 import { deleteLesson, updateLessonTitle } from '@/server/functions/lessons-functions'
 import type { LessonVideo } from '@/types'
 import { formatDuration } from '@/utils/formatters'
+import { toLessonElementId } from '@/utils/outline-helpers'
 
 type LessonListItemProps = {
   lesson: LessonVideo
@@ -55,7 +56,15 @@ export default function LessonListItem({
   }
 
   return (
-    <Flex ref={ref} align="center" justify="space-between" gap="3" layerStyle="row">
+    <Flex
+      ref={ref}
+      id={toLessonElementId(lesson.id)}
+      tabIndex={-1}
+      align="center"
+      justify="space-between"
+      gap="3"
+      layerStyle="row"
+    >
       <Flex align="center" gap="3" minW="0" flex="1">
         <DragHandle ref={handleRef} label={`Reorder ${lesson.title}`} />
         <IconTile>

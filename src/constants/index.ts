@@ -15,3 +15,5 @@ export const courseLevelGroup = 'course'
 export const chapterDragType = 'chapter'
 
 export const appbarHeightVariable = '--appbar-height'
+
+export const readinessChecklistId = 'readiness-checklist'

@@ -7,6 +7,10 @@ export function toLessonGroup(chapterId: number | null): string {
   return chapterId === null ? courseLevelGroup : `chapter-${chapterId}`
 }
 
+export function toLessonElementId(lessonId: number): string {
+  return `lesson-${lessonId}`
+}
+
 export function toChapterSortableId(chapterId: number): string {
   return `chapter-sortable-${chapterId}`
 }

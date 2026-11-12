@@ -92,3 +92,14 @@ export async function uploadFile(
     throw new Error(`Upload of ${file.name} failed with status ${response.status}`)
   }
 }
+
+export function revealElement(id: string): void {
+  const element = document.getElementById(id)
+  if (!element) {
+    return
+  }
+
+  const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  element.scrollIntoView({ behavior: isReducedMotion ? 'auto' : 'smooth', block: 'center' })
+  element.focus({ preventScroll: true })
+}
