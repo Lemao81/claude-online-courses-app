@@ -14,6 +14,7 @@ import {
 } from '@/server/db/courses-helpers'
 import { courses, users } from '@/server/db/schema'
 import type { Transaction } from '@/server/db/types'
+import { requireEditableCourse } from '@/server/functions/access-helpers'
 import { requireUserId } from '@/server/functions/auth.server'
 import { validateInput } from '@/server/functions/validation-helpers'
 import { enqueueAssetDeletion } from '@/server/jobs/assets-jobs'
@@ -129,16 +130,14 @@ export const updateCourse = createServerFn({
 
     const course = await db.query.courses.findFirst({
       where: eq(courses.id, data.id),
-      columns: { authorId: true },
+      columns: { authorId: true, status: true },
     })
 
     if (!course) {
       throw notFound()
     }
 
-    if (course.authorId !== userId) {
-      throw redirect({ to: '/courses' })
-    }
+    requireEditableCourse(course, userId)
 
     const [updated] = await db
       .update(courses)

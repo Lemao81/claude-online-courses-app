@@ -1,4 +1,4 @@
-import { notFound, redirect } from '@tanstack/react-router'
+import { notFound } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
 import { eq } from 'drizzle-orm'
 import { z } from 'zod'
@@ -8,6 +8,7 @@ import { thumbnailSizeMessage, thumbnailTypeMessage } from '@/constants/error-me
 import { db } from '@/server/db/client'
 import { courses } from '@/server/db/schema'
 import { attachThumbnail } from '@/server/db/thumbnails-helpers'
+import { requireEditableCourse } from '@/server/functions/access-helpers'
 import { requireUserId } from '@/server/functions/auth.server'
 import { validateInput } from '@/server/functions/validation-helpers'
 import { enqueueAssetDeletion } from '@/server/jobs/assets-jobs'
@@ -15,19 +16,17 @@ import { createUploadUrl, ensureBucket } from '@/server/storage/operations'
 import type { Course, UploadTarget } from '@/types'
 import { isThumbnailContentType, toFileExtension } from '@/utils/helpers'
 
-async function requireAuthoredCourse(courseId: number, userId: string): Promise<void> {
+async function requireEditableCourseById(courseId: number, userId: string): Promise<void> {
   const course = await db.query.courses.findFirst({
     where: eq(courses.id, courseId),
-    columns: { authorId: true },
+    columns: { authorId: true, status: true },
   })
 
   if (!course) {
     throw notFound()
   }
 
-  if (course.authorId !== userId) {
-    throw redirect({ to: '/courses' })
-  }
+  requireEditableCourse(course, userId)
 }
 
 const createThumbnailUploadUrlSchema = z.object({
@@ -48,7 +47,7 @@ export const createThumbnailUploadUrl = createServerFn({
   .handler(async ({ data }): Promise<UploadTarget> => {
     const userId = await requireUserId()
 
-    await requireAuthoredCourse(data.courseId, userId)
+    await requireEditableCourseById(data.courseId, userId)
     await ensureBucket(imageBucket)
 
     const extension = toFileExtension(data.fileName)
@@ -79,7 +78,7 @@ export const completeThumbnailUpload = createServerFn({
   .handler(async ({ data }): Promise<Course> => {
     const userId = await requireUserId()
 
-    await requireAuthoredCourse(data.courseId, userId)
+    await requireEditableCourseById(data.courseId, userId)
 
     return db.transaction(async (tx) => {
       const { course, replacedAssetId } = await attachThumbnail(tx, {

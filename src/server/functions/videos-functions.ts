@@ -1,4 +1,4 @@
-import { notFound, redirect } from '@tanstack/react-router'
+import { notFound } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
 import { eq } from 'drizzle-orm'
 import { z } from 'zod'
@@ -11,6 +11,7 @@ import {
 import { db } from '@/server/db/client'
 import { courses, lessons } from '@/server/db/schema'
 import { attachVideo } from '@/server/db/videos-helpers'
+import { requireEditableCourse } from '@/server/functions/access-helpers'
 import { requireUserId } from '@/server/functions/auth.server'
 import { validateInput } from '@/server/functions/validation-helpers'
 import { createUploadUrl, ensureBucket } from '@/server/storage/operations'
@@ -37,16 +38,14 @@ export const createVideoUploadUrl = createServerFn({
 
     const course = await db.query.courses.findFirst({
       where: eq(courses.id, data.courseId),
-      columns: { authorId: true },
+      columns: { authorId: true, status: true },
     })
 
     if (!course) {
       throw notFound()
     }
 
-    if (course.authorId !== userId) {
-      throw redirect({ to: '/courses' })
-    }
+    requireEditableCourse(course, userId)
 
     await ensureBucket(videoBucket)
 
@@ -100,7 +99,7 @@ export const completeVideoUpload = createServerFn({
       where: eq(lessons.id, data.lessonId),
       columns: { courseId: true },
       with: {
-        course: { columns: { authorId: true } },
+        course: { columns: { authorId: true, status: true } },
       },
     })
 
@@ -108,9 +107,7 @@ export const completeVideoUpload = createServerFn({
       throw notFound()
     }
 
-    if (lesson.course.authorId !== userId) {
-      throw redirect({ to: '/courses' })
-    }
+    requireEditableCourse(lesson.course, userId)
 
     return db.transaction((tx) => attachVideo(tx, { ...data, ownerId: userId }))
   })

@@ -1,4 +1,4 @@
-import { notFound, redirect } from '@tanstack/react-router'
+import { notFound } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
 import { and, desc, eq, isNull } from 'drizzle-orm'
 import { z } from 'zod'
@@ -7,6 +7,7 @@ import { recomputeCourseDuration } from '@/server/db/aggregates-helpers'
 import { db } from '@/server/db/client'
 import { setLessonOrder } from '@/server/db/lessons-helpers'
 import { assets, chapters, courses, lessons } from '@/server/db/schema'
+import { requireEditableCourse } from '@/server/functions/access-helpers'
 import { requireUserId } from '@/server/functions/auth.server'
 import { validateInput } from '@/server/functions/validation-helpers'
 import { enqueueAssetDeletion } from '@/server/jobs/assets-jobs'
@@ -33,16 +34,14 @@ export const createLesson = createServerFn({
 
     const course = await db.query.courses.findFirst({
       where: eq(courses.id, data.courseId),
-      columns: { authorId: true },
+      columns: { authorId: true, status: true },
     })
 
     if (!course) {
       throw notFound()
     }
 
-    if (course.authorId !== userId) {
-      throw redirect({ to: '/courses' })
-    }
+    requireEditableCourse(course, userId)
 
     const chapterId = data.chapterId ?? null
 
@@ -98,7 +97,7 @@ export const updateLessonTitle = createServerFn({
     const lesson = await db.query.lessons.findFirst({
       where: eq(lessons.id, data.id),
       with: {
-        course: { columns: { authorId: true } },
+        course: { columns: { authorId: true, status: true } },
       },
     })
 
@@ -106,9 +105,7 @@ export const updateLessonTitle = createServerFn({
       throw notFound()
     }
 
-    if (lesson.course.authorId !== userId) {
-      throw redirect({ to: '/courses' })
-    }
+    requireEditableCourse(lesson.course, userId)
 
     const [updated] = await db
       .update(lessons)
@@ -135,7 +132,7 @@ export const deleteLesson = createServerFn({
     const lesson = await db.query.lessons.findFirst({
       where: eq(lessons.id, data.id),
       with: {
-        course: { columns: { authorId: true } },
+        course: { columns: { authorId: true, status: true } },
         videoAsset: { columns: { id: true } },
       },
     })
@@ -144,9 +141,7 @@ export const deleteLesson = createServerFn({
       throw notFound()
     }
 
-    if (lesson.course.authorId !== userId) {
-      throw redirect({ to: '/courses' })
-    }
+    requireEditableCourse(lesson.course, userId)
 
     const video = lesson.videoAsset
 
@@ -189,16 +184,14 @@ export const reorderLessons = createServerFn({
 
     const course = await db.query.courses.findFirst({
       where: eq(courses.id, data.courseId),
-      columns: { authorId: true },
+      columns: { authorId: true, status: true },
     })
 
     if (!course) {
       throw notFound()
     }
 
-    if (course.authorId !== userId) {
-      throw redirect({ to: '/courses' })
-    }
+    requireEditableCourse(course, userId)
 
     await setLessonOrder(db, data.courseId, data.orders)
   })

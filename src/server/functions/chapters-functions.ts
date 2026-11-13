@@ -1,4 +1,4 @@
-import { notFound, redirect } from '@tanstack/react-router'
+import { notFound } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
 import { desc, eq } from 'drizzle-orm'
 import { z } from 'zod'
@@ -6,6 +6,7 @@ import { untitledChapterTitle } from '@/constants'
 import { removeChapter, setChapterOrder } from '@/server/db/chapters-helpers'
 import { db } from '@/server/db/client'
 import { chapters, courses } from '@/server/db/schema'
+import { requireEditableCourse } from '@/server/functions/access-helpers'
 import { requireUserId } from '@/server/functions/auth.server'
 import { validateInput } from '@/server/functions/validation-helpers'
 import type { Chapter } from '@/types'
@@ -30,16 +31,14 @@ export const createChapter = createServerFn({
 
     const course = await db.query.courses.findFirst({
       where: eq(courses.id, data.courseId),
-      columns: { authorId: true },
+      columns: { authorId: true, status: true },
     })
 
     if (!course) {
       throw notFound()
     }
 
-    if (course.authorId !== userId) {
-      throw redirect({ to: '/courses' })
-    }
+    requireEditableCourse(course, userId)
 
     const [last] = await db
       .select({ position: chapters.position })
@@ -79,7 +78,7 @@ export const updateChapter = createServerFn({
     const chapter = await db.query.chapters.findFirst({
       where: eq(chapters.id, data.id),
       with: {
-        course: { columns: { authorId: true } },
+        course: { columns: { authorId: true, status: true } },
       },
     })
 
@@ -87,9 +86,7 @@ export const updateChapter = createServerFn({
       throw notFound()
     }
 
-    if (chapter.course.authorId !== userId) {
-      throw redirect({ to: '/courses' })
-    }
+    requireEditableCourse(chapter.course, userId)
 
     const [updated] = await db
       .update(chapters)
@@ -117,7 +114,7 @@ export const deleteChapter = createServerFn({
       where: eq(chapters.id, data.id),
       columns: { id: true, courseId: true },
       with: {
-        course: { columns: { authorId: true } },
+        course: { columns: { authorId: true, status: true } },
       },
     })
 
@@ -125,9 +122,7 @@ export const deleteChapter = createServerFn({
       throw notFound()
     }
 
-    if (chapter.course.authorId !== userId) {
-      throw redirect({ to: '/courses' })
-    }
+    requireEditableCourse(chapter.course, userId)
 
     await removeChapter(db, chapter)
   })
@@ -148,16 +143,14 @@ export const reorderChapters = createServerFn({
 
     const course = await db.query.courses.findFirst({
       where: eq(courses.id, data.courseId),
-      columns: { authorId: true },
+      columns: { authorId: true, status: true },
     })
 
     if (!course) {
       throw notFound()
     }
 
-    if (course.authorId !== userId) {
-      throw redirect({ to: '/courses' })
-    }
+    requireEditableCourse(course, userId)
 
     await setChapterOrder(db, data.courseId, data.chapterIds)
   })
