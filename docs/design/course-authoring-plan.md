@@ -50,7 +50,7 @@ This plan builds the design in [`course-authoring-grill.md`](course-authoring-gr
 - [x] **6.2 Add `publishCourse`, `unpublishCourse`, `archiveCourse`**, with tests (Settled 13, 24, 39).
 - [x] **6.3 Sticky header** built from the editor's title row, keeping its centred title and back link, and adding status, Publish/Unpublish, the missing-video count and the free note (Settled 18, 32, 33).
 - [x] **6.4 Readiness checklist** atop the Lessons section, each item jumping to its lesson (Settled 14, 32).
-- [ ] **6.5 "Archive course"** in the header's overflow menu with confirmation (Settled 23).
+- [x] **6.5 "Archive course"** in the header's overflow menu with confirmation (Settled 23).
 - [ ] **6.6 Reject changes to archived courses on the server** (Settled 36). _Open:_ confirm the server enforces read-only, not only the UI.
 - [ ] **6.7 Read-only editor** for archived courses (Settled 36).
 - [ ] **6.8 `/mycourses`** lists archived courses last, dimmed, with "View" (Settled 40).

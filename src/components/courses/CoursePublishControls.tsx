@@ -2,6 +2,7 @@ import { Badge, Button, Flex, Link, Text } from '@chakra-ui/react'
 import { useRouter } from '@tanstack/react-router'
 import { useState } from 'react'
 import { LuTriangleAlert } from 'react-icons/lu'
+import CourseOverflowMenu from '@/components/courses/CourseOverflowMenu'
 import { showErrorToast } from '@/components/ui/AppToaster'
 import { readinessChecklistId } from '@/constants'
 import { publishCourse, unpublishCourse } from '@/server/functions/courses-functions'
@@ -73,6 +74,7 @@ export default function CoursePublishControls({
           {isDraft ? 'Publish' : 'Unpublish'}
         </Button>
       )}
+      {!isArchived && <CourseOverflowMenu course={course} />}
     </Flex>
   )
 }
