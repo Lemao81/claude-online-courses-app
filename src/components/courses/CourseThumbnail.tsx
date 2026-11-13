@@ -1,9 +1,9 @@
-import { AspectRatio, Button, Flex, Image, Stack, Text } from '@chakra-ui/react'
+import { Button, Flex, Stack, Text } from '@chakra-ui/react'
 import { useRouter } from '@tanstack/react-router'
 import { type ChangeEvent, useRef, useState } from 'react'
-import { LuImage, LuImageUp } from 'react-icons/lu'
+import { LuImageUp } from 'react-icons/lu'
+import CourseThumbnailImage from '@/components/courses/CourseThumbnailImage'
 import ErrorText from '@/components/ui/ErrorText'
-import IconTile from '@/components/ui/IconTile'
 import { thumbnailContentTypes } from '@/constants'
 import { maxThumbnailSizeBytes } from '@/constants/config'
 import { thumbnailSizeMessage, thumbnailTypeMessage } from '@/constants/error-messages'
@@ -79,24 +79,10 @@ export default function CourseThumbnail({
   return (
     <Stack gap="2" maxW="24rem">
       <Text textStyle="sectionLabel">Thumbnail</Text>
-      <AspectRatio ratio={16 / 9}>
-        {thumbnailUrl ? (
-          <Image src={thumbnailUrl} alt="Course thumbnail" objectFit="cover" borderRadius="card" />
-        ) : (
-          <Flex
-            direction="column"
-            align="center"
-            justify="center"
-            gap="2"
-            layerStyle="emptyStateCard"
-          >
-            <IconTile>
-              <LuImage size={16} />
-            </IconTile>
-            <Text textStyle="meta">JPEG, PNG or WebP, up to 5 MB</Text>
-          </Flex>
-        )}
-      </AspectRatio>
+      <CourseThumbnailImage
+        thumbnailUrl={thumbnailUrl}
+        placeholder="JPEG, PNG or WebP, up to 5 MB"
+      />
       <Flex justify="flex-start">
         <Button
           type="button"

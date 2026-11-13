@@ -16,7 +16,7 @@ export default function CourseReadinessChecklist({
   const readiness = getCourseReadiness(course)
   const readinessNote = toReadinessNote(readiness)
 
-  if (course.status === 'archived' || readinessNote === null) {
+  if (readinessNote === null) {
     return null
   }
 

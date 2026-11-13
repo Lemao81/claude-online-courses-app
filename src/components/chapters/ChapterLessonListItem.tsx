@@ -1,11 +1,9 @@
-import { Flex, Stack, Text } from '@chakra-ui/react'
-import { LuVideo } from 'react-icons/lu'
+import { Flex } from '@chakra-ui/react'
 import LessonMoveMenu from '@/components/lessons/LessonMoveMenu'
+import LessonSummary from '@/components/lessons/LessonSummary'
 import DragHandle from '@/components/ui/DragHandle'
-import IconTile from '@/components/ui/IconTile'
 import { useLessonSortable } from '@/hooks/use-lesson-sortable'
 import type { LessonVideo } from '@/types'
-import { formatDuration } from '@/utils/formatters'
 import { toLessonElementId } from '@/utils/outline-helpers'
 
 type ChapterLessonListItemProps = {
@@ -33,13 +31,7 @@ export default function ChapterLessonListItem({
     >
       <Flex align="center" gap="3" minW="0" flex="1">
         <DragHandle ref={handleRef} label={`Reorder ${lesson.title}`} />
-        <IconTile>
-          <LuVideo size={16} />
-        </IconTile>
-        <Stack gap="0.5" minW="0">
-          <Text textStyle="itemTitle">{lesson.title}</Text>
-          <Text textStyle="meta">{formatDuration(lesson.durationSec)}</Text>
-        </Stack>
+        <LessonSummary lesson={lesson} />
       </Flex>
       <LessonMoveMenu lesson={lesson} chapterId={chapterId} />
     </Flex>
