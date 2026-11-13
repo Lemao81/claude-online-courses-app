@@ -15,7 +15,7 @@ export default function CourseTitle({ course }: CourseTitleProps): React.JSX.Ele
   ].join(' · ')
 
   return (
-    <Stack gap="1" minW="0">
+    <Stack gap="1" minW="0" opacity={course.status === 'archived' ? '0.6' : undefined}>
       <Flex align="center" gap="2" minW="0">
         <Text textStyle="title">{course.title}</Text>
         <Badge variant={course.status}>{course.status}</Badge>

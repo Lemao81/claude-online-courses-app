@@ -53,7 +53,7 @@ This plan builds the design in [`course-authoring-grill.md`](course-authoring-gr
 - [x] **6.5 "Archive course"** in the header's overflow menu with confirmation (Settled 23).
 - [x] **6.6 Reject changes to archived courses on the server** (Settled 36). The server enforces read-only, not only the UI: every content mutation checks the course status together with its author in the existing ownership lookup, before writing. An edit already past that check when the archive commits may still land; locking the course row was judged not worth it.
 - [x] **6.7 Read-only editor** for archived courses (Settled 36).
-- [ ] **6.8 `/mycourses`** lists archived courses last, dimmed, with "View" (Settled 40).
+- [x] **6.8 `/mycourses`** lists archived courses last, dimmed, with "View" (Settled 40).
 
 ## Step 7 — Replacing a video
 

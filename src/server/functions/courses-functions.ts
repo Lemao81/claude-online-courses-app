@@ -1,7 +1,7 @@
 import { clerkClient } from '@clerk/tanstack-react-start/server'
 import { notFound, redirect } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
-import { desc, eq } from 'drizzle-orm'
+import { asc, desc, eq, sql } from 'drizzle-orm'
 import { z } from 'zod'
 import { imageDownloadUrlExpirySec } from '@/constants/config'
 import { db } from '@/server/db/client'
@@ -81,7 +81,7 @@ export const getAuthoredCourses = createServerFn({
 
   return db.query.courses.findMany({
     where: eq(courses.authorId, userId),
-    orderBy: desc(courses.updatedAt),
+    orderBy: [asc(sql`${courses.status} = 'archived'`), desc(courses.updatedAt)],
   })
 })
 
