@@ -31,7 +31,7 @@ export function useChapterEditorForm(chapter: Chapter | undefined): ChapterEdito
 }
 
 type ChapterEditorFormProps = {
-  form: ReturnType<typeof useChapterEditorForm>['form']
+  form: FormApi<ChapterEditorFormValues>
   formId: string
   autoSaveError: string
   focusTitle?: boolean

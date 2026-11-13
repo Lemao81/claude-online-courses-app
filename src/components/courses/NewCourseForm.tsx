@@ -34,7 +34,7 @@ export function useNewCourseForm(
 }
 
 type NewCourseFormProps = {
-  form: ReturnType<typeof useNewCourseForm>['form']
+  form: FormApi<NewCourseFormValues>
   submitError: string
 }
 

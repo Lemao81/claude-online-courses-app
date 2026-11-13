@@ -30,7 +30,7 @@ export function useCourseDetailsForm(course: Course): CourseDetailsFormState {
 }
 
 type CourseDetailsFormProps = {
-  form: ReturnType<typeof useCourseDetailsForm>['form']
+  form: FormApi<CourseDetailsFormValues>
   formId: string
   autoSaveError: string
   onAutoSave: (value: CourseDetailsFormValues) => void
