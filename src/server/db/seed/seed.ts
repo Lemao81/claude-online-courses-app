@@ -5,7 +5,7 @@ import { getTableConfig } from 'drizzle-orm/pg-core'
 import { reset, seed } from 'drizzle-seed'
 import { imageBucket, videoBucket } from '@/constants'
 import { db } from '@/server/db/client'
-import { assets, chapters, courses, lessons } from '@/server/db/schema'
+import { assets, chapters, courses, lessons, users } from '@/server/db/schema'
 import {
   type CourseSeed,
   courseSeeds,
@@ -16,6 +16,7 @@ import {
 } from '@/server/db/seed/seed-data'
 import { attachThumbnail } from '@/server/db/thumbnails-helpers'
 import type { Transaction } from '@/server/db/types'
+import { fetchUserValues, type UserValues } from '@/server/db/users-helpers'
 import { attachVideo } from '@/server/db/videos-helpers'
 import { storageClient } from '@/server/storage/client'
 import { ensureBucket, removeObject } from '@/server/storage/operations'
@@ -63,6 +64,34 @@ async function putObject(
   await storageClient.send(
     new PutObjectCommand({ Bucket: bucket, Key: objectName, Body: body, ContentType: contentType }),
   )
+}
+
+async function loadAuthorValues(ownerId: string): Promise<UserValues | null> {
+  try {
+    return await fetchUserValues(ownerId)
+  } catch (error) {
+    const reason = error instanceof Error ? error.message : String(error)
+
+    console.warn(`Could not load ${ownerId} from Clerk (${reason}), seeding it without a profile`)
+
+    return null
+  }
+}
+
+async function ensureAuthor(ownerId: string): Promise<boolean> {
+  const values = await loadAuthorValues(ownerId)
+
+  if (!values) {
+    await db.insert(users).values({ id: ownerId }).onConflictDoNothing()
+
+    return false
+  }
+
+  const { id, ...profile } = values
+
+  await db.insert(users).values(values).onConflictDoUpdate({ target: users.id, set: profile })
+
+  return true
 }
 
 async function removeStoredObjects(): Promise<number> {
@@ -253,6 +282,10 @@ async function seedCourse(
 }
 
 async function seedDatabase(ownerId: string): Promise<void> {
+  const hasProfile = await ensureAuthor(ownerId)
+
+  console.log(`Ensured author ${ownerId} ${hasProfile ? 'with' : 'without'} a Clerk profile`)
+
   const removedObjectCount = await removeStoredObjects()
 
   await reset(db, { courses, assets })
