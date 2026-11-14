@@ -1,4 +1,3 @@
-import { clerkClient } from '@clerk/tanstack-react-start/server'
 import { notFound, redirect } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
 import { asc, desc, eq, sql } from 'drizzle-orm'
@@ -14,6 +13,7 @@ import {
 } from '@/server/db/courses-helpers'
 import { courses, users } from '@/server/db/schema'
 import type { Transaction } from '@/server/db/types'
+import { fetchUserValues } from '@/server/db/users-helpers'
 import { requireEditableCourse } from '@/server/functions/access-helpers'
 import { requireUserId } from '@/server/functions/auth.server'
 import { validateInput } from '@/server/functions/validation-helpers'
@@ -32,17 +32,9 @@ const createCourseSchema = z.object({
 type CreateCourseInput = z.input<typeof createCourseSchema>
 
 async function ensureAuthor(userId: string): Promise<void> {
-  const user = await clerkClient().users.getUser(userId)
-
   await db
     .insert(users)
-    .values({
-      id: userId,
-      email: user.primaryEmailAddress?.emailAddress ?? null,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      imageUrl: user.imageUrl,
-    })
+    .values(await fetchUserValues(userId))
     .onConflictDoNothing()
 }
 
