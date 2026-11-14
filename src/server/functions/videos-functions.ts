@@ -14,6 +14,7 @@ import { attachVideo } from '@/server/db/videos-helpers'
 import { requireEditableCourse } from '@/server/functions/access-helpers'
 import { requireUserId } from '@/server/functions/auth.server'
 import { validateInput } from '@/server/functions/validation-helpers'
+import { enqueueAssetDeletion } from '@/server/jobs/assets-jobs'
 import { createUploadUrl, ensureBucket } from '@/server/storage/operations'
 import type { Lesson, UploadTarget } from '@/types'
 import { toFileExtension } from '@/utils/helpers'
@@ -109,5 +110,16 @@ export const completeVideoUpload = createServerFn({
 
     requireEditableCourse(lesson.course, userId)
 
-    return db.transaction((tx) => attachVideo(tx, { ...data, ownerId: userId }))
+    return db.transaction(async (tx) => {
+      const { lesson: updated, replacedAssetId } = await attachVideo(tx, {
+        ...data,
+        ownerId: userId,
+      })
+
+      if (replacedAssetId !== null) {
+        await enqueueAssetDeletion(tx, replacedAssetId)
+      }
+
+      return updated
+    })
   })

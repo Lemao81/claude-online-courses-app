@@ -43,7 +43,13 @@ describe('attachVideo', () => {
 
       await putVideo(objectName)
 
-      const lesson = await attachVideo(tx, { ownerId, courseId, lessonId, objectName, ...metadata })
+      const { lesson, replacedAssetId } = await attachVideo(tx, {
+        ownerId,
+        courseId,
+        lessonId,
+        objectName,
+        ...metadata,
+      })
 
       const [asset] = await tx
         .select({
@@ -59,6 +65,7 @@ describe('attachVideo', () => {
         .where(eq(assets.objectName, objectName))
 
       expect(lesson).toMatchObject({ videoAssetId: asset.id, durationSec: 90 })
+      expect(replacedAssetId).toBeNull()
       expect(asset).toMatchObject({
         kind: 'video',
         contentType: 'video/mp4',
@@ -124,19 +131,50 @@ describe('attachVideo', () => {
       expect(course.durationSec).toBe(135)
     }))
 
-  it('rejects a lesson that already has a video', () =>
+  it('replaces the video and soft-deletes the old one', () =>
     withRollback(async (tx) => {
       const ownerId = await insertUser(tx)
       const { id: courseId } = await insertCourse(tx, { authorId: ownerId })
-      const video = await insertAsset(tx, { ownerId })
-      const { id: lessonId } = await insertLesson(tx, { courseId, videoAssetId: video.id })
+      const oldVideo = await insertAsset(tx, { ownerId })
+      const { id: lessonId } = await insertLesson(tx, {
+        courseId,
+        videoAssetId: oldVideo.id,
+        durationSec: 30,
+      })
+
       const objectName = toObjectName(ownerId, courseId)
 
       await putVideo(objectName)
 
-      await expect(
-        attachVideo(tx, { ownerId, courseId, lessonId, objectName, ...metadata }),
-      ).rejects.toThrow('This lesson already has a video')
+      const { lesson, replacedAssetId } = await attachVideo(tx, {
+        ownerId,
+        courseId,
+        lessonId,
+        objectName,
+        ...metadata,
+      })
+
+      const videos = await tx
+        .select({ id: assets.id, deletedAt: assets.deletedAt })
+        .from(assets)
+        .where(eq(assets.ownerId, ownerId))
+
+      const [course] = await tx
+        .select({ durationSec: courses.durationSec })
+        .from(courses)
+        .where(eq(courses.id, courseId))
+
+      expect(replacedAssetId).toBe(oldVideo.id)
+      expect(lesson).toMatchObject({ id: lessonId, durationSec: 90 })
+      expect(lesson.videoAssetId).not.toBe(oldVideo.id)
+      expect(videos).toEqual(
+        expect.arrayContaining([
+          { id: oldVideo.id, deletedAt: expect.any(Date) },
+          { id: lesson.videoAssetId, deletedAt: null },
+        ]),
+      )
+
+      expect(course.durationSec).toBe(90)
     }))
 
   it('rejects a lesson of another course', () =>

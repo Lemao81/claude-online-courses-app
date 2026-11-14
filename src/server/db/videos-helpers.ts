@@ -13,7 +13,12 @@ type VideoUpload = VideoMetadata & {
   objectName: string
 }
 
-export async function attachVideo(tx: Transaction, upload: VideoUpload): Promise<Lesson> {
+export type VideoReplacement = {
+  lesson: Lesson
+  replacedAssetId: number | null
+}
+
+export async function attachVideo(tx: Transaction, upload: VideoUpload): Promise<VideoReplacement> {
   const [lesson] = await tx
     .select({ courseId: lessons.courseId, videoAssetId: lessons.videoAssetId })
     .from(lessons)
@@ -22,10 +27,6 @@ export async function attachVideo(tx: Transaction, upload: VideoUpload): Promise
 
   if (!lesson || lesson.courseId !== upload.courseId) {
     throw new Error('The lesson no longer exists')
-  }
-
-  if (lesson.videoAssetId !== null) {
-    throw new Error('This lesson already has a video')
   }
 
   if (!upload.objectName.startsWith(`${upload.ownerId}/${upload.courseId}/`)) {
@@ -61,7 +62,13 @@ export async function attachVideo(tx: Transaction, upload: VideoUpload): Promise
     .where(eq(lessons.id, upload.lessonId))
     .returning()
 
+  const replacedAssetId = lesson.videoAssetId
+
+  if (replacedAssetId !== null) {
+    await tx.update(assets).set({ deletedAt: new Date() }).where(eq(assets.id, replacedAssetId))
+  }
+
   await recomputeCourseDuration(tx, upload.courseId)
 
-  return updated
+  return { lesson: updated, replacedAssetId }
 }
