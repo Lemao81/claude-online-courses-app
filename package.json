@@ -26,7 +26,7 @@
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
-    "db:seed": "tsx --env-file=.env.local src/server/db/seed.ts",
+    "db:seed": "tsx --env-file=.env.local src/server/db/seed/seed.ts",
     "db:pull": "drizzle-kit pull",
     "db:studio": "drizzle-kit studio",
     "chakra:typegen": "chakra typegen src/theme/index.ts --strict --tsconfig tsconfig.json",
