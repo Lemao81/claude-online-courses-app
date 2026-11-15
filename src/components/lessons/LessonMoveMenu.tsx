@@ -38,6 +38,7 @@ export default function LessonMoveMenu({
             ref={triggerRef}
             size="sm"
             variant="quiet"
+            _icon={{ boxSize: '5' }}
             aria-label={`Move ${lesson.title} to…`}
           >
             <LuFolderInput aria-hidden="true" />

@@ -68,6 +68,7 @@ export default function LessonVideoButton({
         <IconButton
           size="sm"
           variant="quiet"
+          _icon={{ boxSize: '5' }}
           aria-label={`${label} of ${lesson.title}`}
           loading={isUploading}
           onClick={() => inputRef.current?.click()}

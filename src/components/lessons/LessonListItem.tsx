@@ -72,7 +72,7 @@ export default function LessonListItem({
       <Flex align="center" gap="3" minW="0" flex="1">
         <DragHandle ref={handleRef} label={`Reorder ${lesson.title}`} />
         <IconTile>
-          <LuVideo size={16} />
+          <LuVideo size={20} />
         </IconTile>
         <Stack gap="0.5" minW="0" flex="1">
           <EditableText value={lesson.title} defaultEdit={isNew} onSubmit={handleTitleSubmit} />
@@ -88,6 +88,7 @@ export default function LessonListItem({
         <CloseButton
           size="sm"
           variant="quiet"
+          _icon={{ boxSize: '5' }}
           aria-label={`Remove ${lesson.title}`}
           onClick={handleRemove}
         />

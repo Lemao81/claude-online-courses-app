@@ -12,7 +12,7 @@ export default function LessonSummary({ lesson }: LessonSummaryProps): React.JSX
   return (
     <>
       <IconTile>
-        <LuVideo size={16} />
+        <LuVideo size={20} />
       </IconTile>
       <Stack gap="0.5" minW="0">
         <Text textStyle="itemTitle">{lesson.title}</Text>

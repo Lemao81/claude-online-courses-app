@@ -8,7 +8,7 @@ type DragHandleProps = {
 
 export default function DragHandle({ label, ref }: DragHandleProps): React.JSX.Element {
   return (
-    <IconButton ref={ref} size="sm" variant="grip" aria-label={label}>
+    <IconButton ref={ref} size="sm" variant="grip" _icon={{ boxSize: '5' }} aria-label={label}>
       <LuGripVertical aria-hidden="true" />
     </IconButton>
   )
