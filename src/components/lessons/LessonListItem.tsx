@@ -9,6 +9,7 @@ import DragHandle from '@/components/ui/DragHandle'
 import EditableText from '@/components/ui/EditableText'
 import ErrorText from '@/components/ui/ErrorText'
 import IconTile from '@/components/ui/IconTile'
+import Tooltip from '@/components/ui/Tooltip'
 import { useLessonSortable } from '@/hooks/use-lesson-sortable'
 import { deleteLesson, updateLessonTitle } from '@/server/functions/lessons-functions'
 import type { LessonVideo } from '@/types'
@@ -83,12 +84,14 @@ export default function LessonListItem({
       </Flex>
       <LessonVideoButton courseId={courseId} lesson={lesson} />
       <LessonMoveMenu lesson={lesson} chapterId={chapterId} />
-      <CloseButton
-        size="sm"
-        variant="quiet"
-        aria-label={`Remove ${lesson.title}`}
-        onClick={handleRemove}
-      />
+      <Tooltip content="Remove" showArrow>
+        <CloseButton
+          size="sm"
+          variant="quiet"
+          aria-label={`Remove ${lesson.title}`}
+          onClick={handleRemove}
+        />
+      </Tooltip>
       <ConfirmDialog
         open={isRemoveOpen}
         onOpenChange={setIsRemoveOpen}

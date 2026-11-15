@@ -1,6 +1,7 @@
 import { IconButton, Menu, Portal } from '@chakra-ui/react'
-import { useEffect, useRef } from 'react'
+import { useEffect, useId, useRef } from 'react'
 import { LuFolderInput } from 'react-icons/lu'
+import Tooltip from '@/components/ui/Tooltip'
 import { useLessonMove } from '@/hooks/use-lesson-move'
 import type { LessonVideo } from '@/types'
 import { toLessonGroup } from '@/utils/outline-helpers'
@@ -16,6 +17,7 @@ export default function LessonMoveMenu({
 }: LessonMoveMenuProps): React.JSX.Element | null {
   const { targets, moveLesson, claimFocus } = useLessonMove()
   const triggerRef = useRef<HTMLButtonElement>(null)
+  const triggerId = useId()
 
   useEffect(() => {
     if (claimFocus(lesson.id)) {
@@ -29,17 +31,19 @@ export default function LessonMoveMenu({
   }
 
   return (
-    <Menu.Root>
-      <Menu.Trigger asChild>
-        <IconButton
-          ref={triggerRef}
-          size="sm"
-          variant="quiet"
-          aria-label={`Move ${lesson.title} to…`}
-        >
-          <LuFolderInput aria-hidden="true" />
-        </IconButton>
-      </Menu.Trigger>
+    <Menu.Root ids={{ trigger: triggerId }}>
+      <Tooltip ids={{ trigger: triggerId }} content="Move to…" showArrow>
+        <Menu.Trigger asChild>
+          <IconButton
+            ref={triggerRef}
+            size="sm"
+            variant="quiet"
+            aria-label={`Move ${lesson.title} to…`}
+          >
+            <LuFolderInput aria-hidden="true" />
+          </IconButton>
+        </Menu.Trigger>
+      </Tooltip>
       <Portal>
         <Menu.Positioner>
           <Menu.Content>
