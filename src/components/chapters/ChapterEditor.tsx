@@ -9,6 +9,7 @@ import AddLessonButton from '@/components/lessons/AddLessonButton'
 import LessonList from '@/components/lessons/LessonList'
 import DragHandle from '@/components/ui/DragHandle'
 import VideoUpload from '@/components/videos/VideoUpload'
+import { useEscapeKey } from '@/hooks/use-escape-key'
 import { updateChapter } from '@/server/functions/chapters-functions'
 import type { Chapter, LessonVideo } from '@/types'
 
@@ -36,6 +37,8 @@ export default function ChapterEditor({
   })
 
   const { form, formId } = useChapterEditorForm(chapter)
+
+  useEscapeKey(onClose)
 
   async function handleAutoSave(value: ChapterEditorFormValues): Promise<void> {
     if (
