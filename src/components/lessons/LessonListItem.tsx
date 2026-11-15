@@ -3,6 +3,7 @@ import { useRouter } from '@tanstack/react-router'
 import { useState } from 'react'
 import { LuVideo } from 'react-icons/lu'
 import LessonMoveMenu from '@/components/lessons/LessonMoveMenu'
+import LessonVideoButton from '@/components/lessons/LessonVideoButton'
 import ConfirmDialog from '@/components/ui/ConfirmDialog'
 import DragHandle from '@/components/ui/DragHandle'
 import EditableText from '@/components/ui/EditableText'
@@ -15,6 +16,7 @@ import { formatDuration } from '@/utils/formatters'
 import { toLessonElementId } from '@/utils/outline-helpers'
 
 type LessonListItemProps = {
+  courseId: number
   lesson: LessonVideo
   index: number
   chapterId: number | null
@@ -22,6 +24,7 @@ type LessonListItemProps = {
 }
 
 export default function LessonListItem({
+  courseId,
   lesson,
   index,
   chapterId,
@@ -78,6 +81,7 @@ export default function LessonListItem({
           <ErrorText message={titleError} css={{ px: '0.6rem' }} />
         </Stack>
       </Flex>
+      <LessonVideoButton courseId={courseId} lesson={lesson} />
       <LessonMoveMenu lesson={lesson} chapterId={chapterId} />
       <CloseButton
         size="sm"

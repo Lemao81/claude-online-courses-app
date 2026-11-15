@@ -13,7 +13,7 @@ import { updateChapter } from '@/server/functions/chapters-functions'
 import type { Chapter, LessonVideo } from '@/types'
 
 type ChapterEditorProps = {
-  chapter?: Chapter
+  chapter: Chapter
   lessons?: LessonVideo[]
   focusTitle?: boolean
   handleRef: (element: Element | null) => void
@@ -31,17 +31,13 @@ export default function ChapterEditor({
   const [autoSaveError, setAutoSaveError] = useState('')
   const [newLessonId, setNewLessonId] = useState<number>()
   const savedValues = useRef<ChapterEditorFormValues>({
-    title: chapter?.title ?? '',
-    description: chapter?.description ?? '',
+    title: chapter.title,
+    description: chapter.description,
   })
 
   const { form, formId } = useChapterEditorForm(chapter)
 
   async function handleAutoSave(value: ChapterEditorFormValues): Promise<void> {
-    if (!chapter) {
-      return
-    }
-
     if (
       value.title === savedValues.current.title &&
       value.description === savedValues.current.description
@@ -67,7 +63,7 @@ export default function ChapterEditor({
   return (
     <Stack gap="5" layerStyle="chapterPanel">
       <Flex align="flex-start" gap="4">
-        <DragHandle ref={handleRef} label={`Reorder ${chapter?.title ?? 'chapter'}`} />
+        <DragHandle ref={handleRef} label={`Reorder ${chapter.title}`} />
         <Box flex="1" minW="0">
           <ChapterEditorForm
             form={form}
@@ -86,23 +82,26 @@ export default function ChapterEditor({
       </Flex>
       <Stack gap="2">
         <Text textStyle="sectionLabel">Lesson Videos</Text>
-        <LessonList chapterId={chapter?.id ?? null} lessons={lessons} newLessonId={newLessonId} />
-        {chapter && (
-          <Flex align="center" justify="center" gap="4" wrap="wrap" w="full" maxW="32rem" mx="auto">
-            <AddLessonButton
+        <LessonList
+          courseId={chapter.courseId}
+          chapterId={chapter.id}
+          lessons={lessons}
+          newLessonId={newLessonId}
+        />
+        <Flex align="center" justify="center" gap="4" wrap="wrap" w="full" maxW="32rem" mx="auto">
+          <AddLessonButton
+            courseId={chapter.courseId}
+            chapterId={chapter.id}
+            onAdded={(l) => setNewLessonId(l.id)}
+          />
+          <Box flex="1" minW="16rem">
+            <VideoUpload
               courseId={chapter.courseId}
               chapterId={chapter.id}
               onAdded={(l) => setNewLessonId(l.id)}
             />
-            <Box flex="1" minW="16rem">
-              <VideoUpload
-                courseId={chapter.courseId}
-                chapterId={chapter.id}
-                onAdded={(l) => setNewLessonId(l.id)}
-              />
-            </Box>
-          </Flex>
-        )}
+          </Box>
+        </Flex>
       </Stack>
     </Stack>
   )

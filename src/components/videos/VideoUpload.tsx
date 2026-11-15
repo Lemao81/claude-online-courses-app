@@ -6,15 +6,10 @@ import ErrorText from '@/components/ui/ErrorText'
 import VideoDropZone from '@/components/videos/VideoDropZone'
 import VideoFileList from '@/components/videos/VideoFileList'
 import { createLesson } from '@/server/functions/lessons-functions'
-import { completeVideoUpload, createVideoUploadUrl } from '@/server/functions/videos-functions'
+import { completeVideoUpload } from '@/server/functions/videos-functions'
 import type { Lesson } from '@/types'
-import {
-  isVideoFile,
-  probeVideoMetadata,
-  toFileBaseName,
-  toFileKey,
-  uploadFile,
-} from '@/utils/helpers'
+import { toFileBaseName, toFileKey } from '@/utils/helpers'
+import { isVideoFile, uploadVideoFile } from '@/utils/video-helpers'
 
 type VideoUploadProps = {
   courseId: number
@@ -50,28 +45,12 @@ export default function VideoUpload({
   }
 
   async function uploadVideo(file: File): Promise<Lesson> {
-    const [target, metadata] = await Promise.all([
-      createVideoUploadUrl({
-        data: { courseId, fileName: file.name, contentType: file.type },
-      }),
-      probeVideoMetadata(file),
-    ])
-
-    await uploadFile(file, target.uploadUrl, target.contentType)
+    const video = await uploadVideoFile(courseId, file)
     const lesson = await createLesson({
       data: { courseId, chapterId, title: toFileBaseName(file.name) },
     })
 
-    await completeVideoUpload({
-      data: {
-        courseId,
-        lessonId: lesson.id,
-        objectName: target.objectName,
-        durationSec: metadata.durationSec,
-        width: metadata.width,
-        height: metadata.height,
-      },
-    })
+    await completeVideoUpload({ data: { courseId, lessonId: lesson.id, ...video } })
 
     return lesson
   }

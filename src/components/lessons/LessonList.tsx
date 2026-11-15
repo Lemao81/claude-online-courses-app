@@ -4,12 +4,14 @@ import { useLessonDroppable } from '@/hooks/use-lesson-droppable'
 import type { LessonVideo } from '@/types'
 
 type LessonListProps = {
+  courseId: number
   chapterId: number | null
   lessons: LessonVideo[]
   newLessonId?: number
 }
 
 export default function LessonList({
+  courseId,
   chapterId,
   lessons,
   newLessonId,
@@ -26,6 +28,7 @@ export default function LessonList({
         lessons.map((l, i) => (
           <LessonListItem
             key={l.id}
+            courseId={courseId}
             lesson={l}
             index={i}
             chapterId={chapterId}

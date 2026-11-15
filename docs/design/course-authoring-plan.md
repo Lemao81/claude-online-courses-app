@@ -58,4 +58,4 @@ This plan builds the design in [`course-authoring-grill.md`](course-authoring-gr
 ## Step 7 — Replacing a video
 
 - [x] **7.1 Replace a lesson's video on the server**, soft-deleting and enqueuing the old asset (Settled 25).
-- [ ] **7.2 "Replace video"** action on the lesson row, keeping the old video if the upload fails (Settled 25).
+- [x] **7.2 "Replace video"** action on the lesson row, keeping the old video if the upload fails (Settled 25).
