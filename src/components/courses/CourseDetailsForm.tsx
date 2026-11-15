@@ -2,14 +2,7 @@ import { Field, Input, InputGroup, Stack, Textarea } from '@chakra-ui/react'
 import { useForm } from '@tanstack/react-form'
 import ErrorText from '@/components/ui/ErrorText'
 import { autoSaveDebounceMs } from '@/constants/config'
-import type { Course, FormApi } from '@/types'
-
-export type CourseDetailsFormValues = {
-  title: string
-  subtitle: string
-  description: string
-  price: string
-}
+import type { Course, CourseDetailsFormValues, FormApi } from '@/types'
 
 type CourseDetailsFormState = {
   form: FormApi<CourseDetailsFormValues>

@@ -1,7 +1,7 @@
 import { courseLevelGroup } from '@/constants'
 import type { CourseOutline, LessonOrder, LessonVideo } from '@/types'
 
-export type LessonGroups = Record<string, LessonVideo[]>
+type LessonGroups = Record<string, LessonVideo[]>
 
 export function toLessonGroup(chapterId: number | null): string {
   return chapterId === null ? courseLevelGroup : `chapter-${chapterId}`

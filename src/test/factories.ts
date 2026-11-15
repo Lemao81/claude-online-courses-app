@@ -1,5 +1,5 @@
 import { assets, chapters, courses, enrollments, lessons, users } from '@/server/db/schema'
-import type { Transaction } from '@/server/db/types'
+import type { Transaction } from '@/server/types'
 import type { Asset, Chapter, Course, Enrollment, Lesson } from '@/types'
 
 type CourseValues = Partial<typeof courses.$inferInsert>

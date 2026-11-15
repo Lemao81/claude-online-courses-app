@@ -7,19 +7,17 @@ import { imageBucket, videoBucket } from '@/constants'
 import { db } from '@/server/db/client'
 import { assets, chapters, courses, lessons, users } from '@/server/db/schema'
 import {
-  type CourseSeed,
   courseSeeds,
   fillerCoursePrices,
   fillerCourseSubtitles,
   fillerCourseTitles,
-  type LessonSeed,
 } from '@/server/db/seed/seed-data'
 import { attachThumbnail } from '@/server/db/thumbnails-helpers'
-import type { Transaction } from '@/server/db/types'
-import { fetchUserValues, type UserValues } from '@/server/db/users-helpers'
+import { fetchUserValues } from '@/server/db/users-helpers'
 import { attachVideo } from '@/server/db/videos-helpers'
 import { storageClient } from '@/server/storage/client'
 import { ensureBucket, removeObject } from '@/server/storage/operations'
+import type { CourseSeed, LessonSeed, Transaction, UserValues } from '@/server/types'
 import type { CourseStatus } from '@/types'
 
 const authorId = process.env.SEED_AUTHOR_ID

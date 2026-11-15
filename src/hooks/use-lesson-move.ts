@@ -1,13 +1,9 @@
 'use client'
 
 import { createContext, useContext } from 'react'
+import type { LessonMoveTarget } from '@/types'
 
-export type LessonMoveTarget = {
-  chapterId: number | null
-  label: string
-}
-
-export type LessonMoveContextValue = {
+type LessonMoveContextValue = {
   targets: LessonMoveTarget[]
   moveLesson: (lessonId: number, chapterId: number | null) => Promise<void>
   claimFocus: (lessonId: number) => boolean

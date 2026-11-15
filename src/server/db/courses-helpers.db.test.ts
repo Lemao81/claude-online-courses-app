@@ -8,7 +8,7 @@ import {
   setCoursePublished,
 } from '@/server/db/courses-helpers'
 import { assets, courses, lessons } from '@/server/db/schema'
-import type { Transaction } from '@/server/db/types'
+import type { Transaction } from '@/server/types'
 import { withRollback } from '@/test/db'
 import {
   insertAsset,

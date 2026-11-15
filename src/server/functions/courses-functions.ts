@@ -12,13 +12,13 @@ import {
   setCoursePublished,
 } from '@/server/db/courses-helpers'
 import { courses, users } from '@/server/db/schema'
-import type { Transaction } from '@/server/db/types'
 import { fetchUserValues } from '@/server/db/users-helpers'
 import { requireEditableCourse } from '@/server/functions/access-helpers'
 import { requireUserId } from '@/server/functions/auth.server'
 import { validateInput } from '@/server/functions/validation-helpers'
 import { enqueueAssetDeletion } from '@/server/jobs/assets-jobs'
 import { createDownloadUrl } from '@/server/storage/operations'
+import type { Transaction } from '@/server/types'
 import type { Course, CourseOutline } from '@/types'
 
 const courseIdSchema = z.number().int('Course id is required')

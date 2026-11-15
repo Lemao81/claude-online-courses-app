@@ -2,12 +2,9 @@ import { Button, CloseButton, Dialog, Portal } from '@chakra-ui/react'
 import { useNavigate } from '@tanstack/react-router'
 import { useState } from 'react'
 import { LuPlus } from 'react-icons/lu'
-import NewCourseForm, {
-  type NewCourseFormValues,
-  useNewCourseForm,
-} from '@/components/courses/NewCourseForm'
+import NewCourseForm, { useNewCourseForm } from '@/components/courses/NewCourseForm'
 import { createCourse } from '@/server/functions/courses-functions'
-import type { Course } from '@/types'
+import type { Course, NewCourseFormValues } from '@/types'
 
 export default function NewCourseDialog(): React.JSX.Element {
   const navigate = useNavigate()

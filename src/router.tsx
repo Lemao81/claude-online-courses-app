@@ -2,10 +2,7 @@ import { QueryClient } from '@tanstack/react-query'
 import { createRouter as createTanStackRouter, type Router } from '@tanstack/react-router'
 import { setupRouterSsrQueryIntegration } from '@tanstack/react-router-ssr-query'
 import { routeTree } from '@/routeTree.gen'
-
-export type AppRouterContext = {
-  queryClient: QueryClient
-}
+import type { AppRouterContext } from '@/types'
 
 export function getRouter(): Router<typeof routeTree> {
   const context: AppRouterContext = {

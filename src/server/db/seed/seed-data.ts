@@ -1,32 +1,4 @@
-import type { CourseStatus } from '@/types'
-
-export type LessonSeed = {
-  title: string
-  durationSec: number
-  isFreePreview?: boolean
-}
-
-export type ChapterSeed = {
-  title: string
-  description: string
-  lessons: LessonSeed[]
-}
-
-export type CourseSeed = {
-  title: string
-  subtitle: string
-  description: string
-  status: CourseStatus
-  price: string
-  rating: string | null
-  ratingCount: number
-  publishedAt: Date | null
-  createdAt: Date
-  updatedAt: Date
-  thumbnailFile: string
-  lessons: LessonSeed[]
-  chapters: ChapterSeed[]
-}
+import type { CourseSeed } from '@/server/types'
 
 export const fillerCourseTitles = [
   'React 19 Patterns in Practice',

@@ -1,13 +1,10 @@
 import { Heading, Stack } from '@chakra-ui/react'
 import { useRouter } from '@tanstack/react-router'
 import { useRef, useState } from 'react'
-import CourseDetailsForm, {
-  type CourseDetailsFormValues,
-  useCourseDetailsForm,
-} from '@/components/courses/CourseDetailsForm'
+import CourseDetailsForm, { useCourseDetailsForm } from '@/components/courses/CourseDetailsForm'
 import CourseThumbnail from '@/components/courses/CourseThumbnail'
 import { updateCourse } from '@/server/functions/courses-functions'
-import type { Course } from '@/types'
+import type { Course, CourseDetailsFormValues } from '@/types'
 
 type CourseDetailsSectionProps = {
   course: Course

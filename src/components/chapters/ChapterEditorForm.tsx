@@ -3,12 +3,7 @@ import { useForm } from '@tanstack/react-form'
 import { useEffect, useRef } from 'react'
 import ErrorText from '@/components/ui/ErrorText'
 import { autoSaveDebounceMs } from '@/constants/config'
-import type { Chapter, FormApi } from '@/types'
-
-export type ChapterEditorFormValues = {
-  title: string
-  description: string
-}
+import type { Chapter, ChapterEditorFormValues, FormApi } from '@/types'
 
 function toFormId(chapter?: Chapter): string {
   return `edit-chapter-form-${chapter?.id ?? 'new'}`

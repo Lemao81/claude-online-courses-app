@@ -3,6 +3,7 @@ import type {
   FormValidateOrFn,
   ReactFormExtendedApi,
 } from '@tanstack/react-form'
+import type { QueryClient } from '@tanstack/react-query'
 import type { assets, chapters, courses, enrollments, lessons } from '@/server/db/schema'
 
 export type Course = typeof courses.$inferSelect
@@ -86,3 +87,30 @@ export type FormApi<T> = ReactFormExtendedApi<
   Async<T>,
   unknown
 >
+
+export type ChapterEditorFormValues = {
+  title: string
+  description: string
+}
+
+export type CourseDetailsFormValues = {
+  title: string
+  subtitle: string
+  description: string
+  price: string
+}
+
+export type NewCourseFormValues = {
+  title: string
+  subtitle: string
+  description: string
+}
+
+export type LessonMoveTarget = {
+  chapterId: number | null
+  label: string
+}
+
+export type AppRouterContext = {
+  queryClient: QueryClient
+}

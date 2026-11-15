@@ -2,8 +2,8 @@ import { eq } from 'drizzle-orm'
 import { videoBucket } from '@/constants'
 import { recomputeCourseDuration } from '@/server/db/aggregates-helpers'
 import { assets, lessons } from '@/server/db/schema'
-import type { Transaction } from '@/server/db/types'
 import { statObject } from '@/server/storage/operations'
+import type { Transaction } from '@/server/types'
 import type { Lesson, VideoMetadata } from '@/types'
 
 type VideoUpload = VideoMetadata & {
@@ -13,7 +13,7 @@ type VideoUpload = VideoMetadata & {
   objectName: string
 }
 
-export type VideoReplacement = {
+type VideoReplacement = {
   lesson: Lesson
   replacedAssetId: number | null
 }

@@ -1,6 +1,6 @@
 import { TransactionRollbackError } from 'drizzle-orm'
 import { db } from '@/server/db/client'
-import type { Transaction } from '@/server/db/types'
+import type { Transaction } from '@/server/types'
 
 export async function withRollback(run: (tx: Transaction) => Promise<void>): Promise<void> {
   try {

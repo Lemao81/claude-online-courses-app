@@ -1,13 +1,8 @@
 import { and, asc, eq, inArray, isNotNull, isNull } from 'drizzle-orm'
 import { assets, chapters, courses, enrollments, lessons } from '@/server/db/schema'
-import type { Database, Transaction } from '@/server/db/types'
+import type { Database, ThumbnailReplacement, Transaction } from '@/server/types'
 import type { AssetStatus, Course, CourseOutline, CourseStatus, LessonVideo } from '@/types'
 import { getCourseReadiness, isCourseReady } from '@/utils/readiness-helpers'
-
-export type ThumbnailReplacement = {
-  course: Course
-  replacedAssetId: number | null
-}
 
 type OutlineLessonRow = Omit<LessonVideo, 'videoStatus'> & {
   videoAsset: { status: AssetStatus } | null

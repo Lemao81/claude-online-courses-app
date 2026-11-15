@@ -1,7 +1,7 @@
 import { type Dispatch, type ReactNode, type SetStateAction, useCallback, useRef } from 'react'
-import { LessonMoveContext, type LessonMoveTarget } from '@/hooks/use-lesson-move'
+import { LessonMoveContext } from '@/hooks/use-lesson-move'
 import { useSaveLessonOrders } from '@/hooks/use-save-lesson-orders'
-import type { CourseOutline } from '@/types'
+import type { CourseOutline, LessonMoveTarget } from '@/types'
 import { moveLessonToParent } from '@/utils/outline-helpers'
 
 type LessonMoveProviderProps = {

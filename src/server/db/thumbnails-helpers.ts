@@ -1,10 +1,10 @@
 import { imageBucket } from '@/constants'
 import { maxThumbnailSizeBytes } from '@/constants/config'
 import { thumbnailSizeMessage, thumbnailTypeMessage } from '@/constants/error-messages'
-import { replaceCourseThumbnail, type ThumbnailReplacement } from '@/server/db/courses-helpers'
+import { replaceCourseThumbnail } from '@/server/db/courses-helpers'
 import { assets } from '@/server/db/schema'
-import type { Transaction } from '@/server/db/types'
 import { removeObject, statObject } from '@/server/storage/operations'
+import type { ThumbnailReplacement, Transaction } from '@/server/types'
 import { isThumbnailContentType } from '@/utils/helpers'
 
 type ThumbnailUpload = {

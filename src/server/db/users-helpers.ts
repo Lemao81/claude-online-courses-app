@@ -1,7 +1,5 @@
 import { clerkClient } from '@clerk/tanstack-react-start/server'
-import type { users } from '@/server/db/schema'
-
-export type UserValues = typeof users.$inferInsert
+import type { UserValues } from '@/server/types'
 
 export async function fetchUserValues(userId: string): Promise<UserValues> {
   const user = await clerkClient().users.getUser(userId)

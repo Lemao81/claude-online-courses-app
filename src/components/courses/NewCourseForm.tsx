@@ -1,15 +1,9 @@
 import { Field, Input, Stack, Textarea } from '@chakra-ui/react'
 import { useForm } from '@tanstack/react-form'
 import ErrorText from '@/components/ui/ErrorText'
-import type { FormApi } from '@/types'
+import type { FormApi, NewCourseFormValues } from '@/types'
 
 const formId = 'new-course-form'
-
-export type NewCourseFormValues = {
-  title: string
-  subtitle: string
-  description: string
-}
 
 const defaultValues: NewCourseFormValues = {
   title: '',

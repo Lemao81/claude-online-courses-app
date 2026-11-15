@@ -10,7 +10,7 @@ import {
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
 import { storageClient } from '@/server/storage/client'
 
-export type ObjectStat = {
+type ObjectStat = {
   size: number
   etag: string
   contentType: string | undefined
