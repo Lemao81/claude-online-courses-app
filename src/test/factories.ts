@@ -1,5 +1,5 @@
 import { assets, chapters, courses, enrollments, lessons, users } from '@/server/db/schema'
-import type { Transaction } from '@/server/types'
+import type { Database } from '@/server/types'
 import type { Asset, Chapter, Course, Enrollment, Lesson } from '@/types'
 
 type CourseValues = Partial<typeof courses.$inferInsert>
@@ -12,8 +12,8 @@ type AssetValues = Pick<Asset, 'ownerId'> & Partial<typeof assets.$inferInsert>
 
 type EnrollmentValues = Pick<Enrollment, 'courseId'> & Partial<typeof enrollments.$inferInsert>
 
-export async function insertUser(tx: Transaction): Promise<string> {
-  const [user] = await tx
+export async function insertUser(database: Database): Promise<string> {
+  const [user] = await database
     .insert(users)
     .values({ id: `user_${crypto.randomUUID()}` })
     .returning({ id: users.id })
@@ -21,14 +21,14 @@ export async function insertUser(tx: Transaction): Promise<string> {
   return user.id
 }
 
-export async function insertCourse(tx: Transaction, values: CourseValues = {}): Promise<Course> {
-  const [course] = await tx
+export async function insertCourse(database: Database, values: CourseValues = {}): Promise<Course> {
+  const [course] = await database
     .insert(courses)
     .values({
       title: 'Course',
       subtitle: '',
       description: '',
-      authorId: values.authorId ?? (await insertUser(tx)),
+      authorId: values.authorId ?? (await insertUser(database)),
       ...values,
     })
     .returning()
@@ -36,8 +36,8 @@ export async function insertCourse(tx: Transaction, values: CourseValues = {}): 
   return course
 }
 
-export async function insertChapter(tx: Transaction, values: ChapterValues): Promise<Chapter> {
-  const [chapter] = await tx
+export async function insertChapter(database: Database, values: ChapterValues): Promise<Chapter> {
+  const [chapter] = await database
     .insert(chapters)
     .values({ title: 'Chapter', description: '', ...values })
     .returning()
@@ -45,8 +45,8 @@ export async function insertChapter(tx: Transaction, values: ChapterValues): Pro
   return chapter
 }
 
-export async function insertLesson(tx: Transaction, values: LessonValues): Promise<Lesson> {
-  const [lesson] = await tx
+export async function insertLesson(database: Database, values: LessonValues): Promise<Lesson> {
+  const [lesson] = await database
     .insert(lessons)
     .values({ title: 'Lesson', ...values })
     .returning()
@@ -54,8 +54,8 @@ export async function insertLesson(tx: Transaction, values: LessonValues): Promi
   return lesson
 }
 
-export async function insertAsset(tx: Transaction, values: AssetValues): Promise<Asset> {
-  const [asset] = await tx
+export async function insertAsset(database: Database, values: AssetValues): Promise<Asset> {
+  const [asset] = await database
     .insert(assets)
     .values({
       kind: 'video',
@@ -70,12 +70,12 @@ export async function insertAsset(tx: Transaction, values: AssetValues): Promise
 }
 
 export async function insertEnrollment(
-  tx: Transaction,
+  database: Database,
   values: EnrollmentValues,
 ): Promise<Enrollment> {
-  const [enrollment] = await tx
+  const [enrollment] = await database
     .insert(enrollments)
-    .values({ pricePaid: '0', userId: values.userId ?? (await insertUser(tx)), ...values })
+    .values({ pricePaid: '0', userId: values.userId ?? (await insertUser(database)), ...values })
     .returning()
 
   return enrollment

@@ -4,7 +4,7 @@ Spec: [spec.md](spec.md)
 
 ## [01 Shell & access, with the e2e infrastructure](issues/01-shell-and-access.md)
 
-- [ ] 1.1 Make the factories usable outside a test transaction
+- [x] 1.1 Make the factories usable outside a test transaction
 - [ ] 1.2 📦 Add Playwright with containers, migrations, dev server, a signed-out smoke spec and the Playwright reference
 - [ ] 1.3 Add Clerk test users, saved sessions and the per-test truncate fixture
 - [ ] 1.4 Add the Shell & access specs
