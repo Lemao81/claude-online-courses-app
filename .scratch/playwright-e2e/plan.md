@@ -5,8 +5,8 @@ Spec: [spec.md](spec.md)
 ## [01 Shell & access, with the e2e infrastructure](issues/01-shell-and-access.md)
 
 - [x] 1.1 Make the factories usable outside a test transaction
-- [ ] 1.2 📦 Add Playwright with containers, migrations, dev server, a signed-out smoke spec and the Playwright reference
-- [ ] 1.3 Add Clerk test users, saved sessions and the per-test truncate fixture
+- [x] 1.2 📦 Add Playwright with containers, migrations, dev server, a signed-out smoke spec and the Playwright reference
+- [ ] 1.3 Add the provided Clerk test users' saved sessions and the per-test truncate fixture
 - [ ] 1.4 Add the Shell & access specs
 - [ ] 1.5 Document how to run the e2e tests in the README
 
@@ -35,7 +35,3 @@ Spec: [spec.md](spec.md)
 
 - [ ] 6.1 Add the readiness and publish specs
 - [ ] 6.2 Add the unpublish, archive and read-only editor specs
-
-## Open decisions (ask the user before starting)
-
-- 1.2: which sandbox firewall domains to allow for the Playwright browser download and the Clerk dev instance, and whether the user has run the install on the host after the `package.json` change.

@@ -17,3 +17,6 @@ ANSWERS.md
 IDEAS.md
 RETRO.md
 .notes.local.txt
+/test-results/
+/playwright-report/
+/blob-report/

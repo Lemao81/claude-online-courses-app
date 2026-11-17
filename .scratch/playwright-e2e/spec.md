@@ -8,7 +8,7 @@ The app is tested only below the UI: unit tests for pure helpers and `db` tests 
 
 ## Solution
 
-Add a Playwright end-to-end suite that drives the real app in a browser, organised as one spec file per app area: Shell & access, My Courses, Course details, Outline, Video upload and Lifecycle. A single command starts everything the suite needs: fresh Postgres and RustFS containers, two Clerk test users and a dev server on its own port. It then runs each test from an empty database and tears everything down afterwards. Developers run it on demand, on the host or in the sandbox, without touching their dev data or their running dev server.
+Add a Playwright end-to-end suite that drives the real app in a browser, organised as one spec file per app area: Shell & access, My Courses, Course details, Outline, Video upload and Lifecycle. A single command starts everything the suite needs: fresh Postgres and RustFS containers, signed-in sessions for two developer-provided Clerk test users and a dev server on its own port. It then runs each test from an empty database and tears everything down afterwards. Developers run it on demand, on the host or in the sandbox, without touching their dev data or their running dev server.
 
 ## User Stories
 
@@ -17,7 +17,7 @@ Add a Playwright end-to-end suite that drives the real app in a browser, organis
 3. As a developer, I want the suite to run the database migrations on its fresh database, so that the schema under test always matches the code.
 4. As a developer, I want the suite to start its own dev server on a separate port, so that a run never attaches to or disturbs my running dev server.
 5. As a developer, I want the suite to tear down its containers and dev server when it finishes or fails, so that runs leave nothing behind.
-6. As a developer, I want the two Clerk test users to be created automatically if they don't exist, so that a fresh clone or a new Clerk dev instance needs no manual dashboard setup.
+6. As a developer, I want to provide the two Clerk test users myself and name them in the local env file, so that the suite never creates or changes users on my Clerk instance.
 7. As a developer, I want test users signed in through Clerk testing tokens and a saved session per user, so that tests don't go through the sign-in UI every time and aren't stopped by bot protection.
 8. As a developer, I want every test to start from an empty database, so that tests are deterministic and can assert exact lists and empty states.
 9. As a developer, I want to arrange preconditions through the existing factories, so that tests needing many lessons, ready videos or enrollments stay fast and readable.
@@ -76,17 +76,17 @@ Add a Playwright end-to-end suite that drives the real app in a browser, organis
 
 - The suite covers six app areas, one spec file and one implementation issue each, in this order: Shell & access, My Courses, Course details, Outline, Video upload, Lifecycle. The Courses catalog and Overview pages are placeholders and get no area of their own beyond the navigation and root checks in Shell & access.
 - The first area (Shell & access) also delivers the whole e2e infrastructure as its tracer bullet. There is no separate infrastructure issue, so every issue ships runnable tests.
-- Tooling: `@playwright/test` and `@clerk/testing` as dev dependencies, Chromium only (the bundled build, not branded Chrome). One Playwright config at the repo root, specs in a top-level e2e folder named after their area, and a `test:e2e` script. Adding further browsers later is a config change only.
+- Tooling: `@playwright/test` and `@clerk/testing` as dev dependencies, Chromium only (the bundled build, not branded Chrome). One Playwright config at the repo root, specs in `tests/e2e/` named after their area, and a `test:e2e` script. Adding further browsers later is a config change only.
 - Playwright global setup owns the full environment, in this order:
   1. Start Postgres and RustFS through testcontainers, matching the images and approach of the existing `db` Vitest project's global setup.
   2. Run the Drizzle migrations against the fresh database.
-  3. Make sure the two Clerk test users exist on the Clerk dev instance through the Backend API, idempotently, using `+clerk_test` email addresses so sign-in needs no real inbox.
+  3. Look up the two developer-provided Clerk test users by the email addresses in `E2E_AUTHOR_EMAIL` and `E2E_OTHER_EMAIL` through the Backend API, and stop the run with a message naming the variable when one is unset or its user doesn't exist. Global setup never creates or changes Clerk users.
   4. Spawn the Vite dev server itself on a dedicated port (3100), with the container database URL, the RustFS endpoint and port and its credentials passed through env, then wait until it responds.
   5. Teardown stops the dev server and both containers.
 - Playwright's `webServer` option is not used. Playwright starts `webServer` before `globalSetup`, so it can't receive the container ports, which are only known once global setup has started the containers. Container ports stay dynamic, as in the `db` project.
 - The RustFS container allows the e2e dev server's origin for CORS, because the browser uploads straight to storage through presigned URLs. Buckets are created in the e2e storage the same way the app and the seed create them.
 - The pg-boss worker is not started: a video becomes ready synchronously when its upload completes, and the worker only deletes assets, which has no visible effect in the UI.
-- Two test users: an author, who owns the courses under test, and an other user, who has no access to them. Each user gets a saved signed-in session produced once per run with Clerk testing tokens. Tests pick the session they need. Only `CLERK_SECRET_KEY` and `VITE_CLERK_PUBLISHABLE_KEY`, already present in the local env file, are required.
+- Two test users: an author, who owns the courses under test, and an other user, who has no access to them. Each user gets a saved signed-in session produced once per run with Clerk testing tokens. Tests pick the session they need. Besides `CLERK_SECRET_KEY` and `VITE_CLERK_PUBLISHABLE_KEY`, already present in the local env file, only `E2E_AUTHOR_EMAIL` and `E2E_OTHER_EMAIL` are required; sign-in goes through Clerk sign-in tokens, so no password is stored.
 - Isolation: tests run serially with a single worker, and a fixture truncates all application tables before each test. A user row is recreated on demand, by the app's own upsert on course creation or by a factory.
 - Arranging state: the existing DB factories are reused against the e2e database, for data the UI can't create (enrollments) and for preconditions that would be slow through the UI (a course whose lessons all have ready videos, a published or archived course). The factories may need a variant that runs outside a test transaction.
 - Fixtures: a tiny WebM (VP8) video clip is committed with the e2e tests, so the browser's metadata probe reads a real duration. An existing seed thumbnail image is reused for thumbnail uploads.

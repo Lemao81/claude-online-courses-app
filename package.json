@@ -14,6 +14,7 @@
     "prepare": "git config core.hooksPath .githooks && git config core.createObject rename",
     "postinstall": "pnpm chakra:typegen",
     "test": "vitest run",
+    "test:e2e": "playwright test",
     "typecheck": "tsc --noEmit",
     "es:lint": "eslint .",
     "es:fix": "eslint . --fix",
@@ -82,6 +83,7 @@
   "devDependencies": {
     "@biomejs/biome": "2.5.14",
     "@chakra-ui/cli": "3.36.1",
+    "@playwright/test": "1.65.0",
     "@stylistic/eslint-plugin": "5.10.0",
     "@tanstack/devtools-vite": "0.8.5",
     "@tanstack/router-cli": "1.167.17",
