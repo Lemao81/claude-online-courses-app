@@ -1,6 +1,6 @@
 # 01: Shell & access, with the e2e infrastructure
 
-**What to build:** A developer runs one command and gets a complete, isolated end-to-end run: fresh Postgres and RustFS containers with migrations applied, saved sessions for two developer-provided Clerk test users (an author and an other user), and a dev server on its own port, all torn down afterwards. The first area's specs run through it: a signed-out visitor sees the landing page and is sent back to the root from guarded pages, a signed-in user sees the overview, the sidebar navigates, color mode switches, and a user who is not a course's author gets not found when opening its editor.
+**What to build:** A developer runs one command and gets a complete, isolated end-to-end run: fresh Postgres and RustFS containers with migrations applied, saved sessions for two developer-provided Clerk test users (an author and an other user), and a dev server on its own port, all torn down afterwards. The first area's specs run through it: a signed-out visitor sees the landing page and is sent back to the root from guarded pages, a signed-in user sees the overview, the sidebar navigates, color mode switches, and a user who is not a course's author is sent to Courses when opening its editor.
 
 **Blocked by:** None (can start immediately)
 
@@ -14,7 +14,7 @@
 - [x] Each user has a saved signed-in session produced once per run with Clerk testing tokens.
 - [x] A fixture truncates all application tables before each test; tests run serially with one worker; failing tests keep a trace.
 - [x] The DB factories can arrange data against the e2e database outside a test transaction, and the `db` Vitest project stays green.
-- [ ] Specs cover: landing at the root when signed out, overview at the root when signed in, redirect to the root from My Courses, overview and a course editor when signed out, sidebar navigation to every link, color mode toggle, and not found for a non-author opening a course editor.
+- [x] Specs cover: landing at the root when signed out, overview at the root when signed in, redirect to the root from My Courses, overview and a course editor when signed out, sidebar navigation to every link, color mode toggle, and a non-author opening a course editor being sent to Courses.
 - [x] Chromium only; e2e is not in the pre-commit hook.
 - [x] A Playwright tests reference doc holds the locator, title, fixture and isolation rules, and the agent instructions point to it in one line, both in place before the first spec is written.
 - [ ] README has an "End-to-end tests" section (prerequisites, Clerk dev instance and the two test users to provide, Docker, command, sandbox firewall domains).
