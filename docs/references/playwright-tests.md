@@ -2,6 +2,7 @@
 
 - Put specs in `tests/e2e/`, one file per app area named after it (`checkout.spec.ts`), beside the suite's global setup and its test fixtures in `tests/e2e/fixtures.ts`; test code outside `src/` lives under `tests/`, one folder per suite.
 - Give the suite an environment of its own: global setup starts the services the app needs and a dev server on a dedicated port, teardown removes them, and the `test:e2e` script runs the whole cycle. A run leaves the developer's dev data and dev server untouched.
+- Import `test` and `expect` from `tests/e2e/fixtures.ts`, so every test gets the suite's fixtures. A signed-in test picks a saved session with `test.use({ storageState })`; a setup project signs each test user in once per run and saves that session.
 - Locate elements by role or label (`getByRole`, `getByLabel`), and plain content by its visible text. When an element has no accessible name, add a `data-testid` to the production component and use `getByTestId`; that is the only production change a test may bring.
 - Keep `test()` titles to a few words naming the main thing, not action→result sentences.
 - Act and assert through the page, as a user would, and reload to prove a change was saved. Server calls, database rows, stored files and network stubs stay out of the test body.

@@ -1,6 +1,7 @@
 import { type ChildProcess, spawn } from 'node:child_process'
 import { once } from 'node:events'
 import { setTimeout } from 'node:timers/promises'
+import { clerkSetup } from '@clerk/testing/playwright'
 import { imageBucket, videoBucket } from '@/constants'
 import { startTestContainers } from '@/test/containers'
 import {
@@ -9,6 +10,7 @@ import {
   e2eBaseUrl,
   e2ePort,
 } from './e2e-constants'
+import { lookUpE2eUsers } from './e2e-users'
 
 async function stopDevServer(devServer: ChildProcess): Promise<void> {
   if (devServer.exitCode !== null || devServer.signalCode !== null) {
@@ -62,6 +64,9 @@ async function startDevServer(): Promise<ChildProcess> {
 }
 
 export default async function globalSetup(): Promise<() => Promise<void>> {
+  await clerkSetup()
+  await lookUpE2eUsers()
+
   const containers = await startTestContainers(e2eBaseUrl)
 
   Object.assign(process.env, containers.env)
