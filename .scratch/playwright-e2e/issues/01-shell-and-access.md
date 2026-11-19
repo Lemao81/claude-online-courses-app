@@ -4,7 +4,7 @@
 
 **Blocked by:** None (can start immediately)
 
-**Status:** ready-for-agent
+**Status:** resolved
 
 - [x] The e2e test script runs the whole suite without the Compose services running and without touching the dev database or buckets.
 - [x] Global setup starts Postgres and RustFS through testcontainers (same images as the `db` Vitest project), runs the migrations, creates the e2e buckets and allows the e2e origin for CORS.
@@ -17,7 +17,7 @@
 - [x] Specs cover: landing at the root when signed out, overview at the root when signed in, redirect to the root from My Courses, overview and a course editor when signed out, sidebar navigation to every link, color mode toggle, and a non-author opening a course editor being sent to Courses.
 - [x] Chromium only; e2e is not in the pre-commit hook.
 - [x] A Playwright tests reference doc holds the locator, title, fixture and isolation rules, and the agent instructions point to it in one line, both in place before the first spec is written.
-- [ ] README has an "End-to-end tests" section (prerequisites, Clerk dev instance and the two test users to provide, Docker, command, sandbox firewall domains).
+- [x] README has an "End-to-end tests" section (prerequisites, Clerk dev instance and the two test users to provide, Docker, command, sandbox firewall domains).
 
 ## Decisions
 

@@ -8,7 +8,7 @@ Spec: [spec.md](spec.md)
 - [x] 1.2 📦 Add Playwright with containers, migrations, dev server, a signed-out smoke spec and the Playwright reference
 - [x] 1.3 📦 Add the provided Clerk test users' saved sessions and the per-test truncate fixture
 - [x] 1.4 Add the Shell & access specs
-- [ ] 1.5 Document how to run the e2e tests in the README
+- [x] 1.5 Document how to run the e2e tests in the README
 
 ## [02 My Courses](issues/02-my-courses.md)
 

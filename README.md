@@ -46,6 +46,32 @@ This project uses [Vitest](https://vitest.dev/) for testing. You can run the tes
 pnpm test
 ```
 
+## End-to-end tests
+
+The [Playwright](https://playwright.dev/) suite in `tests/e2e/` runs against an environment of its own: global setup starts fresh PostgreSQL and RustFS containers through testcontainers, applies the migrations and serves the app on port 3100; teardown removes them all. The Compose services, the dev database and a dev server on port 3000 stay untouched.
+
+Prerequisites:
+
+- Docker running, and port 3100 free.
+- Chromium for Playwright: `pnpm exec playwright install chromium`; on Linux also its system libraries: `sudo env "PATH=$PATH" pnpm exec playwright install-deps chromium`.
+- A Clerk **development** instance, whose keys `VITE_CLERK_PUBLISHABLE_KEY` and `CLERK_SECRET_KEY` sit in `.env.local`; the suite signs in with Clerk testing tokens, which only development instances issue.
+- Two users you create in that instance, an author and another user, named by email in `.env.local`. The suite signs them in with sign-in tokens, so they need no password, and it never creates or changes Clerk users:
+
+  ```bash
+  E2E_AUTHOR_EMAIL=author@example.com
+  E2E_OTHER_EMAIL=other@example.com
+  ```
+
+Run the suite:
+
+```bash
+pnpm test:e2e
+```
+
+A failing test keeps its trace in `test-results/`; open it with `pnpm exec playwright show-trace <trace.zip>`.
+
+In a sandbox with a firewall, allow `cdn.playwright.dev` and `playwright.download.prss.microsoft.com` for the browser download, `api.clerk.com` for the Clerk Backend API, and your instance's Frontend API domain (`<name>.clerk.accounts.dev`, encoded in the publishable key).
+
 ## Database
 
 PostgreSQL is accessed through [Drizzle ORM](https://orm.drizzle.team/). The schema lives in
