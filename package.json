@@ -15,6 +15,7 @@
     "postinstall": "pnpm chakra:typegen",
     "test": "vitest run",
     "test:e2e": "playwright test",
+    "test:e2e:headed": "playwright test --headed",
     "typecheck": "tsc --noEmit",
     "es:lint": "eslint .",
     "es:fix": "eslint . --fix",

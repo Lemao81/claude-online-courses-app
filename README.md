@@ -68,6 +68,8 @@ Run the suite:
 pnpm test:e2e
 ```
 
+To watch the tests in a browser window, run `pnpm test:e2e:headed` on the host.
+
 A failing test keeps its trace in `test-results/`; open it with `pnpm exec playwright show-trace <trace.zip>`.
 
 In a sandbox with a firewall, allow `cdn.playwright.dev` and `playwright.download.prss.microsoft.com` for the browser download, `api.clerk.com` for the Clerk Backend API, and your instance's Frontend API domain (`<name>.clerk.accounts.dev`, encoded in the publishable key).
