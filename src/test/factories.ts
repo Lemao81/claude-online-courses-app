@@ -12,11 +12,11 @@ type AssetValues = Pick<Asset, 'ownerId'> & Partial<typeof assets.$inferInsert>
 
 type EnrollmentValues = Pick<Enrollment, 'courseId'> & Partial<typeof enrollments.$inferInsert>
 
-export async function insertUser(database: Database): Promise<string> {
-  const [user] = await database
-    .insert(users)
-    .values({ id: `user_${crypto.randomUUID()}` })
-    .returning({ id: users.id })
+export async function insertUser(
+  database: Database,
+  id = `user_${crypto.randomUUID()}`,
+): Promise<string> {
+  const [user] = await database.insert(users).values({ id }).returning({ id: users.id })
 
   return user.id
 }

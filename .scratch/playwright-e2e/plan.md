@@ -12,7 +12,7 @@ Spec: [spec.md](spec.md)
 
 ## [02 My Courses](issues/02-my-courses.md)
 
-- [ ] 2.1 Add the list, empty state and New Course specs
+- [x] 2.1 Add the list, empty state and New Course specs
 - [ ] 2.2 Add the delete and archive specs
 
 ## [03 Course details](issues/03-course-details.md)
