@@ -11,6 +11,8 @@ async function waitForHydration(page: Page): Promise<void> {
   await page.waitForFunction(() =>
     Object.keys(document).some((k) => k.startsWith('__reactContainer')),
   )
+
+  await page.waitForLoadState('networkidle')
 }
 
 export const test = base.extend<{ emptyDatabase: void }, { database: typeof db }>({

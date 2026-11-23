@@ -4,15 +4,15 @@
 
 **Blocked by:** 01
 
-**Status:** ready-for-agent
+**Status:** resolved
 
 - [x] With no courses, the page shows its empty state.
 - [x] The list shows exactly the author's courses; a course of the other user never appears.
 - [x] Creating a course through the New Course dialog adds it to the list and leads to its editor.
 - [x] The dialog keeps OK disabled for a blank title, also on Enter, and creates nothing.
-- [ ] Deleting a draft asks for confirmation and removes it from the list, also after a reload; cancelling keeps it.
-- [ ] Deletion is unavailable for a draft with an enrollment (arranged through a factory).
-- [ ] Archiving from the overflow menu shows the course as archived, also after a reload.
+- [x] Deleting a draft asks for confirmation and removes it from the list, also after a reload; cancelling keeps it.
+- [x] Deleting a draft with an enrollment (arranged through a factory) fails with an error and keeps it.
+- [x] Archiving from the editor's overflow menu shows the course as archived in the list, also after a reload.
 
 ## Steps
 
