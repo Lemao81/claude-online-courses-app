@@ -30,7 +30,7 @@ Add a Playwright end-to-end suite that drives the real app in a browser, organis
 16. As a signed-out visitor, I want to be sent back to the root when I open My Courses, the overview or a course editor, so that private pages stay private.
 17. As a user, I want the sidebar links to take me to Overview, Courses, My Courses and About, so that I can move around the app.
 18. As a user, I want to switch between light and dark color mode, so that the app suits my surroundings.
-19. As a user who is not the author of a course, I want opening its editor to show not found, so that I can neither see nor change another author's course.
+19. As a user who is not the author of a course, I want opening its editor to send me to Courses, so that I can neither see nor change another author's course.
 20. As an author with no courses, I want My Courses to show an empty state, so that I know I haven't created anything yet.
 21. As an author, I want My Courses to list exactly my own courses, so that other authors' courses never appear among mine.
 22. As an author, I want to create a course from the New Course dialog, so that I can start building it.
@@ -99,7 +99,7 @@ Add a Playwright end-to-end suite that drives the real app in a browser, organis
 - A good e2e test acts and asserts only through the browser, as a user would: navigate, click, type, drag, drop files, and read what is visible, reloading where it has to prove that a change was saved. Tests never call server functions directly, never assert on DB rows or storage objects, and never stub network calls. DB factories are used only to arrange preconditions.
 - Each area covers its main flows plus the domain rules the UI enforces: publishing blocked until every lesson has a ready video, an archived course being read-only, deletion only for a draft that has never had an enrollment, form validation errors, and course-level lessons coming before chapters. Rules already covered in depth by the `db` tests (ordering arithmetic, access helpers) are checked once through the UI, not exhaustively.
 - Modules under test, by area:
-  - Shell & access: root page by sign-in state, sidebar navigation, guarded-route redirects, color mode, not-found for a non-author.
+  - Shell & access: root page by sign-in state, sidebar navigation, guarded-route redirects, color mode, a non-author sent to Courses from the editor.
   - My Courses: list, empty state, the New Course dialog, the overflow menu (delete and archive).
   - Course details: the details form and thumbnail upload.
   - Outline: lesson and chapter add, rename and delete, drag reordering, the move menu.
