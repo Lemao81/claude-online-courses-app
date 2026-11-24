@@ -26,7 +26,7 @@ export async function insertCourse(database: Database, values: CourseValues = {}
     .insert(courses)
     .values({
       title: 'Course',
-      subtitle: '',
+      subtitle: 'Subtitle',
       description: '',
       authorId: values.authorId ?? (await insertUser(database)),
       ...values,
