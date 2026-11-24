@@ -4,12 +4,12 @@
 
 **Blocked by:** 01
 
-**Status:** ready-for-agent
+**Status:** resolved
 
 - [x] Edited title, subtitle and price are shown after a reload.
 - [x] An empty title and an out-of-range price show an error and are not saved.
-- [ ] A course without a thumbnail shows the placeholder.
-- [ ] Uploading an image (an existing seed thumbnail) shows it as the course thumbnail, also after a reload.
+- [x] A course without a thumbnail shows the placeholder.
+- [x] Uploading an image (an existing seed thumbnail) shows it as the course thumbnail, also after a reload.
 
 ## Steps
 

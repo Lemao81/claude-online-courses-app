@@ -66,3 +66,37 @@ test('price out of range', async ({ page, database }) => {
   await page.reload()
   await expect(page.getByRole('textbox', { name: 'Price' })).toHaveValue('19.99')
 })
+
+test('thumbnail placeholder', async ({ page, database }) => {
+  const authorId = await insertUser(database, e2eUserId('author'))
+  const course = await insertCourse(database, { authorId })
+
+  await page.goto(`/editcourse/${course.id}`)
+
+  await expect(page.getByText('JPEG, PNG or WebP, up to 5 MB')).toBeVisible()
+  await expect(page.getByRole('img', { name: 'Course thumbnail' })).toHaveCount(0)
+})
+
+test('thumbnail upload', async ({ page, database }) => {
+  const authorId = await insertUser(database, e2eUserId('author'))
+  const course = await insertCourse(database, { authorId })
+
+  await page.goto(`/editcourse/${course.id}`)
+
+  const fileChooser = page.waitForEvent('filechooser')
+  await page.getByRole('button', { name: 'Upload thumbnail' }).click()
+  await (await fileChooser).setFiles('src/server/db/seed/assets/thumbnail-1.jpg')
+
+  await expect(page.getByRole('img', { name: 'Course thumbnail' })).toHaveJSProperty(
+    'naturalWidth',
+    1280,
+  )
+
+  await expect(page.getByRole('button', { name: 'Replace' })).toBeVisible()
+
+  await page.reload()
+  await expect(page.getByRole('img', { name: 'Course thumbnail' })).toHaveJSProperty(
+    'naturalWidth',
+    1280,
+  )
+})
