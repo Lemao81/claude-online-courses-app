@@ -6,8 +6,8 @@
 
 **Status:** ready-for-agent
 
-- [ ] Edited title, subtitle and price are shown after a reload.
-- [ ] An empty title and an out-of-range price show an error and are not saved.
+- [x] Edited title, subtitle and price are shown after a reload.
+- [x] An empty title and an out-of-range price show an error and are not saved.
 - [ ] A course without a thumbnail shows the placeholder.
 - [ ] Uploading an image (an existing seed thumbnail) shows it as the course thumbnail, also after a reload.
 

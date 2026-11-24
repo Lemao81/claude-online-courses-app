@@ -17,7 +17,7 @@ Spec: [spec.md](spec.md)
 
 ## [03 Course details](issues/03-course-details.md)
 
-- [ ] 3.1 Add the details editing and validation specs
+- [x] 3.1 Add the details editing and validation specs
 - [ ] 3.2 Add the thumbnail specs
 
 ## [04 Outline](issues/04-outline.md)
